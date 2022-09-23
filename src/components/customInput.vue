@@ -8,15 +8,12 @@ export default {
       type: String,
       required: false
     },
-    model: {
-      type: String,
-      required: false
-    },
     customClass: {
       type: String,
       required: false
     }
   },
+  emits: ["modalValue"],
   setup() {
     return {};
   },
@@ -28,6 +25,6 @@ export default {
 };
 </script>
 <template>
-  <input :class="customClass" class="custom-input" type="text" :placeholder="placeholder" @input="handleInput">
+  <input class="custom-input" :class="customClass" type="text" :placeholder="placeholder" @input="handleInput">
   <slot name="element"></slot>
 </template>
