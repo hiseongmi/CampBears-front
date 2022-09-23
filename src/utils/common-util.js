@@ -64,7 +64,7 @@ const parseJson = value => {
 const checkForm = form => {
 	if (form) {
 		for (let item in form) {
-			if (form[item] === '' || form[item] === undefined || form[item] === null) {
+			if (isCheckNull(form[item])) {
 				return false;
 			}
 		}
@@ -82,6 +82,15 @@ const getImageUrl = url => {
 	return 'assets/image/profile.jpeg';
 };
 
+/**
+ * 타겟의 빈값 체크
+ * @param {any} target
+ * @returns {boolean}
+ */
+const isCheckNull = target => {
+	return !(target === null || target === '' || target === undefined);
+};
+
 export default {
 	getLocalStorage,
 	setLocalStorage,
@@ -89,4 +98,5 @@ export default {
 	parseJson,
 	checkForm,
 	getImageUrl,
+	isCheckNull,
 };
