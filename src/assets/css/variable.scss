@@ -1,4 +1,4 @@
-$primary-color: #876445;
+$primary-color: #876442;
 $second-color: yellow;
 $third-color: green;
 $gray: gray;
@@ -69,6 +69,14 @@ width, height, padding, margin set
   -ms-transition: $transition;
   -o-transition: $transition;
   transition: $transition;
+}
+
+@mixin animation($animation...){
+  -webkit-animation: $animation;
+  -moz-animation: $animation;
+  -ms-animation: $animation;
+  -o-animation: $animation;
+  animation: $animation;
 }
 
 //특정 영역 가운데 정렬

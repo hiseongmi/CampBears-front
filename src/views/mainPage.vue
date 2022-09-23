@@ -1,6 +1,6 @@
 <script>
-import customInput from "../components/customInput.vue";
-import customButton from "../components/customButton.vue";
+import customInput from "../components/layout/customInput.vue";
+import customButton from "../components/layout/customButton.vue";
 import { ref, watch } from "vue";
 
 export default {

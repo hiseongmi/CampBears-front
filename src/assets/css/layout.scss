@@ -34,3 +34,29 @@
     }
   }
 }
+
+#loading-bar {
+  @include center();
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 5px solid $primary-color;
+  border-top-color: #b7a997;
+  opacity: 80%;
+  //border-left-color: #ccc;
+  animation: spin 1s ease-in-out infinite;
+
+}
+
+@keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
