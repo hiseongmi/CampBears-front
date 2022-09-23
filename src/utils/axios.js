@@ -1,6 +1,4 @@
 import axios from 'axios';
-// import { useStore } from 'vuex';
-// import { STORE_TYPE } from '../store/index.js';
 import { CONSTANTS } from '../constants.js';
 
 // const store = useStore();
@@ -11,25 +9,33 @@ const axiosInstance = axios.create({
 	headers: { 'contents-type': 'Json' },
 });
 
-// axiosInstance.interceptors.request.use(
-// 	() => {
-// 		store.commit(STORE_TYPE.isLoading, true);
-// 		console.log('pending..');
-// 	},
-// 	e => {
-// 		if (CONSTANTS.DEVELOP) console.error(e);
-// 	},
-// );
-//
-// axiosInstance.interceptors.response.use(
-// 	() => {
-// 		store.commit(STORE_TYPE.isLoading, false);
-// 		console.log('complete');
-// 	},
-// 	e => {
-// 		if (CONSTANTS.DEVELOP) console.error(e);
-// 	},
-// );
+axiosInstance.interceptors.request.use(
+	() => {
+		dispatchEvent(
+			new CustomEvent(CONSTANTS.KEY_LIST.EVENT_LIST, {
+				detail: CONSTANTS.KEY_LIST.EVENT_MESSAGE.PROCESS,
+			}),
+		);
+		console.log('pending..');
+	},
+	e => {
+		if (CONSTANTS.DEVELOP) console.error(e);
+	},
+);
+
+axiosInstance.interceptors.response.use(
+	() => {
+		dispatchEvent(
+			new CustomEvent(CONSTANTS.KEY_LIST.EVENT_LIST, {
+				detail: CONSTANTS.KEY_LIST.EVENT_MESSAGE.COMPLETE,
+			}),
+		);
+		console.log('complete');
+	},
+	e => {
+		if (CONSTANTS.DEVELOP) console.error(e);
+	},
+);
 
 export const apiClient = async (url, data) => {
 	return await axiosInstance
