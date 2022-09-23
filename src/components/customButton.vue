@@ -20,6 +20,7 @@ export default {
 <template>
   <div class="custom-button" :class="customClass" @click="onClick">
     <a href="#" @click.prevent.stop="onClick">{{ placeholder }}</a>
+    <slot name="element"></slot>
   </div>
 </template>
 

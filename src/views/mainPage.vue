@@ -38,7 +38,9 @@ export default {
   {{ inputValue }}
 
   <!--  custom-button 사용 예시-->
-  <custom-button :placeholder="`버튼예시`" :custom-class="`test-input`" :onClick="btnClickEvent"></custom-button>
+  <custom-button :placeholder="`버튼예시`" :custom-class="`test-input`" :onClick="btnClickEvent">
+    <template v-slot:element>slot</template>
+  </custom-button>
 </template>
 
 <style lang="scss">
