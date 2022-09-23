@@ -1,0 +1,120 @@
+$primary-color: red;
+$second-color: yellow;
+$third-color: green;
+$gray: gray;
+$disable: #cccccc;
+$text-color: #222222;
+
+//color List
+$red: #ff2525;
+$orange: #ff9b25;
+$yellow: #ffDB21;
+$green: #3ee315;
+$mint: #15bee3;
+$blue: #061651;
+$purple: #5b1096;
+
+
+/**
+width, height, padding, margin set
+ */
+
+@for $index from 0 to 20 {
+  .mt-#{$index} {
+    margin-top: $index * 5px;
+  }
+  .mr-#{$index} {
+    margin-right: $index * 5px;
+  }
+  .mb-#{$index} {
+    margin-bottom: $index * 5px;
+  }
+  .ml-#{$index} {
+    margin-left: $index * 5px;
+  }
+  .pt-#{$index} {
+    padding-top: $index * 5px;
+  }
+  .pr-#{$index} {
+    padding-right: $index * 5px;
+  }
+  .pb-#{$index} {
+    padding-bottom: $index * 5px;
+  }
+  .pl-#{$index} {
+    padding-left: $index * 5px;
+  }
+  .fs-#{$index} {
+    font-size: $index * 8px;
+  }
+  .w-#{index} {
+    width: $index * 5px;
+  }
+  .h-#{index} {
+    height: $index * 5px;
+  }
+}
+
+@mixin transform($transform...) {
+  -webkit-transform: $transform;
+  -moz-transform: $transform;
+  -ms-transform: $transform;
+  -o-transform: $transform;
+  transform: $transform;
+}
+
+@mixin transition($transition...) {
+  -webkit-transition: $transition;
+  -moz-transition: $transition;
+  -ms-transition: $transition;
+  -o-transition: $transition;
+  transition: $transition;
+}
+
+//특정 영역 가운데 정렬
+@mixin center-width {
+  position: relative;
+  left: 50%;
+  @include transform(translateX(-50%));
+}
+
+//특정 영역 세로 정렬
+@mixin center-height {
+  position: relative;
+  top: 50%;
+  @include transform(translateY(-50%));
+}
+
+//특정 영역 가운데 정렬
+@mixin center {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  @include transform(translate(-50% -50%));
+}
+
+/**
+화면 반응형 기준
+360 ~ 767 : mobile;
+767 ~ 1200 : tablet;
+1200 ~      : pc;
+ */
+
+@mixin mb {
+  @media (max-width: 767px) {
+    @content;
+  }
+}
+
+@mixin tb {
+  @media (max-width: 1200px) {
+    @content;
+  }
+}
+
+@mixin pc {
+  @media (min-width: 1200px) {
+    @content;
+  }
+}
+
