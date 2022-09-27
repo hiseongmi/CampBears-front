@@ -1,16 +1,25 @@
 <script>
 import customInput from "../components/layout/customInput.vue";
 import customButton from "../components/layout/customButton.vue";
+import customSelect from "../components/layout/customSelect.vue";
 import { ref, watch } from "vue";
 
 export default {
   name: "mainPage",
   components: {
     customInput,
-    customButton
+    customButton,
+    customSelect
   },
   setup() {
     const inputValue = ref();
+
+    const selectedValue = ref();
+
+    const selectedUpdateValue = (value) => {
+      selectedValue.value = value;
+      console.log(selectedValue.value);
+    };
 
     const updateValue = (event) => {
       inputValue.value = event;
@@ -21,18 +30,29 @@ export default {
       console.log(`this is btnClick Event`);
     };
 
+    const selectData = [
+      { key: "one", value: "1" },
+      { key: "two", value: "2" },
+      { key: "three", value: "3" },
+      { key: "four", value: "4" },
+      { key: "five", value: "5" }
+    ];
+
 
     return {
       updateValue,
       btnClickEvent,
-      inputValue
+      selectedUpdateValue,
+      inputValue,
+      selectData,
+      selectedValue
     };
   }
 };
 </script>
 <template>
   <!--  custom input 사용 예시-->
-  <custom-input :placeholder="`hi`" @modalValue="updateValue" :custom-class="`test-input`">
+  <custom-input :placeholder="`hi`" @update:value="updateValue" :custom-class="`test-input`">
     <template v-slot:element>result :</template>
   </custom-input>
   {{ inputValue }}
@@ -41,6 +61,9 @@ export default {
   <custom-button :placeholder="`버튼예시`" :custom-class="`test-input`" :onClick="btnClickEvent">
     <template v-slot:element>slot</template>
   </custom-button>
+
+  <customSelect @update:value="selectedUpdateValue" :data="selectData"></customSelect>
+  {{ selectedValue }}
 </template>
 
 <style lang="scss">

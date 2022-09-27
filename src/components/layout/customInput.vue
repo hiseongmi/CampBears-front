@@ -13,13 +13,13 @@ export default {
       required: false
     }
   },
-  emits: ["modalValue"],
+  emits: ["update:value"],
   setup() {
     return {};
   },
   methods: {
     handleInput(e) {
-      this.$emit("modalValue", e.target.value);
+      this.$emit("update:value", e.target.value);
     }
   }
 };
