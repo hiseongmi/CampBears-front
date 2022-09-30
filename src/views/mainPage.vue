@@ -1,74 +1,19 @@
 <script>
-import customInput from "../components/layout/customInput.vue";
-import customButton from "../components/layout/customButton.vue";
-import customSelect from "../components/layout/customSelect.vue";
-import { ref, watch } from "vue";
+import router from "../router/index.js";
 
 export default {
   name: "mainPage",
-  components: {
-    customInput,
-    customButton,
-    customSelect
-  },
   setup() {
-    const inputValue = ref();
-
-    const selectedValue = ref();
-
-    const selectedUpdateValue = (value) => {
-      selectedValue.value = value;
-      console.log(selectedValue.value);
+    const goToSample = () => {
+      router.push("/samplePage");
     };
-
-    const updateValue = (event) => {
-      inputValue.value = event;
-      console.log(inputValue.value);
-    };
-
-    const btnClickEvent = () => {
-      console.log(`this is btnClick Event`);
-    };
-
-    const selectData = [
-      { key: "one", value: "1" },
-      { key: "two", value: "2" },
-      { key: "three", value: "3" },
-      { key: "four", value: "4" },
-      { key: "five", value: "5" }
-    ];
-
-
     return {
-      updateValue,
-      btnClickEvent,
-      selectedUpdateValue,
-      inputValue,
-      selectData,
-      selectedValue
+      goToSample
     };
   }
 };
 </script>
 <template>
-  <!--  custom input 사용 예시-->
-  <custom-input :placeholder="`hi`" @update:value="updateValue" :custom-class="`test-input`">
-    <template v-slot:element>result :</template>
-  </custom-input>
-  {{ inputValue }}
-
-  <!--  custom-button 사용 예시-->
-  <custom-button :placeholder="`버튼예시`" :custom-class="`test-input`" :onClick="btnClickEvent">
-    <template v-slot:element>slot</template>
-  </custom-button>
-
-  <customSelect @update:value="selectedUpdateValue" :data="selectData"></customSelect>
-  {{ selectedValue }}
+  mainPage
+  <button @click="goToSample">샘플 페이지 가기</button>
 </template>
-
-<style lang="scss">
-.test-input {
-  width: 100px;
-  height: 100px;
-}
-</style>

@@ -6,6 +6,7 @@ $disable: #cccccc;
 $text-color: #222222;
 
 //color List
+$white: #ffffff;
 $red: #ff2525;
 $orange: #ff9b25;
 $yellow: #ffDB21;
@@ -71,7 +72,7 @@ width, height, padding, margin set
   transition: $transition;
 }
 
-@mixin animation($animation...){
+@mixin animation($animation...) {
   -webkit-animation: $animation;
   -moz-animation: $animation;
   -ms-animation: $animation;
