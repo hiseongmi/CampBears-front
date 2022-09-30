@@ -6,8 +6,8 @@ circle input{}
 
 cloud server as server{
     rectangle ubuntu as ubuntu {
-        database postgres as db{
-            }
+
+
 
 
          rectangle docker as was {
@@ -20,6 +20,11 @@ cloud server as server{
 
         }
           }
+
+          rectangle docker as db{
+                  database postgres as dbApp{
+                      }
+              }
 
 
 
@@ -38,10 +43,10 @@ cloud server as server{
     input ==> nginx : "80:80"
     nginx ==> LB
     LB ==> reverseProxy
-    reverseProxy =up> web
-    web <==> was
+    reverseProxy =up> webApp
+    webApp <==> wasApp
 
-    was <=> db
+    dbApp <=down> wasApp
 
 
 
