@@ -1,0 +1,53 @@
+@startuml
+left to right direction
+skinparam roundCorner 10
+
+circle input{}
+
+cloud server as server{
+    rectangle ubuntu as ubuntu {
+        database postgres as db{
+            }
+
+
+         rectangle docker as was {
+        rectangle was as wasApp {
+
+        }
+         }
+          rectangle docker as web {
+        rectangle web-server as webApp{
+
+        }
+          }
+
+
+
+
+        rectangle docker as nginx {
+
+                node LB as LB {
+
+                }
+                rectangle reverse-proxy as reverseProxy {
+
+                }
+                }
+
+    }
+    input ==> nginx : "80:80"
+    nginx ==> LB
+    LB ==> reverseProxy
+    reverseProxy =up> web
+    web <==> was
+
+    was <=> db
+
+
+
+
+
+}
+
+
+@enduml
