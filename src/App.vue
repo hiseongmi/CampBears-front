@@ -29,7 +29,7 @@ export default {
     onMounted(() => {
       addEventListener(CONSTANTS.KEY_LIST.EVENT_LIST.LOADING, eventHandler);
       console.warn("start");
-      getAPI();
+      // getAPI();
     });
 
     return {
