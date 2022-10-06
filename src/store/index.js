@@ -1,22 +1,37 @@
-import { createStore } from 'vuex';
+import { createStore, useStore } from "vuex";
 
-export default createStore({
+const store = createStore({
 	state: {
 		isLoading: false,
 	},
-	getters: {
-		isLoading() {
-			return state.boardDetail;
-		},
-	},
 	mutations: {
-		isLoading(value) {
+		isLoading(state, value) {
 			//value : boolean;
-			state.boardDetail = value;
+			state.isLoading = value;
 		},
 	},
 });
 
+export default store;
+//
+// export default createStore({
+// 	state: {
+// 		isLoading: false,
+// 	},
+// 	mutations: {
+// 		isLoading(value) {
+// 			//value : boolean;
+// 			state.boardDetail = value;
+// 		},
+// 	},
+// });
+const _store = useStore();
+
+export const getStore = () => {
+	if (_store) return store;
+	return useStore();
+};
+
 export const STORE_TYPE = {
-	isLoading: 'isLoading',
+	isLoading: "isLoading",
 };
