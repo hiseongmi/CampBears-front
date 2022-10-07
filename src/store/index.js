@@ -1,13 +1,27 @@
 import { createStore, useStore } from "vuex";
 
+export const STORE_TYPE = {
+	isLoading: "isLoading",
+	popupType: "popupType",
+};
+
+export const POPUP_TYPE = {
+	NONE: "NONE",
+	WRITE_BOARD: "WRITE_BOARD",
+};
+
 const store = createStore({
 	state: {
 		isLoading: false,
+		popupType: POPUP_TYPE.NONE,
 	},
 	mutations: {
 		isLoading(state, value) {
 			//value : boolean;
 			state.isLoading = value;
+		},
+		popupType(state, value) {
+			state.popupType = value;
 		},
 	},
 });
@@ -30,8 +44,4 @@ const _store = useStore();
 export const getStore = () => {
 	if (_store) return store;
 	return useStore();
-};
-
-export const STORE_TYPE = {
-	isLoading: "isLoading",
 };

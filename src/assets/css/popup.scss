@@ -1,0 +1,84 @@
+.popup-manager {
+  .black {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: black;
+  }
+
+  .modal {
+    &-inner {
+      @include center();
+      position: fixed;
+      max-width: 80%;
+      background-color: whitesmoke;
+      box-shadow: 0 4px 6px;
+      padding: 52px 30px;
+      border-radius: 6px;
+
+      span {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        font-size: 20px;
+        cursor: pointer;
+
+        &:hover {
+          color: crimson;
+        }
+      }
+
+      .save-btn {
+        display: flex;
+        justify-content: center;
+
+        button {
+          padding: 6px;
+          height: 30px;
+          margin: 10px 10px;
+          width: 80px;
+          border: none;
+          font-size: 13px;
+          background-color: crimson;
+          color: white;
+          cursor: pointer;
+          border-radius: 7px;
+        }
+      }
+
+      .modal-content {
+        display: flex;
+        flex-direction: column;
+
+        &-writer {
+          border: none;
+          width: 340px;
+          height: 30px;
+          border-radius: 4px;
+          margin-bottom: 5px;
+        }
+
+        &-content {
+          border: none;
+          width: 340px;
+          height: 70px;
+          border-radius: 4px;
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+}
+
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}

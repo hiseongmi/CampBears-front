@@ -139,6 +139,7 @@ export default {
           </li>
         </ul>
       </div>
+
       <modal-home></modal-home>
     </div>
     <!--		<modal-home></modal-home>-->
