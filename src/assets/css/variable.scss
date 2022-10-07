@@ -82,24 +82,24 @@ width, height, padding, margin set
 
 //특정 영역 가운데 정렬
 @mixin center-width {
-  position: relative;
+  position: absolute;
   left: 50%;
   @include transform(translateX(-50%));
 }
 
 //특정 영역 세로 정렬
 @mixin center-height {
-  position: relative;
+  position: absolute;
   top: 50%;
   @include transform(translateY(-50%));
 }
 
 //특정 영역 가운데 정렬
 @mixin center {
-  position: relative;
+  position: absolute;
   top: 50%;
   left: 50%;
-  @include transform(translate(-50% -50%));
+  @include transform(translate(-50%, -50%));
 }
 
 /**
