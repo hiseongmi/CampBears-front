@@ -1,0 +1,15 @@
+@startuml
+
+(*) --> click write button
+--> write a detail
+if button type
+--> [save] "save" as save
+else
+--> [close] "exit" as exit
+
+save --> send to server
+ --> (*)
+exit --> (*)
+
+
+@enduml
