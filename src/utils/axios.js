@@ -1,12 +1,12 @@
-import axios from 'axios';
-import { CONSTANTS } from '../constants.js';
+import axios from "axios";
+import { CONSTANTS } from "../constants.js";
 
 // const store = useStore();
 
 const axiosInstance = axios.create({
 	baseURL: CONSTANTS.API_URL,
-	timeout: 1000 * 60,
-	headers: { 'contents-type': 'Json' },
+	timeout: 1000 * 60 * 3,
+	headers: { "contents-type": "Json" },
 });
 
 axiosInstance.interceptors.request.use(
@@ -16,7 +16,7 @@ axiosInstance.interceptors.request.use(
 				detail: CONSTANTS.KEY_LIST.EVENT_MESSAGE.PROCESS,
 			}),
 		);
-		console.log('pending..');
+		console.log("pending..");
 		return config;
 	},
 	e => {
@@ -32,7 +32,7 @@ axiosInstance.interceptors.response.use(
 				detail: CONSTANTS.KEY_LIST.EVENT_MESSAGE.COMPLETE,
 			}),
 		);
-		console.log('complete');
+		console.log("complete");
 		return config;
 	},
 	e => {
