@@ -1,25 +1,13 @@
 .modal {
   &-detail {
-    @include center();
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     position: fixed;
     max-width: 80%;
-    background-color: whitesmoke;
-    box-shadow: 0 4px 6px;
+    //box-shadow: 0 4px 6px;
     width: 700px;
-    border-radius: 6px;
-    height: 700px;
-
-    //span {
-    //  position: absolute;
-    //  top: 15px;
-    //  right: 15px;
-    //  font-size: 20px;
-    //  cursor: pointer;
-    //
-    //  &:hover {
-    //    color: crimson;
-    //  }
-    //}
+    height: 650px;
 
     .save-btn {
       display: flex;
@@ -49,6 +37,45 @@
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
 
+      .container {
+        position: fixed;
+        right: 0;
+        top: -31px;
+
+        &-trigger {
+          display: none;
+
+          &-label {
+            width: 7px;
+            display: block;
+            position: relative;
+            cursor: pointer;
+
+            span {
+              display: block;
+              height: 7px;
+              background-color: #ffffff;
+              left: 0;
+              width: 100%;
+              transition: 0.3s;
+              z-index: 1000;
+              margin: 2px 0;
+              border-radius: 70%;
+            }
+          }
+        }
+      }
+
+      .pop {
+        width: 100px;
+        height: 100px;
+        background-color: white;
+        position: fixed;
+        top: 0;
+        right: 0;
+        transition: 0.3s;
+      }
+
       &-image {
         img {
           width: 100%;
@@ -56,8 +83,11 @@
       }
 
       .content {
+        background-color: white;
+
         &-wrap {
           display: flex;
+
 
           &-profile {
             display: flex;
@@ -159,6 +189,7 @@
         }
       }
 
+
       .save-btn {
         display: flex;
         justify-content: center;
@@ -182,6 +213,7 @@
       display: none;
     }
   }
+
 }
 
 

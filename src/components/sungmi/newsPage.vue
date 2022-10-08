@@ -5,10 +5,14 @@ import {ref} from 'vue';
 import router from "../../router/index.js";
 import PopupManager from "../../App.vue";
 import store, {POPUP_TYPE, STORE_TYPE} from "../../store/index.js";
+import HeaderPage from "../headerPage.vue";
+import FooterPage from "../footerPage.vue";
 
 export default {
   name: 'newsPage',
   components: {
+    FooterPage,
+    HeaderPage,
     PopupManager,
     modalHome,
     customSelect
@@ -110,6 +114,7 @@ export default {
 };
 </script>
 <template>
+  <header-page></header-page>
   <div class="news">
     <div class="news-wrap">
       <div class="news-wrap-contents">
@@ -186,4 +191,5 @@ export default {
       </div>
     </div>
   </div>
+  <footer-page></footer-page>
 </template>
