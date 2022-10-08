@@ -30,6 +30,4 @@ export default {
     <div class="black" @click.prevent.stop="clickClose()"></div>
     <writeBoardPopup v-if="isPopup === POPUP_TYPE.WRITE_BOARD" :clickClose="clickClose"></writeBoardPopup>
   </div>
-
-
 </template>

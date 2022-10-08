@@ -21,6 +21,11 @@ const routes = [
 		name: "newsPage",
 		component: () => import("../components/sungmi/newsPage.vue"),
 	},
+	{
+		path: "/PostPage",
+		name: "PostPage",
+		component: () => import("../components/sungmi/PostPage.vue"),
+	},
 ];
 
 const router = createRouter({

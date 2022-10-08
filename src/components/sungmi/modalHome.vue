@@ -20,6 +20,8 @@ export default {
     const onFileSelected = event => {
       selectedFile.value = event.target.files[0];
     };
+
+
     return {
       modalActive,
       toggleModal,

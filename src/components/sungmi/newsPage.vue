@@ -3,10 +3,13 @@ import customSelect from "../layout/customSelect.vue";
 import modalHome from '../sungmi/modalHome.vue';
 import {ref} from 'vue';
 import router from "../../router/index.js";
+import PopupManager from "../../App.vue";
+import store, {POPUP_TYPE, STORE_TYPE} from "../../store/index.js";
 
 export default {
   name: 'newsPage',
   components: {
+    PopupManager,
     modalHome,
     customSelect
   },
@@ -83,6 +86,9 @@ export default {
       {key: "PARKING", value: "주차가능"},
 
     ];
+    const goPop = () => {
+      store.commit(STORE_TYPE.popupType, POPUP_TYPE.WRITE_BOARD)
+    }
 
     return {
       news,
@@ -94,6 +100,7 @@ export default {
       selectedValue,
       selectSeasonData,
       selectComfortsData,
+      goPop,
 
 
     };
@@ -139,8 +146,12 @@ export default {
           </li>
         </ul>
       </div>
-
-      <modal-home></modal-home>
+      <div class="news-menu-button">
+        <button @click="goPop">
+          <i class="fa-solid fa-pen"></i>
+          글쓰기
+        </button>
+      </div>
     </div>
     <!--		<modal-home></modal-home>-->
     <div class="news-content">
