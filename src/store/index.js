@@ -8,6 +8,7 @@ export const STORE_TYPE = {
 export const POPUP_TYPE = {
 	NONE: "NONE",
 	WRITE_BOARD: "WRITE_BOARD",
+	DETAIL_SCREEN: "DETAIL_SCREEN",
 };
 
 const store = createStore({

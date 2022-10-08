@@ -1,0 +1,196 @@
+.modal {
+  &-detail {
+    @include center();
+    position: fixed;
+    max-width: 80%;
+    background-color: whitesmoke;
+    box-shadow: 0 4px 6px;
+    width: 700px;
+    border-radius: 6px;
+    height: 700px;
+
+    //span {
+    //  position: absolute;
+    //  top: 15px;
+    //  right: 15px;
+    //  font-size: 20px;
+    //  cursor: pointer;
+    //
+    //  &:hover {
+    //    color: crimson;
+    //  }
+    //}
+
+    .save-btn {
+      display: flex;
+      justify-content: center;
+
+      button {
+        padding: 6px;
+        height: 30px;
+        margin: 10px 10px;
+        width: 80px;
+        border: none;
+        font-size: 13px;
+        background-color: crimson;
+        color: white;
+        cursor: pointer;
+        border-radius: 7px;
+      }
+    }
+
+    &-content {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      overflow: hidden;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+
+      &-image {
+        img {
+          width: 100%;
+        }
+      }
+
+      .content {
+        &-wrap {
+          display: flex;
+
+          &-profile {
+            display: flex;
+            flex: 1 0 0;
+            padding: 10px;
+            align-items: center;
+
+            img {
+              border-radius: 70%;
+              width: 78px;
+              height: 75px;
+              box-shadow: none
+            }
+
+            &-info {
+              padding: 0 10px;
+
+              .follow {
+                display: flex;
+                align-items: center;
+
+                span {
+                  font-size: 19px;
+                  font-weight: bold;
+                }
+
+                button {
+                  margin: 0 20px;
+                  padding: 0 12px;
+                  background-color: white;
+                  border: 1px solid #FA6C1A;
+                  font-size: 10px;
+                  font-weight: bold;
+                  border-radius: 7px;
+                  cursor: pointer;
+                }
+              }
+
+              &-intro {
+                font-size: 13px;
+              }
+
+              &-tag {
+                margin: 15px 0 0 0;
+                font-size: 12px;
+                color: #0093E7;
+              }
+            }
+          }
+
+          &-emotion {
+            display: flex;
+            margin: 6px;
+            align-items: center;
+
+            &-like {
+              display: grid;
+              justify-items: center;
+              padding: 0 15px;
+
+              span {
+
+                i {
+                  font-size: 35px;
+                  color: #F32626;
+                  cursor: pointer;
+                }
+
+                font-size: 12px;
+                font-weight: bold;
+              }
+            }
+
+            &-book {
+              span {
+                cursor: pointer;
+                font-size: 35px;
+                padding: 0 10px;
+                color: #4A5568;
+              }
+            }
+          }
+        }
+
+        &-line {
+          display: flex;
+          margin: 0 14px;
+          border-bottom: 1px solid #CCCCCC;
+          justify-content: flex-end;
+
+          &-wrap {
+            font-size: 12px;
+            color: #818181;
+
+            span {
+              padding-left: 20px;
+            }
+          }
+        }
+      }
+
+      .save-btn {
+        display: flex;
+        justify-content: center;
+
+        button {
+          padding: 6px;
+          height: 30px;
+          margin: 10px 10px;
+          width: 80px;
+          border: none;
+          font-size: 13px;
+          background-color: crimson;
+          color: white;
+          cursor: pointer;
+          border-radius: 7px;
+        }
+      }
+    }
+
+    &-content::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
+
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}

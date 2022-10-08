@@ -89,6 +89,9 @@ export default {
     const goPop = () => {
       store.commit(STORE_TYPE.popupType, POPUP_TYPE.WRITE_BOARD)
     }
+    const openDetail = () => {
+      store.commit(STORE_TYPE.popupType, POPUP_TYPE.DETAIL_SCREEN)
+    }
 
     return {
       news,
@@ -101,8 +104,7 @@ export default {
       selectSeasonData,
       selectComfortsData,
       goPop,
-
-
+      openDetail,
     };
   },
 };
@@ -158,7 +160,7 @@ export default {
       <div class="news-content-list">
         <div class="news-content-list-ul">
           <div class="news-content-list-ul-li" v-for="item in news">
-            <div class="news-content-list-ul-li-write" @click="postLink">
+            <div class="news-content-list-ul-li-write" @click="openDetail">
               <div class="profile">
                 <div class="profile-wrap">
                   <img src="/assets/image/bgs.png" alt="베어그릴스"/>
