@@ -1,1 +1,11 @@
-//font
+#app {
+  font-family: 'YiSunShinRegular', sans-serif;
+}
+
+@font-face {
+  font-family: 'YiSunShinRegular';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/YiSunShinRegular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+

@@ -9,6 +9,7 @@ export const POPUP_TYPE = {
 	NONE: "NONE",
 	WRITE_BOARD: "WRITE_BOARD",
 	DETAIL_SCREEN: "DETAIL_SCREEN",
+	REPORT: "REPORT",
 };
 
 const store = createStore({

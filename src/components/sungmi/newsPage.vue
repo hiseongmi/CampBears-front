@@ -7,10 +7,12 @@ import PopupManager from "../../App.vue";
 import store, {POPUP_TYPE, STORE_TYPE} from "../../store/index.js";
 import HeaderPage from "../headerPage.vue";
 import FooterPage from "../footerPage.vue";
+import Profile from "./profile.vue";
 
 export default {
   name: 'newsPage',
   components: {
+    Profile,
     FooterPage,
     HeaderPage,
     PopupManager,
@@ -23,16 +25,16 @@ export default {
         img: '/assets/image/camping.png',
       },
       {
-        img: '/assets/image/camping.png',
+        img: '/assets/image/jjanggu.png',
       },
       {
-        img: '/assets/image/camping.png',
+        img: '/assets/image/iucamp2.png',
       },
       {
-        img: '/assets/image/camping.png',
+        img: '/assets/image/iucamp.png',
       },
       {
-        img: '/assets/image/camping.png',
+        img: '/assets/image/iucamp3.gif',
       },
       {
         img: '/assets/image/camping.png',
@@ -149,7 +151,6 @@ export default {
           </li>
           <li>
             <customSelect @update:value="selectedUpdateValue" :data="selectComfortsData"></customSelect>
-
           </li>
         </ul>
       </div>
@@ -166,24 +167,7 @@ export default {
         <div class="news-content-list-ul">
           <div class="news-content-list-ul-li" v-for="item in news">
             <div class="news-content-list-ul-li-write" @click="openDetail">
-              <div class="profile">
-                <div class="profile-wrap">
-                  <img src="/assets/image/bgs.png" alt="베어그릴스"/>
-                  <div class="profile-wrap-data">
-                    <span>베어그릴스</span>
-                    <button>팔로우</button>
-                    <p>캠핑을 좋아하는 30대 아저씨에요~</p>
-                  </div>
-                  <div class="profile-wrap-comment">
-                    <span><i class="fa-regular fa-comment"></i></span>
-                    <span>4.219</span>
-                  </div>
-                  <div class="profile-wrap-heart">
-                    <span><i class="fa-regular fa-heart"></i></span>
-                    <span>23,812</span>
-                  </div>
-                </div>
-              </div>
+              <profile></profile>
               <img :src="item.img" alt="Posts"/>
             </div>
           </div>

@@ -58,12 +58,14 @@
         .container {
           &-trigger {
             display: none;
+
             &-label {
               width: 16px;
               display: block;
               position: relative;
               cursor: pointer;
               padding: 0 20px;
+
               span {
                 display: block;
                 height: 2px;
@@ -154,8 +156,8 @@
   &-wrap {
     display: flex;
     align-items: center;
-    padding: 60px;
-    padding-bottom: 15px;
+    padding: 60px 208px;
+    padding-bottom: 25px;
     max-width: 1270px;
     margin: auto;
 
@@ -202,7 +204,7 @@
     align-items: center;
     max-width: 1270px;
     margin: auto;
-    padding: 15px 60px;
+    padding: 15px 208px;
 
     &-select {
       .slider {
@@ -259,8 +261,11 @@
 
             img {
               width: 560px;
+              height: 560px;
               border-radius: 25px;
               box-shadow: -7px 7px 7px #999999;
+              cursor: pointer;
+              object-fit: cover;
             }
 
             .profile {
@@ -269,7 +274,7 @@
               background-color: rgba(0, 0, 0, 0.53);
               width: 100%;
               bottom: 4px;
-              border-radius: 25px;
+              border-radius: 0 0 25px 25px;
 
               &-wrap {
                 display: flex;
@@ -281,6 +286,7 @@
                   width: 62px;
                   height: 60px;
                   box-shadow: none;
+                  object-fit: cover;
                 }
 
                 &-data {

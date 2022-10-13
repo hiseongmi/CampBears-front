@@ -26,6 +26,11 @@ const routes = [
 		name: "PostPage",
 		component: () => import("../components/sungmi/PostPage.vue"),
 	},
+	{
+		path: "/detailScreenPopup/:id",
+		name: "detailScreenPopup",
+		component: () => import("../components/manager/popups/detailScreenPopup.vue"),
+	},
 ];
 
 const router = createRouter({

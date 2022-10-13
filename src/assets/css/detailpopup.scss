@@ -1,8 +1,6 @@
 .modal {
   &-detail {
-    top: 60%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    @include center;
     position: fixed;
     max-width: 80%;
     //box-shadow: 0 4px 6px;
@@ -39,8 +37,8 @@
 
       .container {
         position: fixed;
-        right: 0;
-        top: -31px;
+        right: 6px;
+        top: 5px;
 
         &-trigger {
           display: none;
@@ -54,7 +52,7 @@
             span {
               display: block;
               height: 7px;
-              background-color: #ffffff;
+              background-color: #606060;
               left: 0;
               width: 100%;
               transition: 0.3s;
@@ -67,13 +65,39 @@
       }
 
       .pop {
-        width: 100px;
+        width: 80px;
         height: 100px;
         background-color: white;
+        border-radius: 8px;
         position: fixed;
-        top: 0;
-        right: 0;
+        top: 5px;
+        right: 20px;
         transition: 0.3s;
+
+        ul {
+          font-size: 14px;
+          height: 100px;
+          list-style: none;
+          padding: 0;
+          display: grid;
+          align-items: center;
+          justify-items: center;
+
+
+          li {
+            width: 100%;
+            text-align: center;
+            cursor: pointer;
+
+            i {
+              color: $red;
+            }
+
+            &:hover {
+              background-color: #dedede;
+            }
+          }
+        }
       }
 
       &-image {
@@ -99,7 +123,8 @@
               border-radius: 70%;
               width: 78px;
               height: 75px;
-              box-shadow: none
+              box-shadow: none;
+              object-fit: cover;
             }
 
             &-info {
@@ -141,17 +166,17 @@
           &-emotion {
             display: flex;
             margin: 6px;
-            align-items: center;
+            align-items: flex-start;
 
             &-like {
               display: grid;
               justify-items: center;
-              padding: 0 15px;
+              padding: 3px 7px 0 0;
 
               span {
 
                 i {
-                  font-size: 35px;
+                  font-size: 25px;
                   color: #F32626;
                   cursor: pointer;
                 }
@@ -164,8 +189,8 @@
             &-book {
               span {
                 cursor: pointer;
-                font-size: 35px;
-                padding: 0 10px;
+                font-size: 25px;
+                padding: 0 7px;
                 color: #4A5568;
               }
             }
@@ -212,7 +237,26 @@
     &-content::-webkit-scrollbar {
       display: none;
     }
+
+    .right {
+      cursor: pointer;
+      color: white;
+      position: relative;
+      top: 50%;
+      left: 900px;
+      font-size: 20px;
+    }
+
+    .left {
+      cursor: pointer;
+      color: white;
+      position: relative;
+      top: 50%;
+      right: 240px;
+      font-size: 20px;
+    }
   }
+
 
 }
 
