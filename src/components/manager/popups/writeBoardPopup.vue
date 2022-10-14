@@ -17,7 +17,9 @@ export default {
       <span class="up" type="button">올리기</span>
     </div>
     <div class="content">
-      <input type="file"/>
+      <div class="file">
+        <input type="file"/>
+      </div>
       <div class="content-profile">
         <div class="content-profile-wrap">
           <img src="/assets/image/IU.png">
@@ -53,7 +55,6 @@ export default {
             어쩌구 저쩌구
           </div>
         </div>
-
       </div>
       <div class="content-tag">
         <div class="content-tag-wrap">
