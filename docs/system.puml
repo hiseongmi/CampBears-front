@@ -20,10 +20,12 @@ cloud server as server{
                 }
             }
             rectangle container as nginx {
-                node LB as LB {
-                }
+             node LB as LB {
+             }
+            rectangle ingress {
                 rectangle reverse-proxy as reverseProxy {
                 }
+            }
             }
         }
     }
