@@ -54,8 +54,8 @@ export default {
             <li @click="goToReport">신고 <i class="fa-solid fa-circle-exclamation"></i></li>
           </ul>
         </div>
-        <div class="modal-detail-content-image" :key="id" v-for="(item, id) in postImage">
-          <img :src="item.img" alt="게시물 사진">
+        <div class="modal-detail-content-image">
+          <img src="/assets/image/iucamp3.gif" alt="게시물 사진">
         </div>
       </div>
       <div class="content">
@@ -65,7 +65,7 @@ export default {
             <div class="content-wrap-profile-info">
               <div class="follow">
                 <span>dlwlrma</span>
-                <button>팔로우</button>
+                <button class="follow_btn">팔로우</button>
               </div>
               <p class="content-wrap-profile-info-intro">캠핑을 좋아하는 슈퍼 스타중의 스타~ 이지금이에요</p>
               <p class="content-wrap-profile-info-tag">#내친구 #camp #인생은 #즐거워</p>
@@ -93,10 +93,6 @@ export default {
         <div class="comment">
           test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test
         </div>
-      </div>
-      <div class="save-btn">
-        <button @click="clickClose">취소</button>
-        <button>올리기</button>
       </div>
     </div>
     <span class="right">

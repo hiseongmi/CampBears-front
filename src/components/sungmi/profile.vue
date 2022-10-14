@@ -9,7 +9,7 @@ export default {
       <img src="/assets/image/IU.png" alt="프로필 사진"/>
       <div class="profile-wrap-data">
         <span>dlwlrma</span>
-        <button>팔로우</button>
+        <button class="follow">팔로우</button>
         <p>캠핑을 좋아하는 슈퍼 스타중의 스타~ 이지금이에요</p>
       </div>
       <div class="profile-wrap-comment">

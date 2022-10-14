@@ -129,7 +129,7 @@ export default {
         </ul>
       </div>
       <div class="news-menu-button">
-        <button @click="goPop">
+        <button class="write_btn" @click="goPop">
           <i class="fa-solid fa-pen"></i>
           글쓰기
         </button>

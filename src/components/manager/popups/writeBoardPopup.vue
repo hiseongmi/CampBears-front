@@ -19,6 +19,7 @@ export default {
     <div class="content">
       <div class="file">
         <input type="file"/>
+        
       </div>
       <div class="content-profile">
         <div class="content-profile-wrap">
@@ -52,13 +53,15 @@ export default {
         <div class="content-person-wrap">
           <span>인원</span>
           <div>
-            어쩌구 저쩌구
+            range slider
           </div>
         </div>
       </div>
       <div class="content-tag">
+        <div class="content-tag-div">
+          태그 설정
+        </div>
         <div class="content-tag-wrap">
-          <span>태그설정</span>
           <textarea placeholder="# 태그입력 (최대 30개)"></textarea>
         </div>
       </div>
