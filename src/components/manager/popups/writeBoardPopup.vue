@@ -11,18 +11,58 @@ export default {
 </script>
 <template>
   <div class="modal-inner">
-    <span @click="clickClose" type="button">X</span>
-    <div class="modal-content">
-      <input class="modal-content-writer" placeholder="글쓴이"/>
-      <input class="modal-content-writer" placeholder="제목"/>
-      <input class="modal-content-writer" placeholder="날짜"/>
-      <textarea class="modal-content-content" placeholder="내용"/>
-      <input type="file"/>
-    </div>
     <div class="save-btn">
-      <button @click="clickClose">취소</button>
-      <button>올리기</button>
+      <span class="cancel" @click="clickClose" type="button">취소</span>
+      <span type="button">저장</span>
+      <span class="up" type="button">올리기</span>
     </div>
+    <div class="content">
+      <input type="file"/>
+      <div class="content-profile">
+        <div class="content-profile-wrap">
+          <img src="/assets/image/IU.png">
+          <span>dlwlrma</span>
+        </div>
+        <div class="content-profile-public">
+          <span>전체공개</span>
+          <span>비공개</span>
+        </div>
+      </div>
+      <div class="content-content">
+        <textarea placeholder="문구 입력..." maxlength="200"></textarea>
+        <div class="count">
+          (0 / 200)
+        </div>
+      </div>
+      <div class="content-position">
+        <div class="content-position-wrap">
+          <span class="title">위치태그</span>
+          <span><i class="fa-solid fa-chevron-right"></i></span>
+        </div>
+      </div>
+      <div class="content-position">
+        <div class="content-position-wrap">
+          <span class="title">장소</span>
+          <span><i class="fa-solid fa-chevron-right"></i></span>
+        </div>
+      </div>
+      <div class="content-person">
+        <div class="content-person-wrap">
+          <span>인원</span>
+          <div>
+            어쩌구 저쩌구
+          </div>
+        </div>
+
+      </div>
+      <div class="content-tag">
+        <div class="content-tag-wrap">
+          <span>태그설정</span>
+          <textarea placeholder="# 태그입력 (최대 30개)"></textarea>
+        </div>
+      </div>
+    </div>
+
   </div>
 
 </template>

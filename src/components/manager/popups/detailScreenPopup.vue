@@ -1,6 +1,7 @@
 <script>
 import store, {POPUP_TYPE, STORE_TYPE} from "../../../store/index.js";
 import {ref} from "vue";
+import postImage from "../../../data/postImage.js";
 
 export default {
   name: "detailScreenPopup",
@@ -27,6 +28,7 @@ export default {
       RerActive,
       RerOption,
       goToReport,
+      postImage,
     }
   }
 
@@ -52,8 +54,8 @@ export default {
             <li @click="goToReport">신고 <i class="fa-solid fa-circle-exclamation"></i></li>
           </ul>
         </div>
-        <div class="modal-detail-content-image">
-          <img src="/assets/image/iucamp3.gif" alt="게시물 사진">
+        <div class="modal-detail-content-image" :key="id" v-for="(item, id) in postImage">
+          <img :src="item.img" alt="게시물 사진">
         </div>
       </div>
       <div class="content">

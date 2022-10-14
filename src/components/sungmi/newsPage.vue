@@ -8,6 +8,7 @@ import store, {POPUP_TYPE, STORE_TYPE} from "../../store/index.js";
 import HeaderPage from "../headerPage.vue";
 import FooterPage from "../footerPage.vue";
 import Profile from "./profile.vue";
+import postImage from "../../data/postImage.js";
 
 export default {
   name: 'newsPage',
@@ -20,33 +21,6 @@ export default {
     customSelect
   },
   setup() {
-    const news = [
-      {
-        img: '/assets/image/camping.png',
-      },
-      {
-        img: '/assets/image/jjanggu.png',
-      },
-      {
-        img: '/assets/image/iucamp2.png',
-      },
-      {
-        img: '/assets/image/iucamp.png',
-      },
-      {
-        img: '/assets/image/iucamp3.gif',
-      },
-      {
-        img: '/assets/image/camping.png',
-      },
-      {
-        img: '/assets/image/camping.png',
-      },
-      {
-        img: '/assets/image/camping.png',
-      },
-    ];
-
     const postLink = () => {
       router.push('/PostPage');
     };
@@ -100,7 +74,6 @@ export default {
     }
 
     return {
-      news,
       postLink,
       modalActive,
       toggleModal,
@@ -111,6 +84,7 @@ export default {
       selectComfortsData,
       goPop,
       openDetail,
+      postImage,
     };
   },
 };
@@ -121,10 +95,10 @@ export default {
     <div class="news-wrap">
       <div class="news-wrap-contents">
         <h1 class="news-wrap-contents-title">소식</h1>
-        <h5 class="news-wrap-contents-ment">다른 캠퍼의 소식을 들어보아요!</h5>
+        <h5 class="news-wrap-contents-ment">다른 캠퍼의 소식을 들어 보아요!</h5>
       </div>
       <div class="news-wrap-search">
-        <input type="text" placeholder="태그, 장소 찾아보기"/>
+        <input type="text" placeholder="태그, 장소 찾아 보기"/>
         <i class="fa-solid fa-magnifying-glass"></i>
       </div>
     </div>
@@ -165,8 +139,8 @@ export default {
     <div class="news-content">
       <div class="news-content-list">
         <div class="news-content-list-ul">
-          <div class="news-content-list-ul-li" v-for="item in news">
-            <div class="news-content-list-ul-li-write" @click="openDetail">
+          <div class="news-content-list-ul-li" :key="id" v-for="(item,id) in postImage">
+            <div class="news-content-list-ul-li-write" @click="openDetail(item.id)">
               <profile></profile>
               <img :src="item.img" alt="Posts"/>
             </div>

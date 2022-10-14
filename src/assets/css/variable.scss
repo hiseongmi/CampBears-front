@@ -102,13 +102,21 @@ width, height, padding, margin set
   @include transform(translate(-50%, -50%));
 }
 
+//프로필 이미지 둥글게
+@mixin profile {
+  border-radius: 70%;
+  width: 75px;
+  height: 73px;
+  box-shadow: none;
+  object-fit: cover;
+}
+
 /**
 화면 반응형 기준
 360 ~ 767 : mobile;
 767 ~ 1200 : tablet;
 1200 ~      : pc;
  */
-
 @mixin mb {
   @media (max-width: 767px) {
     @content;

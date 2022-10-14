@@ -282,11 +282,7 @@
                 align-items: center;
 
                 img {
-                  border-radius: 70%;
-                  width: 62px;
-                  height: 60px;
-                  box-shadow: none;
-                  object-fit: cover;
+                  @include profile();
                 }
 
                 &-data {
@@ -393,99 +389,3 @@
 }
 
 //모달창
-.modal {
-  position: absolute;
-  z-index: 1;
-
-  &-inner {
-    @include center();
-    position: fixed;
-    max-width: 80%;
-    background-color: whitesmoke;
-    box-shadow: 0 4px 6px;
-    padding: 52px 30px;
-    border-radius: 6px;
-
-    span {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      font-size: 20px;
-      cursor: pointer;
-
-      &:hover {
-        color: crimson;
-      }
-    }
-
-    .save-btn {
-      display: flex;
-      justify-content: center;
-
-      button {
-        padding: 6px;
-        height: 30px;
-        margin: 10px 10px;
-        width: 80px;
-        border: none;
-        font-size: 13px;
-        background-color: crimson;
-        color: white;
-        cursor: pointer;
-        border-radius: 7px;
-      }
-    }
-
-    .modal-content {
-      display: flex;
-      flex-direction: column;
-
-      &-writer {
-        border: none;
-        width: 340px;
-        height: 30px;
-        border-radius: 4px;
-        margin-bottom: 5px;
-      }
-
-      &-content {
-        border: none;
-        width: 340px;
-        height: 70px;
-        border-radius: 4px;
-        margin-bottom: 10px;
-      }
-    }
-  }
-}
-
-
-//모달창 애니매이션
-//부드럽게 나옴
-.modal-animation-enter-active,
-.modal-animation-leave-active {
-  transition: opacity 0.3s cubic-bezier(0.52, 0.02, 0.19, 1.02);
-}
-
-.modal-animation-enter-from,
-.modal-animation-leave-to {
-  opacity: 0; //불투명도
-}
-
-//모달창이 튀어 나오는 거 처럼 보임
-.modal-animation-inner-enter-active {
-  transition: all 0.3s cubic-bezier(0.52, 0.02, 0.19, 1.02) 0.15s;
-}
-
-.modal-animation-inner-leave-active {
-  transition: all 0.3s cubic-bezier(0.52, 0.02, 0.19, 1.02);
-}
-
-.modal-animation-inner-enter-from {
-  opacity: 0;
-  transform: scale(0.8);
-}
-
-.modal-animation-inner-leave-to {
-  transform: scale(0.8);
-}
