@@ -1,4 +1,6 @@
 <script>
+import router from "../router/index.js";
+
 export default {
   name: 'headerPage',
   setup() {
@@ -24,9 +26,20 @@ export default {
         key: 'CUSTOMER',
       },
     ];
+    const signupPage = () => {
+      router.push("/signupPage");
+    };
+    const loginPage = () => {
+      router.push("/loginPage");
+    };
+    // const  = () => {
+    //   router.push("");
+    // }; 마이페이지
 
     return {
       headerBarList,
+      signupPage,
+      loginPage,
     };
   },
 };
@@ -42,10 +55,10 @@ export default {
           <div class="header-bar-menu-login">
             <ul>
               <li>
-                <a>로그인</a>
+                <a @click="loginPage">로그인</a>
               </li>
               <li>
-                <a> 회원가입 </a>
+                <a @click="signupPage"> 회원가입 </a>
               </li>
               <li>
                 <a> 마이페이지 </a>

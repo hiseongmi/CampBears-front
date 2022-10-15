@@ -1,0 +1,71 @@
+<script>
+import HeaderPage from "../headerPage.vue";
+import FooterPage from "../footerPage.vue";
+import signupPage from "../yd/signupPage.vue";
+import router from "../../router/index.js";
+import store, {POPUP_TYPE, STORE_TYPE} from "../../store/index.js";
+import {ref} from "vue";
+
+// import {ref} from "vue";
+
+export default {
+  name: "loginPage",
+  components: {FooterPage, HeaderPage, signupPage},
+  setup() {
+    const goToSample = () => {
+      router.push("/samplePage");
+    };
+    const goToSungmi = () => {
+      router.push("/newsPage");
+    }
+    const signupPage = () => {
+      router.push("/signupPage");
+    }
+    const isPopup = ref(store.state.popupType)
+
+    const goToPop = () => {
+      store.commit(STORE_TYPE.popupType, POPUP_TYPE.WRITE_BOARD)
+    }
+
+    return {
+      goToSample, goToSungmi, signupPage, goToPop, isPopup,
+    };
+  }
+
+};
+
+</script>
+
+
+<template>
+  <header-page></header-page>
+  <!--  <button @click="goToSample">샘플 페이지 가기</button>-->
+  <!--  <button @click="goToSungmi">성미 페이지 가기</button>-->
+  <!--  <button @click="goToPop">팝업창 열기</button>-->
+  <!--  <p class="tip"></p>-->
+  <div class="cont">
+    <form action="" method="post" class="login-main">
+      <!--      <img src="/public/assets/image/login-background.png" alt="">-->
+      <div class="login-form">
+        <h2>Bears</h2>
+        <label>
+          <span>Email</span>
+          <input type="email" required/>
+        </label>
+        <label>
+          <span>Password</span>
+          <input type="password" required/>
+        </label>
+        <div class="submit">
+          <button type="submit">로그인</button>
+        </div>
+        <p class="forgot-pass">아이디/비밀번호 찾기</p>
+
+      </div>
+      <div class="sns-login">SNS 계정으로 간편 로그인/회원가입</div>
+      <a href=""><img src="/assets/image/face.png" alt="페이스북"></a>
+    </form>
+  </div>
+  <footer-page></footer-page>
+</template>
+

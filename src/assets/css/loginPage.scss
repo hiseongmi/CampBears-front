@@ -1,0 +1,213 @@
+$contW: 900px;
+$imgW: 260px;
+$formW: $contW - $imgW;
+$switchAT: 1.2s;
+
+$inputW: 260px;
+$btnH: 36px;
+
+
+.tip {
+  font-size: 20px;
+  margin: 40px auto 50px;
+  text-align: center;
+}
+
+.cont {
+  overflow: hidden;
+  position: relative;
+  padding-top: 310px;
+  padding-bottom: 25px;
+  height: 700px;
+  text-align: center;
+
+
+  background: #fff;
+}
+
+.form {
+  position: relative;
+  height: 100%;
+
+
+}
+
+.login-main {
+  //background-image: url("/public/assets/image/login-background.png");
+}
+
+.login-form {
+  h2 {
+    width: 100%;
+    font-size: 26px;
+    text-align: center;
+  }
+
+  label {
+    display: block;
+    width: $inputW;
+    margin: 25px auto 0;
+    text-align: center;
+
+    span {
+      font-size: 12px;
+      color: #cfcfcf;
+      text-transform: uppercase;
+    }
+  }
+
+  input {
+    display: block;
+    width: 100%;
+    margin-top: 5px;
+    padding-bottom: 5px;
+    font-size: 16px;
+    //border-bottom: 1px solid rgba(0, 0, 0, 0.4); //입체감
+    text-align: center;
+    border-radius: 30px;
+  }
+
+  button {
+    display: block;
+    margin: 0 auto;
+    width: $inputW;
+    height: $btnH;
+    border-radius: 30px;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+    background-color: #fa6c1a;
+
+  }
+
+
+}
+
+.sub-cont {
+  overflow: hidden;
+  position: absolute;
+  left: $formW;
+  top: 0;
+  width: $contW;
+  height: 100%;
+  padding-left: $imgW;
+  background: #fff;
+
+
+}
+
+
+.img {
+  overflow: hidden;
+  z-index: 2;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: $imgW;
+  height: 100%;
+  padding-top: 360px;
+
+
+  &:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+
+  }
+
+
+  &__text {
+    z-index: 2;
+    position: absolute;
+    left: 0;
+    top: 50px;
+    width: 100%;
+    padding: 0 20px;
+    text-align: center;
+    color: #fff;
+
+
+    h2 {
+      margin-bottom: 10px;
+      font-weight: normal;
+    }
+
+    p {
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    &.m--up {
+
+
+    }
+
+
+  }
+
+  &__btn {
+    overflow: hidden;
+    z-index: 2;
+    position: relative;
+    width: 100px;
+    height: $btnH;
+    margin: 0 auto;
+    background: transparent;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 15px;
+    cursor: pointer;
+
+    &:after {
+      content: '';
+      z-index: 2;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      border: 2px solid #fff;
+      border-radius: 30px;
+    }
+
+    span {
+      position: absolute;
+      left: 0;
+      top: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+
+
+    }
+  }
+}
+
+
+.forgot-pass {
+  margin-top: 15px;
+  padding-bottom: 15px;
+  text-align: center;
+  font-size: 12px;
+  color: #cfcfcf;
+}
+
+.submit {
+  margin-top: 40px;
+  margin-bottom: 20px;
+
+  text-transform: uppercase;
+
+
+}
+
+.sns-login {
+  text-align: center;
+  padding-bottom: 15px;
+}
+
