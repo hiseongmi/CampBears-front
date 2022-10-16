@@ -65,5 +65,6 @@ export default {
   </Transition>
 </template>
 
-<!--<style src="./assets/css/app.css">-->
-<!--</style>-->
+<style lang="scss">
+@import 'assets/css/app.scss';
+</style>
