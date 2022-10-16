@@ -41,9 +41,8 @@ export default store;
 // 		},
 // 	},
 // });
-const _store = useStore();
+// const _store = useStore();
 
 export const getStore = () => {
-	if (_store) return store;
-	return useStore();
+	return store;
 };
