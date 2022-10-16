@@ -1,11 +1,11 @@
 <script>
-import {useRoute} from "vue-router";
+import { useRoute } from "vue-router";
 import customLoading from "./components/layout/customLoading.vue";
-import {computed, onMounted, onUnmounted, ref, watch} from "vue";
-import {CONSTANTS} from "./constants.js";
-import {apiClient} from "./utils/axios.js";
-import popupManager from './components/manager/popupManager.vue'
-import {getStore, POPUP_TYPE} from "./store/index.js";
+import { computed, onMounted, onUnmounted, ref, watch } from "vue";
+import { CONSTANTS } from "./constants.js";
+import { apiClient } from "./utils/axios.js";
+import popupManager from "./components/manager/popupManager.vue";
+import { getStore, POPUP_TYPE } from "./store/index.js";
 
 export default {
   name: "App",
@@ -32,8 +32,8 @@ export default {
     };
 
     watch(() => store.state.popupType, () => {
-      isPopup.value = store.state.popupType
-    })
+      isPopup.value = store.state.popupType;
+    });
 
 
     onMounted(() => {
@@ -43,8 +43,8 @@ export default {
     });
 
     onUnmounted(() => {
-      removeEventListener(CONSTANTS.KEY_LIST.EVENT_LIST.LOADING, eventHandler)
-    })
+      removeEventListener(CONSTANTS.KEY_LIST.EVENT_LIST.LOADING, eventHandler);
+    });
 
     return {
       isLoading,
@@ -57,7 +57,7 @@ export default {
 </script>
 
 <template>
-  <router-view/>
+  <router-view />
   <custom-loading v-if="isLoading"></custom-loading>
   <Transition name="fade">
 
@@ -65,5 +65,5 @@ export default {
   </Transition>
 </template>
 
-<style src="./assets/css/app.css">
-</style>
+<!--<style src="./assets/css/app.css">-->
+<!--</style>-->
