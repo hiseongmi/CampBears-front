@@ -1,52 +1,25 @@
 <script>
-import {onMounted} from "vue";
+import { nextTick, onMounted, onUnmounted } from "vue";
 import LoginKakao from "./loginKaKao.vue";
+import { useRoute } from "vue-router";
 
 export default {
   name: "loginNaver",
-  components: {LoginKakao},
+  components: { LoginKakao },
   setup() {
     onMounted(() => {
-      naverService().setNaver();
-    })
-    const naverService = () => {
-      const naverLogin = new naver.LoginWithNaverId({
-        clientId: "OkM9Pejxzz2VszesqaQP",
-        callbackUrl: "http://localhost:3001/#/auth", //callback
-        isPopup: false /* 팝업을 통한 연동처리 여부 */,
-        loginButton: {
-          color: "green",
-          type: 3,
-          height: 40,
-        },
-      });
-      const setNaver = () => {
-        naverLogin.init() //로그인 정보 초기화
-
-      };
-
-      // const getUserInfo = () => {
-      //   setNaver();
-      //   naverLogin.getLoginStatus((statue) => {
-      //     if (statue) {
-      //       const email = naverLogin.user.email;
-      //       const name = naverLogin.user.name;
-      //       console.log(email, name);
-      //     } else {
-      //       console.log("AccessToken 이 올바르지 않습니다.");
-      //     }
-      //   });
-      // };
-      return {
-        naverService,
-        setNaver,
-        // getUserInfo,
-      };
-    };
+      const naver_id_login = new window.naver_id_login("OkM9Pejxzz2VszesqaQP", "http://localhost:3001/#/auth");
+      const state = naver_id_login.getUniqState();
+      naver_id_login.setButton("white", 2, 40);
+      naver_id_login.setDomain("YOUR_SERVICE_URL");
+      naver_id_login.setState(state);
+      // naver_id_login.setPopup();
+      naver_id_login.init_naver_id_login();
+    });
   }
-}
+};
 </script>
 <template>
-  <div id="naverIdLogin"></div>
-  <login-kakao/>
+  <div id="naver_id_login"></div>
+  <login-kakao />
 </template>

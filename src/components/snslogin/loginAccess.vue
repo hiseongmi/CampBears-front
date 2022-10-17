@@ -1,46 +1,34 @@
 <script>
-import {onMounted} from "vue";
+import { onMounted, ref } from "vue";
+import { useRoute } from "vue-router";
+import axios from "axios";
 
 export default {
   name: "auth",
   setup() {
-    const naverService = () => {
-      const naverLogin = new naver.LoginWithNaverId({
-        clientId: "OkM9Pejxzz2VszesqaQP",
-        callbackUrl: "http://localhost:3001/#/auth", //callback
-        isPopup: true /* 팝업을 통한 연동처리 여부 */,
-        callbackHandler: true //페이지 분리시 콜백처리할수있게
+    const userData = ref();
+    onMounted(() => {
+      var naver_id_login = new window.naver_id_login("YOUR_CLIENT_ID", "YOUR_CALLBACK_URL");
+      // 네이버 사용자 프로필 조회
+      const url = "/me";
+      const header = "Bearer " + naver_id_login.oauthParams.access_token;
+      axios.get(url, { headers: { "Authorization": header } }).then(res => {
+        if (res.status === 200) {
+          userData.value = res.data.response;
+          console.log(userData.value);
+        }
       });
-      const setNaver = () => {
-        naverLogin.init()
-      };
 
-      const getUserInfo = () => {
-        setNaver();
+    });
+    return { userData };
+  }
 
-        naverLogin.getLoginStatus((statue) => {
-          if (statue) {
-            const email = naverLogin.user.email;
-            const name = naverLogin.user.name;
-            console.log(email, name);
-          } else {
-            console.log("AccessToken 이 올바르지 않습니다.");
-          }
-        });
-      };
-      return {
-        naverService,
-        setNaver,
-        getUserInfo,
-      };
-    };
-  },
-
-}
+};
 
 </script>
 <template>
   <div>Login Access Pages</div>
-  <div id="naverIdLogin" style="display: none"></div>
+  {{ userData }}
+  <!--  <div id="naverIdLogin" style="display: none"></div>-->
 
 </template>
