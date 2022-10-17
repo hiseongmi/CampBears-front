@@ -1,14 +1,26 @@
 <!DOCTYPE html>
 <html lang='en'>
 <head>
-	<meta charset='UTF-8' />
-	<link rel='icon' type='image/svg+xml' href='/vite.svg' />
-	<meta name='viewport' content='width=device-width, initial-scale=1.0' />
-	<title>Bears</title>
+    <meta charset='UTF-8'/>
+    <link rel='icon' type='image/svg+xml' href='/vite.svg'/>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'/>
+    <title>Bears</title>
+    <!--naver-->
+    <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js"
+            charset="utf-8"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <!--    kakao-->
+    <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.0.0/kakao.min.js"
+            integrity="sha384-PFHeU/4gvSH8kpvhrigAPfZGBDPs372JceJq3jAXce11bVA6rMvGWzvP4fMQuBGL"
+            crossorigin="anonymous"></script>
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <script> Kakao.init('37b652b280e20ff8c7240ecd75bfdbb5'); //js key
+    console.log(Kakao.isInitialized()); </script>
 </head>
 <body>
 <div id='app'></div>
 <script src='https://kit.fontawesome.com/97e83b8ce2.js' crossorigin='anonymous'></script>
 <script type='module' src='/src/main.js'></script>
+
 </body>
 </html>
