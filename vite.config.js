@@ -12,8 +12,8 @@ export default defineConfig({
 	server: {
 		proxy: {
 			"/me": {
-				target: "https://openapi.naver.com/v1/nid",
-				changeOrigin: true,
+				target: "https://openapi.naver.com/v1/nid", //이 주소로 바꿔줘
+				changeOrigin: true, //나를 바꾼다
 				rewrite: path => path.replace(/^\/api/, ""),
 				secure: false,
 				ws: true,

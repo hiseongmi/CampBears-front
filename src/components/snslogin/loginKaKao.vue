@@ -64,42 +64,6 @@ export default {
       }
       Kakao.Auth.authorize(params)
     },
-
-    // kakaoLoginBtn: function () {
-    //   window.Kakao.init('37b652b280e20ff8c7240ecd75bfdbb5') // Kakao Developers에서 요약 정보 -> JavaScript 키
-    //
-    //   if (window.Kakao.Auth.getAccessToken()) {
-    //     Kakao.API.request({
-    //       url: '/v1/user/unlink',
-    //     })
-    //         .then(function (response) {
-    //           console.log(response);
-    //         })
-    //         .catch(function (error) {
-    //           console.log(error);
-    //         });
-    //     Kakao.Auth.setAccessToken('${ACCESS_TOKEN}');
-    //   }
-    //   window.Kakao.Auth.login({
-    //     success: function () {
-    //       Kakao.API.request({
-    //         url: '/v2/user/me',
-    //         data: {
-    //           property_keys: ['kakao_account.email', 'kakao_account.gender'],
-    //         },
-    //       })
-    //           .then(function (response) {
-    //             console.log(response);
-    //           })
-    //           .catch(function (error) {
-    //             console.log(error);
-    //           });
-    //     },
-    //     fail: function (error) {
-    //       console.log(error)
-    //     },
-    //   })
-    // }
   },
 
 }

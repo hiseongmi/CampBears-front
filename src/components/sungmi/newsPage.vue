@@ -7,13 +7,13 @@ import PopupManager from "../../App.vue";
 import store, {POPUP_TYPE, STORE_TYPE} from "../../store/index.js";
 import HeaderPage from "../headerPage.vue";
 import FooterPage from "../footerPage.vue";
-import Profile from "./profile.vue";
-import postImage from "../../data/postImage.js";
+import NewsContentPage from "./newscontentPage.vue";
+
 
 export default {
   name: 'newsPage',
   components: {
-    Profile,
+    NewsContentPage,
     FooterPage,
     HeaderPage,
     PopupManager,
@@ -69,9 +69,7 @@ export default {
     const goPop = () => {
       store.commit(STORE_TYPE.popupType, POPUP_TYPE.WRITE_BOARD)
     }
-    const openDetail = () => {
-      store.commit(STORE_TYPE.popupType, POPUP_TYPE.DETAIL_SCREEN)
-    }
+
 
     return {
       postLink,
@@ -83,8 +81,6 @@ export default {
       selectSeasonData,
       selectComfortsData,
       goPop,
-      openDetail,
-      postImage,
     };
   },
 };
@@ -135,19 +131,7 @@ export default {
         </button>
       </div>
     </div>
-    <!--		<modal-home></modal-home>-->
-    <div class="news-content">
-      <div class="news-content-list">
-        <div class="news-content-list-ul">
-          <div class="news-content-list-ul-li" :key="id" v-for="(item,id) in postImage">
-            <div class="news-content-list-ul-li-write" @click="openDetail(item.id)">
-              <profile></profile>
-              <img :src="item.img" alt="Posts"/>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <news-content-page/>
   </div>
   <footer-page></footer-page>
 </template>
