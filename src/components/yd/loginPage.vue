@@ -47,23 +47,29 @@ export default {
     <form action="" method="post" class="login-main">
       <!--      <img src="/public/assets/image/login-background.png" alt="">-->
       <div class="login-form">
+        <div>img</div>
         <h2>Bears</h2>
+        <h2>로그인 해볼까요?</h2>
         <label>
           <span>Email</span>
-          <input type="email" required/>
+          <input type="email" placeholder="이메일" required/>
         </label>
         <label>
           <span>Password</span>
-          <input type="password" required/>
+          <input type="password" placeholder="비밀번호" required/>
         </label>
+
         <div class="submit">
+          <button @click="signupPage" class="sig-btn">회원가입</button>
           <button type="submit">로그인</button>
         </div>
         <p class="forgot-pass">아이디/비밀번호 찾기</p>
 
       </div>
       <div class="sns-login">SNS 계정으로 간편 로그인/회원가입</div>
-      <a href=""><img src="/assets/image/face.png" alt="페이스북"></a>
+      <div class="sns-img">
+        <a href=""><img src="/assets/image/face.png" alt="페이스북"></a>
+      </div>
     </form>
   </div>
   <footer-page></footer-page>
