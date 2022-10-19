@@ -88,6 +88,7 @@ export default {
 <template>
   <header-page></header-page>
   <div class="news">
+
     <div class="news-wrap">
       <div class="news-wrap-contents">
         <h1 class="news-wrap-contents-title">소식</h1>
@@ -98,37 +99,40 @@ export default {
         <i class="fa-solid fa-magnifying-glass"></i>
       </div>
     </div>
-    <div class="news-menu">
-      <div class="news-menu-select">
-        <ul>
-          <li>
-            <customSelect @update:value="selectedUpdateValue" :data="selectSortData"></customSelect>
-          </li>
-          <li>
-            <select name="count" data-title="인원">
-              <option value="0">인원</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="3">4</option>
-              <option value="3">5</option>
-              <option value="3">6</option>
-              <option value="3">7</option>
-            </select>
-          </li>
-          <li>
-            <customSelect @update:value="selectedUpdateValue" :data="selectSeasonData"></customSelect>
-          </li>
-          <li>
-            <customSelect @update:value="selectedUpdateValue" :data="selectComfortsData"></customSelect>
-          </li>
-        </ul>
-      </div>
-      <div class="news-menu-button">
-        <button class="write_btn" @click="goPop">
-          <i class="fa-solid fa-pen"></i>
-          글쓰기
-        </button>
+
+    <div>
+      <div class="news-menu">
+        <div class="news-menu-select">
+          <ul>
+            <li>
+              <customSelect @update:value="selectedUpdateValue" :data="selectSortData"></customSelect>
+            </li>
+            <li>
+              <select name="count" data-title="인원">
+                <option value="0">인원</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="3">4</option>
+                <option value="3">5</option>
+                <option value="3">6</option>
+                <option value="3">7</option>
+              </select>
+            </li>
+            <li>
+              <customSelect @update:value="selectedUpdateValue" :data="selectSeasonData"></customSelect>
+            </li>
+            <li>
+              <customSelect @update:value="selectedUpdateValue" :data="selectComfortsData"></customSelect>
+            </li>
+          </ul>
+        </div>
+        <div class="news-menu-button">
+          <button class="write_btn" @click="goPop">
+            <i class="fa-solid fa-pen"></i>
+            <span>글쓰기</span>
+          </button>
+        </div>
       </div>
     </div>
     <news-content-page/>

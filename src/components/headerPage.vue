@@ -93,6 +93,7 @@ export default {
               <input type="text"/>
               <i class="fa-solid fa-magnifying-glass"></i>
             </div>
+            <div class="header-bar-menu-info-moSearch"><i class="fa-solid fa-magnifying-glass"></i></div>
           </div>
         </div>
 

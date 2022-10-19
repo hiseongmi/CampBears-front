@@ -1,70 +1,151 @@
-.profile {
-  position: absolute;
-  color: white;
-  background-color: rgba(0, 0, 0, 0.53);
-  width: 100%;
-  bottom: 4px;
-  border-radius: 0 0 25px 25px;
+@media (min-width: 768px) {
+  .profile {
+    position: absolute;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.53);
+    width: 100%;
+    bottom: 4px;
+    border-radius: 0 0 25px 25px;
 
-  &-wrap {
-    display: flex;
-    padding: 11px;
-    align-items: center;
+    &-wrap {
+      display: flex;
+      padding: 11px;
+      align-items: center;
 
-    img {
-      @include profile();
+      img {
+        @include profile();
+      }
+
+      &-data {
+        flex: 1 0 0;
+        padding: 0 10px;
+
+        span {
+          font-size: 20px;
+        }
+
+        .follow {
+          margin-left: 20px;
+          font-size: 2px;
+          background: none;
+          padding: 3px 20px;
+          border: 3px solid #876445;
+          border-radius: 19px;
+          color: white;
+          cursor: pointer;
+        }
+
+        p {
+          font-size: 2px;
+        }
+      }
+
+      &-comment {
+        display: grid;
+        justify-items: center;
+        padding: 0 10px;
+
+        i {
+          font-size: 30px;
+        }
+
+        span {
+          font-size: 10px;
+        }
+      }
+
+      &-heart {
+        display: grid;
+        justify-items: center;
+        padding: 0 10px;
+
+        i {
+          font-size: 30px;
+          color: #bf0000;
+        }
+
+        span {
+          font-size: 10px;
+        }
+      }
     }
+  }
+}
 
-    &-data {
-      flex: 1 0 0;
-      padding: 0 10px;
+@media (max-width: 768px) {
+  .profile {
+    position: absolute;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.53);
+    width: 100%;
+    bottom: 4px;
+    border-radius: 0 0 25px 25px;
 
-      span {
-        font-size: 20px;
+    &-wrap {
+      display: flex;
+      padding: 8px;
+      align-items: center;
+
+      img {
+        border-radius: 70%;
+        width: 50px;
+        height: 48px;
+        box-shadow: none;
+        object-fit: cover;
       }
 
-      .follow {
-        margin-left: 20px;
-        font-size: 2px;
-        background: none;
-        padding: 3px 20px;
-        border: 3px solid #876445;
-        border-radius: 19px;
-        color: white;
-        cursor: pointer;
+      &-data {
+        flex: 1 0 0;
+        padding: 0 10px;
+
+        span {
+          font-size: 10px;
+        }
+
+        .follow {
+          font-size: 1px;
+          background: none;
+          padding: 0 5px;
+          margin-left: 5px;
+          border: 2px solid #876445;
+          border-radius: 19px;
+          color: white;
+          cursor: pointer;
+        }
+
+        p {
+          font-size: 1px;
+          display: none;
+        }
       }
 
-      p {
-        font-size: 2px;
-      }
-    }
+      &-comment {
+        display: grid;
+        justify-items: center;
+        padding: 0 10px;
 
-    &-comment {
-      display: grid;
-      justify-items: center;
-      padding: 0 10px;
+        i {
+          font-size: 20px;
+        }
 
-      i {
-        font-size: 30px;
-      }
-
-      span {
-        font-size: 10px;
-      }
-    }
-
-    &-heart {
-      display: grid;
-      justify-items: center;
-      padding: 0 10px;
-
-      i {
-        font-size: 30px;
-        color: #bf0000;
+        span {
+          font-size: 5px;
+        }
       }
 
-      span {
-        font-size: 10px;
+      &-heart {
+        display: grid;
+        justify-items: center;
+        padding: 0 10px;
+
+        i {
+          font-size: 20px;
+          color: #bf0000;
+        }
+
+        span {
+          font-size: 5px;
+        }
       }
     }
   }
