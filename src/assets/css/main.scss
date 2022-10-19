@@ -10,6 +10,9 @@
       height: 96px;
       padding: 0 80px;
 
+      .mainContainer {
+        display: none;
+      }
 
       &-logo {
         display: flex;
@@ -133,6 +136,32 @@
       height: 65px;
       align-items: center;
 
+      .mainContainer {
+        &-trigger {
+          display: none;
+
+          &-label {
+            width: 22px;
+            display: block;
+            position: relative;
+            cursor: pointer;
+            padding: 0 10px;
+
+            span {
+              display: block;
+              height: 3px;
+              background-color: #000;
+              left: 0;
+              width: 100%;
+              transition: 0.3s;
+              z-index: 1000;
+              margin: 4px 0;
+              border-radius: 2px;
+            }
+          }
+        }
+      }
+
       &-logo {
         display: flex;
         justify-content: center;
@@ -169,13 +198,15 @@
           }
 
           &-search {
-            position: relative;
 
             input {
               display: none;
             }
 
             i {
+              display: flex;
+              justify-content: center;
+              width: 56px;
               font-size: 25px;
               color: black;
             }

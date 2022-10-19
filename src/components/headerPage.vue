@@ -52,6 +52,14 @@ export default {
   <div>
     <header class="header">
       <div class="header-bar">
+        <div class="mainContainer">
+          <input type="checkbox" class="mainContainer-trigger">
+          <label class="mainContainer-trigger-label">
+            <span></span>
+            <span></span>
+            <span></span>
+          </label>
+        </div>
         <div class="header-bar-logo" @click="goHome">
           <h1>logo</h1>
         </div>
@@ -87,6 +95,7 @@ export default {
             </div>
           </div>
         </div>
+
       </div>
     </header>
   </div>
