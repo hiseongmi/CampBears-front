@@ -32,6 +32,9 @@ export default {
     const loginPage = () => {
       router.push("/loginPage");
     };
+    const goHome = () => {
+      router.push("/");
+    }
     // const  = () => {
     //   router.push("");
     // }; 마이페이지
@@ -40,6 +43,7 @@ export default {
       headerBarList,
       signupPage,
       loginPage,
+      goHome,
     };
   },
 };
@@ -48,7 +52,7 @@ export default {
   <div>
     <header class="header">
       <div class="header-bar">
-        <div class="header-bar-logo">
+        <div class="header-bar-logo" @click="goHome">
           <h1>logo</h1>
         </div>
         <div class="header-bar-menu">
