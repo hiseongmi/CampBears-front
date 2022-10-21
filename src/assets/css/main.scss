@@ -310,12 +310,12 @@
 
       .line {
         position: absolute;
-        width: 527px;
+        width: 537px;
         height: 18px;
-        left: -30px;
+        left: 0;
         top: 158px;
         background: #ECECEC;
-        z-index: 10;
+        border: none;
       }
 
       &-search {
