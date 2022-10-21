@@ -1,5 +1,6 @@
 <script>
 import router from "../router/index.js";
+import {ref} from "vue";
 
 export default {
   name: 'headerPage',
@@ -38,12 +39,19 @@ export default {
     // const  = () => {
     //   router.push("");
     // }; 마이페이지
+    const isMenu = ref('');
+    const menuAction = (value) => {
+      isMenu.value = value;
+    }
 
     return {
       headerBarList,
       signupPage,
       loginPage,
       goHome,
+      isMenu,
+      menuAction,
+
     };
   },
 };
@@ -91,7 +99,8 @@ export default {
               </label>
             </div>
             <nav class="header-bar-menu-info-list">
-              <span v-for="item in headerBarList">{{ item.name }}</span>
+              <span :class="isMenu === `${item.key}` ? 'Action' : '' " @click="menuAction(item.key)"
+                    v-for="item in headerBarList">{{ item.name }}</span>
             </nav>
           </div>
         </div>

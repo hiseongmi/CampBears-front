@@ -108,6 +108,10 @@
 
         &-list {
           height: 100%;
+          .Action{
+            background-color: #2F2E2C;
+            color: white;
+          }
 
           span {
             cursor: pointer;
