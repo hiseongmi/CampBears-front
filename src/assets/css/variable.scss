@@ -130,7 +130,7 @@ width, height, padding, margin set
 }
 
 @mixin pc {
-  @media (min-width: 1200px) {
+  @media (min-width: 1199px) {
     @content;
   }
 }
