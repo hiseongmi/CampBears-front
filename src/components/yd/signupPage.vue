@@ -16,6 +16,18 @@ export default {
       mobileNum: '',
     })
 
+    const checkEmail = (e) => {
+      const target = e.target.value;
+      const reg = /^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/
+      if (reg.test(target)) {
+        console.log('true')
+      } else {
+        console.log(target)
+      }
+      // e.target.value;
+      // console.log(e.target.value)
+    }
+
     const regex = /^\d{3}-\d{3,4}-\d{4}$/;
 
     function checkPhoneNumber(value) {
@@ -27,10 +39,10 @@ export default {
     return {
       userInfo,
       checkPhoneNumber,
+      checkEmail,
 
     }
-  }
-
+  },
 }
 
 </script>
@@ -47,7 +59,7 @@ export default {
           <label for="email">email</label>
           <input type="text" id="email" required="required"
                  title="이메일형식에 맞춰주세요 제발"
-                 v-model="userInfo.email"/>
+                 v-model="userInfo.email" @input="checkEmail"/>
 
         </div>
         <div>
@@ -62,6 +74,9 @@ export default {
         <div>
           <label for="passwordConfirm">비밀번호 확인</label>
           <input type="password" id="passwordConfirm" required="required" v-model="userInfo.passwordConfirm"/>
+        </div>
+        <div>
+          <!--          <input v-model="onlyNumber"/>-->
         </div>
         <input type="submit" value="회원가입">
 

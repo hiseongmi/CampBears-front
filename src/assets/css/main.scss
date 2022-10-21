@@ -470,6 +470,7 @@
           position: absolute;
           right: 10px;
           top: 13px;
+          color: #615f5f;
         }
       }
     }
@@ -518,10 +519,7 @@
     }
 
     //프로필
-    &-content {
-      margin: 0 auto;
 
-      &-list {
         &-ul {
           display: flex;
           justify-content: center;
@@ -542,15 +540,13 @@
                 cursor: pointer;
                 object-fit: cover;
               }
-
-
             }
           }
         }
       }
     }
-  }
-}
+
+
 
 @media (max-width: 767px) {
   .news {
@@ -586,12 +582,14 @@
 
         input::placeholder {
           text-align: center;
+          font-size: 2px;
         }
 
         i {
           position: absolute;
           right: 5px;
           top: 8px;
+          color: #615f5f;
         }
       }
     }
@@ -639,10 +637,7 @@
     }
 
     //프로필
-    &-content {
-      margin: 0 auto;
 
-      &-list {
         &-ul {
           display: flex;
           justify-content: center;
@@ -663,15 +658,13 @@
                 cursor: pointer;
                 object-fit: cover;
               }
-
-
             }
           }
         }
       }
     }
-  }
-}
+
+
 
 @media (max-width: 450px) {
   .news {
@@ -704,19 +697,21 @@
           border: 1.5px solid rgba(204, 204, 204, 0.8);
           border-radius: 8px;
           height: 15px;
-          width: 100px;
+          width: 125px;
           box-shadow: 5px 5px 5px #999999;
         }
 
         input::placeholder {
           text-align: center;
+          font-size: 1px;
         }
 
         i {
           position: absolute;
           right: 5px;
-          top: 4px;
+          top: 5px;
           font-size: 13px;
+          color: #615f5f;
         }
       }
     }
@@ -768,39 +763,32 @@
     }
 
     //프로필
-    &-content {
-      margin: 0 auto;
+      &-ul {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        list-style: none;
 
-      &-list {
-        &-ul {
-          display: flex;
-          justify-content: center;
-          flex-wrap: wrap;
-          list-style: none;
+        &-li {
+          padding: 17.5px;
+          max-width: 290px;
 
-          &-li {
-            padding: 17.5px;
-            max-width: 290px;
+          &-write {
+            position: relative;
 
-            &-write {
-              position: relative;
-
-              img {
-                width: 100%;
-                border-radius: 25px;
-                box-shadow: -7px 7px 7px #999999;
-                cursor: pointer;
-                object-fit: cover;
-              }
-
-
+            img {
+              width: 100%;
+              border-radius: 25px;
+              box-shadow: -7px 7px 7px #999999;
+              cursor: pointer;
+              object-fit: cover;
             }
-          }
         }
       }
     }
   }
 }
+
 
 //모달창 home
 .modalHome {
