@@ -54,11 +54,8 @@ export default {
       <div class="header-bar">
         <div class="header-bar-wrap">
           <div class="mainContainer">
-            <input type="checkbox" class="mainContainer-trigger">
-            <label class="mainContainer-trigger-label">
-              <span></span>
-              <span></span>
-              <span></span>
+            <label class="mainContainer-label">
+              <i class="fa-solid fa-bars"></i>
             </label>
           </div>
           <div class="header-bar-wrap-logoLine" @click="goHome">
@@ -81,20 +78,19 @@ export default {
               </ul>
             </div>
           </div>
-          <div class="header-bar-wrap-moSearch"><i class="fa-solid fa-magnifying-glass"></i></div>
+          <div class="header-bar-wrap-moSearch">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </div>
         </div>
         <div class="header-bar-menu">
           <div class="header-bar-menu-info">
             <div class="container">
               <input type="checkbox" class="container-trigger">
               <label class="container-trigger-label">
-                <span></span>
-                <span></span>
-                <span></span>
+                <i class="fa-solid fa-bars"></i>
               </label>
             </div>
             <nav class="header-bar-menu-info-list">
-
               <span v-for="item in headerBarList">{{ item.name }}</span>
             </nav>
           </div>

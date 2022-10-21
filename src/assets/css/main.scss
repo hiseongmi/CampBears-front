@@ -1,175 +1,148 @@
 //헤더바
-@media (min-width: 769px) {
-  .header {
-    margin-bottom: 10px;
-    &-bar {
-      .mainContainer {
+
+.header {
+  margin-bottom: 10px;
+
+  &-bar {
+    .mainContainer {
+      display: none;
+    }
+
+    &-wrap {
+      border-bottom: 2px solid #EEEEEE;
+
+      &-logoLine {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        padding: 7px;
+        height: 50px;
+
+        h1 {
+          font-size: 28px;
+          padding-right: 60px;
+        }
+
+        &-search {
+          position: relative;
+          padding-right: 40px;
+
+          input {
+            border-radius: 4px;
+            height: 34px;
+            width: 310px;
+            border: 1px solid #C3C3C3;
+          }
+
+          i {
+            font-size: 25px;
+            position: absolute;
+            right: 55px;
+            top: 5px;
+            color: black;
+          }
+        }
+
+        &-login {
+          display: flex;
+          align-items: flex-start;
+
+          ul {
+            display: flex;
+            height: 100%;
+            padding-inline-start: 0px;
+
+            li {
+              font-size: 10px;
+              list-style: none;
+              padding: 0 8px;
+
+              span {
+                padding-right: 10px;
+              }
+
+              .down {
+                font-size: 10px;
+              }
+
+              a {
+                color: #2F2E2C;
+                cursor: pointer;
+                font-size: 12px;
+              }
+
+              a:hover {
+                color: #FA6C1A;
+              }
+            }
+          }
+        }
+      }
+
+      &-moSearch {
         display: none;
       }
-      &-wrap {
-        border-bottom: 2px solid #EEEEEE;
-        &-logoLine {
-          display: flex;
-          align-items: flex-end;
-          justify-content: center;
-          cursor: pointer;
-          padding: 7px;
-          height: 50px;
+    }
 
-          h1 {
-            font-size: 28px;
-            padding-right: 60px;
-          }
+    &-menu {
+      border-bottom: 2px solid #EEEEEE;
 
-          &-search {
-            position: relative;
-            padding-right: 40px;
+      &-info {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 40px;
 
-            input {
-              border-radius: 4px;
-              height: 30px;
-              width: 310px;
-              border: 1px solid #C3C3C3;
-            }
+        .container {
+          &-trigger {
+            display: none;
 
-            i {
-              font-size: 25px;
-              position: absolute;
-              right: 55px;
-              top: 5px;
-              color: black;
-            }
-          }
-
-          &-login {
-            display: flex;
-            align-items: flex-start;
-            height: 20px;
-
-            ul {
-              display: flex;
-              height: 100%;
-              padding-inline-start: 0px;
-
-              li {
-                font-size: 10px;
-                list-style: none;
-                padding: 0 8px;
-
-
-                span {
-                  padding-right: 10px;
-                }
-
-                .down {
-                  font-size: 10px;
-                }
-
-                a {
-                  color: #2F2E2C;
-                  cursor: pointer;
-
-                }
-
-                a:hover {
-                  color: #FA6C1A;
-                }
-              }
-            }
-          }
-        }
-        &-moSearch {
-          display: none;
-        }
-      }
-      &-menu {
-        border-bottom: 2px solid #EEEEEE;
-
-        &-info {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          height: 40px;
-
-          .container {
-            &-trigger {
-              display: none;
-
-              &-label {
-                width: 16px;
-                display: block;
-                position: relative;
-                cursor: pointer;
-                padding: 0 20px;
-
-                span {
-                  display: block;
-                  height: 2px;
-                  background-color: #000;
-                  left: 0;
-                  width: 100%;
-                  transition: 0.3s;
-                  z-index: 1000;
-                  margin: 2px 0;
-                  border-radius: 2px;
-                }
-              }
-            }
-          }
-
-          &-list {
-            height: 100%;
-
-            span {
+            &-label {
+              position: relative;
               cursor: pointer;
-              font-weight: bold;
-              display: inline-flex;
-              height: 100%;
-              width: 135px;
-              align-items: center;
-              justify-content: center;
+              padding: 0 20px;
             }
+          }
+        }
+
+        &-list {
+          height: 100%;
+
+          span {
+            cursor: pointer;
+            font-weight: bold;
+            display: inline-flex;
+            height: 100%;
+            width: 135px;
+            align-items: center;
+            justify-content: center;
           }
         }
       }
     }
   }
 }
-
 @include mb() {
   .header {
     margin-bottom: 10px;
+
     &-bar {
       &-wrap {
         display: flex;
         align-items: center;
         justify-content: space-between;
         border-bottom: 2px solid #EEEEEE;
+
         .mainContainer {
-          &-trigger {
-            display: none;
-
-            &-label {
-              width: 22px;
-              display: block;
-              position: relative;
-              cursor: pointer;
-              padding: 0 10px;
-
-              span {
-                display: block;
-                height: 3px;
-                background-color: #000;
-                left: 0;
-                width: 100%;
-                transition: 0.3s;
-                z-index: 1000;
-                margin: 4px 0;
-                border-radius: 2px;
-              }
+          display: block;
+          &-label {
+            i {
+              font-size: 20px;
             }
           }
         }
+
         &-logoLine {
           display: flex;
           align-items: center;
@@ -191,19 +164,24 @@
             display: none;
           }
         }
+
         &-moSearch {
+          display: block;
+
           i {
             font-size: 25px;
             color: black;
           }
         }
       }
+
       &-menu {
         display: none;
       }
     }
   }
 }
+
 //푸터바
 @media (min-width: 768px) {
   .footer {

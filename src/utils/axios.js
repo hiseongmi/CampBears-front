@@ -41,6 +41,12 @@ axiosInstance.interceptors.response.use(
 	},
 );
 
+/**
+ *
+ * @param url
+ * @param data
+ * @returns {Promise<AxiosResponse<any>>}
+ */
 export const apiClient = async (url, data) => {
 	return await axiosInstance
 		.post(url, data)
