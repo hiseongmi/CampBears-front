@@ -21,17 +21,11 @@ export default {
 }
 </script>
 <template>
-  <div class="news">
-    <div class="news-content">
-      <div class="news-content-list">
-        <div class="news-content-list-ul">
-          <div class="news-content-list-ul-li" :key="id" v-for="(item,id) in postImage">
-            <div class="news-content-list-ul-li-write" @click="openDetail(item.id)">
-              <profile></profile>
-              <img :src="item.img" alt="Posts"/>
-            </div>
-          </div>
-        </div>
+  <div class="news-ul">
+    <div class="news-ul-li" :key="id" v-for="(item,id) in postImage">
+      <div class="news-ul-li-write" @click="openDetail(item.id)">
+        <profile></profile>
+        <img :src="item.img" alt="Posts"/>
       </div>
     </div>
   </div>
