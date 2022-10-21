@@ -51,6 +51,11 @@ const routes = [
 		name: "loginNaver",
 		component: () => import("../components/snslogin/loginNaver.vue"),
 	},
+	{
+		path: "/myPage",
+		name: "myPage",
+		component: () => import("../views/myPage.vue"),
+	},
 ];
 
 const router = createRouter({
