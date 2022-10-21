@@ -42,6 +42,18 @@ export default {
     const isMenu = ref('');
     const menuAction = (value) => {
       isMenu.value = value;
+
+      if (value === 'SNS') {
+        router.push("/newsPage");
+      } else if (value === 'MARKET') {
+        router.push('/')
+      } else if (value === 'SHOP') {
+        router.push('/')
+      } else if (value === 'BOARD') {
+        router.push('/')
+      } else if (value === 'CATTING') {
+        router.push('/')
+      }
     }
 
     return {
@@ -66,8 +78,8 @@ export default {
               <i class="fa-solid fa-bars"></i>
             </label>
           </div>
-          <div class="header-bar-wrap-logoLine" @click="goHome">
-            <h1>○Camp Bears</h1>
+          <div class="header-bar-wrap-logoLine">
+            <h1 @click="goHome">○Camp Bears</h1>
             <div class="header-bar-wrap-logoLine-search">
               <input type="text"/>
               <i class="fa-solid fa-magnifying-glass"></i>

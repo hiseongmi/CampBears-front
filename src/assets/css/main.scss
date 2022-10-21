@@ -15,18 +15,18 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        cursor: pointer;
         padding: 7px;
         height: 50px;
 
         h1 {
+          cursor: pointer;
           font-size: 28px;
-          padding-right: 60px;
+
         }
 
         &-search {
           position: relative;
-          padding-right: 40px;
+          padding: 0 40px;
 
           input {
             border-radius: 4px;
@@ -108,7 +108,8 @@
 
         &-list {
           height: 100%;
-          .Action{
+
+          .Action {
             background-color: #2F2E2C;
             color: white;
           }
@@ -127,6 +128,7 @@
     }
   }
 }
+
 @include mb() {
   .header {
     margin-bottom: 10px;
@@ -137,9 +139,11 @@
         align-items: center;
         justify-content: space-between;
         border-bottom: 2px solid #EEEEEE;
+        padding: 0 10px;
 
         .mainContainer {
           display: block;
+
           &-label {
             i {
               font-size: 20px;
@@ -151,13 +155,13 @@
           display: flex;
           align-items: center;
           justify-content: center;
-          cursor: pointer;
           padding: 7px;
           height: 50px;
 
           h1 {
+            cursor: pointer;
             font-size: 28px;
-            padding: 0 60px;
+
           }
 
           &-search {
@@ -289,14 +293,29 @@
       &-contents {
         display: flex;
         align-items: baseline;
+        position: relative;
 
         &-title {
+          font-size: 40px;
           font-weight: bold;
           padding-right: 10px;
+          z-index: 1;
         }
 
         &-ment {
+          font-size: 15px;
         }
+
+      }
+
+      .line {
+        position: absolute;
+        width: 527px;
+        height: 18px;
+        left: -30px;
+        top: 158px;
+        background: #ECECEC;
+        z-index: 10;
       }
 
       &-search {
@@ -348,6 +367,8 @@
               height: 27px;
               border-radius: 4px;
               cursor: pointer;
+              font-size: 15px;
+              width: auto;
             }
           }
         }
@@ -360,8 +381,16 @@
           background-color: #ec671a;
           border: none;
           color: white;
-          font-size: 13px;
           cursor: pointer;
+
+          i {
+            font-size: 15px;
+            padding-right: 3px;
+          }
+
+          span {
+            font-size: 15px;
+          }
         }
       }
     }
@@ -408,11 +437,13 @@
         flex: 1 0 0;
 
         &-title {
+          font-size: 25px;
           font-weight: bold;
           padding-right: 10px;
         }
 
         &-ment {
+          font-size: 15px;
         }
       }
 
@@ -461,10 +492,11 @@
 
             select {
               border-color: #2f2e2c;
-              height: 27px;
+              height: 20px;
               width: 50px;
               border-radius: 4px;
               cursor: pointer;
+              font-size: 10px;
             }
           }
         }
@@ -472,13 +504,23 @@
 
       &-button {
         .write_btn {
-          padding: 5px 13px;
+          padding: 1px 10px;
           border-radius: 4px;
           background-color: #ec671a;
           border: none;
           color: white;
-          font-size: 13px;
           cursor: pointer;
+
+          i {
+            font-size: 10px;
+            padding-bottom: 4px;
+            padding-right: 3px;
+          }
+
+          span {
+            font-size: 10px;
+          }
+
         }
       }
     }
@@ -542,7 +584,7 @@
         input {
           border: 1.5px solid rgba(204, 204, 204, 0.8);
           border-radius: 8px;
-          height: 15px;
+          height: 20px;
           width: 125px;
           box-shadow: 5px 5px 5px #999999;
         }
@@ -593,13 +635,17 @@
 
       &-button {
         .write_btn {
-          padding: 2px 13px;
+          padding: 0 10px;
           border-radius: 4px;
           background-color: #ec671a;
           border: none;
           color: white;
-          font-size: 13px;
           cursor: pointer;
+
+          i {
+            font-size: 10px;
+            padding-bottom: 4px;
+          }
 
           span {
             display: none;

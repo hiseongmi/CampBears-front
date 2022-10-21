@@ -15,12 +15,6 @@ export default {
     const goToSample = () => {
       router.push("/samplePage");
     };
-    const goToSungmi = () => {
-      router.push("/newsPage");
-    };
-    const signupPage = () => {
-      router.push("/signupPage");
-    };
     //id=searchbar
     // function filter() {
     //   var content = document.getElementById("searchbar").value;
@@ -37,9 +31,6 @@ export default {
     const goToPop = () => {
       store.commit(STORE_TYPE.popupType, POPUP_TYPE.WRITE_BOARD);
     };
-    const goToLogin = () => {
-      router.push("/loginNaver");
-    };
     return {
       goToSample,
       goToSungmi,
@@ -53,7 +44,4 @@ export default {
 </script>
 <template>
   <button @click="goToSample">샘플 페이지 가기</button>
-  <button @click="goToSungmi">성미 페이지 가기</button>
-  <button @click="goToPop">팝업창 열기</button>
-  <button @click="goToLogin">sns 로그인</button>
 </template>

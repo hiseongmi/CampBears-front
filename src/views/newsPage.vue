@@ -1,21 +1,17 @@
 <script>
-import customSelect from "../layout/customSelect.vue";
-import modalHome from "../sungmi/modalHome.vue";
+import customSelect from "../components/layout/customSelect.vue";
+import modalHome from "../components/sungmi/modalHome.vue";
 import {ref} from "vue";
-import router from "../../router/index.js";
-import PopupManager from "../../App.vue";
-import store, {POPUP_TYPE, STORE_TYPE} from "../../store/index.js";
-import HeaderPage from "../headerPage.vue";
-import FooterPage from "../footerPage.vue";
-import NewsContentPage from "./newscontentPage.vue";
-import profile from "./profile.vue";
+import router from "../router/index.js";
+import PopupManager from "../App.vue";
+import store, {POPUP_TYPE, STORE_TYPE} from "../store/index.js";
+import NewsContentPage from "../components/snsBoard/newscontentPage.vue";
+import profile from "../components/snsBoard/profile.vue";
 
 export default {
   name: "newsPage",
   components: {
     NewsContentPage,
-    FooterPage,
-    HeaderPage,
     PopupManager,
     modalHome,
     customSelect,
@@ -90,6 +86,7 @@ export default {
         <h1 class="news-wrap-contents-title">소식</h1>
         <h5 class="news-wrap-contents-ment">다른 캠퍼의 소식을 들어 보아요!</h5>
       </div>
+      <div class="line"></div>
       <div class="news-wrap-search">
         <input type="text" placeholder="태그, 장소 찾아 보기"/>
         <i class="fa-solid fa-magnifying-glass"></i>
@@ -124,7 +121,7 @@ export default {
       <div class="news-menu-button">
         <button class="write_btn" @click="goPop">
           <i class="fa-solid fa-pen"></i>
-          글쓰기
+          <span>글쓰기</span>
         </button>
       </div>
     </div>
