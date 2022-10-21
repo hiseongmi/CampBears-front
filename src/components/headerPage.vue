@@ -6,24 +6,24 @@ export default {
   setup() {
     const headerBarList = [
       {
-        name: '베어장터',
+        name: 'SNS',
+        key: 'SNS',
+      },
+      {
+        name: 'Bears 플리마켓',
+        key: 'MARKET',
+      },
+      {
+        name: 'Bears 쇼핑',
         key: 'SHOP',
       },
       {
-        name: '커뮤니티',
-        key: 'COMMUNITY',
-      },
-      {
         name: '캠핑사전',
-        key: 'DATA',
-      },
-      {
-        name: '게시판',
         key: 'BOARD',
       },
       {
-        name: '고객센터',
-        key: 'CUSTOMER',
+        name: '채팅',
+        key: 'CATTING',
       },
     ];
     const signupPage = () => {
@@ -52,31 +52,38 @@ export default {
   <div>
     <header class="header">
       <div class="header-bar">
-        <div class="mainContainer">
-          <input type="checkbox" class="mainContainer-trigger">
-          <label class="mainContainer-trigger-label">
-            <span></span>
-            <span></span>
-            <span></span>
-          </label>
-        </div>
-        <div class="header-bar-logo" @click="goHome">
-          <h1>logo</h1>
+        <div class="header-bar-wrap">
+          <div class="mainContainer">
+            <input type="checkbox" class="mainContainer-trigger">
+            <label class="mainContainer-trigger-label">
+              <span></span>
+              <span></span>
+              <span></span>
+            </label>
+          </div>
+          <div class="header-bar-wrap-logoLine" @click="goHome">
+            <h1>○Camp Bears</h1>
+            <div class="header-bar-wrap-logoLine-search">
+              <input type="text"/>
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <div class="header-bar-wrap-logoLine-login">
+              <ul>
+                <li>
+                  <a @click="loginPage">로그인</a>
+                </li>
+                <li>
+                  <a @click="signupPage"> 회원가입 </a>
+                </li>
+                <li>
+                  <a> 마이페이지 </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="header-bar-wrap-moSearch"><i class="fa-solid fa-magnifying-glass"></i></div>
         </div>
         <div class="header-bar-menu">
-          <div class="header-bar-menu-login">
-            <ul>
-              <li>
-                <a @click="loginPage">로그인</a>
-              </li>
-              <li>
-                <a @click="signupPage"> 회원가입 </a>
-              </li>
-              <li>
-                <a> 마이페이지 </a>
-              </li>
-            </ul>
-          </div>
           <div class="header-bar-menu-info">
             <div class="container">
               <input type="checkbox" class="container-trigger">
@@ -87,13 +94,9 @@ export default {
               </label>
             </div>
             <nav class="header-bar-menu-info-list">
+
               <span v-for="item in headerBarList">{{ item.name }}</span>
             </nav>
-            <div class="header-bar-menu-info-search">
-              <input type="text"/>
-              <i class="fa-solid fa-magnifying-glass"></i>
-            </div>
-            <div class="header-bar-menu-info-moSearch"><i class="fa-solid fa-magnifying-glass"></i></div>
           </div>
         </div>
 
@@ -101,3 +104,6 @@ export default {
     </header>
   </div>
 </template>
+
+
+

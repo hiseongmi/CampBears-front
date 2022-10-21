@@ -2,74 +2,94 @@
 @media (min-width: 769px) {
   .header {
     margin-bottom: 10px;
-
     &-bar {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-around;
-      height: 96px;
-      padding: 0 80px;
-
       .mainContainer {
         display: none;
       }
+      &-wrap {
+        border-bottom: 2px solid #EEEEEE;
+        &-logoLine {
+          display: flex;
+          align-items: flex-end;
+          justify-content: center;
+          cursor: pointer;
+          padding: 7px;
+          height: 50px;
 
-      &-logo {
-        display: flex;
-        flex-direction: column-reverse;
-        align-items: center;
-        background-color: #2F2E2C;
-        color: white;
-        height: 100%;
-        width: 84px;
-        border-radius: 0 0 20px 20px;
-        cursor: pointer;
+          h1 {
+            font-size: 28px;
+            padding-right: 60px;
+          }
 
-        h1 {
-          margin: 0 0 10px 0;
-        }
+          &-search {
+            position: relative;
+            padding-right: 40px;
 
-      }
+            input {
+              border-radius: 4px;
+              height: 30px;
+              width: 310px;
+              border: 1px solid #C3C3C3;
+            }
 
-      &-menu {
-        padding-right: 56px;
+            i {
+              font-size: 25px;
+              position: absolute;
+              right: 55px;
+              top: 5px;
+              color: black;
+            }
+          }
 
-        &-login {
-          ul {
+          &-login {
             display: flex;
-            justify-content: flex-end;
+            align-items: flex-start;
+            height: 20px;
 
-            li {
-              font-size: 10px;
-              list-style: none;
-              padding: 0 8px;
+            ul {
+              display: flex;
+              height: 100%;
+              padding-inline-start: 0px;
 
-
-              span {
-                padding-right: 10px;
-              }
-
-              .down {
+              li {
                 font-size: 10px;
-              }
+                list-style: none;
+                padding: 0 8px;
 
-              a {
-                color: #2F2E2C;
-                cursor: pointer;
 
-              }
+                span {
+                  padding-right: 10px;
+                }
 
-              a:hover {
-                color: #FA6C1A;
+                .down {
+                  font-size: 10px;
+                }
+
+                a {
+                  color: #2F2E2C;
+                  cursor: pointer;
+
+                }
+
+                a:hover {
+                  color: #FA6C1A;
+                }
               }
             }
           }
         }
+        &-moSearch {
+          display: none;
+        }
+      }
+      &-menu {
+        border-bottom: 2px solid #EEEEEE;
 
         &-info {
           display: flex;
           align-items: center;
-          padding: 10px 6px;
+          justify-content: center;
+          height: 40px;
 
           .container {
             &-trigger {
@@ -98,31 +118,17 @@
           }
 
           &-list {
+            height: 100%;
+
             span {
-              padding: 20px;
+              cursor: pointer;
+              font-weight: bold;
+              display: inline-flex;
+              height: 100%;
+              width: 135px;
+              align-items: center;
+              justify-content: center;
             }
-          }
-
-          &-search {
-            position: relative;
-
-            input {
-              border-radius: 4px;
-              height: 20px;
-              width: 200px;
-              border: 1px solid #C3C3C3;
-            }
-
-            i {
-              position: absolute;
-              right: 5px;
-              top: 6px;
-              color: black;
-            }
-          }
-
-          &-moSearch {
-            display: none;
           }
         }
       }
@@ -130,214 +136,74 @@
   }
 }
 
-@media (max-width: 768px) {
+@include mb() {
   .header {
-    margin-bottom: 30px;
-
+    margin-bottom: 10px;
     &-bar {
-      display: flex;
-      height: 65px;
-      align-items: center;
-
-      .mainContainer {
-        &-trigger {
-          display: none;
-
-          &-label {
-            width: 22px;
-            display: block;
-            position: relative;
-            cursor: pointer;
-            padding: 0 10px;
-
-            span {
-              display: block;
-              height: 3px;
-              background-color: #000;
-              left: 0;
-              width: 100%;
-              transition: 0.3s;
-              z-index: 1000;
-              margin: 4px 0;
-              border-radius: 2px;
-            }
-          }
-        }
-      }
-
-      &-logo {
+      &-wrap {
         display: flex;
-        justify-content: center;
         align-items: center;
-        margin: 0 auto;
-        height: 100%;
-        width: 84px;
-        cursor: pointer;
+        justify-content: space-between;
+        border-bottom: 2px solid #EEEEEE;
+        .mainContainer {
+          &-trigger {
+            display: none;
 
-        h1 {
-          margin: 0 0 10px 0;
-        }
+            &-label {
+              width: 22px;
+              display: block;
+              position: relative;
+              cursor: pointer;
+              padding: 0 10px;
 
-      }
-
-      &-menu {
-        &-login {
-          display: none;
-        }
-
-        &-info {
-          .container {
-            &-trigger {
-              display: none;
-
-              &-label {
-                display: none;
+              span {
+                display: block;
+                height: 3px;
+                background-color: #000;
+                left: 0;
+                width: 100%;
+                transition: 0.3s;
+                z-index: 1000;
+                margin: 4px 0;
+                border-radius: 2px;
               }
             }
           }
+        }
+        &-logoLine {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          padding: 7px;
+          height: 50px;
 
-          &-list {
-            display: none;
+          h1 {
+            font-size: 28px;
+            padding: 0 60px;
           }
 
           &-search {
             display: none;
           }
 
-          &-moSearch {
-            display: flex;
-            justify-content: center;
-            width: 56px;
+          &-login {
+            display: none;
+          }
+        }
+        &-moSearch {
+          i {
             font-size: 25px;
             color: black;
           }
         }
       }
-    }
-  }
-}
-
-//최대너비 913이하 & 최소너비 769이상
-@media (max-width: 913px) and (min-width: 769px) {
-  .header {
-    margin-bottom: 10px;
-
-    &-bar {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-around;
-      height: 96px;
-      padding: 0 20px;
-
-      .mainContainer {
+      &-menu {
         display: none;
       }
-
-      &-logo {
-        display: flex;
-        flex-direction: column-reverse;
-        align-items: center;
-        background-color: #2F2E2C;
-        color: white;
-        height: 100%;
-        width: 84px;
-        border-radius: 0 0 20px 20px;
-        cursor: pointer;
-
-        h1 {
-          margin: 0 0 10px 0;
-        }
-
-      }
-
-      &-menu {
-        &-login {
-          ul {
-            display: flex;
-            justify-content: flex-end;
-
-            li {
-              font-size: 10px;
-              list-style: none;
-              padding: 0 8px;
-
-
-              span {
-                padding-right: 10px;
-              }
-
-              .down {
-                font-size: 10px;
-              }
-
-              a {
-                color: #2F2E2C;
-                cursor: pointer;
-
-              }
-
-              a:hover {
-                color: #FA6C1A;
-              }
-            }
-          }
-        }
-
-        &-info {
-          display: flex;
-          align-items: center;
-          padding: 10px 6px;
-
-          .container {
-            &-trigger {
-              display: none;
-
-              &-label {
-                width: 16px;
-                display: block;
-                position: relative;
-                cursor: pointer;
-                padding: 0 20px;
-
-                span {
-                  display: block;
-                  height: 2px;
-                  background-color: #000;
-                  left: 0;
-                  width: 100%;
-                  transition: 0.3s;
-                  z-index: 1000;
-                  margin: 2px 0;
-                  border-radius: 2px;
-                }
-              }
-            }
-          }
-
-          &-list {
-            span {
-              padding: 10px;
-            }
-          }
-
-          &-search {
-            display: none;
-          }
-
-          &-moSearch {
-            display: flex;
-            justify-content: center;
-            width: 40px;
-            font-size: 20px;
-            color: black;
-          }
-        }
-      }
     }
   }
 }
-
-
 //푸터바
 @media (min-width: 768px) {
   .footer {
@@ -800,5 +666,3 @@
     cursor: pointer;
   }
 }
-
-//메인페이지
