@@ -1,11 +1,11 @@
 <script>
-import { nextTick, onMounted, onUnmounted } from "vue";
+import {nextTick, onMounted, onUnmounted} from "vue";
 import LoginKakao from "./loginKaKao.vue";
-import { useRoute } from "vue-router";
+import {useRoute} from "vue-router";
 
 export default {
   name: "loginNaver",
-  components: { LoginKakao },
+  components: {LoginKakao},
   setup() {
     onMounted(() => {
       const naver_id_login = new window.naver_id_login("OkM9Pejxzz2VszesqaQP", "http://localhost:3001/#/auth");
@@ -21,5 +21,5 @@ export default {
 </script>
 <template>
   <div id="naver_id_login"></div>
-  <login-kakao />
+  <login-kakao/>
 </template>

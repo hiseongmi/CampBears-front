@@ -31,6 +31,9 @@ export default {
     const goToPop = () => {
       store.commit(STORE_TYPE.popupType, POPUP_TYPE.WRITE_BOARD);
     };
+    const goToLogin = () => {
+      router.push("/loginNaver");
+    };
     return {
       goToSample,
       goToSungmi,
@@ -44,4 +47,10 @@ export default {
 </script>
 <template>
   <button @click="goToSample">샘플 페이지 가기</button>
+  <div class="main">
+    <a href=""><img src="/assets/image/mainpage2.png" alt="캠핑장찾기"></a>
+    <!--  </div>-->
+    <!--  <div class="main">-->
+    <a href=""><img src="/assets/image/mainpage3.png" alt="캠핑장찾기"></a>
+  </div>
 </template>

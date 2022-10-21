@@ -694,3 +694,19 @@
     cursor: pointer;
   }
 }
+
+//메인페이지
+
+.main {
+  a {
+    img {
+      width: 50%;
+      height: 550px;
+      text-align: center;
+      vertical-align: middle;
+      display: inline-block;
+      margin-right: auto;
+      margin-left: auto;
+    }
+  }
+}

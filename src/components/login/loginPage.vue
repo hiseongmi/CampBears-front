@@ -1,7 +1,7 @@
 <script>
 import HeaderPage from "../headerPage.vue";
 import FooterPage from "../footerPage.vue";
-import signupPage from ".//signupPage.vue";
+import signupPage from "./signupPage.vue";
 import router from "../../router/index.js";
 import store, {POPUP_TYPE, STORE_TYPE} from "../../store/index.js";
 import {ref} from "vue";

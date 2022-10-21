@@ -1,19 +1,22 @@
 <script>
 import customInput from "../components/layout/customInput.vue";
 import customButton from "../components/layout/customButton.vue";
+import loginNaver from "../components/snslogin/loginNaver.vue";
 // import { getApiClient } from "../utils/axios.js";
-import { ref } from "vue";
-import { apiClient } from "../utils/axios.js";
+import {ref} from "vue";
+import {apiClient} from "../utils/axios.js";
 import axios from "axios";
+import router from "../router/index.js";
 
 export default {
   name: "login",
   components: {
     customInput,
-    customButton
+    customButton,
+    loginNaver,
   },
   setup() {
-    const userData = ref({ userEmail: "", userPassword: "" });
+    const userData = ref({userEmail: "", userPassword: ""});
     const loginState = ref(true);
 
 
@@ -80,7 +83,8 @@ export default {
       doLogin,
       doJoin,
       changeLoginState,
-      clickJoin
+      clickJoin,
+
     };
   }
 };
@@ -93,8 +97,8 @@ export default {
         <h1>로그인 해볼까요?</h1>
       </div>
       <div v-if="loginState" class="form">
-        <custom-input :placeholder="`이메일`" @update:value="userData.userEmail = $event" />
-        <custom-input :placeholder="`비밀번호`" @update:value="userData.userPassword = $event" />
+        <custom-input :placeholder="`이메일`" @update:value="userData.userEmail = $event"/>
+        <custom-input :placeholder="`비밀번호`" @update:value="userData.userPassword = $event"/>
         <div class="btn-area">
           <custom-button :placeholder="`로그인`" :onClick="doLogin"></custom-button>
           <custom-button :custom-class="`join`" :placeholder="`회원가입`" :onClick="doLogin"></custom-button>
@@ -113,6 +117,7 @@ export default {
     </div>
     <div class="join-btn" @click="clickJoin">
       SNS 계정으로 간편 로그인/회원가입
+      <loginNaver></loginNaver>
     </div>
   </section>
 </template>
