@@ -1,16 +1,8 @@
 <script>
 import router from "../router/index.js";
-import signupPage from "../components/login/signupPage.vue";
-import loginPage from "../components/login/loginPage.vue";
-import HeaderPage from "../components/headerPage.vue";
-import FooterPage from "../components/footerPage.vue";
-import {ref} from "vue";
-import store, {POPUP_TYPE, STORE_TYPE} from "../store/index.js";
 
 export default {
   name: "mainPage",
-  components: {FooterPage, HeaderPage, loginPage, signupPage},
-
   setup() {
     const goToSample = () => {
       router.push("/samplePage");
@@ -25,22 +17,8 @@ export default {
     //     /* 검색작업수행 */
     //   }
     // }
-
-    const isPopup = ref(store.state.popupType);
-
-    const goToPop = () => {
-      store.commit(STORE_TYPE.popupType, POPUP_TYPE.WRITE_BOARD);
-    };
-    const goToLogin = () => {
-      router.push("/loginNaver");
-    };
     return {
       goToSample,
-      goToSungmi,
-      goToPop,
-      isPopup,
-      signupPage,
-      goToLogin,
     };
   },
 };

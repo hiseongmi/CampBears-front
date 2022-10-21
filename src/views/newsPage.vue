@@ -86,7 +86,7 @@ export default {
         <h1 class="news-wrap-contents-title">소식</h1>
         <h5 class="news-wrap-contents-ment">다른 캠퍼의 소식을 들어 보아요!</h5>
       </div>
-      <div class="line"></div>
+      <!--      <div class="line"></div>-->
       <div class="news-wrap-search">
         <input type="text" placeholder="태그, 장소 찾아 보기"/>
         <i class="fa-solid fa-magnifying-glass"></i>

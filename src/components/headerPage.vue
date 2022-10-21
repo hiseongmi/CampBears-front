@@ -31,7 +31,7 @@ export default {
       router.push("/signupPage");
     };
     const loginPage = () => {
-      router.push("/loginPage");
+      router.push("/login");
     };
     const goHome = () => {
       router.push("/");
