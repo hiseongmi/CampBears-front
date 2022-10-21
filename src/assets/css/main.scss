@@ -520,32 +520,31 @@
 
     //프로필
 
-        &-ul {
-          display: flex;
-          justify-content: center;
-          flex-wrap: wrap;
-          list-style: none;
+    &-ul {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      list-style: none;
 
-          &-li {
-            padding: 17.5px;
+      &-li {
+        padding: 17.5px;
 
-            &-write {
-              position: relative;
+        &-write {
+          position: relative;
 
-              img {
-                width: 500px;
-                height: 500px;
-                border-radius: 25px;
-                box-shadow: -7px 7px 7px #999999;
-                cursor: pointer;
-                object-fit: cover;
-              }
-            }
+          img {
+            width: 500px;
+            height: 500px;
+            border-radius: 25px;
+            box-shadow: -7px 7px 7px #999999;
+            cursor: pointer;
+            object-fit: cover;
           }
         }
       }
     }
-
+  }
+}
 
 
 @media (max-width: 767px) {
@@ -638,32 +637,31 @@
 
     //프로필
 
-        &-ul {
-          display: flex;
-          justify-content: center;
-          flex-wrap: wrap;
-          list-style: none;
+    &-ul {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      list-style: none;
 
-          &-li {
-            padding: 17.5px;
-            max-width: 290px;
+      &-li {
+        padding: 17.5px;
+        max-width: 290px;
 
-            &-write {
-              position: relative;
+        &-write {
+          position: relative;
 
-              img {
-                width: 100%;
-                border-radius: 25px;
-                box-shadow: -7px 7px 7px #999999;
-                cursor: pointer;
-                object-fit: cover;
-              }
-            }
+          img {
+            width: 100%;
+            border-radius: 25px;
+            box-shadow: -7px 7px 7px #999999;
+            cursor: pointer;
+            object-fit: cover;
           }
         }
       }
     }
-
+  }
+}
 
 
 @media (max-width: 450px) {
@@ -763,26 +761,26 @@
     }
 
     //프로필
-      &-ul {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        list-style: none;
+    &-ul {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      list-style: none;
 
-        &-li {
-          padding: 17.5px;
-          max-width: 290px;
+      &-li {
+        padding: 17.5px;
+        max-width: 290px;
 
-          &-write {
-            position: relative;
+        &-write {
+          position: relative;
 
-            img {
-              width: 100%;
-              border-radius: 25px;
-              box-shadow: -7px 7px 7px #999999;
-              cursor: pointer;
-              object-fit: cover;
-            }
+          img {
+            width: 100%;
+            border-radius: 25px;
+            box-shadow: -7px 7px 7px #999999;
+            cursor: pointer;
+            object-fit: cover;
+          }
         }
       }
     }
@@ -802,3 +800,5 @@
     cursor: pointer;
   }
 }
+
+//메인페이지
