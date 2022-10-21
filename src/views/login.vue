@@ -4,7 +4,7 @@ import customButton from "../components/layout/customButton.vue";
 import { ref } from "vue";
 
 export default {
-  name: "sample-login",
+  name: "login",
   components: {
     customInput,
     customButton
@@ -61,9 +61,14 @@ export default {
       return !(!value || value === "" || value === undefined);
     };
 
+    const findIdPwd = () => {
+      window.alert("준비중입니다.");
+    };
+
     return {
       form,
       loginState,
+      findIdPwd,
       updateIdValue,
       updatePasswordValue,
       doLogin,
@@ -72,22 +77,23 @@ export default {
       updateCheckPasswordValue,
       changeLoginState
     };
-
-  },
-  methods: {
-    // updateIdValue(e) {
-    //   this.form.userId = e;
-    //   console.log(this.form.userId);
-    // }
   }
 };
 </script>
 <template>
   <div class="login-area">
+    <div class="login-bg"></div>
+    <div class="logo-area">
+
+      로그인 해볼까요?
+    </div>
     <div v-if="loginState" class="form">
-      <custom-input :custom-class="`input`" :placeholder="`ID`" @update:value="updateIdValue" />
-      <custom-input :custom-class="`input`" :placeholder="`PASSWORD`" @update:value="updatePasswordValue" />
-      <custom-button :placeholder="`로그인`" :onClick="doLogin"></custom-button>
+      <custom-input :placeholder="`이메일`" @update:value="updateIdValue" />
+      <custom-input :placeholder="`비밀번호`" @update:value="updatePasswordValue" />
+      <div class="btn-area">
+        <custom-button :placeholder="`로그인`" :onClick="doLogin"></custom-button>
+        <custom-button :custom-class="`join`" :placeholder="`회원가입`" :onClick="doLogin"></custom-button>
+      </div>
     </div>
     <div v-else class="form">
       <custom-input :custom-class="`input`" :placeholder="`NAME`" @update:value="updateNameValue" />
@@ -96,39 +102,9 @@ export default {
       <custom-input :custom-class="`input`" :placeholder="`CHECK PASSWORD`" @update:value="updateCheckPasswordValue" />
       <custom-button :placeholder="`회원가입`" :onClick="doJoin"></custom-button>
     </div>
-    <p @click="changeLoginState">
-      {{ loginState ? "회원가입" : "로그인" }}하러가기
+    <p @click="findIdPwd">
+      아이디/비밀번호 찾기
     </p>
   </div>
 
 </template>
-
-<style lang="scss">
-.login-area {
-  width: 400px;
-  margin: 100px;
-  text-align: center;
-
-  .form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    .input {
-      width: 300px;
-      height: 30px;
-      margin-bottom: 10px;
-    }
-  }
-
-  > p {
-    margin-top: 50px;
-
-    &:hover {
-      cursor: pointer;
-      color: #373737;
-
-    }
-  }
-}
-</style>
