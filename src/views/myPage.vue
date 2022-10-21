@@ -26,15 +26,17 @@ export default {
 <template>
 	<div class="myPage">
 		<div class="myProfile">
-			<img src="assets/image/camping.png" alt="" />
+			<img class="backgroundPicture" src="assets/image/camping.png" alt="" />
+			<img class="profilePicture" src="assets/image/bgs.png" alt="" />
+			불멍온도
 		</div>
 		<div class="myContents">
 			<div class="tapBar">
 				<custom-button :placeholder="'피드'" :onClick="clickButton" />
 				<custom-button :placeholder="'판매'" :onClick="clickButton" />
 				<custom-button :placeholder="'대여'" :onClick="clickButton" />
+				<custom-button :placeholder="'저장'" :onClick="clickButton" />
 				<custom-button :placeholder="'후기'" :onClick="clickButton" />
-				<custom-button :placeholder="'찜 목록'" :onClick="clickButton" />
 			</div>
 			<div class="myFeed">
 				<news-content-page />
