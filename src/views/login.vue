@@ -36,6 +36,10 @@ export default {
       loginState.value = !loginState.value;
     };
 
+    const clickJoin = () => {
+      window.alert('회원가입')
+    }
+
     const checkForm = (type) => {
       if (!checkValue(form.value.userId)) {
         window.alert("아이디를 입력하세요");
@@ -75,36 +79,40 @@ export default {
       doJoin,
       updateNameValue,
       updateCheckPasswordValue,
-      changeLoginState
+      changeLoginState,
+      clickJoin
     };
   }
 };
 </script>
 <template>
-  <div class="login-area">
-    <div class="login-bg"></div>
-    <div class="logo-area">
-
-      로그인 해볼까요?
-    </div>
-    <div v-if="loginState" class="form">
-      <custom-input :placeholder="`이메일`" @update:value="updateIdValue" />
-      <custom-input :placeholder="`비밀번호`" @update:value="updatePasswordValue" />
-      <div class="btn-area">
-        <custom-button :placeholder="`로그인`" :onClick="doLogin"></custom-button>
-        <custom-button :custom-class="`join`" :placeholder="`회원가입`" :onClick="doLogin"></custom-button>
+  <section class="login">
+    <div class="login-area">
+      <div class="logo-area">
+        <img src="/assets/images/login/logo.webp" alt="logo">
+        <h1>로그인 해볼까요?</h1>
       </div>
+      <div v-if="loginState" class="form">
+        <custom-input :placeholder="`이메일`" @update:value="updateIdValue" />
+        <custom-input :placeholder="`비밀번호`" @update:value="updatePasswordValue" />
+        <div class="btn-area">
+          <custom-button :placeholder="`로그인`" :onClick="doLogin"></custom-button>
+          <custom-button :custom-class="`join`" :placeholder="`회원가입`" :onClick="doLogin"></custom-button>
+        </div>
+      </div>
+      <!--    <div v-else class="form">-->
+      <!--      <custom-input :custom-class="`input`" :placeholder="`NAME`" @update:value="updateNameValue" />-->
+      <!--      <custom-input :custom-class="`input`" :placeholder="`ID`" @update:value="updateIdValue" />-->
+      <!--      <custom-input :custom-class="`input`" :placeholder="`PASSWORD`" @update:value="updatePasswordValue" />-->
+      <!--      <custom-input :custom-class="`input`" :placeholder="`CHECK PASSWORD`" @update:value="updateCheckPasswordValue" />-->
+      <!--      <custom-button :placeholder="`회원가입`" :onClick="doJoin"></custom-button>-->
+      <!--    </div>-->
+      <p @click="findIdPwd">
+        아이디/비밀번호 찾기
+      </p>
     </div>
-    <div v-else class="form">
-      <custom-input :custom-class="`input`" :placeholder="`NAME`" @update:value="updateNameValue" />
-      <custom-input :custom-class="`input`" :placeholder="`ID`" @update:value="updateIdValue" />
-      <custom-input :custom-class="`input`" :placeholder="`PASSWORD`" @update:value="updatePasswordValue" />
-      <custom-input :custom-class="`input`" :placeholder="`CHECK PASSWORD`" @update:value="updateCheckPasswordValue" />
-      <custom-button :placeholder="`회원가입`" :onClick="doJoin"></custom-button>
+    <div class="join-btn" @click="clickJoin">
+      SNS 계정으로 간편 로그인/회원가입
     </div>
-    <p @click="findIdPwd">
-      아이디/비밀번호 찾기
-    </p>
-  </div>
-
+  </section>
 </template>
