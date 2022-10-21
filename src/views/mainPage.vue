@@ -4,9 +4,7 @@ import router from "../router/index.js";
 export default {
   name: "mainPage",
   setup() {
-    const goToSample = () => {
-      router.push("/samplePage");
-    };
+
     //id=searchbar
     // function filter() {
     //   var content = document.getElementById("searchbar").value;
@@ -17,14 +15,11 @@ export default {
     //     /* 검색작업수행 */
     //   }
     // }
-    return {
-      goToSample,
-    };
+    return {};
   },
 };
 </script>
 <template>
-  <button @click="goToSample">샘플 페이지 가기</button>
   <div class="main">
     <a href=""><img src="/assets/image/mainpage2.png" alt="캠핑장찾기"></a>
     <!--  </div>-->

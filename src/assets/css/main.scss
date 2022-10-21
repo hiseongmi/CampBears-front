@@ -109,6 +109,11 @@
         &-list {
           height: 100%;
 
+          span:hover {
+            background-color: #2F2E2C;
+            color: #ffffff;
+          }
+
           .Action {
             background-color: #2F2E2C;
             color: white;
@@ -304,6 +309,7 @@
 
         &-ment {
           font-size: 15px;
+          z-index: 2;
         }
 
       }
