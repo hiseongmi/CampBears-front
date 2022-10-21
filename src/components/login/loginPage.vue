@@ -1,10 +1,11 @@
 <script>
 import HeaderPage from "../headerPage.vue";
 import FooterPage from "../footerPage.vue";
-import signupPage from "../yd/signupPage.vue";
+import signupPage from ".//signupPage.vue";
 import router from "../../router/index.js";
 import store, {POPUP_TYPE, STORE_TYPE} from "../../store/index.js";
 import {ref} from "vue";
+import axios from "axios";
 
 // import {ref} from "vue";
 
@@ -26,9 +27,26 @@ export default {
     const goToPop = () => {
       store.commit(STORE_TYPE.popupType, POPUP_TYPE.WRITE_BOARD)
     }
+    const onLogin = () => {
+      const userEmail = document.getElementById("email");
+      const userPassword = document.getElementById("pw")
+      axios({
+        method: 'post',
+        url: '/camp-api.calf.kr',
+        data: {
+          userEmail: '',
+          userPassword: ''
+        }
+      }).then((res) => {
+        console.log(res);
+      }).catch(error => {
+        console.log(error);
+        throw new Error(error);
+      });
+    }
 
     return {
-      goToSample, goToSungmi, signupPage, goToPop, isPopup,
+      goToSample, goToSungmi, signupPage, goToPop, isPopup, onLogin,
     };
   }
 
@@ -38,7 +56,6 @@ export default {
 
 
 <template>
-  <header-page></header-page>
   <!--  <button @click="goToSample">샘플 페이지 가기</button>-->
   <!--  <button @click="goToSungmi">성미 페이지 가기</button>-->
   <!--  <button @click="goToPop">팝업창 열기</button>-->
@@ -52,16 +69,16 @@ export default {
         <h2>로그인 해볼까요?</h2>
         <label>
           <span>Email</span>
-          <input type="email" placeholder="이메일" required/>
+          <input type="email" placeholder="이메일" id="email" required/>
         </label>
         <label>
           <span>Password</span>
-          <input type="password" placeholder="비밀번호" required/>
+          <input type="password" placeholder="비밀번호" id="pw" required/>
         </label>
 
         <div class="submit">
           <button @click="signupPage" class="sig-btn">회원가입</button>
-          <button type="submit">로그인</button>
+          <button type="button" @click="onLogin">로그인</button>
         </div>
         <p class="forgot-pass">아이디/비밀번호 찾기</p>
 
@@ -72,6 +89,6 @@ export default {
       </div>
     </form>
   </div>
-  <footer-page></footer-page>
+
 </template>
 
