@@ -61,26 +61,30 @@
 
 #loading-bar {
   @include center();
-  position: absolute;
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   border: 5px solid $primary-color;
   border-top-color: #b7a997;
   opacity: 80%;
   //border-left-color: #ccc;
-  animation: spin 1s ease-in-out infinite;
+  animation: spin 0.7s ease-in-out infinite;
 
 }
 
 @keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
   to {
-    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 }
 
-@-webkit-keyframes spin {
-  to {
-    -webkit-transform: rotate(360deg);
-  }
-}
+//
+//@-webkit-keyframes spin {
+//  to {
+//    transform: rotate(360deg);
+//    //-webkit-transform: rotate(360deg);
+//  }
+//}
