@@ -3,6 +3,7 @@ import { createStore, useStore } from "vuex";
 export const STORE_TYPE = {
 	isLoading: "isLoading",
 	popupType: "popupType",
+	loginUserIdx: "loginUserIdx",
 };
 
 export const POPUP_TYPE = {
@@ -16,6 +17,7 @@ const store = createStore({
 	state: {
 		isLoading: false,
 		popupType: POPUP_TYPE.NONE,
+		loginUserIdx: "",
 	},
 	mutations: {
 		isLoading(state, value) {
@@ -24,6 +26,9 @@ const store = createStore({
 		},
 		popupType(state, value) {
 			state.popupType = value;
+		},
+		loginUserIdx(state, value) {
+			state.loginUserIdx = value;
 		},
 	},
 });

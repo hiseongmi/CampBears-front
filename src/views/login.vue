@@ -2,10 +2,12 @@
 import customInput from "../components/layout/customInput.vue";
 import customButton from "../components/layout/customButton.vue";
 import loginNaver from "../components/snslogin/loginNaver.vue";
-import { ref } from "vue";
+import { onMounted, onUnmounted, ref } from "vue";
 import { apiClient, setHeader } from "../utils/axios.js";
 import common from "../utils/common-util.js";
 import { CONSTANTS } from "../constants.js";
+import router from "../router/index.js";
+import store, { STORE_TYPE } from "../store/index.js";
 
 export default {
   name: "login",
@@ -17,68 +19,53 @@ export default {
   setup() {
     const userData = ref({ userEmail: "", userPassword: "" });
     const loginState = ref(true);
+    const ENTER_EVENT = "ENTER_EVENT";
 
-
+    //로그인
     const doLogin = async () => {
-      // if (checkForm("login")) window.alert("login");
-      // console.log(12);
-      // axios.post("http://camp-api.calf.kr/api/user/login", userData.value)
-      //   .then(res => {
-      //     console.log(res);
-      //   });
       const data = await apiClient("/user/login", userData.value);
       if (data.resultCode === 0) {
         console.log(data.data);
-        window.alert("로그인 성공");
+        await router.push("/");
         if (data.data.token) {
           setHeader(data.data.token);
           common.setLocalStorage(CONSTANTS.KEY_LIST.USER_INFO, data.data);
           common.setLocalStorage(CONSTANTS.KEY_LIST.USER_INFO_TOKEN, data.data.token);
+          store.commit(STORE_TYPE.loginUserIdx, data.data.userIdx);
         }
       } else {
         window.alert(data.resultMsg);
       }
     };
+    //회원가입
     const doJoin = () => {
       // if (checkForm("join")) window.alert("join");
     };
 
-    const changeLoginState = () => {
-      loginState.value = !loginState.value;
-    };
 
     const clickJoin = () => {
       window.alert("회원가입");
     };
 
-    // const checkForm = (type) => {
-    //   if (!checkValue(userData.value.userId)) {
-    //     window.alert("아이디를 입력하세요");
-    //     return false;
-    //   } else if (!checkValue(userData.value.userPassword)) {
-    //     console.log(userData.value.userPassword);
-    //     window.alert("비밀번호를 입력하세요");
-    //     return false;
-    //   } else if (type === "join" && !checkValue(userData.value.userName)) {
-    //     window.alert("이름을 입력하세요");
-    //     return false;
-    //   } else if (type === "join" && !checkValue(userData.value.userCheckPassword)) {
-    //     window.alert("비밀번호를 확인하세요");
-    //     return false;
-    //   } else if (type === "join" && form.value.userPassword !== userData.value.userCheckPassword) {
-    //     window.alert("비밀번호가 서로 다릅니다");
-    //     return false;
-    //   }
-    //   return true;
-    // };
-
-    // const checkValue = (value) => {
-    //   return !(!value || value === "" || value === undefined);
-    // };
 
     const findIdPwd = () => {
       window.alert("준비중입니다.");
     };
+
+    //엔터 이벤트 받기
+    const handleEnter = (e) => {
+      if (e.key === "Enter") {
+        doLogin();
+      }
+    };
+
+    onMounted(() => {
+      window.addEventListener("keydown", handleEnter);
+    });
+
+    onUnmounted(() => {
+      window.removeEventListener("keydown", handleEnter);
+    });
 
     return {
       userData,
@@ -86,7 +73,6 @@ export default {
       findIdPwd,
       doLogin,
       doJoin,
-      changeLoginState,
       clickJoin
 
     };

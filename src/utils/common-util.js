@@ -34,6 +34,16 @@ const getLocalStorage = key => {
 };
 
 /**
+ * 로컬 스토리지 데이터 삭제
+ * @param {string} key
+ */
+const removeLocalStorage = key => {
+	if (typeof key === "string") {
+		window.localStorage.removeItem(key);
+	}
+};
+
+/**
  * json 형태 만들기
  * @param {any} value
  * @returns {string}
@@ -71,6 +81,7 @@ const checkForm = form => {
 	}
 	return true;
 };
+
 //form{}, msg list
 const checkFormToList = (form, msg) => {
 	if (form) {
@@ -101,6 +112,16 @@ const isCheckNull = target => {
 	return !(target === null || target === "" || target === undefined);
 };
 
+const logOutUser = () => {
+	const u = getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO);
+	const ut = getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO_TOKEN);
+	if (u && ut) {
+		console.log("remove");
+		removeLocalStorage(CONSTANTS.KEY_LIST.USER_INFO);
+		removeLocalStorage(CONSTANTS.KEY_LIST.USER_INFO_TOKEN);
+	}
+};
+
 export default {
 	getLocalStorage,
 	setLocalStorage,
@@ -109,4 +130,6 @@ export default {
 	checkForm,
 	getImageUrl,
 	isCheckNull,
+	logOutUser,
+	removeLocalStorage,
 };
