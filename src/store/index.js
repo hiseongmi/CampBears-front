@@ -20,13 +20,24 @@ const store = createStore({
 		loginUserIdx: "",
 	},
 	mutations: {
+		/**
+		 * @param {store} state
+		 * @param {boolean} value
+		 */
 		isLoading(state, value) {
-			//value : boolean;
 			state.isLoading = value;
 		},
+		/**
+		 * @param {store} state
+		 * @param {POPUP_TYPE} value
+		 */
 		popupType(state, value) {
 			state.popupType = value;
 		},
+		/**
+		 * @param {store} state
+		 * @param {string} value
+		 */
 		loginUserIdx(state, value) {
 			state.loginUserIdx = value;
 		},
