@@ -2,6 +2,7 @@
 import store, {POPUP_TYPE, STORE_TYPE} from "../../../store/index.js";
 import {ref} from "vue";
 import postImage from "../../../data/postImage.js";
+import {apiClient} from "../../../utils/axios.js";
 
 export default {
   name: "detailScreenPopup",
@@ -16,15 +17,23 @@ export default {
 
     const goToReport = () => {
       store.commit(STORE_TYPE.popupType, POPUP_TYPE.REPORT)
-    }
+    }//신고창열기
 
     const RerActive = ref(false);
 
     const RerOption = () => {
       RerActive.value = !RerActive.value;
-    };
+    }; //수정신고삭제 옵션
+
+    const followData = ref({followType: "", targetIdx: "", targetType: ""});
+    const follow = async () => {
+      const data = await apiClient("/common/doFollow", followData.value)
+      console.log(followData.value)
+      console.log(data)
+    }//팔로우 매니저
 
     return {
+      follow,
       RerActive,
       RerOption,
       goToReport,
@@ -65,7 +74,7 @@ export default {
             <div class="content-wrap-profile-info">
               <div class="follow">
                 <span>dlwlrma</span>
-                <button class="follow_btn">팔로우</button>
+                <button class="follow_btn" @click="follow">팔로우</button>
               </div>
               <p class="content-wrap-profile-info-intro">캠핑을 좋아하는 슈퍼 스타중의 스타~ 이지금이에요</p>
               <p class="content-wrap-profile-info-tag">#내친구 #camp #인생은 #즐거워</p>

@@ -1,4 +1,7 @@
 <script>
+import {ref} from "vue";
+import {apiClient} from "../../../utils/axios.js";
+
 export default {
   name: "writeBoardPopup",
   props: {
@@ -7,6 +10,34 @@ export default {
       required: true
     }
   },
+  setup() {
+    const upLoadData = ref({
+      boardBody: "", optionList: {
+        SHOWER: "",
+        PARMERCY: "",
+        CAFE: "",
+        FITTING: "",
+        SUBWAY: "",
+        MARKET: "",
+        STORE: "",
+        DRINK: "",
+        PARK: "",
+        RESTROOM: "",
+        STARBUCKS: "",
+        MOVIE: "",
+        RESTAURANT: "",
+        SHUTTLE: "",
+      }
+    })
+    const getList = async () => {
+      const data = await apiClient("/sns/insert", upLoadData.value)
+      console.log(upLoadData.value)
+      console.log(data)
+    }
+    return {
+      getList,
+    }
+  }
 }
 </script>
 <template>
@@ -14,12 +45,12 @@ export default {
     <div class="save-btn">
       <span class="cancel" @click="clickClose" type="button">취소</span>
       <span type="button">저장</span>
-      <span class="up" type="button">올리기</span>
+      <span class="up" type="button" @click="getList">올리기</span>
     </div>
     <div class="content">
       <div class="file">
         <input type="file"/>
-        
+
       </div>
       <div class="content-profile">
         <div class="content-profile-wrap">

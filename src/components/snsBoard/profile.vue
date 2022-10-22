@@ -1,6 +1,9 @@
 <script>
+import {ref} from "vue";
+import {apiClient} from "../../utils/axios.js";
+
 export default {
-  name: 'profile'
+  name: 'profile',
 }
 </script>
 <template>
