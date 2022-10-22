@@ -26,6 +26,11 @@ const routes = [
 		name: "newsPage",
 		component: () => import("../views/newsPage.vue"),
 	},
+	{
+		path: "/auth",
+		name: "auth",
+		component: () => import("../views/loginAccess.vue"),
+	},
 ];
 
 const router = createRouter({

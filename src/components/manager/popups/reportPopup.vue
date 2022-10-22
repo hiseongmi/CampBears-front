@@ -10,7 +10,7 @@ export default {
   setup() {
     const goBack = () => {
       router.go(-1);
-    };
+    }; //뒤로가긴데 안먹는다
     return {
       goBack,
     }

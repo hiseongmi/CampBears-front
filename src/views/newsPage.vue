@@ -18,15 +18,6 @@ export default {
     profile,
   },
   setup() {
-    const postLink = () => {
-      router.push("/PostPage");
-    };
-    const modalActive = ref(false);
-
-    const toggleModal = () => {
-      modalActive.value = !modalActive.value;
-    };
-
     const selectedValue = ref();
 
     const selectedUpdateValue = value => {
@@ -63,12 +54,9 @@ export default {
     ];
     const goPop = () => {
       store.commit(STORE_TYPE.popupType, POPUP_TYPE.WRITE_BOARD);
-    };
+    }; //글쓰기 팝업열기
 
     return {
-      postLink,
-      modalActive,
-      toggleModal,
       selectedUpdateValue,
       selectSortData,
       selectedValue,
@@ -86,7 +74,7 @@ export default {
         <h1 class="news-wrap-contents-title">소식</h1>
         <h5 class="news-wrap-contents-ment">다른 캠퍼의 소식을 들어 보아요!</h5>
       </div>
-      <hr class="line"/>
+      <!--      <hr class="line"/>-->
       <div class="news-wrap-search">
         <input type="text" placeholder="태그, 장소 찾아 보기"/>
         <i class="fa-solid fa-magnifying-glass"></i>

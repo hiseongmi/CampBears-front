@@ -241,7 +241,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@include mb() {
   .footer {
     margin: 100px 0 0 0;
 
@@ -304,12 +304,10 @@
           font-size: 40px;
           font-weight: bold;
           padding-right: 10px;
-          z-index: 1;
         }
 
         &-ment {
           font-size: 15px;
-          z-index: 2;
         }
 
       }
@@ -322,6 +320,7 @@
         top: 158px;
         background: #ECECEC;
         border: none;
+        z-index: 4;
       }
 
       &-search {
@@ -430,7 +429,7 @@
 }
 
 
-@media (max-width: 767px) {
+@include mb() {
   .news {
     &-wrap {
       display: flex;
