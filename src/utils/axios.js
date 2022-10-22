@@ -1,5 +1,6 @@
 import axios from "axios";
 import { CONSTANTS } from "../constants.js";
+import commonUtil from "./common-util.js";
 
 // const store = useStore();
 
@@ -48,6 +49,8 @@ axiosInstance.interceptors.response.use(
  * @returns {Promise<AxiosResponse<any>>}
  */
 export const apiClient = async (url, data) => {
+	const t = commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO_TOKEN);
+	if (t) setHeader(t);
 	return await axiosInstance
 		.post(url, data)
 		.then(res => {
@@ -61,4 +64,10 @@ export const apiClient = async (url, data) => {
 			// throw e
 			console.error(e);
 		});
+};
+
+export const setHeader = v => {
+	if (axiosInstance && typeof v === "string") {
+		axiosInstance.defaults.headers.common["Authorization"] = v;
+	}
 };
