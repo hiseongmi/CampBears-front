@@ -8,15 +8,21 @@
       display: none;
     }
 
+    .containerPop {
+      display: none;
+    }
+
     &-wrap {
       border-bottom: 2px solid #EEEEEE;
 
       &-logoLine {
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: space-evenly;
         padding: 7px;
         height: 50px;
+        max-width: 1200px;
+        margin: 0 auto;
 
         h1 {
           cursor: pointer;
@@ -98,6 +104,8 @@
         align-items: center;
         justify-content: center;
         height: 40px;
+        max-width: 1200px;
+        margin: 0 auto;
 
         .container {
           &-trigger {
@@ -130,7 +138,7 @@
             font-weight: bold;
             display: inline-flex;
             height: 100%;
-            width: 135px;
+            width: 150px;
             align-items: center;
             justify-content: center;
           }
@@ -155,9 +163,48 @@
         .mainContainer {
           display: block;
 
+
           &-label {
             i {
               font-size: 20px;
+              cursor: pointer;
+            }
+          }
+        }
+
+        .containerPop {
+          display: block;
+          width: 80px;
+          height: 100px;
+          background-color: #3f3f3f;
+          color: white;
+          position: fixed;
+          top: 45px;
+          left: 10px;
+          transition: 0.3s;
+
+          ul {
+            font-size: 14px;
+            height: 100px;
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+
+            li {
+              height: 100%;
+              width: 100%;
+              display: flex;
+              flex-direction: column;
+
+              a {
+                height: 50px;
+                cursor: pointer;
+
+                &:hover {
+                  background-color: #7b7b7b;
+                }
+              }
             }
           }
         }
@@ -357,8 +404,8 @@
       display: flex;
       justify-content: flex-end;
       align-items: center;
-      max-width: 1020px;
-      margin: auto;
+      max-width: 1200px;
+      margin: 0 auto;
       padding: 20px 40px;
 
       &-select {
@@ -413,20 +460,110 @@
       justify-content: center;
       flex-wrap: wrap;
       list-style: none;
+      max-width: 1200px;
+      margin: 0 auto;
 
       &-li {
         padding: 17.5px;
 
-        &-write {
+        &-wrap {
           position: relative;
+          border-radius: 8px;
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+          height: 344px;
 
-          img {
-            width: 500px;
-            height: 500px;
-            border-radius: 25px;
-            box-shadow: -7px 7px 7px #999999;
-            cursor: pointer;
-            object-fit: cover;
+          //게시판 사진부분
+          &-write {
+            img {
+              width: 318px;
+              height: 318px;
+              border-radius: 8px;
+              cursor: pointer;
+              object-fit: cover;
+            }
+          }
+
+          //게시판 상세 부분
+          .detail {
+            background-color: white;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            border-radius: 0 0 8px 8px;
+
+            //하트 댓글 북마크 들
+            &-wrap {
+              display: flex;
+              border-bottom: 1px solid #CCCCCC;
+              color: #818181;
+
+              &-icon {
+                padding: 5px 9px;
+
+                span {
+                  i {
+                    font-size: 18px;
+                  }
+                }
+              }
+
+              &-briefcase {
+                padding: 5px 9px;
+                flex: 1 0 0;
+
+                span {
+                  i {
+                    font-size: 18px;
+                  }
+                }
+              }
+            }
+
+            //게시판 내용
+            .contents {
+              padding: 3px;
+              height: 40px;
+              color: #4C4C4C;
+              display: flex;
+              width: 318px;
+
+              &-writing {
+                flex: 1 0 0;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+              }
+            }
+
+            //댓글 개수
+            .comments {
+              padding: 3px;
+              height: 30px;
+              color: #4C4C4C;
+
+              span {
+                font-size: 12px;
+                padding: 3px;
+              }
+            }
+          }
+
+          //사진위 좋아요
+          .heart {
+            position: absolute;
+            top: 10px;
+            left: 5px;
+
+            span {
+              color: white;
+              font-size: 15px;
+              padding-left: 5px;
+
+              i {
+                color: red;
+              }
+            }
+
           }
         }
       }
@@ -440,15 +577,17 @@
     &-wrap {
       display: flex;
       align-items: center;
-      padding: 30px;
+      justify-content: space-around;
+      padding: 20px 0;
 
       &-contents {
         display: flex;
         align-items: baseline;
-        flex: 1 0 0;
+        flex-direction: column;
+        position: relative;
 
         &-title {
-          font-size: 25px;
+          font-size: 35px;
           font-weight: bold;
           padding-right: 10px;
         }
@@ -456,6 +595,18 @@
         &-ment {
           font-size: 15px;
         }
+
+      }
+
+      .line {
+        position: absolute;
+        width: 537px;
+        height: 18px;
+        left: 0;
+        top: 158px;
+        background: #ECECEC;
+        border: none;
+        z-index: 4;
       }
 
       &-search {
@@ -464,20 +615,19 @@
         input {
           border: 1.5px solid rgba(204, 204, 204, 0.8);
           border-radius: 8px;
-          height: 26px;
-          width: 170px;
+          height: 35px;
+          width: 240px;
           box-shadow: 5px 5px 5px #999999;
         }
 
         input::placeholder {
           text-align: center;
-          font-size: 2px;
         }
 
         i {
           position: absolute;
-          right: 5px;
-          top: 8px;
+          right: 10px;
+          top: 13px;
           color: #615f5f;
         }
       }
@@ -487,7 +637,9 @@
       display: flex;
       justify-content: flex-end;
       align-items: center;
-      padding: 10px 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px 30px;
 
       &-select {
         .slider {
@@ -499,15 +651,15 @@
           list-style: none;
 
           li {
-            padding: 0 5px;
+            padding: 0 10px;
 
             select {
               border-color: #2f2e2c;
-              height: 20px;
-              width: 50px;
+              height: 27px;
               border-radius: 4px;
               cursor: pointer;
-              font-size: 10px;
+              font-size: 13px;
+              width: auto;
             }
           }
         }
@@ -515,7 +667,7 @@
 
       &-button {
         .write_btn {
-          padding: 1px 10px;
+          padding: 5px 13px;
           border-radius: 4px;
           background-color: #ec671a;
           border: none;
@@ -523,15 +675,13 @@
           cursor: pointer;
 
           i {
-            font-size: 10px;
-            padding-bottom: 4px;
+            font-size: 13px;
             padding-right: 3px;
           }
 
           span {
-            font-size: 10px;
+            font-size: 13px;
           }
-
         }
       }
     }
@@ -543,20 +693,88 @@
       justify-content: center;
       flex-wrap: wrap;
       list-style: none;
+      max-width: 1200px;
+      margin: 0 auto;
 
       &-li {
         padding: 17.5px;
-        max-width: 290px;
 
-        &-write {
+        &-wrap {
           position: relative;
+          border-radius: 8px;
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+          height: 344px;
 
-          img {
+          //게시판 사진부분
+          &-write {
+            img {
+              width: 318px;
+              height: 318px;
+              border-radius: 8px;
+              cursor: pointer;
+              object-fit: cover;
+            }
+          }
+
+          //게시판 상세 부분
+          .detail {
+            background-color: white;
+            position: absolute;
+            bottom: 0;
             width: 100%;
-            border-radius: 25px;
-            box-shadow: -7px 7px 7px #999999;
-            cursor: pointer;
-            object-fit: cover;
+            border-radius: 0 0 8px 8px;
+
+            //하트 댓글 북마크 들
+            &-wrap {
+              display: flex;
+              border-bottom: 1px solid #CCCCCC;
+              color: #818181;
+
+              &-icon {
+                padding: 5px 9px;
+
+                span {
+                  i {
+                    font-size: 18px;
+                  }
+                }
+              }
+
+              &-briefcase {
+                padding: 5px 9px;
+                flex: 1 0 0;
+
+                span {
+                  i {
+                    font-size: 18px;
+                  }
+                }
+              }
+            }
+
+            //게시판 내용
+            .contents {
+              padding: 3px;
+              height: 40px;
+              color: #4C4C4C;
+              display: flex;
+
+              &-writing {
+                flex: 1 0 0;
+              }
+            }
+
+            //댓글 개수
+            .comments {
+              padding: 3px;
+              height: 30px;
+              color: #4C4C4C;
+
+              span {
+                font-size: 12px;
+                padding: 3px;
+              }
+            }
           }
         }
       }
@@ -581,11 +799,11 @@
         &-title {
           font-weight: bold;
           padding-right: 10px;
-          font-size: 15px;
+          font-size: 20px;
         }
 
         &-ment {
-          font-size: 1px;
+          font-size: 12px;
         }
       }
 
@@ -602,7 +820,7 @@
 
         input::placeholder {
           text-align: center;
-          font-size: 1px;
+          font-size: 10px;
         }
 
         i {
@@ -634,6 +852,7 @@
             padding: 0 3px;
 
             select {
+              font-size: 10px;
               border-color: #2f2e2c;
               height: 18px;
               width: 45px;
@@ -674,17 +893,89 @@
 
       &-li {
         padding: 17.5px;
-        max-width: 290px;
+        width: 218px;
 
-        &-write {
+        &-wrap {
           position: relative;
+          border-radius: 8px;
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+          height: 238px;
 
-          img {
+          //게시판 사진부분
+          &-write {
+            img {
+              width: 183px;
+              height: 183px;
+              border-radius: 8px;
+              cursor: pointer;
+              object-fit: cover;
+            }
+          }
+
+          //게시판 상세 부분
+          .detail {
+            background-color: white;
+            position: absolute;
+            bottom: 0;
             width: 100%;
-            border-radius: 25px;
-            box-shadow: -7px 7px 7px #999999;
-            cursor: pointer;
-            object-fit: cover;
+            border-radius: 0 0 8px 8px;
+
+            //하트 댓글 북마크 들
+            &-wrap {
+              display: flex;
+              border-bottom: 1px solid #CCCCCC;
+              color: #818181;
+
+              &-icon {
+                padding: 5px 9px;
+
+                span {
+                  i {
+                    font-size: 13px;
+                  }
+                }
+              }
+
+              &-briefcase {
+                padding: 5px 9px;
+                flex: 1 0 0;
+
+                span {
+                  i {
+                    font-size: 13px;
+                  }
+                }
+              }
+            }
+
+            //게시판 내용
+            .contents {
+              padding: 3px;
+              height: 40px;
+              color: #4C4C4C;
+              display: flex;
+              width: 183px;
+
+              &-writing {
+                flex: 1 0 0;
+                font-size: 13px;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+              }
+            }
+
+            //댓글 개수
+            .comments {
+              padding: 3px;
+              height: 30px;
+              color: #4C4C4C;
+
+              span {
+                font-size: 10px;
+                padding: 3px;
+              }
+            }
           }
         }
       }

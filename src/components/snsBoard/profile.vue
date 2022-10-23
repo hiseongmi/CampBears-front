@@ -12,16 +12,9 @@ export default {
       <img src="/assets/image/IU.png" alt="프로필 사진"/>
       <div class="profile-wrap-data">
         <span>dlwlrma</span>
+        <span class="middle-dot">&#183;</span>
         <button class="follow">팔로우</button>
-        <p>캠핑을 좋아하는 슈퍼 스타중의 스타~ 이지금이에요</p>
-      </div>
-      <div class="profile-wrap-comment">
-        <span><i class="fa-regular fa-comment"></i></span>
-        <span>4.219</span>
-      </div>
-      <div class="profile-wrap-heart">
-        <span><i class="fa-regular fa-heart"></i></span>
-        <span>23,812</span>
+        <p><i class="fa-solid fa-location-dot"></i> 경기도 고양시 덕양구 OO캠핑장 어쩌구저쩌구</p>
       </div>
     </div>
   </div>

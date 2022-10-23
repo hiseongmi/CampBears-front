@@ -1,11 +1,5 @@
 @media (min-width: 768px) {
   .profile {
-    position: absolute;
-    color: white;
-    background-color: rgba(0, 0, 0, 0.53);
-    width: 100%;
-    bottom: 4px;
-    border-radius: 0 0 25px 25px;
 
     &-wrap {
       display: flex;
@@ -17,55 +11,46 @@
       }
 
       &-data {
-        flex: 1 0 0;
-        padding: 0 10px;
+        padding: 0 0 0 15px;
+        width: 221px;
 
         span {
+          margin-right: 5px;
           font-size: 20px;
         }
 
+        .middle-dot {
+          position: relative;
+          top: 3px;
+        }
+
         .follow {
-          margin-left: 20px;
-          font-size: 2px;
+          position: relative;
+          bottom: 2px;
+          font-size: 4px;
           background: none;
-          padding: 3px 20px;
-          border: 3px solid #876445;
+          padding: 2px 10px;
+          border: 2px solid #FA6C1A;
           border-radius: 19px;
-          color: white;
           cursor: pointer;
+          font-weight: 700;
         }
 
         p {
-          font-size: 2px;
-        }
-      }
+          i {
+            font-size: 13px;
+          }
 
-      &-comment {
-        display: grid;
-        justify-items: center;
-        padding: 0 10px;
-
-        i {
-          font-size: 30px;
-        }
-
-        span {
-          font-size: 10px;
-        }
-      }
-
-      &-heart {
-        display: grid;
-        justify-items: center;
-        padding: 0 10px;
-
-        i {
-          font-size: 30px;
-          color: #bf0000;
-        }
-
-        span {
-          font-size: 10px;
+          position: relative;
+          top: 4px;
+          color: #636363;
+          background-color: rgba(204, 204, 204, 0.3);
+          font-size: 13px;
+          padding: 3px;
+          border-radius: 4px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
         }
       }
     }
@@ -74,77 +59,116 @@
 
 @media (max-width: 768px) {
   .profile {
-    position: absolute;
-    color: white;
-    background-color: rgba(0, 0, 0, 0.53);
-    width: 100%;
-    bottom: 4px;
-    border-radius: 0 0 25px 25px;
 
     &-wrap {
       display: flex;
-      padding: 8px;
+      padding: 11px;
       align-items: center;
 
       img {
-        border-radius: 70%;
-        width: 50px;
-        height: 48px;
+        @include profile();
+      }
+
+      &-data {
+        padding: 0 15px;
+
+        span {
+          margin-right: 5px;
+          font-size: 20px;
+        }
+
+        .middle-dot {
+          position: relative;
+          top: 3px;
+        }
+
+        .follow {
+          position: relative;
+          bottom: 2px;
+          font-size: 4px;
+          background: none;
+          padding: 2px 10px;
+          border: 2px solid #FA6C1A;
+          border-radius: 19px;
+          cursor: pointer;
+          font-weight: 700;
+        }
+
+        p {
+          i {
+            font-size: 13px;
+          }
+
+          position: relative;
+          top: 4px;
+          color: #636363;
+          background-color: rgba(204, 204, 204, 0.3);
+          font-size: 13px;
+          padding: 3px;
+          border-radius: 4px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 450px) {
+  .profile {
+
+    &-wrap {
+      display: flex;
+      padding: 11px;
+      align-items: center;
+
+      img {
+        border-radius: 50%;
+        width: 45px;
+        height: 45px;
         box-shadow: none;
         object-fit: cover;
       }
 
       &-data {
-        flex: 1 0 0;
-        padding: 0 10px;
+        padding: 0 5px;
+        width: 140px;
 
         span {
+          margin-right: 5px;
           font-size: 10px;
         }
 
+        .middle-dot {
+          position: relative;
+          top: 3px;
+        }
+
         .follow {
-          font-size: 1px;
+          position: relative;
+          bottom: 2px;
+          font-size: 4px;
           background: none;
-          padding: 0 5px;
-          margin-left: 5px;
-          border: 2px solid #876445;
+          padding: 2px 10px;
+          border: 2px solid #FA6C1A;
           border-radius: 19px;
-          color: white;
           cursor: pointer;
+          font-weight: 700;
         }
 
         p {
-          font-size: 1px;
-          display: none;
-        }
-      }
+          i {
+            font-size: 8px;
+          }
 
-      &-comment {
-        display: grid;
-        justify-items: center;
-        padding: 0 10px;
-
-        i {
-          font-size: 20px;
-        }
-
-        span {
-          font-size: 5px;
-        }
-      }
-
-      &-heart {
-        display: grid;
-        justify-items: center;
-        padding: 0 10px;
-
-        i {
-          font-size: 20px;
-          color: #bf0000;
-        }
-
-        span {
-          font-size: 5px;
+          position: relative;
+          top: 4px;
+          color: #636363;
+          background-color: rgba(204, 204, 204, 0.3);
+          font-size: 8px;
+          padding: 3px;
+          border-radius: 4px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
         }
       }
     }

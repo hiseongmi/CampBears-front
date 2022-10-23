@@ -1,7 +1,7 @@
 <script>
 import router from "../router/index.js";
-import { computed, ref, watch } from "vue";
-import { CONSTANTS } from "../constants.js";
+import {computed, ref, watch} from "vue";
+import {CONSTANTS} from "../constants.js";
 import commonUtil from "../utils/common-util.js";
 import store from "../store/index.js";
 
@@ -48,6 +48,10 @@ export default {
         window.location.replace("/#/login");
       }
     };
+    const containerAction = ref(false);
+    const mainContainer = () => {
+      containerAction.value = !containerAction.value;
+    }; //전체 메뉴
 
 // gotoX로 통합
     // const menuAction = (value) => {
@@ -74,7 +78,9 @@ export default {
       headerBarList,
       loginUser,
       goToX,
-      logOut
+      logOut,
+      mainContainer,
+      containerAction,
     };
   }
 };
@@ -84,20 +90,33 @@ export default {
     <header class="header">
       <div class="header-bar">
         <div class="header-bar-wrap">
-          <div class="mainContainer">
+          <div class="mainContainer" @click="mainContainer">
             <label class="mainContainer-label">
               <i class="fa-solid fa-bars"></i>
             </label>
           </div>
+          <div class="containerPop" v-if="containerAction">
+            <ul>
+              <li v-if="!loginUser">
+                <a @click="goToX('/login')">로그인</a>
+                <a @click="goToX('/')">회원가입</a>
+              </li>
+              <li v-else>
+                <a @click="goToX()">마이페이지</a>
+                <a @click="logOut()">로그아웃</a>
+              </li>
+            </ul>
+          </div>
           <div class="header-bar-wrap-logoLine">
             <h1 @click="goToX('/')">○Camp Bears</h1>
             <div class="header-bar-wrap-logoLine-search">
-              <input type="text" />
+              <input type="text"/>
               <i class="fa-solid fa-magnifying-glass"></i>
             </div>
             <div class="header-bar-wrap-logoLine-login">
               <ul>
                 <li v-if="!loginUser">
+                  <a></a>
                   <a @click="goToX('/login')">로그인</a>
                   <a @click="goToX('/')"> 회원가입 </a>
                 </li>
