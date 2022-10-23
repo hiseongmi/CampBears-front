@@ -4,7 +4,7 @@ import postImage from "../../data/postImage.js";
 import store, {POPUP_TYPE, STORE_TYPE} from "../../store/index.js";
 
 export default {
-  name: "newsContentPage",
+  name: "snsContentPage",
   components: {
     Profile,
   },

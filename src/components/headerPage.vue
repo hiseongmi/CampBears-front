@@ -14,7 +14,7 @@ export default {
       {
         name: "SNS",
         key: "SNS",
-        target: "/newsPage"
+        target: "/snsPage"
       },
       {
         name: "Bears 플리마켓",
@@ -146,7 +146,6 @@ export default {
             </nav>
           </div>
         </div>
-
       </div>
     </header>
   </div>

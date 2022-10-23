@@ -2,7 +2,7 @@
 import customButton from "../components/layout/customButton.vue";
 import customInput from "../components/layout/customInput.vue";
 import {ref} from "vue";
-import NewsContentPage from "../components/snsBoard/newscontentPage.vue";
+import NewsContentPage from "../components/snsBoard/snsContentPage.vue";
 
 export default {
   name: "myPage",

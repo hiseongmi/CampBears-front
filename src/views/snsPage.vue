@@ -5,13 +5,13 @@ import {ref} from "vue";
 import router from "../router/index.js";
 import PopupManager from "../App.vue";
 import store, {POPUP_TYPE, STORE_TYPE} from "../store/index.js";
-import NewsContentPage from "../components/snsBoard/newscontentPage.vue";
 import profile from "../components/snsBoard/profile.vue";
+import snsContentPage from "../components/snsBoard/snsContentPage.vue";
 
 export default {
-  name: "newsPage",
+  name: "snsPage",
   components: {
-    NewsContentPage,
+    snsContentPage,
     PopupManager,
     modalHome,
     customSelect,
@@ -113,6 +113,6 @@ export default {
         </button>
       </div>
     </div>
-    <news-content-page/>
+    <sns-content-page/>
   </div>
 </template>

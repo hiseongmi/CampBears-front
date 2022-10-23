@@ -160,8 +160,8 @@
       position: fixed;
       max-width: 80%;
       //box-shadow: 0 4px 6px;
-      width: 700px;
-      height: 720px;
+      width: 600px;
+      height: 500px;
 
       &-content {
         position: absolute;
@@ -238,14 +238,14 @@
           }
         }
 
-        &-image {
-          img {
-            width: 100%;
-          }
-        }
-
         .content {
           background-color: white;
+
+          &-image {
+            img {
+              width: 100%;
+            }
+          }
 
           &-wrap {
             display: flex;

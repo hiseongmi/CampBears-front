@@ -63,11 +63,12 @@ export default {
             <li @click="goToReport">신고 <i class="fa-solid fa-circle-exclamation"></i></li>
           </ul>
         </div>
-        <div class="modal-detail-content-image">
-          <img src="/assets/image/iucamp3.gif" alt="게시물 사진">
-        </div>
+
       </div>
       <div class="content">
+        <div class="content-image">
+          <img src="/assets/image/iugold3.png" alt="게시물 사진">
+        </div>
         <div class="content-wrap">
           <div class="content-wrap-profile">
             <img src="/assets/image/IU.png" alt="프로필 사진">

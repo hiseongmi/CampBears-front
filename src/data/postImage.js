@@ -1,10 +1,10 @@
 export default [
 	{
-		img: "/assets/image/camping.png",
+		img: "/assets/image/iugold.png",
 		id: 0,
 	},
 	{
-		img: "/assets/image/jjanggu.png",
+		img: "/assets/image/iugold2.png",
 		id: 1,
 	},
 	{
@@ -20,15 +20,15 @@ export default [
 		id: 4,
 	},
 	{
-		img: "/assets/image/camping.png",
+		img: "/assets/image/iugold3.png",
 		id: 5,
 	},
 	{
-		img: "/assets/image/camping.png",
+		img: "/assets/image/iugold4.png",
 		id: 6,
 	},
 	{
-		img: "/assets/image/camping.png",
+		img: "/assets/image/iugold5.png",
 		id: 7,
 	},
 ];

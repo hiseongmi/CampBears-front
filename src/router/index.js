@@ -22,9 +22,9 @@ const routes = [
 		component: () => import("../views/login.vue"),
 	},
 	{
-		path: "/newsPage",
-		name: "newsPage",
-		component: () => import("../views/newsPage.vue"),
+		path: "/snsPage",
+		name: "snsPage",
+		component: () => import("../views/snsPage.vue"),
 	},
 	{
 		path: "/auth",
