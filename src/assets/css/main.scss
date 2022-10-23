@@ -1014,15 +1014,50 @@
 //메인페이지
 
 .main {
+  background-image: url("public/assets/image/mainpage2.png");
+  position: relative;
+  display: inline-block;
+  width: 50%;
+  height: 955px;
+}
+
+.main-sec {
+  background-image: url("public/assets/image/mainpage3.png");
+  display: inline-block;
+  width: 50%;
+  height: 955px;
+}
+
+
+.main-icon {
+  text-align: center;
+  padding-top: 47px;
+  display: flex;
+  justify-content: center;
+
   a {
-    img {
-      width: 50%;
-      height: 550px;
-      text-align: center;
-      vertical-align: middle;
-      display: inline-block;
-      margin-right: auto;
-      margin-left: auto;
-    }
+    text-decoration: none;
+    color: #000000;
+    position: relative;
+    padding-right: 60px;
+
+  }
+
+
+  span {
+    display: inline-block;
+    inline-size: -webkit-fill-available;
+  }
+
+
+}
+
+.icon-name {
+  text-align: center;
+  text-decoration: none;
+
+  span {
+    padding-right: 60px;
   }
 }
+
