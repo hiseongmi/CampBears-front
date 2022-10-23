@@ -71,6 +71,7 @@
 
       &-data {
         padding: 0 15px;
+        width: 221px;
 
         span {
           margin-right: 5px;
@@ -106,6 +107,9 @@
           font-size: 13px;
           padding: 3px;
           border-radius: 4px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
         }
       }
     }
