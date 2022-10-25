@@ -12,7 +12,10 @@ export default {
     },
     onClick: {
       type: Function,
-      required: true
+      required: false,
+      default() {
+        return undefined;
+      }
     }
   }
 };

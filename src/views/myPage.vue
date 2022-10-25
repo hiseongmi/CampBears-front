@@ -9,18 +9,28 @@ export default {
   components: {
     NewsContentPage,
     customButton,
-    customInput,
+    customInput
   },
   setup() {
-    let cc = ref(0);
-    const componentChange = page => {
-      console.log(page);
+    const tabType = {
+      FEED: "feed",
+      SELL: "sell",
+      RENT: "rent",
+      SAVE: "save",
+      REVIEW: "review"
+    };
+    const tabIndex = ref(tabType.FEED);
+
+    const componentChange = (v) => {
+      console.log(v);
+      tabIndex.value = v;
     };
     return {
-      cc,
-      componentChange,
+      tabIndex,
+      tabType,
+      componentChange
     };
-  },
+  }
 };
 </script>
 
@@ -32,16 +42,19 @@ export default {
     </div>
     <div class="myContents">
       <div class="tapBar">
-        <custom-button :placeholder="'피드'" :onClick="componentChange(1)" />
-        <custom-button :placeholder="'판매'" :onClick="componentChange(2)" />
-        <custom-button :placeholder="'대여'" :onClick="componentChange(3)" />
-        <custom-button :placeholder="'저장'" :onClick="componentChange(4)" />
-        <custom-button :placeholder="'후기'" :onClick="componentChange(5)" />
+        <custom-button :placeholder="'피드'" :onClick="()=>componentChange(tabType.FEED)" />
+        <custom-button :placeholder="'판매'" :onClick="()=>componentChange(tabType.SELL)" />
+        <custom-button :placeholder="'대여'" :onClick="()=>componentChange(tabType.RENT)" />
+        <custom-button :placeholder="'저장'" :onClick="()=>componentChange(tabType.SAVE)" />
+        <custom-button :placeholder="'후기'" :onClick="()=>componentChange(tabType.REVIEW)" />
       </div>
-      <div v-if="cc === 1" class="myFeed">
-        <news-content-page />
+      <div class="content-area">
+        <news-content-page v-if="tabIndex === tabType.FEED" />
+        <div v-else-if="tabIndex === tabType.SELL">'판매'</div>
+        <div v-else-if="tabIndex === tabType.RENT">'대여'</div>
+        <div v-else-if="tabIndex === tabType.SAVE">'저장'</div>
+        <custom-input v-else="tabIndex === tabType.REVIEW"></custom-input>
       </div>
-      <custom-input v-else-if="cc === 5"></custom-input>
     </div>
   </div>
 </template>
