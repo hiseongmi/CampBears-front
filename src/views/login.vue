@@ -2,12 +2,12 @@
 import customInput from "../components/layout/customInput.vue";
 import customButton from "../components/layout/customButton.vue";
 import loginNaver from "../components/snslogin/loginNaver.vue";
-import { onMounted, onUnmounted, ref } from "vue";
-import { apiClient, setHeader } from "../utils/axios.js";
+import {onMounted, onUnmounted, ref} from "vue";
+import {apiClient, setHeader} from "../utils/axios.js";
 import common from "../utils/common-util.js";
-import { CONSTANTS } from "../constants.js";
+import {CONSTANTS} from "../constants.js";
 import router from "../router/index.js";
-import store, { STORE_TYPE } from "../store/index.js";
+import store, {STORE_TYPE} from "../store/index.js";
 
 export default {
   name: "login",
@@ -17,7 +17,7 @@ export default {
     loginNaver
   },
   setup() {
-    const userData = ref({ userEmail: "", userPassword: "" });
+    const userData = ref({userEmail: "", userPassword: ""});
     const loginState = ref(true);
     const ENTER_EVENT = "ENTER_EVENT";
 
@@ -87,8 +87,8 @@ export default {
         <h1>로그인 해볼까요?</h1>
       </div>
       <div v-if="loginState" class="form">
-        <custom-input :placeholder="`이메일`" @update:value="userData.userEmail = $event" />
-        <custom-input :placeholder="`비밀번호`" @update:value="userData.userPassword = $event" />
+        <custom-input :placeholder="`이메일`" @update:value="userData.userEmail = $event"/>
+        <custom-input :placeholder="`비밀번호`" @update:value="userData.userPassword = $event"/>
         <div class="btn-area">
           <custom-button :placeholder="`로그인`" :onClick="doLogin"></custom-button>
           <custom-button :custom-class="`join`" :placeholder="`회원가입`" :onClick="doLogin"></custom-button>
