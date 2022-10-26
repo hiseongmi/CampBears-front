@@ -17,24 +17,22 @@ export default {
     }; //게시물상세페이지 팝업열기
 
     onMounted(() => {
-      getSearch();
+      getContent();
     })
     //키워드 검색
-    const keyword = ref("")
-    const contentData = []
-    const getSearch = async () => {
-      const data = await apiClient("/sns/getSnsList", keyword.value)
-      console.log(data.data)
-      contentData.value = data.data;
-      console.log(contentData.value)
+    const inquiryData = ref("")
+    const contentData = ref()
+    const getContent = async () => {
+      const data = await apiClient("/sns/getSnsList", inquiryData.value)
+      contentData.value = data.data
     }
 
 
     return {
       openDetail,
       postImage,
-      getSearch,
-      keyword,
+      getContent,
+      inquiryData,
       contentData,
     };
   },
@@ -42,7 +40,7 @@ export default {
 </script>
 <template>
   <div class="news-ul">
-    <div class="news-ul-li" v-for="(item,index) in contentData.value">
+    <div class="news-ul-li" v-for="(item,index) in contentData">
       <div>
         <profile></profile>
       </div>

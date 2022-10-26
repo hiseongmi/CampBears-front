@@ -2,7 +2,6 @@
 import customSelect from "../components/layout/customSelect.vue";
 import modalHome from "../components/sungmi/modalHome.vue";
 import {onMounted, ref} from "vue";
-import router from "../router/index.js";
 import PopupManager from "../App.vue";
 import store, {POPUP_TYPE, STORE_TYPE} from "../store/index.js";
 import profile from "../components/snsBoard/profile.vue";
@@ -59,16 +58,25 @@ export default {
       store.commit(STORE_TYPE.popupType, POPUP_TYPE.WRITE_BOARD);
     }; //글쓰기 팝업열기
 
+    const inquiryData = ref({keyword: ""})
+    const contentData = []
+    const getContent = async () => {
+      const data = await apiClient("/sns/getSnsList", inquiryData.value)
+      console.log(data.data) //태그 장소 검색 글 데이터
+      contentData.value = data.data
+    }
+
 
     return {
-
+      inquiryData,
+      contentData,
       selectedUpdateValue,
       selectSortData,
       selectedValue,
       selectSeasonData,
       selectComfortsData,
       goPop,
-
+      getContent,
     };
   },
 };
@@ -82,8 +90,8 @@ export default {
       </div>
       <!--      <hr class="line"/>-->
       <div class="news-wrap-search">
-        <custom-input :placeholder="'태그, 장소 찾아 보기'" @update:value="keyword = $event"/>
-        <button @click="getSearch"><i class="fa-solid fa-magnifying-glass"></i></button>
+        <custom-input :placeholder="'태그, 장소 찾아 보기'" @update:value="inquiryData.keyword = $event"/>
+        <button @click="getContent"><i class="fa-solid fa-magnifying-glass"></i></button>
       </div>
     </div>
     <div class="news-menu">
@@ -119,6 +127,6 @@ export default {
         </button>
       </div>
     </div>
-    <sns-content-page/>
+    <sns-content-page @getContent=getContent></sns-content-page>
   </div>
 </template>

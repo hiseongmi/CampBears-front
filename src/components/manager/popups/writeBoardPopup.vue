@@ -78,7 +78,7 @@ export default {
         </div>
         <div class="content-content">
           <custom-input :custom-class="'content'" :placeholder="'문구 입력...'"
-                        @update:value="upLoadData.boardBody = $event"></custom-input>
+                        @update:value="upLoadData.boardBody = $event"/>
           <textarea @update:value="upLoadData.boardBody = $event">문구 입력...</textarea>
           <div class="count">
             (0 / 200)
