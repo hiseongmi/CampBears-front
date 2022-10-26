@@ -12,144 +12,179 @@
     position: absolute;
     z-index: 1;
 
-    //글쓰기
+    //글쓰기 내용
     &-inner {
       @include center();
       position: fixed;
       max-width: 80%;
       background-color: #ffffff;
       box-shadow: 0 4px 6px;
-      width: 700px;
+      width: 600px;
+      height: 500px;
 
+      //취소 저장 올리기 버튼
       .save-btn {
         background-color: white;
-        display: flex;
-        justify-content: center;
         padding: 15px;
+        position: relative;
+        bottom: 48px;
 
-        .cancel {
-          flex: 1 0 0;
-        }
-
-        .up {
+        .custom-button {
           padding-left: 10px;
-          color: #F32626;
-        }
+          border: none;
+          display: initial;
+          min-width: 50px;
+          height: 50px;
 
-        span {
-          font-size: 18px;
-          cursor: pointer;
+          .cancel {
+            color: #000000;
+          }
 
-          &:hover {
-            color: crimson;
+          .save {
+            color: #000000;
+          }
+
+          .upLoad {
+            color: #F32626;
+
           }
         }
       }
 
-      .content {
-        display: flex;
-        flex-direction: column;
-
-        .file {
-          padding: 15px;
-        }
-
-        &-profile {
+      //팝업내용 감싸기
+      &-wrap {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        overflow: hidden;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        //글쓰기 팝업 내용
+        .content {
           display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding: 7px 15px;
+          flex-direction: column;
 
-          &-wrap {
+
+          .file {
+            padding: 15px;
+          }
+
+          //프로필 부분
+          &-profile {
             display: flex;
             align-items: center;
-
-            img {
-              border-radius: 70%;
-              width: 50px;
-              height: 47px;
-              box-shadow: none;
-              object-fit: cover;
-            }
-
-            span {
-              padding-left: 10px;
-            }
-          }
-
-          &-public {
-            span {
-              padding-left: 10px;
-            }
-
-          }
-        }
-
-        &-content {
-          position: relative;
-          border-bottom: 1px solid #696969;
-          padding: 7px 15px;
-
-          textarea {
-            width: 680px;
-            height: 150px;
-            border: none;
-          }
-
-          .count {
-            position: absolute;
-            bottom: 0;
-            right: 0;
-          }
-        }
-
-        &-position {
-          border-bottom: 1px solid #696969;
-
-          &-wrap {
-            display: flex;
-            padding: 15px;
-            font-size: 18px;
-
-            .title {
-              flex: 1 0 0;
-            }
-          }
-        }
-
-        &-person {
-
-
-          &-wrap {
-            padding: 15px;
-
-            span {
-              font-size: 18px;
-            }
-          }
-        }
-
-        &-tag {
-          &-div {
-            border-bottom: 1px solid #696969;
-            padding: 2px 15px;
-            font-size: 18px;
-          }
-
-          &-wrap {
+            justify-content: space-between;
             padding: 7px 15px;
 
-            span {
+            &-wrap {
+              display: flex;
+              align-items: center;
+
+              img {
+                border-radius: 70%;
+                width: 50px;
+                height: 47px;
+                box-shadow: none;
+                object-fit: cover;
+              }
+
+              span {
+                padding-left: 10px;
+              }
+            }
+
+            &-public {
+              span {
+                padding-left: 10px;
+              }
+
+            }
+          }
+
+          //내용입력 부분
+          &-content {
+            position: relative;
+            border-bottom: 1px solid #696969;
+            padding: 7px 15px;
+
+            .custom-input {
+              border: none;
+              border-radius: 0px;
+              padding: 0 20px;
+              width: 100%;
+              height: 184px;
+              max-width: none;
+              min-width: 0;
+              color: #000000;
+            }
+
+            //글자수
+            .count {
+              position: absolute;
+              bottom: 0;
+              right: 0;
+            }
+          }
+
+          //위치태그
+          &-position {
+            border-bottom: 1px solid #696969;
+
+            &-wrap {
+              display: flex;
+              padding: 15px;
+              font-size: 18px;
+
+              .title {
+                flex: 1 0 0;
+              }
+            }
+          }
+
+          //인원수
+          &-person {
+
+
+            &-wrap {
+              padding: 15px;
+
+              span {
+                font-size: 18px;
+              }
+            }
+          }
+
+          //태그입력
+          &-tag {
+            &-div {
+              border-bottom: 1px solid #696969;
+              padding: 2px 15px;
               font-size: 18px;
             }
 
-            textarea {
-              border: none;
-              width: 680px;
-              height: 130px;
+            &-wrap {
+              padding: 7px 15px;
+
+              .custom-input {
+                border: none;
+                border-radius: 0px;
+                padding: 0 20px;
+                width: 100%;
+                height: 184px;
+                max-width: none;
+                min-width: 0;
+                color: #000000;
+              }
             }
           }
         }
+
+      }
+
+      &-wrap::-webkit-scrollbar {
+        display: none;
       }
     }
 
@@ -269,24 +304,37 @@
                   align-items: center;
 
                   span {
-                    font-size: 19px;
+                    font-size: 20px;
                     font-weight: bold;
                   }
 
-                  .follow_btn {
-                    margin: 0 20px;
-                    padding: 0 12px;
-                    background-color: white;
-                    border: 1px solid #FA6C1A;
-                    font-size: 10px;
-                    font-weight: bold;
-                    border-radius: 7px;
+                  .custom-button {
+                    min-width: 0;
+                    height: 0;
+                    border: none;
+                    border-radius: 0;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
                     cursor: pointer;
+                    background-color: white;
+
+                    .follow_btn {
+                      margin: 0 20px;
+                      padding: 2px 12px;
+                      background-color: white;
+                      border: 1px solid #FA6C1A;
+                      font-size: 10px;
+                      font-weight: bold;
+                      border-radius: 15px;
+                      cursor: pointer;
+                      color: #000000;
+                    }
                   }
                 }
 
                 &-intro {
-                  font-size: 13px;
+                  font-size: 14px;
                 }
 
                 &-tag {
@@ -310,7 +358,7 @@
                 span {
 
                   i {
-                    font-size: 25px;
+                    font-size: 21px;
                     color: #F32626;
                     cursor: pointer;
                   }
@@ -321,10 +369,11 @@
               }
 
               &-book {
-                span {
+
+                i {
                   cursor: pointer;
-                  font-size: 25px;
-                  padding: 0 7px;
+                  font-size: 21px;
+                  padding: 7px;
                   color: #4A5568;
                 }
               }
@@ -338,11 +387,11 @@
             justify-content: flex-end;
 
             &-wrap {
-              font-size: 12px;
+              font-size: 13px;
               color: #818181;
 
               span {
-                padding-left: 20px;
+                padding-left: 17px;
               }
             }
           }
@@ -358,7 +407,7 @@
         color: white;
         position: relative;
         top: 50%;
-        left: 900px;
+        left: 830px;
         font-size: 20px;
       }
 

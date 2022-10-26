@@ -10,6 +10,7 @@
       height: 96px;
       max-width: 910px;
       margin: 0 88px;
+      white-space: nowrap;
 
       .mainContainer {
         display: none;
@@ -33,7 +34,7 @@
         cursor: pointer;
 
         span {
-          margin-bottom: 10px;
+          margin: 0 20px 10px 20px;
         }
 
       }
@@ -56,6 +57,7 @@
                 font-size: 11px;
                 color: #2F2E2C;
                 cursor: pointer;
+                padding-left: 5px;
               }
 
               a:hover {
@@ -153,8 +155,8 @@
         background-color: #3f3f3f;
         color: white;
         position: fixed;
-        top: 65px;
-        left: 10px;
+        top: 11px;
+        left: 40px;
         transition: 0.3s;
 
         ul {
@@ -298,12 +300,12 @@
         padding: 20px;
 
         &-logo {
-          display: grid;
-          justify-items: center;
+          display: flex;
           font-weight: bold;
+          align-items: center;
 
-          &-img {
-            font-size: 20px;
+          span {
+            padding-left: 10px;
           }
         }
       }
@@ -325,10 +327,12 @@
       &-wrap {
         display: flex;
         justify-content: center;
-        padding: 20px;
+        padding: 10px;
 
         &-nav {
-          font-size: 12px;
+          span {
+            font-size: 12px;
+          }
 
           &-menu {
             padding: 0 10px;
@@ -343,12 +347,16 @@
         padding: 20px;
 
         &-logo {
-          display: grid;
-          justify-items: center;
-          font-weight: bold;
+          display: flex;
+          align-items: center;
 
-          &-img {
-            font-size: 20px;
+          svg {
+            width: 40px;
+          }
+
+          span {
+            font-size: 14px;
+            padding-left: 10px;
           }
         }
       }
@@ -412,11 +420,21 @@
           text-align: center;
         }
 
-        i {
+        button {
           position: absolute;
           right: 10px;
-          top: 13px;
-          color: #615f5f;
+          top: 10px;
+          background: none;
+          border: none;
+          cursor: pointer;
+
+          i {
+            color: #000000;
+          }
+
+          i:hover {
+            color: #ec671a;
+          }
         }
       }
     }
@@ -647,7 +665,7 @@
       &-search {
         position: relative;
 
-        input {
+        custom-input {
           border: 1.5px solid rgba(204, 204, 204, 0.8);
           border-radius: 8px;
           height: 35px;
@@ -659,12 +677,23 @@
           text-align: center;
         }
 
-        i {
+        button {
           position: absolute;
           right: 10px;
-          top: 13px;
-          color: #615f5f;
+          top: 7px;
+          background: none;
+          border: none;
+          cursor: pointer;
+
+          i {
+            color: #000000;
+          }
+
+          i:hover {
+            color: #ec671a;
+          }
         }
+
       }
     }
 

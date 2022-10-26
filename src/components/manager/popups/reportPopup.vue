@@ -1,4 +1,6 @@
 <script>
+import {apiClient} from "../../../utils/axios.js";
+
 export default {
   name: 'reportPopup',
   props: {
@@ -8,12 +10,8 @@ export default {
     }
   },
   setup() {
-    const goBack = () => {
-      router.go(-1);
-    }; //뒤로가긴데 안먹는다
-    return {
-      goBack,
-    }
+
+    return {}
   }
 }
 </script>
@@ -27,7 +25,7 @@ export default {
       <input type="file"/>
     </div>
     <div class="save-btn">
-      <button @click="goBack">취소</button>
+      <button @click="clickClose">취소</button>
       <button>신고하기</button>
     </div>
   </div>

@@ -1,12 +1,14 @@
 <script>
 import customSelect from "../components/layout/customSelect.vue";
 import modalHome from "../components/sungmi/modalHome.vue";
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
 import router from "../router/index.js";
 import PopupManager from "../App.vue";
 import store, {POPUP_TYPE, STORE_TYPE} from "../store/index.js";
 import profile from "../components/snsBoard/profile.vue";
 import snsContentPage from "../components/snsBoard/snsContentPage.vue";
+import {apiClient} from "../utils/axios.js";
+import customInput from "../components/layout/customInput.vue";
 
 export default {
   name: "snsPage",
@@ -16,6 +18,7 @@ export default {
     modalHome,
     customSelect,
     profile,
+    customInput
   },
   setup() {
     const selectedValue = ref();
@@ -56,13 +59,16 @@ export default {
       store.commit(STORE_TYPE.popupType, POPUP_TYPE.WRITE_BOARD);
     }; //글쓰기 팝업열기
 
+
     return {
+
       selectedUpdateValue,
       selectSortData,
       selectedValue,
       selectSeasonData,
       selectComfortsData,
       goPop,
+
     };
   },
 };
@@ -76,8 +82,8 @@ export default {
       </div>
       <!--      <hr class="line"/>-->
       <div class="news-wrap-search">
-        <input type="text" placeholder="태그, 장소 찾아 보기"/>
-        <i class="fa-solid fa-magnifying-glass"></i>
+        <custom-input :placeholder="'태그, 장소 찾아 보기'" @update:value="keyword = $event"/>
+        <button @click="getSearch"><i class="fa-solid fa-magnifying-glass"></i></button>
       </div>
     </div>
     <div class="news-menu">

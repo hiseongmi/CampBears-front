@@ -2,6 +2,8 @@
 import Profile from "./profile.vue";
 import postImage from "../../data/postImage.js";
 import store, {POPUP_TYPE, STORE_TYPE} from "../../store/index.js";
+import {onMounted, ref} from "vue";
+import {apiClient} from "../../utils/axios.js";
 
 export default {
   name: "snsContentPage",
@@ -14,24 +16,39 @@ export default {
       store.commit(STORE_TYPE.popupType, POPUP_TYPE.DETAIL_SCREEN);
     }; //게시물상세페이지 팝업열기
 
+    onMounted(() => {
+      getSearch();
+    })
+    //키워드 검색
+    const keyword = ref("")
+    const contentData = []
+    const getSearch = async () => {
+      const data = await apiClient("/sns/getSnsList", keyword.value)
+      console.log(data.data)
+      contentData.value = data.data;
+      console.log(contentData.value)
+    }
+
 
     return {
       openDetail,
       postImage,
+      getSearch,
+      keyword,
+      contentData,
     };
   },
 };
 </script>
 <template>
-
   <div class="news-ul">
-    <div class="news-ul-li" :key="id" v-for="(item, id) in postImage">
+    <div class="news-ul-li" v-for="(item,index) in contentData.value">
       <div>
         <profile></profile>
       </div>
       <div class="news-ul-li-wrap">
         <div class="news-ul-li-wrap-write" @click="openDetail(item.id)">
-          <img :src="item.img" alt="Posts"/>
+          <img src="/assets/image/iugold3.png" alt="Posts"/>
         </div>
         <div class="detail">
           <div class="detail-wrap">
@@ -49,7 +66,7 @@ export default {
             </div>
           </div>
           <div class="contents">
-            <span class="contents-writing">친구들이랑 캠핑중인데 연예인봐따 바로바로 박재범 @박재범</span>
+            <span class="contents-writing">{{ index }} : {{ item.boardBody }}</span>
             <span><i class="fa-solid fa-chevron-down"></i></span>
           </div>
           <div class="comments">

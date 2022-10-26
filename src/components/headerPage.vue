@@ -121,11 +121,13 @@ export default {
         <div class="header-bar-menu">
           <div class="header-bar-menu-login">
             <ul>
-              <li>
+              <li v-if="!loginUser">
                 <a @click="goToX('/login')">로그인</a>
-              </li>
-              <li>
                 <a @click="goToX('/')"> 회원가입 </a>
+              </li>
+              <li v-else>
+                <a @click="logOut()">로그아웃</a>
+                <a @click="goToX()"> 마이페이지</a>
               </li>
             </ul>
           </div>

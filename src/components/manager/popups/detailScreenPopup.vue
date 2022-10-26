@@ -3,9 +3,11 @@ import store, {POPUP_TYPE, STORE_TYPE} from "../../../store/index.js";
 import {ref} from "vue";
 import postImage from "../../../data/postImage.js";
 import {apiClient} from "../../../utils/axios.js";
+import CustomButton from "../../layout/customButton.vue";
 
 export default {
   name: "detailScreenPopup",
+  components: {CustomButton},
   props: {
     clickClose: {
       type: Function,
@@ -34,6 +36,7 @@ export default {
 
     return {
       follow,
+      followData,
       RerActive,
       RerOption,
       goToReport,
@@ -63,7 +66,6 @@ export default {
             <li @click="goToReport">신고 <i class="fa-solid fa-circle-exclamation"></i></li>
           </ul>
         </div>
-
       </div>
       <div class="content">
         <div class="content-image">
@@ -75,7 +77,8 @@ export default {
             <div class="content-wrap-profile-info">
               <div class="follow">
                 <span>dlwlrma</span>
-                <button class="follow_btn" @click="follow">팔로우</button>
+                <custom-button :placeholder="'팔로우'" :custom-class="'follow_btn'" @click="follow"
+                               @update:value="followData.targetIdx"></custom-button>
               </div>
               <p class="content-wrap-profile-info-intro">캠핑을 좋아하는 슈퍼 스타중의 스타~ 이지금이에요</p>
               <p class="content-wrap-profile-info-tag">#내친구 #camp #인생은 #즐거워</p>
