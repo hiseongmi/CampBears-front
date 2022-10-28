@@ -41,6 +41,7 @@ export default {
     const goToX = (v) => {
       v ? router.push(v) : window.alert("준비중입니다.");
     };
+
     //로그아웃
     const logOut = () => {
       if (window.confirm("로그아웃 하시겠습니까?")) {

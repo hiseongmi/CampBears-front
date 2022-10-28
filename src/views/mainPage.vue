@@ -3,6 +3,8 @@ import router from "../router/index.js";
 import customInput from "../components/layout/customInput.vue";
 import customButton from "../components/layout/customButton.vue";
 import snsPage from "./snsPage.vue";
+import myPage from "./myPage.vue";
+
 
 export default {
   name: "mainPage",
@@ -10,11 +12,21 @@ export default {
     customInput,
     customButton,
     snsPage,
+    myPage,
   },
 
   setup() {
-
-
+    const move = () => {
+      window.location.href = '#'
+    }
+    const moving = () => {
+      window.location.href = '#'
+    }
+    const right = () => {
+      // .news-ul {
+      //   transform: translateX(241px)
+      // }
+    }
     // function filter() {
 
     // var content = document.getElementById("searchbar").value;
@@ -38,26 +50,29 @@ export default {
     // }
 
 
-    return {};
+    return {
+      move,
+      moving,
+    };
   }
 };
 </script>
 <template>
   <!--  <input type="button" value="A함수호출" id="A" @click="filter"/>-->
   <!--  <input type="button" value="B함수호출" id="B"/>-->
+
   <div class="main-box">
     <div class="main-fir">
-      <img src="/assets/image/mainpage2.png" alt="">
-      <h2>감성있는 캠핑장을 찾고있나요?
-      </h2>
-      <custom-button :placeholder="`캠핑장 양도 받기/찾기`" :onClick="doLogin"></custom-button>
+      <span>감성있는 캠핑장을 찾고있나요?</span>
+      <custom-button :placeholder="`캠핑장 양도 받기/찾기`" :onClick="move"></custom-button>
     </div>
     <div class="main-sec">
-      <img src="/assets/image/mainpage3.png" alt="">
-      <h2>저렴한 캠핑용품이 필요하신가요?</h2>
-      <custom-button :placeholder="`캠핑용품 중고거래`" :onClick="doLogin"></custom-button>
+      <span>저렴한 캠핑용품이 필요하신가요?</span>
+      <custom-button :placeholder="`캠핑용품 중고거래`" :onClick="moving"></custom-button>
     </div>
   </div>
+
+
   <div class="main-icon">
     <a href="#">
       <svg width="68" height="68" viewBox="0 0 68 68" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -87,7 +102,7 @@ export default {
           </filter>
         </defs>
       </svg>
-      <span>카라반</span>
+      <span>텐트</span>
     </a>
 
 
@@ -311,6 +326,171 @@ export default {
     <sns-page></sns-page>
   </div>
   <div class="view-all">
-    <custom-button placeholder="vue All" on-click=""></custom-button>
+    <custom-button :placeholder="`vue All`" :onClick="moving"></custom-button>
+  </div>
+
+  <div class="add-banner">
+    <div class="add-img">
+      <span>#입술 끝에 맺혀있는 말</span>
+      <span>#너만 보면 하고 싶은 말</span>
+      <span>#너무 소중해 아껴두려고 참고 또 참는 말</span>
+      <custom-button :placeholder="`상품 보러가기 ▼`" :onClick="moving"></custom-button>
+    </div>
+  </div>
+  <div class="main-campsite">
+    <h2>HAND OVER A CAMPSITE</h2>
+    <custom-button :placeholder="`vue All`" :onClick="moving"></custom-button>
+  </div>
+
+  <div class="main-autocamp">
+    <div class="autocamp">
+      <img src="public/assets/image/mainutoCamp.png" alt="">
+      <h1>피아골 오토 캠핑장</h1>
+      <span>테크 13번 9/27~9/29 양도합니다. 테크 4*4...</span>
+      <a href="">전라남도 구례군 </a>
+      <h2>45.000원</h2>
+      <span>1시간 전</span>
+    </div>
+    <div class="autocamp">
+      <img src="public/assets/image/mainutoCamp.png" alt="">
+      <h1>피아골 오토 캠핑장</h1>
+      <span>테크 13번 9/27~9/29 양도합니다. 테크 4*4...</span>
+      <a href="">전라남도 구례군 </a>
+      <h2>59.000원</h2>
+      <span>1시간 전</span>
+    </div>
+    <div class="autocamp">
+      <img src="public/assets/image/mainutoCamp.png" alt="">
+      <h1>피아골 오토 캠핑장</h1>
+      <span>테크 13번 9/27~9/29 양도합니다. 테크 4*4...</span>
+      <a href="">전라남도 구례군 </a>
+      <h2>59.000원</h2>
+      <span>1시간 전</span>
+    </div>
+  </div>
+
+  <div class="main-campsite">
+    <h2>USED MARKET</h2>
+    <custom-button :placeholder="`vue All`" :onClick="moving"></custom-button>
+  </div>
+  <div class="market-box">
+    <!--    1-->
+    <div class="main-market">
+      <div class="market-img">
+        <svg width="50" height="19" viewBox="0 0 50 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="50" height="19" rx="5" fill="#EA3323"/>
+          <path
+              d="M7.708 4.628V5.9H13.636V4.628H7.708ZM7.588 9.92C9.424 9.92 11.944 9.872 14.128 9.488L14.02 8.312C11.872 8.6 9.292 8.624 7.42 8.624L7.588 9.92ZM8.584 5.516V9.2H10.12V5.516H8.584ZM11.236 5.516V9.2H12.76V5.516H11.236ZM14.632 3.956V10.136H16.228V3.956H14.632ZM15.784 6.344V7.652H17.704V6.344H15.784ZM8.968 10.556V14.948H16.228V10.556H14.644V11.504H10.552V10.556H8.968ZM10.552 12.74H14.644V13.676H10.552V12.74ZM26.2111 3.956V15.068H27.8071V3.956H26.2111ZM19.1071 5.012V11.912H20.6911V5.012H19.1071ZM19.1071 10.976V12.332H20.0911C21.7831 12.332 23.6191 12.212 25.5271 11.816L25.3471 10.496C23.5111 10.856 21.7111 10.976 20.0911 10.976H19.1071ZM36.6621 3.944V15.092H38.2701V3.944H36.6621ZM37.9101 8.06V9.368H39.8781V8.06H37.9101ZM29.9901 11.096V12.416H30.9261C32.8581 12.416 34.3821 12.368 36.0621 12.068L35.9061 10.748C34.2741 11.036 32.7981 11.096 30.9261 11.096H29.9901ZM29.9901 4.976V11.732H31.5741V6.26H35.1741V4.976H29.9901Z"
+              fill="white"/>
+        </svg>
+      </div>
+      <div class="market-content">
+        <h1>Shim Craft [심크레프트]</h1>
+        <span class="market-sub">나는야 판매왕</span>
+        <span class="market-exp">한번밖에 쓰지 않은 심크레프트    정수기 팝니다~
+컬러: 브론드 컬러  </span>
+        <span class="market-price">59.000원</span>
+      </div>
+      <div class="market-calendar">
+        <span class="market-time">3일 전</span>
+        <span class="market-like">3</span>
+        <span class="market-see">89</span>
+      </div>
+    </div>
+    <!--    2-->
+    <div class="main-market">
+      <div class="market-img">
+        <svg width="50" height="19" viewBox="0 0 50 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="50" height="19" rx="5" fill="#EA3323"/>
+          <path
+              d="M7.708 4.628V5.9H13.636V4.628H7.708ZM7.588 9.92C9.424 9.92 11.944 9.872 14.128 9.488L14.02 8.312C11.872 8.6 9.292 8.624 7.42 8.624L7.588 9.92ZM8.584 5.516V9.2H10.12V5.516H8.584ZM11.236 5.516V9.2H12.76V5.516H11.236ZM14.632 3.956V10.136H16.228V3.956H14.632ZM15.784 6.344V7.652H17.704V6.344H15.784ZM8.968 10.556V14.948H16.228V10.556H14.644V11.504H10.552V10.556H8.968ZM10.552 12.74H14.644V13.676H10.552V12.74ZM26.2111 3.956V15.068H27.8071V3.956H26.2111ZM19.1071 5.012V11.912H20.6911V5.012H19.1071ZM19.1071 10.976V12.332H20.0911C21.7831 12.332 23.6191 12.212 25.5271 11.816L25.3471 10.496C23.5111 10.856 21.7111 10.976 20.0911 10.976H19.1071ZM36.6621 3.944V15.092H38.2701V3.944H36.6621ZM37.9101 8.06V9.368H39.8781V8.06H37.9101ZM29.9901 11.096V12.416H30.9261C32.8581 12.416 34.3821 12.368 36.0621 12.068L35.9061 10.748C34.2741 11.036 32.7981 11.096 30.9261 11.096H29.9901ZM29.9901 4.976V11.732H31.5741V6.26H35.1741V4.976H29.9901Z"
+              fill="white"/>
+        </svg>
+      </div>
+      <div class="market-content">
+        <h1>Shim Craft [심크레프트]</h1>
+        <span class="market-sub">나는야 판매왕</span>
+        <span class="market-exp">한번밖에 쓰지 않은 심크레프트    정수기 팝니다~
+컬러: 브론드 컬러  </span>
+        <span class="market-price">59.000원</span>
+      </div>
+      <div class="market-calendar">
+        <span class="market-time">3일 전</span>
+        <span class="market-like">3</span>
+        <span class="market-see">89</span>
+      </div>
+    </div>
+    <!--    3-->
+    <div class="main-market">
+      <div class="market-img">
+        <svg width="50" height="19" viewBox="0 0 50 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="50" height="19" rx="5" fill="#EA3323"/>
+          <path
+              d="M7.708 4.628V5.9H13.636V4.628H7.708ZM7.588 9.92C9.424 9.92 11.944 9.872 14.128 9.488L14.02 8.312C11.872 8.6 9.292 8.624 7.42 8.624L7.588 9.92ZM8.584 5.516V9.2H10.12V5.516H8.584ZM11.236 5.516V9.2H12.76V5.516H11.236ZM14.632 3.956V10.136H16.228V3.956H14.632ZM15.784 6.344V7.652H17.704V6.344H15.784ZM8.968 10.556V14.948H16.228V10.556H14.644V11.504H10.552V10.556H8.968ZM10.552 12.74H14.644V13.676H10.552V12.74ZM26.2111 3.956V15.068H27.8071V3.956H26.2111ZM19.1071 5.012V11.912H20.6911V5.012H19.1071ZM19.1071 10.976V12.332H20.0911C21.7831 12.332 23.6191 12.212 25.5271 11.816L25.3471 10.496C23.5111 10.856 21.7111 10.976 20.0911 10.976H19.1071ZM36.6621 3.944V15.092H38.2701V3.944H36.6621ZM37.9101 8.06V9.368H39.8781V8.06H37.9101ZM29.9901 11.096V12.416H30.9261C32.8581 12.416 34.3821 12.368 36.0621 12.068L35.9061 10.748C34.2741 11.036 32.7981 11.096 30.9261 11.096H29.9901ZM29.9901 4.976V11.732H31.5741V6.26H35.1741V4.976H29.9901Z"
+              fill="white"/>
+        </svg>
+      </div>
+      <div class="market-content">
+        <h1>Shim Craft [심크레프트]</h1>
+        <span class="market-sub">나는야 판매왕</span>
+        <span class="market-exp">한번밖에 쓰지 않은 심크레프트    정수기 팝니다~
+컬러: 브론드 컬러  </span>
+        <span class="market-price">59.000원</span>
+      </div>
+      <div class="market-calendar">
+        <span class="market-time">3일 전</span>
+        <span class="market-like">3</span>
+        <span class="market-see">89</span>
+      </div>
+    </div>
+    <!--    4-->
+    <div class="main-market">
+      <div class="market-img">
+        <svg width="50" height="19" viewBox="0 0 50 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="50" height="19" rx="5" fill="#EA3323"/>
+          <path
+              d="M7.708 4.628V5.9H13.636V4.628H7.708ZM7.588 9.92C9.424 9.92 11.944 9.872 14.128 9.488L14.02 8.312C11.872 8.6 9.292 8.624 7.42 8.624L7.588 9.92ZM8.584 5.516V9.2H10.12V5.516H8.584ZM11.236 5.516V9.2H12.76V5.516H11.236ZM14.632 3.956V10.136H16.228V3.956H14.632ZM15.784 6.344V7.652H17.704V6.344H15.784ZM8.968 10.556V14.948H16.228V10.556H14.644V11.504H10.552V10.556H8.968ZM10.552 12.74H14.644V13.676H10.552V12.74ZM26.2111 3.956V15.068H27.8071V3.956H26.2111ZM19.1071 5.012V11.912H20.6911V5.012H19.1071ZM19.1071 10.976V12.332H20.0911C21.7831 12.332 23.6191 12.212 25.5271 11.816L25.3471 10.496C23.5111 10.856 21.7111 10.976 20.0911 10.976H19.1071ZM36.6621 3.944V15.092H38.2701V3.944H36.6621ZM37.9101 8.06V9.368H39.8781V8.06H37.9101ZM29.9901 11.096V12.416H30.9261C32.8581 12.416 34.3821 12.368 36.0621 12.068L35.9061 10.748C34.2741 11.036 32.7981 11.096 30.9261 11.096H29.9901ZM29.9901 4.976V11.732H31.5741V6.26H35.1741V4.976H29.9901Z"
+              fill="white"/>
+        </svg>
+      </div>
+      <div class="market-content">
+        <h1>Shim Craft [심크레프트]</h1>
+        <span class="market-sub">나는야 판매왕</span>
+        <span class="market-exp">한번밖에 쓰지 않은 심크레프트    정수기 팝니다~
+컬러: 브론드 컬러  </span>
+        <span class="market-price">59.000원</span>
+      </div>
+      <div class="market-calendar">
+        <span class="market-time">3일 전</span>
+        <span class="market-like">3</span>
+        <span class="market-see">89</span>
+      </div>
+    </div>
+
+  </div>
+  <div class="main-bottom">
+     <span>
+        <h1>파도소리 들리는 감성 캠핑</h1>
+        <h2>한번쯤은 꼭 가볼만한 캠핑장! 추천해요~</h2>
+      </span>
+    <div class="main-recomend">
+      <div class="bottom-fir">
+        <div class="fir-con">
+          
+        </div>
+      </div>
+
+      <div class="bottom-sec">
+
+      </div>
+
+      <div class="bottom-thi">
+
+      </div>
+      <div class="bottom-for">
+
+      </div>
+    </div>
+
   </div>
 </template>
