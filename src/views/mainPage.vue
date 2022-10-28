@@ -344,7 +344,7 @@ export default {
 
   <div class="main-autocamp">
     <div class="autocamp">
-      <img src="public/assets/image/mainutoCamp.png" alt="">
+      <img src="/public/assets/image/mainutoCamp.png" alt="">
       <h1>피아골 오토 캠핑장</h1>
       <span>테크 13번 9/27~9/29 양도합니다. 테크 4*4...</span>
       <a href="">전라남도 구례군 </a>
@@ -352,7 +352,7 @@ export default {
       <span>1시간 전</span>
     </div>
     <div class="autocamp">
-      <img src="public/assets/image/mainutoCamp.png" alt="">
+      <img src="/public/assets/image/mainutoCamp.png" alt="">
       <h1>피아골 오토 캠핑장</h1>
       <span>테크 13번 9/27~9/29 양도합니다. 테크 4*4...</span>
       <a href="">전라남도 구례군 </a>
@@ -360,7 +360,7 @@ export default {
       <span>1시간 전</span>
     </div>
     <div class="autocamp">
-      <img src="public/assets/image/mainutoCamp.png" alt="">
+      <img src="/public/assets/image/mainutoCamp.png" alt="">
       <h1>피아골 오토 캠핑장</h1>
       <span>테크 13번 9/27~9/29 양도합니다. 테크 4*4...</span>
       <a href="">전라남도 구례군 </a>
@@ -476,7 +476,7 @@ export default {
     <div class="main-recomend">
       <div class="bottom-fir">
         <div class="fir-con">
-          
+
         </div>
       </div>
 
