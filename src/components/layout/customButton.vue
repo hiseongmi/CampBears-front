@@ -4,26 +4,25 @@ export default {
   props: {
     placeholder: {
       type: String,
-      required: false
+      required: false,
     },
     customClass: {
       type: String,
-      required: false
+      required: false,
     },
     onClick: {
       type: Function,
       required: false,
       default() {
         return undefined;
-      }
-    }
-  }
+      },
+    },
+  },
 };
 </script>
 <template>
   <div class="custom-button" :class="customClass" @click="onClick">
     <a :class="customClass" href="#" @click.prevent.stop="onClick">{{ placeholder }}</a>
-    <slot name="element"></slot>
+    <slot></slot>
   </div>
 </template>
-

@@ -34,6 +34,57 @@
       margin-top: 100px;
       margin-left: 60px;
     }
+
+    .profileIntroduce {
+      display: grid;
+      padding-top: 190px;
+      padding-left: 200px;
+
+      .temperature {
+        font-size: 14px;
+
+        svg {
+          margin-left: -2px;
+        }
+      }
+
+      .nickName {
+        font-weight: bold;
+        font-size: 26px;
+      }
+
+      .introduce {
+        color: #4c4c4c;
+        font-size: 14px;
+        display: flex;
+        justify-content: space-between;
+
+        .profileEdit {
+          background-color: transparent;
+          border: 1.2px solid #4c4c4c;
+          max-width: none;
+          min-width: 90px;
+          height: 22px;
+          border-radius: 15px;
+          margin-right: 10px;
+          margin-top: -4px;
+          font-weight: 440;
+
+          svg {
+            height: 10px;
+
+            path {
+              border: 5px solid #4c4c4c;
+            }
+          }
+
+          p {
+            color: #4c4c4c;
+            font-size: 11px;
+          }
+        }
+      }
+    }
   }
 
   .myContents {
@@ -60,7 +111,7 @@
       }
     }
 
-    .myFeed {
+    .content-area {
       background-color: #f5f5f5;
 
       .profile {
@@ -74,7 +125,7 @@
       .news-ul {
         margin: 0 0;
         max-width: none;
-        padding-bottom: 20px;
+        padding-bottom: 25px;
         padding-inline: 0;
 
         .news-ul-li {
