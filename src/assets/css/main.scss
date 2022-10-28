@@ -1,5 +1,3 @@
-
-
 //헤더바
 @media (min-width: 768px) {
   .header {
@@ -1284,7 +1282,7 @@
 }
 
 .add-banner {
-
+  position: relative;
 
   .add-img {
     background-image: url("public/assets/image/mainpage4.png");
@@ -1313,7 +1311,7 @@
       min-width: 137px;
       border-radius: 3px;
       left: 257px;
-      top: 1193px;
+      bottom: 40px;
 
 
       a {
