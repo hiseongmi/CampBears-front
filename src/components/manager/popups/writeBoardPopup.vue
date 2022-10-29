@@ -17,22 +17,7 @@ export default {
   setup() {
     const upLoadData = ref({
       boardBody: "",
-      // optionList: {
-      //   SHOWER: "",
-      //   PARMERCY: "",
-      //   CAFE: "",
-      //   FITTING: "",
-      //   SUBWAY: "",
-      //   MARKET: "",
-      //   STORE: "",
-      //   DRINK: "",
-      //   PARK: "",
-      //   RESTROOM: "",
-      //   STARBUCKS: "",
-      //   MOVIE: "",
-      //   RESTAURANT: "",
-      //   SHUTTLE: "",
-      // }
+      optionList: ["SHOWER", 'PARMERCY', 'CAFE', 'FITTING', 'SUBWAY', 'MARKET', 'STORE', 'DRINK', 'PARK', 'RESTROOM', 'STARBUCKS', 'MOVIE', 'RESTAURANT', 'SHUTTLE']
     })
     const store = getStore()
     const isPopup = ref(store.state.popupType)

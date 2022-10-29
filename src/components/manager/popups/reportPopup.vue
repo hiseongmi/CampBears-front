@@ -16,7 +16,7 @@ export default {
 }
 </script>
 <template>
-  <div class="modal-inner">
+  <div class="modal-report">
     <span @click="clickClose" type="button">X</span>
     <div class="modal-content">
       <input class="modal-content-writer" placeholder="신고자"/>

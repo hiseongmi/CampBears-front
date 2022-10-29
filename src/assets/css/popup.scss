@@ -306,6 +306,7 @@
                   span {
                     font-size: 20px;
                     font-weight: bold;
+                    padding-right: 10px;
                   }
 
                   .custom-button {
@@ -320,7 +321,7 @@
                     background-color: white;
 
                     .follow_btn {
-                      margin: 0 20px;
+                      margin: 0;
                       padding: 2px 12px;
                       background-color: white;
                       border: 1px solid #FA6C1A;
@@ -419,6 +420,16 @@
         right: 240px;
         font-size: 20px;
       }
+    }
+
+    &-report {
+      @include center();
+      position: fixed;
+      max-width: 80%;
+      background-color: #ffffff;
+      box-shadow: 0 4px 6px;
+      width: 600px;
+      height: 500px;
     }
   }
 

@@ -1,25 +1,24 @@
 <script>
-import store, {POPUP_TYPE, STORE_TYPE} from "../../../store/index.js";
-import {ref} from "vue";
+import store, { POPUP_TYPE, STORE_TYPE } from "../../../store/index.js";
+import { onMounted, onUnmounted, ref } from "vue";
 import postImage from "../../../data/postImage.js";
-import {apiClient} from "../../../utils/axios.js";
+import { apiClient } from "../../../utils/axios.js";
 import CustomButton from "../../layout/customButton.vue";
 
 export default {
   name: "detailScreenPopup",
-  components: {CustomButton},
+  components: { CustomButton },
   props: {
     clickClose: {
       type: Function,
-      required: true
-    }
+      required: true,
+    },
   },
 
   setup() {
-
     const goToReport = () => {
-      store.commit(STORE_TYPE.popupType, POPUP_TYPE.REPORT)
-    }//신고창열기
+      store.commit(STORE_TYPE.popupType, POPUP_TYPE.REPORT);
+    };//신고창열기
 
     const RerActive = ref(false);
 
@@ -27,24 +26,57 @@ export default {
       RerActive.value = !RerActive.value;
     }; //수정신고삭제 옵션
 
-    const followData = ref({followType: "", targetIdx: "", targetType: ""});
+    const followData = ref({ followType: ["FOLLOW", "UNFOLLOW"], targetIdx: "", targetType: ["USER", "SNS", "BOARD"] });
     const follow = async () => {
-      const data = await apiClient("/common/doFollow", followData.value)
-      console.log(followData.value)
-      console.log(data)
-    }//팔로우 매니저
+      const data = await apiClient("/common/doFollow", followData.value);
+      console.log(followData.value);
+      console.log(data);
+    };//팔로우 매니저
+
+
+    const detailData = ref({ boardIdx: store.state.boardIdx });
+    const detail = async () => {
+      const data = await apiClient("/sns/getSnsDetail", detailData.value);
+      console.log(data);
+      console.log(detailData.value);
+      console.log(data.data);
+      // detailData.value.boardBody = store.state.boardBody;
+      // detailData.value.userNickName = store.state.userNickName;
+    };
+
+    const closePopup = () => { //popup close
+      store.commit(STORE_TYPE.popupType, POPUP_TYPE.NONE);
+      store.commit(STORE_TYPE.boardIdx, "");
+    };
+
+    onMounted(() => {
+      //api 조회
+      if (store.state.boardIdx !== "" && store.state.boardIdx !== null && store.state.boardIdx !== undefined) {
+        // console.log(`boardIdx : `, store.state.boardIdx);
+        detail();
+      } else {
+        closePopup();
+      }
+    });
+    // delete store boardIdx
+
+    onUnmounted(() => {
+      closePopup();
+    });
 
     return {
+      detail,
+      detailData,
       follow,
       followData,
       RerActive,
       RerOption,
       goToReport,
       postImage,
-    }
-  }
+    };
+  },
 
-}
+};
 </script>
 <template>
   <div class="modal-detail">
@@ -80,7 +112,7 @@ export default {
                 <custom-button :placeholder="'팔로우'" :custom-class="'follow_btn'" @click="follow"
                                @update:value="followData.targetIdx"></custom-button>
               </div>
-              <p class="content-wrap-profile-info-intro">캠핑을 좋아하는 슈퍼 스타중의 스타~ 이지금이에요</p>
+              <p class="content-wrap-profile-info-intro">내용</p>
               <p class="content-wrap-profile-info-tag">#내친구 #camp #인생은 #즐거워</p>
             </div>
           </div>
@@ -104,7 +136,7 @@ export default {
           </div>
         </div>
         <div class="comment">
-          test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test
+          test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test
         </div>
       </div>
     </div>
