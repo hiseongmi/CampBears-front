@@ -216,7 +216,8 @@ export default {
       </svg>
       <span>오토캠핑</span>
     </a>
-
+  </div>
+  <div class="main-icon">
     <a href="">
       <svg width="68" height="68" viewBox="0 0 68 68" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g filter="url(#filter0_d_1_2)">
@@ -344,25 +345,31 @@ export default {
     <custom-button :placeholder="`view All`" :onClick="moving"></custom-button>
   </div>
 
-  <div class="main-autocamp">
-    <div class="autocamp">
-      <img src="/public/assets/image/mainutoCamp.png" alt="">
+  <div class="autocamp-box">
+    <div class="main-autocamp">
+      <div class="autocamp">
+        <!--      <img src="/public/assets/image/mainutoCamp.png" alt="">-->
+      </div>
       <h1>피아골 오토 캠핑장</h1>
       <span>테크 13번 9/27~9/29 양도합니다. 테크 4*4...</span>
       <a href="">전라남도 구례군 </a>
       <h2>45.000원</h2>
       <span>1시간 전</span>
     </div>
-    <div class="autocamp">
-      <img src="/public/assets/image/mainutoCamp.png" alt="">
+    <div class="main-autocamp">
+      <div class="autocamp">
+        <!--      <img src="/public/assets/image/mainutoCamp.png" alt="">-->
+      </div>
       <h1>피아골 오토 캠핑장</h1>
       <span>테크 13번 9/27~9/29 양도합니다. 테크 4*4...</span>
       <a href="">전라남도 구례군 </a>
       <h2>59.000원</h2>
       <span>1시간 전</span>
     </div>
-    <div class="autocamp">
-      <img src="/public/assets/image/mainutoCamp.png" alt="">
+    <div class="main-autocamp">
+      <div class="autocamp">
+        <!--      <img src="/public/assets/image/mainutoCamp.png" alt="">-->
+      </div>
       <h1>피아골 오토 캠핑장</h1>
       <span>테크 13번 9/27~9/29 양도합니다. 테크 4*4...</span>
       <a href="">전라남도 구례군 </a>
@@ -464,7 +471,19 @@ export default {
       </div>
       <div class="market-calendar">
         <span class="market-time">3일 전</span>
-        <span class="market-like">3</span>
+        <span class="market-like">
+          <svg width="14" height="11" viewBox="0 0 14 11" fill="none"
+               xmlns="http://www.w3.org/2000/svg">
+<path d="M1 5.5C1 5.5 3.25 1 7.1875 1C11.125 1 13.375 5.5 13.375 5.5" stroke="#818181" stroke-linecap="round"
+      stroke-linejoin="round"/>
+<path d="M1 5.50031C1 5.50031 3.25 10.0003 7.1875 10.0003C11.125 10.0003 13.375 5.50031 13.375 5.50031" stroke="#818181"
+      stroke-linecap="round" stroke-linejoin="round"/>
+<path
+    d="M7.1875 7.18774C8.11948 7.18774 8.875 6.43222 8.875 5.50024C8.875 4.56826 8.11948 3.81274 7.1875 3.81274C6.25552 3.81274 5.5 4.56826 5.5 5.50024C5.5 6.43222 6.25552 7.18774 7.1875 7.18774Z"
+    stroke="#818181" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+3
+        </span>
         <span class="market-see">89</span>
       </div>
     </div>
@@ -476,21 +495,27 @@ export default {
         <h2>한번쯤은 꼭 가볼만한 캠핑장! 추천해요~</h2>
       </span>
     <div class="main-recomend">
+
       <div class="bottom-fir">
+
         <div class="camping-jang">
-          <div class="recomend">추천해요</div>
+
           <div class="recomend-navi">
-            <svg width="30" height="15" viewBox="0 0 15 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M1 1L5 5L1 8.5" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M4 1L8 5L4 8.5" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M7 1L11 5L7 8.5" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M10 1L14 5L10 8.5" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+            <div class="recomend">
+              <span>추천해요</span>
+            </div>
+            <div class="recomend-arow">
+              <svg width="30" height="15" viewBox="0 0 15 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1L5 5L1 8.5" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M4 1L8 5L4 8.5" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M7 1L11 5L7 8.5" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M10 1L14 5L10 8.5" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+
           </div>
           <div class="recomend-text">
-            <span>바다와 파도소리, 밤이면 별이 쏟아지는 해변에서 즐기는 감성캠핑. 그곳으로   떠나요~~</span>
-          </div>
-          <div class="camping-name">
+            바다와 파도소리, 밤이면 별이 쏟아지는 해변에서 즐기는 감성캠핑. 그곳으로 떠나요~~
           </div>
         </div>
       </div>
@@ -525,8 +550,7 @@ export default {
                 fill="#F09136"/>
           </svg>
           </span>
-          <div class="camping-name">
-          </div>
+
         </div>
       </div>
 
@@ -560,8 +584,7 @@ export default {
                 fill="#F09136"/>
           </svg>
           </span>
-          <div class="camping-name">
-          </div>
+
         </div>
       </div>
 
@@ -596,8 +619,7 @@ export default {
                 fill="#F09136"/>
           </svg>
           </span>
-          <div class="camping-name">
-          </div>
+
         </div>
       </div>
     </div>

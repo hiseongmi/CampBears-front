@@ -1105,214 +1105,264 @@
   }
 }
 
-//메인페이지
-.main-box {
+///mmmmmmmmmmmmm메인페이지mmmmmmmmmmmmm
+@media (min-width: 1202px) {
+  .main-box {
 
-  text-align: center;
+    text-align: center;
 
 
-  .main-fir {
-    display: inline-block;
-    background-size: 100% 100%;
-    background-image: url("public/assets/image/mainpage2.png");
-    width: 50%;
-    height: 520px;
-
-    span {
-      color: $white;
-      position: relative;
-      font-size: 24px;
-      top: 381px;
+    .main-fir:hover {
+      transform: scale(1.05);
+      transition: 0.5s;
+      border-radius: 10px;
     }
 
-    .custom-button {
-      border-color: #FA6C1A;
-      background-color: #FA6C1A;
-      border-radius: 20px;
-      top: 403px;
-      width: 270px;
-      height: 43px;
-      margin: 0 auto;
+    .main-fir {
+      display: inline-block;
+      background-size: 100% 100%;
+      background-image: url("public/assets/image/mainpage2.png");
+      width: 50%;
+      height: 520px;
 
-
-      a {
-        font-size: 18px;
+      span {
         color: $white;
+        position: relative;
+        font-size: 24px;
+        top: 381px;
       }
 
+      .custom-button:hover {
+        transform: scale(1.5);
+        transition: 0.5s;
+
+      }
+
+      .custom-button {
+        border-color: #FA6C1A;
+        background-color: #FA6C1A;
+        border-radius: 20px;
+        top: 403px;
+        width: 28%;
+        height: 43px;
+        margin: 0 auto;
+
+
+        a {
+          font-size: 18px;
+          color: $white;
+        }
+
+      }
     }
-  }
 
-  .main-sec {
-    display: inline-block;
-    background-size: 100% 100%;
-    background-image: url("public/assets/image/mainpage3.png");
-    width: 50%;
-    height: 520px;
-
-    span {
-      color: $white;
-      position: relative;
-      font-size: 24px;
-      top: 381px;
+    .main-sec:hover {
+      transform: scale(1.05);
+      transition: 0.5s;
+      border-radius: 10px;
     }
 
-    .custom-button {
-      border-color: #FA6C1A;
-      background-color: #FA6C1A;
-      border-radius: 20px;
-      top: 403px;
-      width: 270px;
-      height: 43px;
-      margin: 0 auto;
+    .main-sec {
+      display: inline-block;
+      background-size: 100% 100%;
+      background-image: url("public/assets/image/mainpage3.png");
+      width: 50%;
+      height: 520px;
 
-      a {
-        font-size: 18px;
+      span {
         color: $white;
+        position: relative;
+        font-size: 24px;
+        top: 381px;
       }
 
-    }
-  }
+      .custom-button:hover {
+        transform: scale(1.5);
+        transition: 0.5s;
+      }
 
+      .custom-button {
+        border-color: #FA6C1A;
+        background-color: #FA6C1A;
+        border-radius: 20px;
+        top: 403px;
+        width: 28%;
+        height: 43px;
+        margin: 0 auto;
 
-}
-
-.main-icon {
-  text-align: center;
-  padding-top: 47px;
-  display: flex;
-  justify-content: center;
-
-  a {
-    text-decoration: none;
-    color: #000000;
-    position: relative;
-    padding-right: 25px;
-  }
-
-
-  span {
-    display: inline-block;
-    inline-size: -webkit-fill-available;
-  }
-
-
-}
-
-.icon-name {
-  text-align: center;
-  text-decoration: none;
-
-  span {
-    padding-right: 60px;
-  }
-}
-
-.main-story {
-  text-align: center;
-  padding-top: 60px;
-
-  span {
-    display: inline-block;
-    inline-size: -webkit-fill-available;
-    padding-top: 6px;
-    font-size: 12px;
-    color: $lightgry;
-
-  }
-}
-
-.main-sns {
-  overflow: hidden;
-
-  .news-wrap {
-    display: none;
-  }
-
-  .news-menu {
-    display: none;
-  }
-
-  .profile-wrap {
-    display: none;
-    bottom: 20px;
-  }
-
-  .news-ul {
-    flex-wrap: nowrap;
-    transform: translateX(135px);
-    transition: 0.5s;
-    animation-timing-function: ease-in-out;
-
-
-    .news-ul-li {
-
-
-      /* 부드럽게 움직이는 효과 */
-      transition: 1s;
-
-      .news-ul-li:hover {
-        transform: translate(20px, 50px);
-        transition: 1s;
+        a {
+          font-size: 18px;
+          color: $white;
+        }
 
       }
     }
+
+
   }
-}
 
-.view-all {
-  margin: 0 auto;
-  max-width: 360px;
-  max-height: 35px;
-  padding-top: 30px;
-  padding-bottom: 100px;
-
-  .custom-button {
-    height: 36px;
-    border-radius: 5px;
-    border-color: $darkgry;
-    border-width: 1px;
+  .main-icon {
+    text-align: center;
+    padding-top: 47px;
+    display: flex;
+    justify-content: center;
 
     a {
-      color: #3E3E3E;
-      font-size: 13px;
+      text-decoration: none;
+      color: #000000;
+      position: relative;
+      padding-right: 25px;
     }
-  }
-}
 
-.add-banner {
-  position: relative;
-  overflow: hidden;
-
-  .add-img {
-    background-image: url("public/assets/image/mainpage4.png");
-    display: inline-block;
-    background-size: 100% 100%;
-    width: 100%;
-    height: 240px;
 
     span {
-      position: relative;
-      display: block;
-      color: $white;
-      font-size: 19px;
-      padding: 9px;
-      left: 240px;
-      top: 45px;
+      display: inline-block;
+      inline-size: -webkit-fill-available;
+    }
 
+
+  }
+  //1200
+  .icon-name {
+    text-align: center;
+    text-decoration: none;
+
+    span {
+      padding-right: 60px;
+    }
+  }
+
+  .main-story {
+    text-align: center;
+    padding-top: 60px;
+
+    span {
+      display: inline-block;
+      inline-size: -webkit-fill-available;
+      padding-top: 6px;
+      font-size: 12px;
+      color: $lightgry;
+
+    }
+  }
+
+  .main-sns {
+    overflow: hidden;
+
+    .news-wrap {
+      display: none;
+    }
+
+    .news-menu {
+      display: none;
+    }
+
+    .profile-wrap {
+      display: none;
+      bottom: 20px;
+    }
+
+    .news-ul {
+      flex-wrap: nowrap;
+      transform: translateX(135px);
+      transition: 0.5s;
+      animation-timing-function: ease-in-out;
+
+
+      .news-ul-li {
+
+
+        /* 부드럽게 움직이는 효과 */
+        transition: 1s;
+
+        .news-ul-li:hover {
+          transform: translate(20px, 50px);
+          transition: 1s;
+
+        }
+      }
+    }
+  }
+  //1200
+  .view-all {
+    margin: 0 auto;
+    max-width: 360px;
+    max-height: 35px;
+    padding-top: 30px;
+    padding-bottom: 100px;
+
+    .custom-button {
+      height: 36px;
+      border-radius: 5px;
+      border-color: $darkgry;
+      border-width: 1px;
+
+      a {
+        color: #3E3E3E;
+        font-size: 13px;
+      }
+    }
+  }
+
+  .add-banner {
+    position: relative;
+    overflow: hidden;
+
+    .add-img {
+      background-image: url("public/assets/image/mainpage4.png");
+      display: inline-block;
+      background-size: 100% 100%;
+      width: 100%;
+      height: 240px;
+
+      span {
+        position: relative;
+        display: block;
+        color: $white;
+        font-size: 19px;
+        padding: 9px;
+        left: 240px;
+        top: 45px;
+
+      }
+
+      .custom-button {
+        background-color: #FA6C1A;
+        border-color: #FA6C1A;
+        width: 6%;
+        height: 15%;
+        position: absolute;
+        min-width: 137px;
+        border-radius: 3px;
+        left: 257px;
+        bottom: 40px;
+
+
+        a {
+          color: $white;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+
+  .main-campsite {
+    padding-top: 88px;
+    padding-bottom: 20px;
+
+    text-align: -webkit-center;
+
+    h2 {
+      bottom: 10px;
     }
 
     .custom-button {
-      background-color: #FA6C1A;
-      border-color: #FA6C1A;
+      margin-top: 20px;
       width: 11px;
       height: 34px;
-      position: absolute;
-      min-width: 137px;
+      position: relative;
+      border: 0.5px solid $lightgry;
       border-radius: 3px;
-      left: 257px;
-      bottom: 40px;
-
 
       a {
         color: $white;
@@ -1320,278 +1370,828 @@
       }
     }
   }
-}
-
-.main-campsite {
-  padding-top: 55px;
-  padding-bottom: 20px;
-
-  text-align: -webkit-center;
-
-  h2 {
-    bottom: 10px;
-  }
-
-  .custom-button {
-    margin-top: 20px;
-    width: 11px;
-    height: 34px;
+  .autocamp-box {
     position: relative;
-    border: 0.5px solid $lightgry;
-    border-radius: 3px;
-
-    a {
-      color: $white;
-      font-size: 12px;
-    }
-  }
-}
-
-.main-autocamp {
-  text-align: center;
-
-  .autocamp {
-    border: 1px solid rgba(204, 204, 204, 0.5);;
-    margin: 20px;
-    display: inline-block;
-  }
-}
-
-.market-box {
-  text-align: center;
-
-  .main-market {
-    border: 1px solid rgba(204, 204, 204, 0.5);
-    display: inline-block;
-    width: 220px;
-    height: 300px;
-    margin: 20px;
     text-align: center;
 
-    .market-img {
-      svg {
-        margin: 10px;
-        float: left;
+    .main-autocamp {
+      text-align: center;
+      display: inline-block;
+      margin-left: 20px;
+      margin-right: 20px;
+      border: 1px solid rgb(204, 204, 204);
+      border-radius: 10px;
+      width: 314px;
+      margin-top: 32px;
+
+      .autocamp:hover {
+        transform: scale(1.5);
+        transition: 0.5s;
       }
 
-      width: 100%;
-      height: 179px;
-      background-size: 100% 100%;
-      background-image: url("public/assets/image/market1.png");
+      .autocamp {
+        border: 1px solid rgba(204, 204, 204, 0.5);
+        background-image: url("/public/assets/image/mainutoCamp.png");
+        display: inline-block;
+        background-size: 100% 100%;
+        height: 191px;
+        width: 100%;
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
+
+
+        img {
+          border-style: none;
+          width: 17%;
+        }
+
+      }
+
+    }
+  }
+  .market-box {
+    text-align: center;
+
+    .main-market {
+      border: 1px solid rgba(204, 204, 204, 0.5);
+      display: inline-block;
+      width: 220px;
+      height: 300px;
+      margin-left: 50px;
+      text-align: center;
+      margin-right: 50px;
+
+
+      .market-img {
+        svg {
+          margin: 10px;
+          float: left;
+        }
+
+        width: 100%;
+        height: 179px;
+        background-size: 100% 100%;
+        background-image: url("public/assets/image/market1.png");
+      }
+
+      .market-content {
+        border: 1px solid rgba(204, 204, 204, 0.5);
+      }
+
+      .market-calendar {
+        border: 1px solid rgba(204, 204, 204, 0.5);
+        border-top: none;
+      }
+    }
+  }
+
+  .main-bottom {
+    margin-top: 90px;
+
+    span {
+      position: relative;
+      top: 70px;
+
+      h1 {
+        padding-top: 60px;
+        font-size: 34px;
+        top: -64px;
+        position: relative;
+      }
+
+      h2 {
+        margin: 30px;
+        font-size: 16px;
+        position: relative;
+        top: -65px;
+      }
     }
 
-    .market-content {
-      border: 1px solid rgba(204, 204, 204, 0.5);
-    }
+    background-image: url("public/assets/image/main-bottom.png");
+    background-size: 100% 100%;
+    height: 620px;
+    text-align: center;
+    left: 50%;
+    top: 50%;
 
-    .market-calendar {
-      border: 1px solid rgba(204, 204, 204, 0.5);
-      border-top: none;
+    .main-recomend {
+      position: relative;
+      top: -4px;
+
+      .bottom-fir:hover {
+        transform: scale(1.05);
+        transition: 0.5s;
+        z-index: 1;
+        position: relative;
+      }
+
+      .bottom-fir {
+        box-shadow: 5px 5px 5px grey;
+        display: inline-block;
+        background-size: 100% 100%;
+        width: 280px;
+        height: 250px;
+        background-image: url("public/assets/image/mainpageslider1.png");
+
+        .camping-jang {
+          color: #ffffff;
+          background: #EC671A;
+          position: relative;
+          top: 100%;
+          height: 60%;
+          box-shadow: 5px 5px 5px grey;
+
+          .recomend-text {
+            width: 90%;
+            position: relative;
+            top: 11px;
+            left: 5%;
+            word-spacing: 5px;
+            line-height: 25px;
+          }
+
+          .recomend-navi {
+            position: relative;
+
+            .recomend {
+              margin-left: 30px;
+              top: 16px;
+              position: relative;
+              border: 1px solid $white;
+              border-radius: 20px;
+              width: 84px;
+
+
+              span {
+                padding: 5px;
+                top: 0;
+                color: $white;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+              }
+            }
+
+            .recomend-arow {
+              left: -11px;
+              top: -8px;
+              position: relative;
+            }
+
+          }
+
+
+          p {
+            position: relative;
+            left: -55px;
+            top: 19px;
+          }
+
+        }
+      }
+
+      .bottom-sec:hover {
+        transform: scale(1.3);
+        transition: 0.5s;
+        z-index: 1;
+        position: relative;
+      }
+
+      .bottom-sec {
+        .camping-jang {
+          color: $white;
+
+          span {
+            top: 4px;
+            right: -82px;
+          }
+
+          s {
+            position: relative;
+            top: 10px;
+            left: -67px;
+          }
+
+          p {
+            position: relative;
+            left: -55px;
+            top: 19px;
+          }
+
+          .camping-name {
+
+          }
+
+          top: 178px;
+          height: 72px;
+          background: rgba(0, 0, 0, 0.6);
+          position: relative;
+        }
+
+        display: inline-block;
+        background-size: 100% 100%;
+        width: 280px;
+        height: 250px;
+        background-image: url("public/assets/image/mainpageslider2.png");
+      }
+
+      .bottom-thi:hover {
+        transform: scale(1.3);
+        transition: 0.5s;
+        z-index: 1;
+        position: relative;
+      }
+
+      .bottom-thi {
+        .camping-jang {
+          color: $white;
+
+          span {
+            top: 4px;
+            right: -82px;
+          }
+
+          s {
+            position: relative;
+            top: 10px;
+            left: -67px;
+          }
+
+          p {
+            position: relative;
+            left: -55px;
+            top: 19px;
+          }
+
+
+          top: 178px;
+          height: 72px;
+          background: rgba(0, 0, 0, 0.6);
+          position: relative;
+        }
+
+        display: inline-block;
+        background-size: 100% 100%;
+        width: 280px;
+        height: 250px;
+        background-image: url("public/assets/image/mainpageslider3.png");
+      }
+
+      .bottom-for:hover {
+        transform: scale(1.3);
+        transition: 0.5s;
+        z-index: 1;
+        position: relative;
+      }
+
+      .bottom-for {
+        //position: relative;
+
+        .camping-jang {
+          color: $white;
+
+          span {
+            top: 4px;
+            right: -82px;
+          }
+
+          s {
+            position: relative;
+            top: 10px;
+            left: -67px;
+          }
+
+          p {
+            position: relative;
+            left: -55px;
+            top: 19px;
+          }
+
+          .camping-name {
+
+          }
+
+          top: 178px;
+          height: 72px;
+          background: rgba(0, 0, 0, 0.6);
+          position: relative;
+        }
+
+        display: inline-block;
+        background-size: 100% 100%;
+        width: 280px;
+        height: 250px;
+        background-image: url("public/assets/image/mainpageslider4.png");
+
+      }
     }
   }
 }
 
-.main-bottom {
-  margin-top: 90px;
+//반응형 메인
+@include mb() {
 
-  span {
-    position: relative;
-    top: 70px;
+  .main-box {
 
-    h1 {
-      padding-top: 60px;
-      font-size: 34px;
+    text-align: center;
+
+
+    .main-fir {
+      display: inline-block;
+      background-size: 100% 100%;
+      background-image: url("public/assets/image/mainpage2.png");
+      width: 100%;
+      height: 500px;
+
+      span {
+        color: $white;
+        position: relative;
+        font-size: 20px;
+        top: 70%;
+      }
+
+      .custom-button {
+        border-color: #FA6C1A;
+        background-color: #FA6C1A;
+        border-radius: 20px;
+        top: 75%;
+        width: 50%;
+        height: 43px;
+        margin: 0 auto;
+
+        a {
+          font-size: 15px;
+          color: $white;
+        }
+
+      }
     }
 
-    h2 {
-      margin: 30px;
-      font-size: 15px;
+    .main-sec {
+      display: inline-block;
+      background-size: 100% 100%;
+      background-image: url("public/assets/image/mainpage3.png");
+      width: 100%;
+      height: 500px;
+
+      span {
+        color: $white;
+        position: relative;
+        font-size: 20px;
+        top: 70%;
+      }
+
+      .custom-button {
+        border-color: #FA6C1A;
+        background-color: #FA6C1A;
+        border-radius: 20px;
+        top: 75%;
+        width: 50%;
+        height: 43px;
+        margin: 0 auto;
+
+        a {
+          font-size: 15px;
+          color: $white;
+        }
+
+      }
+    }
+
+
+  }
+
+  .main-icon {
+    text-align: center;
+    padding-top: 47px;
+    display: flex;
+    justify-content: center;
+
+    a {
+      text-decoration: none;
+      color: #000000;
+      position: relative;
+      padding-right: 25px;
+    }
+
+
+    span {
+      display: inline-block;
+      inline-size: -webkit-fill-available;
+    }
+
+
+  }
+
+  .icon-name {
+    text-align: center;
+    text-decoration: none;
+
+    span {
+      padding-right: 60px;
     }
   }
 
-  background-image: url("public/assets/image/main-bottom.png");
-  background-size: 100% 100%;
-  height: 620px;
-  text-align: center;
-  left: 50%;
-  top: 50%;
+  .main-story {
+    text-align: center;
+    padding-top: 60px;
 
-  .main-recomend {
+    span {
+      display: inline-block;
+      inline-size: -webkit-fill-available;
+      padding-top: 6px;
+      font-size: 12px;
+      color: $lightgry;
+
+    }
+  }
+
+  .main-sns {
+    overflow: hidden;
     position: relative;
-    top: 102px;
+    left: -15%;
 
-    .bottom-fir {
-      .camping-jang {
-        color: $white;
-
-        .recomend {
-          left: 21px;
-          top: 16px;
-          position: relative;
-          border: 1px solid #FFFFFF;
-          border-radius: 10px;
-          width: 84px;
-          height: 23px;
-        }
-
-        .recomend-text {
-          width: 220px;
-          position: relative;
-          top: -7px;
-          left: 25px;
-        }
-
-        .recomend-navi {
-          position: relative;
-          top: -4px;
-          left: -17px;
-        }
-
-        span {
-          position: relative;
-          top: 18px;
-          font-size: 12px;
-        }
-
-        p {
-          position: relative;
-          left: -55px;
-          top: 19px;
-        }
-
-        .camping-name {
-
-        }
-
-        color: #ffffff;
-        top: 250px;
-        height: 110px;
-        background: #EC671A;
-        position: relative;
-      }
-
-      display: inline-block;
-      background-size: 100% 100%;
-      width: 280px;
-      height: 250px;
-      background-image: url("public/assets/image/mainpageslider1.png");
+    .news-wrap {
+      display: none;
     }
 
-    .bottom-sec {
-      .camping-jang {
-        color: $white;
-
-        span {
-          top: 4px;
-          right: -82px;
-        }
-
-        s {
-          position: relative;
-          top: 10px;
-          left: -67px;
-        }
-
-        p {
-          position: relative;
-          left: -55px;
-          top: 19px;
-        }
-
-        .camping-name {
-
-        }
-
-        top: 178px;
-        height: 72px;
-        background: rgba(0, 0, 0, 0.6);
-        position: relative;
-      }
-
-      display: inline-block;
-      background-size: 100% 100%;
-      width: 280px;
-      height: 250px;
-      background-image: url("public/assets/image/mainpageslider2.png");
+    .news-menu {
+      display: none;
     }
 
-    .bottom-thi {
-      .camping-jang {
-        color: $white;
-
-        span {
-          top: 4px;
-          right: -82px;
-        }
-
-        s {
-          position: relative;
-          top: 10px;
-          left: -67px;
-        }
-
-        p {
-          position: relative;
-          left: -55px;
-          top: 19px;
-        }
-
-        .camping-name {
-
-        }
-
-        top: 178px;
-        height: 72px;
-        background: rgba(0, 0, 0, 0.6);
-        position: relative;
-      }
-
-      display: inline-block;
-      background-size: 100% 100%;
-      width: 280px;
-      height: 250px;
-      background-image: url("public/assets/image/mainpageslider3.png");
+    .profile-wrap {
+      display: none;
+      bottom: 20px;
     }
 
-    .bottom-for {
-      //position: relative;
+    .news-ul {
+      overflow: scroll;
+      flex-wrap: nowrap;
+      transform: translateX(135px);
+      transition: 0.5s;
+      animation-timing-function: ease-in-out;
+      justify-content: flex-start;
 
-      .camping-jang {
+      .news-ul-li {
+
+
+        /* 부드럽게 움직이는 효과 */
+        transition: 0.5s;
+
+        .news-ul-li:hover {
+          transform: translate(20px, 50px);
+          transition: 1s;
+
+        }
+      }
+    }
+  }
+
+  .view-all {
+    margin: 0 auto;
+    max-width: 360px;
+    max-height: 35px;
+    padding-top: 30px;
+    padding-bottom: 100px;
+
+    .custom-button {
+      height: 36px;
+      border-radius: 5px;
+      border-color: $darkgry;
+      border-width: 1px;
+
+      a {
+        color: #3E3E3E;
+        font-size: 13px;
+      }
+    }
+  }
+
+  .add-banner {
+    position: relative;
+    overflow: hidden;
+
+    .add-img {
+      background-image: url("public/assets/image/mainpage4.png");
+      display: inline-block;
+      background-size: 100% 100%;
+      width: 100%;
+      height: 115px;
+
+      span {
+        position: relative;
+        display: block;
         color: $white;
+        font-size: 2px;
+        padding: 9px;
+        left: 36px;
+        top: 3px;
 
-        span {
-          top: 4px;
-          right: -82px;
+      }
+
+      .custom-button {
+        background-color: #FA6C1A;
+        border-color: #FA6C1A;
+        width: 2%;
+        height: 15%;
+        position: absolute;
+        min-width: 92px;
+        border-radius: 3px;
+        left: 50px;
+        bottom: 40px;
+        top: 80%;
+
+
+        a {
+          color: $white;
+          font-size: 4px;
+        }
+      }
+    }
+  }
+
+  .main-campsite {
+    padding-top: 55px;
+    padding-bottom: 20px;
+
+    text-align: -webkit-center;
+
+    h2 {
+      bottom: 10px;
+    }
+
+    .custom-button {
+      margin-top: 20px;
+      width: 11px;
+      height: 34px;
+      position: relative;
+      border: 0.5px solid $lightgry;
+      border-radius: 3px;
+
+      a {
+        color: $white;
+        font-size: 12px;
+      }
+    }
+  }
+
+  .main-autocamp {
+    text-align: center;
+
+    .autocamp {
+      border: 1px solid rgba(204, 204, 204, 0.5);;
+      margin: 20px;
+      display: inline-block;
+    }
+  }
+
+  .market-box {
+    text-align: center;
+
+    .main-market {
+      border: 1px solid rgba(204, 204, 204, 0.5);
+      display: inline-block;
+      width: 220px;
+      height: 300px;
+      margin: 20px;
+      text-align: center;
+
+      .market-img {
+        svg {
+          margin: 10px;
+          float: left;
         }
 
-        s {
-          position: relative;
-          top: 10px;
-          left: -67px;
-        }
+        width: 100%;
+        height: 179px;
+        background-size: 100% 100%;
+        background-image: url("public/assets/image/market1.png");
+      }
 
-        p {
-          position: relative;
-          left: -55px;
-          top: 19px;
-        }
+      .market-content {
+        border: 1px solid rgba(204, 204, 204, 0.5);
+      }
 
-        .camping-name {
+      .market-calendar {
+        border: 1px solid rgba(204, 204, 204, 0.5);
+        border-top: none;
+      }
+    }
+  }
 
-        }
+  .main-bottom {
+    margin-top: 90px;
 
-        top: 178px;
-        height: 72px;
-        background: rgba(0, 0, 0, 0.6);
+    span {
+      position: relative;
+      top: 70px;
+
+      h1 {
+        padding-top: 60px;
+        font-size: 34px;
+        top: -64px;
         position: relative;
       }
 
-      display: inline-block;
-      background-size: 100% 100%;
-      width: 280px;
-      height: 250px;
-      background-image: url("public/assets/image/mainpageslider4.png");
+      h2 {
+        margin: 30px;
+        font-size: 16px;
+        position: relative;
+        top: -65px;
+      }
+    }
 
+    background-image: url("public/assets/image/main-bottom.png");
+    background-size: 100% 100%;
+    height: 620px;
+    text-align: center;
+    left: 50%;
+    top: 50%;
+
+    .main-recomend {
+      position: relative;
+      top: -4px;
+
+
+      .bottom-fir {
+        box-shadow: 5px 5px 5px grey;
+        display: inline-block;
+        background-size: 100% 100%;
+        width: 280px;
+        height: 250px;
+        background-image: url("public/assets/image/mainpageslider1.png");
+
+        .camping-jang {
+          color: #ffffff;
+          background: #EC671A;
+          position: relative;
+          top: 100%;
+          height: 60%;
+          box-shadow: 5px 5px 5px grey;
+
+          .recomend-text {
+            width: 90%;
+            position: relative;
+            top: 11px;
+            left: 5%;
+            word-spacing: 5px;
+            line-height: 25px;
+          }
+
+          .recomend-navi {
+            position: relative;
+
+            .recomend {
+              margin-left: 30px;
+              top: 16px;
+              position: relative;
+              border: 1px solid $white;
+              border-radius: 20px;
+              width: 84px;
+
+
+              span {
+                padding: 5px;
+                top: 0;
+                color: $white;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+              }
+            }
+
+            .recomend-arow {
+              left: -11px;
+              top: -8px;
+              position: relative;
+            }
+
+          }
+
+
+          p {
+            position: relative;
+            left: -55px;
+            top: 19px;
+          }
+
+        }
+      }
+
+
+      .bottom-sec {
+        .camping-jang {
+          color: $white;
+
+          span {
+            top: 4px;
+            right: -82px;
+          }
+
+          s {
+            position: relative;
+            top: 10px;
+            left: -67px;
+          }
+
+          p {
+            position: relative;
+            left: -55px;
+            top: 19px;
+          }
+
+          .camping-name {
+
+          }
+
+          top: 178px;
+          height: 72px;
+          background: rgba(0, 0, 0, 0.6);
+          position: relative;
+        }
+
+        display: inline-block;
+        background-size: 100% 100%;
+        width: 280px;
+        height: 250px;
+        background-image: url("public/assets/image/mainpageslider2.png");
+      }
+
+      .bottom-thi {
+        .camping-jang {
+          color: $white;
+
+          span {
+            top: 4px;
+            right: -82px;
+          }
+
+          s {
+            position: relative;
+            top: 10px;
+            left: -67px;
+          }
+
+          p {
+            position: relative;
+            left: -55px;
+            top: 19px;
+          }
+
+
+          top: 178px;
+          height: 72px;
+          background: rgba(0, 0, 0, 0.6);
+          position: relative;
+        }
+
+        display: inline-block;
+        background-size: 100% 100%;
+        width: 280px;
+        height: 250px;
+        background-image: url("public/assets/image/mainpageslider3.png");
+      }
+
+      .bottom-for {
+        //position: relative;
+
+        .camping-jang {
+          color: $white;
+
+          span {
+            top: 4px;
+            right: -82px;
+          }
+
+          s {
+            position: relative;
+            top: 10px;
+            left: -67px;
+          }
+
+          p {
+            position: relative;
+            left: -55px;
+            top: 19px;
+          }
+
+          .camping-name {
+
+          }
+
+          top: 178px;
+          height: 72px;
+          background: rgba(0, 0, 0, 0.6);
+          position: relative;
+        }
+
+        display: inline-block;
+        background-size: 100% 100%;
+        width: 280px;
+        height: 250px;
+        background-image: url("public/assets/image/mainpageslider4.png");
+
+      }
     }
   }
 }
