@@ -56,11 +56,9 @@ export default {
       store.commit(STORE_TYPE.popupType, POPUP_TYPE.WRITE_BOARD);
     }; //글쓰기 팝업열기
 
-    const openDetail = (boardIdx, boardBody, userNickName) => {
+    const openDetail = (boardIdx) => {
       store.commit(STORE_TYPE.popupType, POPUP_TYPE.DETAIL_SCREEN);
       store.commit(STORE_TYPE.boardIdx, boardIdx); //<-item.boardIdx 값을 넣었다
-      store.commit(STORE_TYPE.boardBody, boardBody);
-      store.commit(STORE_TYPE.userNickName, userNickName);
     }; //게시물 상세 페이지 팝업 열기
 
     const handleSearch = (e) => { //이벤트를 받음

@@ -33,15 +33,20 @@ export default {
       console.log(data);
     };//팔로우 매니저
 
-
-    const detailData = ref({ boardIdx: store.state.boardIdx });
+    const detailData = ref({
+      boardIdx: store.state.boardIdx,
+      followIdx: "",
+      userIdx: "",
+      targetType: "",
+      dateReg: "",
+      boardBody: "",
+      userNickName: "",
+    });
     const detail = async () => {
       const data = await apiClient("/sns/getSnsDetail", detailData.value);
-      console.log(data);
-      console.log(detailData.value);
       console.log(data.data);
-      // detailData.value.boardBody = store.state.boardBody;
-      // detailData.value.userNickName = store.state.userNickName;
+      detailData.value = data.data;
+      console.log(detailData.value.boardBody);
     };
 
     const closePopup = () => { //popup close
@@ -108,11 +113,11 @@ export default {
             <img src="/assets/image/IU.png" alt="프로필 사진">
             <div class="content-wrap-profile-info">
               <div class="follow">
-                <span>dlwlrma</span>
+                <span>{{ detailData.userNickName }}</span>
                 <custom-button :placeholder="'팔로우'" :custom-class="'follow_btn'" @click="follow"
                                @update:value="followData.targetIdx"></custom-button>
               </div>
-              <p class="content-wrap-profile-info-intro">내용</p>
+              <p class="content-wrap-profile-info-intro">{{ detailData.boardBody }}</p>
               <p class="content-wrap-profile-info-tag">#내친구 #camp #인생은 #즐거워</p>
             </div>
           </div>

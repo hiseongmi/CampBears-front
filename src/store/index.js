@@ -64,14 +64,6 @@ const store = createStore({
     boardBody(state, value) {
       state.boardBody = value;
     },
-    /**
-     *
-     * @param {store} state
-     * @param {string} value
-     */
-    userNickName(state, value) {
-      state.userNickName = value;
-    },
   },
 });
 
