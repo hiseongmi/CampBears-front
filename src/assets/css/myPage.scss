@@ -88,7 +88,6 @@
   }
 
   .myContents {
-    max-width: initial;
     display: flex;
 
     .tapBar {
@@ -122,6 +121,10 @@
         display: none;
       }
 
+      .news-menu {
+        display: none;
+      }
+
       .news-ul {
         margin: 0 0;
         max-width: none;
@@ -146,6 +149,79 @@
                 width: inherit;
                 height: inherit;
               }
+            }
+          }
+        }
+      }
+
+      .updateProfile {
+        width: 633px;
+        justify-content: center;
+        margin: 10px 0 30px 0;
+        padding: 0 80px;
+
+        .inputBox {
+          display: flex;
+          border-bottom: 1px solid;
+          margin-inline: auto;
+          width: auto;
+          height: 50px;
+        }
+
+        span {
+          min-width: 100px;
+          align-self: center;
+          text-align: center;
+          font-size: 16px;
+          font-weight: 600;
+          border-right: 1px solid #2f2e2c;
+        }
+
+        .profilePictureBox {
+          display: flex;
+          margin-inline: auto;
+          width: auto;
+          height: 50px;
+
+          span {
+            border: none;
+          }
+        }
+
+        .custom-input {
+          border: none;
+          background-color: transparent;
+          width: 500px;
+          margin: 0;
+        }
+
+        .buttonBox {
+          display: flex;
+          justify-content: center;
+          margin-top: 20px;
+
+          .custom-button {
+            margin-inline: 5px;
+            border-radius: 6px;
+            width: 100px;
+            height: 30px;
+            font-size: 16px;
+            font-style: normal;
+          }
+
+          .cancel {
+          }
+
+          .save {
+            background-color: #fa6c1a;
+
+            a {
+              margin-bottom: 2px;
+              color: #ffffff;
+            }
+
+            svg {
+              margin-left: 5px;
             }
           }
         }
