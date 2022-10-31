@@ -350,31 +350,91 @@ export default {
       <div class="autocamp">
         <!--      <img src="/public/assets/image/mainutoCamp.png" alt="">-->
       </div>
-      <h1>피아골 오토 캠핑장</h1>
-      <span>테크 13번 9/27~9/29 양도합니다. 테크 4*4...</span>
-      <a href="">전라남도 구례군 </a>
-      <h2>45.000원</h2>
-      <span>1시간 전</span>
+      <div class="autocam-cont">
+        <h1>피아골 오토 캠핑장</h1>
+        <span>테크 13번 9/27~9/29 양도합니다. 테크 4*4...</span>
+        <a href="">
+          <svg width="8" height="10" viewBox="0 0 8 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M7.54545 4.27273C7.54545 6.81818 4.27273 9 4.27273 9C4.27273 9 1 6.81818 1 4.27273C1 3.40475 1.3448 2.57232 1.95856 1.95856C2.57232 1.3448 3.40475 1 4.27273 1C5.14071 1 5.97314 1.3448 6.58689 1.95856C7.20065 2.57232 7.54545 3.40475 7.54545 4.27273Z"
+                stroke="#0093E7" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path
+                d="M4.27255 5.36358C4.87504 5.36358 5.36346 4.87516 5.36346 4.27267C5.36346 3.67018 4.87504 3.18176 4.27255 3.18176C3.67006 3.18176 3.18164 3.67018 3.18164 4.27267C3.18164 4.87516 3.67006 5.36358 4.27255 5.36358Z"
+                fill="#0093E7" stroke="#0093E7" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          전라남도 구례군 </a>
+        <div>
+          <h2>845.000원</h2>
+          <span><svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path
+    d="M5.5 10C7.98528 10 10 7.98528 10 5.5C10 3.01472 7.98528 1 5.5 1C3.01472 1 1 3.01472 1 5.5C1 7.98528 3.01472 10 5.5 10Z"
+    stroke="#818181" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M5.5 2.80005V5.50005L7.3 6.40005" stroke="#818181" stroke-width="0.9" stroke-linecap="round"
+      stroke-linejoin="round"/>
+</svg>
+1시간 전</span>
+        </div>
+      </div>
     </div>
     <div class="main-autocamp">
       <div class="autocamp">
         <!--      <img src="/public/assets/image/mainutoCamp.png" alt="">-->
       </div>
-      <h1>피아골 오토 캠핑장</h1>
-      <span>테크 13번 9/27~9/29 양도합니다. 테크 4*4...</span>
-      <a href="">전라남도 구례군 </a>
-      <h2>59.000원</h2>
-      <span>1시간 전</span>
+      <div class="autocam-cont">
+        <h1>피아골 성미 캠핑장</h1>
+        <span>테크 13번 9/27~9/29 양도합니다. 테크 4*4...</span>
+        <a href="">
+          <svg width="8" height="10" viewBox="0 0 8 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M7.54545 4.27273C7.54545 6.81818 4.27273 9 4.27273 9C4.27273 9 1 6.81818 1 4.27273C1 3.40475 1.3448 2.57232 1.95856 1.95856C2.57232 1.3448 3.40475 1 4.27273 1C5.14071 1 5.97314 1.3448 6.58689 1.95856C7.20065 2.57232 7.54545 3.40475 7.54545 4.27273Z"
+                stroke="#0093E7" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path
+                d="M4.27255 5.36358C4.87504 5.36358 5.36346 4.87516 5.36346 4.27267C5.36346 3.67018 4.87504 3.18176 4.27255 3.18176C3.67006 3.18176 3.18164 3.67018 3.18164 4.27267C3.18164 4.87516 3.67006 5.36358 4.27255 5.36358Z"
+                fill="#0093E7" stroke="#0093E7" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          경기도 어디였더라 </a>
+        <div>
+          <h2>450.000원</h2>
+          <span><svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path
+    d="M5.5 10C7.98528 10 10 7.98528 10 5.5C10 3.01472 7.98528 1 5.5 1C3.01472 1 1 3.01472 1 5.5C1 7.98528 3.01472 10 5.5 10Z"
+    stroke="#818181" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M5.5 2.80005V5.50005L7.3 6.40005" stroke="#818181" stroke-width="0.9" stroke-linecap="round"
+      stroke-linejoin="round"/>
+</svg>
+1시간 전</span>
+        </div>
+      </div>
     </div>
     <div class="main-autocamp">
       <div class="autocamp">
         <!--      <img src="/public/assets/image/mainutoCamp.png" alt="">-->
       </div>
-      <h1>피아골 오토 캠핑장</h1>
-      <span>테크 13번 9/27~9/29 양도합니다. 테크 4*4...</span>
-      <a href="">전라남도 구례군 </a>
-      <h2>59.000원</h2>
-      <span>1시간 전</span>
+      <div class="autocam-cont">
+        <h1>피아골 정운 캠핑장</h1>
+        <span>테크 13번 9/27~9/29 양도합니다. 테크 4*4...</span>
+        <a href="">
+          <svg width="8" height="10" viewBox="0 0 8 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M7.54545 4.27273C7.54545 6.81818 4.27273 9 4.27273 9C4.27273 9 1 6.81818 1 4.27273C1 3.40475 1.3448 2.57232 1.95856 1.95856C2.57232 1.3448 3.40475 1 4.27273 1C5.14071 1 5.97314 1.3448 6.58689 1.95856C7.20065 2.57232 7.54545 3.40475 7.54545 4.27273Z"
+                stroke="#0093E7" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path
+                d="M4.27255 5.36358C4.87504 5.36358 5.36346 4.87516 5.36346 4.27267C5.36346 3.67018 4.87504 3.18176 4.27255 3.18176C3.67006 3.18176 3.18164 3.67018 3.18164 4.27267C3.18164 4.87516 3.67006 5.36358 4.27255 5.36358Z"
+                fill="#0093E7" stroke="#0093E7" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          경기도 고양시 </a>
+        <div>
+          <h2>995.000원</h2>
+          <span><svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path
+    d="M5.5 10C7.98528 10 10 7.98528 10 5.5C10 3.01472 7.98528 1 5.5 1C3.01472 1 1 3.01472 1 5.5C1 7.98528 3.01472 10 5.5 10Z"
+    stroke="#818181" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M5.5 2.80005V5.50005L7.3 6.40005" stroke="#818181" stroke-width="0.9" stroke-linecap="round"
+      stroke-linejoin="round"/>
+</svg>
+1시간 전</span>
+        </div>
+      </div>
     </div>
   </div>
 

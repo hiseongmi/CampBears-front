@@ -1262,24 +1262,27 @@
       bottom: 20px;
     }
 
-    .news-ul {
-      flex-wrap: nowrap;
-      transform: translateX(135px);
-      transition: 0.5s;
-      animation-timing-function: ease-in-out;
 
+    .news-ul {
+      height: 350px;
+      overflow: auto;
+      display: flex;
+      list-style: none;
+      margin: 0 auto;
+      flex-wrap: nowrap;
+      max-width: 50%;
+      justify-content: flex-start;
+      margin-top: auto;
+
+      .news-ul-li:hover {
+        margin: auto;
+        transform: scale(1.1);
+        transition: 1s;
+      }
 
       .news-ul-li {
-
-
-        /* 부드럽게 움직이는 효과 */
-        transition: 1s;
-
-        .news-ul-li:hover {
-          transform: translate(20px, 50px);
-          transition: 1s;
-
-        }
+        padding: 12.5px;
+        margin: auto;
       }
     }
   }
@@ -1374,6 +1377,13 @@
     position: relative;
     text-align: center;
 
+    .main-autocamp:hover {
+      transform: scale(1.2);
+      transition: 0.2s;
+      z-index: 1;
+
+    }
+
     .main-autocamp {
       text-align: center;
       display: inline-block;
@@ -1384,10 +1394,12 @@
       width: 314px;
       margin-top: 32px;
 
-      .autocamp:hover {
-        transform: scale(1.5);
-        transition: 0.5s;
-      }
+      //.autocamp:hover {
+      //  transform: scale(1.5);
+      //  transition: 0.5s;
+      //  z-index: 1;
+      //
+      //}
 
       .autocamp {
         border: 1px solid rgba(204, 204, 204, 0.5);
@@ -1403,6 +1415,44 @@
         img {
           border-style: none;
           width: 17%;
+        }
+
+      }
+
+      .autocam-cont {
+        h1 {
+          position: relative;
+          display: inline-block;
+          font-size: 23px;
+          float: left;
+          margin: 2%;
+          margin-top: 1%;
+        }
+
+        span {
+          position: relative;
+          display: inline-block;
+          color: #818181;
+          font-size: 16px;
+        }
+
+        a {
+          margin-top: 1%;
+          margin-left: 2%;
+          float: left;
+          text-align: left;
+          position: relative;
+          display: inline-block;
+          color: #0093E7;
+        }
+
+        h2 {
+          color: #EA3323;
+          position: relative;
+          display: inline-block;
+          margin-right: 27%;
+          margin-top: 5%;
+          margin-bottom: 2%;
         }
 
       }
@@ -1832,17 +1882,15 @@
       animation-timing-function: ease-in-out;
       justify-content: flex-start;
 
+      .news-ul-li:hover {
+        transform: translate(20px, 50px);
+        transition: 1s;
+
+      }
+
       .news-ul-li {
+        margin: auto;
 
-
-        /* 부드럽게 움직이는 효과 */
-        transition: 0.5s;
-
-        .news-ul-li:hover {
-          transform: translate(20px, 50px);
-          transition: 1s;
-
-        }
       }
     }
   }
@@ -1936,6 +1984,7 @@
   }
 
   .main-autocamp {
+
     text-align: center;
 
     .autocamp {
