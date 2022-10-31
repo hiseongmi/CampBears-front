@@ -216,8 +216,8 @@ export default {
       </svg>
       <span>오토캠핑</span>
     </a>
-  </div>
-  <div class="main-icon">
+
+  
     <a href="">
       <svg width="68" height="68" viewBox="0 0 68 68" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g filter="url(#filter0_d_1_2)">
