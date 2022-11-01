@@ -14,10 +14,6 @@ export default {
       type: Function,
       required: true,
     },
-    getContent: {
-      type: Function,
-      required: true,
-    },
   },
 
   setup() {
@@ -29,7 +25,6 @@ export default {
     }; //수정팝업열기
 
     const RerActive = ref(false);
-
     const RerOption = () => {
       RerActive.value = !RerActive.value;
     }; //수정신고삭제 옵션
@@ -70,7 +65,7 @@ export default {
         console.log(data.data);
         window.alert("삭제되었습니다.");
         closePopup();
-        await router.push("/snsPage");
+        router.go();//새로고침
       } else {
         window.alert("다시시도해주세요");
       }

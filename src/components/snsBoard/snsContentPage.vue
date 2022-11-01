@@ -75,7 +75,7 @@ export default {
     const contentData = ref();
     let keyword = "";
     const getContent = async () => {
-      let param = { keyword: keyword };
+      let param = { keyword: keyword, sorted: "RECENT" };
       if (selectedValue.value !== null && selectedValue.value !== undefined) {
         param = Object.assign({}, param, { sorted: selectedValue.value }); //ob 내장함수 합침
         param.sorted = selectedValue.value;

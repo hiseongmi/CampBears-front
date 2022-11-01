@@ -4,12 +4,17 @@ import { apiClient } from "../../../utils/axios.js";
 import CustomButton from "../../layout/customButton.vue";
 import CustomInput from "../../layout/customInput.vue";
 import store, { POPUP_TYPE, STORE_TYPE } from "../../../store/index.js";
+import router from "../../../router/index.js";
 
 export default {
   name: "updateBoardPopup",
   components: { CustomInput, CustomButton },
   props: {
     clickClose: {
+      type: Function,
+      required: true,
+    },
+    getContent: {
       type: Function,
       required: true,
     },
@@ -25,14 +30,17 @@ export default {
     });
     const update = async () => {
       const data = await apiClient("/sns/updateSns", updateData.value);
-      console.log(data);
-      console.log(data.data);
-      // store.commit(STORE_TYPE.popupType, POPUP_TYPE.DETAIL_SCREEN);
-      getContent();
+
+      if (data.resultCode === 0) {
+        console.log(data);
+        console.log(data.data);
+        window.alert("수정되었습니다.");
+        await store.commit(STORE_TYPE.popupType, POPUP_TYPE.DETAIL_SCREEN);
+        // router.go(); //새로고침
+      } else {
+        window.alert("다시시도해주세요");
+      }
     };
-    onMounted(() => {
-      update();
-    });
     return {
       updateData,
       update,
