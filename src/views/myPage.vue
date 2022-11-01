@@ -4,10 +4,12 @@ import customInput from "../components/layout/customInput.vue";
 import { ref } from "vue";
 import snsContentPage from "../components/snsBoard/snsContentPage.vue";
 import UpdateProfile from "../components/mypage/updateProfile.vue";
+import MyReview from "../components/mypage/myReview.vue";
 
 export default {
   name: "myPage",
   components: {
+    MyReview,
     UpdateProfile,
     snsContentPage,
     customButton,
@@ -55,8 +57,7 @@ export default {
       <img class="profilePicture" :src="profileInfo.profilePicture" alt="" />
       <div class="profileIntroduce">
         <span class="temperature">
-          불멍온도
-          {{ profileInfo.temperature }}
+          불멍온도 {{ profileInfo.temperature }}
           <svg width="12" height="13" viewBox="0 0 10 15" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M3.5558 0.157967C3.72991 -0.0559007 4 -0.052971 4.17411 0.160896C4.79018 0.919685 5.3683 1.73707 5.90848 2.62183C6.15402 2.19996 6.43304 1.74 6.73438 1.365C6.91071 1.1482 7.18304 1.1482 7.35938 1.36793C8.1317 2.33472 8.78572 3.61207 9.24554 4.82496C9.69866 6.02027 10 7.24195 10 8.10328C10 11.8416 7.77232 14.9998 5 14.9998C2.19643 14.9998 0 11.8386 0 8.10035C0 6.97535 0.397321 5.60133 1.01339 4.24195C1.63616 2.86207 2.51563 1.42359 3.5558 0.157967ZM5.03795 12.1873C5.60268 12.1873 6.10268 11.9822 6.57366 11.572C7.51339 10.7107 7.76563 8.98804 7.20089 7.63453C7.13839 7.47047 7.07589 7.3064 6.98214 7.14234L5.85268 8.865C5.85268 8.865 4.03571 5.82984 3.90848 5.62476C2.97098 7.14234 2.5 8.00367 2.5 8.98804C2.5 10.9978 3.62946 12.1873 5.03795 12.1873Z"
@@ -84,7 +85,7 @@ export default {
                 stroke-linejoin="round"
               />
             </svg>
-            <p>프로필 편집</p>
+            <span>프로필 편집</span>
           </custom-button>
         </span>
       </div>
@@ -99,10 +100,10 @@ export default {
       </div>
       <div class="content-area">
         <sns-content-page v-if="tabIndex === tabType.FEED" />
-        <div v-else-if="tabIndex === tabType.SELL">'판매'</div>
-        <div v-else-if="tabIndex === tabType.RENT">'대여'</div>
-        <div v-else-if="tabIndex === tabType.SAVE">'저장'</div>
-        <div v-else-if="tabIndex === tabType.REVIEW">'후기'</div>
+        <sns-content-page v-else-if="tabIndex === tabType.SELL" />
+        <sns-content-page v-else-if="tabIndex === tabType.RENT" />
+        <sns-content-page v-else-if="tabIndex === tabType.SAVE" />
+        <my-review v-else-if="tabIndex === tabType.REVIEW" />
         <update-profile v-else-if="tabIndex === tabType.EDIT" />
       </div>
     </div>
