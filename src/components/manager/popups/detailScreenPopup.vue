@@ -4,11 +4,12 @@ import { onMounted, onUnmounted, ref } from "vue";
 import postImage from "../../../data/postImage.js";
 import { apiClient } from "../../../utils/axios.js";
 import CustomButton from "../../layout/customButton.vue";
+import CustomInput from "../../layout/customInput.vue";
 import router from "../../../router/index.js";
 
 export default {
   name: "detailScreenPopup",
-  components: { CustomButton },
+  components: { CustomButton, CustomInput },
   props: {
     clickClose: {
       type: Function,
@@ -190,9 +191,47 @@ export default {
             <span>조회수2,500</span>
           </div>
         </div>
-        <div class="comment">
-          test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test
+        <div class="content-enterComment">
+          <custom-input :custom-class="'comment'" :placeholder="'댓글을 입력해주세요.'" />
+          <span><i class="fa-regular fa-comment"></i></span>
         </div>
+        <div class="content-comments">
+          <img src="/assets/image/iugold5.png" />
+          <div class="content-comments-user">
+            <span> hi.sungmi </span>
+            <p>very good!</p>
+          </div>
+          <div class="content-comments-option">
+            <span class="date">2022-11-01 23:21</span>
+            <span class="cocoment"><i class="fa-regular fa-comment"></i></span>
+            <span class="report"><i class="fa-solid fa-circle-exclamation"></i></span>
+          </div>
+        </div>
+        <div class="content-comments">
+          <img src="/assets/image/iugold5.png" />
+          <div class="content-comments-user">
+            <span> hi.sungmi </span>
+            <p>very good!</p>
+          </div>
+          <div class="content-comments-option">
+            <span class="date">2022-11-01 23:21</span>
+            <span class="cocoment"><i class="fa-regular fa-comment"></i></span>
+            <span class="report"><i class="fa-solid fa-circle-exclamation"></i></span>
+          </div>
+        </div>
+        <div class="content-comments">
+          <img src="/assets/image/iugold5.png" />
+          <div class="content-comments-user">
+            <span> hi.sungmi </span>
+            <p>very good!</p>
+          </div>
+          <div class="content-comments-option">
+            <span class="date">2022-11-01 23:21</span>
+            <span class="cocoment"><i class="fa-regular fa-comment"></i></span>
+            <span class="report"><i class="fa-solid fa-circle-exclamation"></i></span>
+          </div>
+        </div>
+
       </div>
     </div>
     <span class="right">

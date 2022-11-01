@@ -381,6 +381,7 @@
             }
           }
 
+          //선
           &-line {
             display: flex;
             margin: 0 14px;
@@ -395,6 +396,98 @@
                 padding-left: 17px;
               }
             }
+          }
+
+          //댓글 입력해주세요
+          &-enterComment {
+            margin: 20px 0;
+            padding: 15px 15px;
+            background-color: #EEEEEE;
+            display: flex;
+
+            .custom-input {
+              flex: 1 0 0;
+              border-bottom: 1px solid #818181;
+              border-right: none;
+              border-left: none;
+              border-top: none;
+              border-radius: 0;
+              padding: 0 10px;
+              max-width: none;
+              min-width: 100px;
+              height: 30px;
+              margin-bottom: 0;
+              background-color: #EEEEEE;
+              color: #000000;
+
+              .comment {
+
+              }
+            }
+
+            span {
+              margin-left: 20px;
+
+              i {
+                position: relative;
+                font-size: 25px;
+                color: #818181;
+                top: 6px;
+              }
+            }
+
+
+          }
+
+          //댓글들
+          &-comments {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            margin: 0 11px;
+            border-bottom: 1px solid #EEEEEE;
+            //댓글프로필이미지
+            img {
+              width: 65px;
+              height: 65px;
+              object-fit: cover;
+              border-radius: 70%;
+              margin-right: 10px;
+            }
+
+            //유저 이름 멘트
+            &-user {
+              display: grid;
+              padding: 5px 10px;
+              flex: 1 0 0;
+
+              span {
+                margin-bottom: 10px;
+                font-weight: 700;
+              }
+            }
+
+            //남긴시간 대댓글, 신고 버튼
+            &-option {
+              span {
+                color: #818181;
+                margin: 0 10px;
+
+                i {
+                  font-size: 20px;
+                }
+              }
+
+              .date {
+                font-size: 12px;
+                padding: 0 10px;
+              }
+
+              .report {
+                color: #B70000;
+              }
+            }
+
           }
         }
       }
