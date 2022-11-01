@@ -4,6 +4,7 @@ import { onMounted, onUnmounted, ref } from "vue";
 import postImage from "../../../data/postImage.js";
 import { apiClient } from "../../../utils/axios.js";
 import CustomButton from "../../layout/customButton.vue";
+import router from "../../../router/index.js";
 
 export default {
   name: "detailScreenPopup",
@@ -13,12 +14,19 @@ export default {
       type: Function,
       required: true,
     },
+    getContent: {
+      type: Function,
+      required: true,
+    },
   },
 
   setup() {
     const goToReport = () => {
       store.commit(STORE_TYPE.popupType, POPUP_TYPE.REPORT);
     };//신고창열기
+    const goToUpdate = () => {
+      store.commit(STORE_TYPE.popupType, POPUP_TYPE.UPDATE);
+    }; //수정팝업열기
 
     const RerActive = ref(false);
 
@@ -26,7 +34,7 @@ export default {
       RerActive.value = !RerActive.value;
     }; //수정신고삭제 옵션
 
-    const followData = ref({ followType: ["FOLLOW", "UNFOLLOW"], targetIdx: "", targetType: ["USER", "SNS", "BOARD"] });
+    const followData = ref({ followType: "", targetIdx: "", targetType: "" });
     const follow = async () => {
       const data = await apiClient("/common/doFollow", followData.value);
       console.log(followData.value);
@@ -48,28 +56,71 @@ export default {
       detailData.value = data.data;
       console.log(detailData.value.boardBody);
     };
+    const deleteData = ref({
+      boardIdx: store.state.boardIdx,
+      userIdx: "",
+      dateMod: "",
+      dateReg: "",
+      boardBody: "",
+    });
+    const deleteContent = async () => {
+      const data = await apiClient("/sns/deleteSns", deleteData.value);
+      if (data.resultCode === 0) {
+        console.log(data);
+        console.log(data.data);
+        window.alert("삭제되었습니다.");
+        closePopup();
+        await router.push("/snsPage");
+      } else {
+        window.alert("다시시도해주세요");
+      }
+    };
+
 
     const closePopup = () => { //popup close
       store.commit(STORE_TYPE.popupType, POPUP_TYPE.NONE);
       store.commit(STORE_TYPE.boardIdx, "");
     };
 
-    onMounted(() => {
-      //api 조회
-      if (store.state.boardIdx !== "" && store.state.boardIdx !== null && store.state.boardIdx !== undefined) {
-        // console.log(`boardIdx : `, store.state.boardIdx);
-        detail();
+    const heartCount = ref(0);
+    const heartState = ref(false);
+    const heartActive = () => {
+      if (!heartState.value) {
+        heartCount.value++;
+        heartState.value = !heartState.value;
       } else {
-        closePopup();
+        heartCount.value -= 1;
+        heartState.value = !heartState.value;
       }
+      console.log(heartCount.value);
+    };
+    const bookmark = ref(false);
+    const bookmarkActive = () => {
+      bookmark.value = !bookmark.value;
+    };
+
+    onMounted(() => {
+      detail();
+      //api 조회
+      // if (store.state.boardIdx !== "" && store.state.boardIdx !== null && store.state.boardIdx !== undefined) {
+      //   // console.log(`boardIdx : `, store.state.boardIdx);
+      //   detail();
+      // } else {
+      //   closePopup();
+      // }
     });
     // delete store boardIdx
 
     onUnmounted(() => {
-      closePopup();
+      // closePopup();
     });
 
     return {
+      bookmark,
+      bookmarkActive,
+      heartActive,
+      heartCount,
+      deleteContent,
       detail,
       detailData,
       follow,
@@ -77,7 +128,9 @@ export default {
       RerActive,
       RerOption,
       goToReport,
+      goToUpdate,
       postImage,
+      closePopup,
     };
   },
 
@@ -98,15 +151,15 @@ export default {
         </div>
         <div class="pop" v-if="RerActive">
           <ul>
-            <li>수정</li>
-            <li>삭제</li>
+            <li @click="goToUpdate">수정</li>
+            <li @click="deleteContent">삭제</li>
             <li @click="goToReport">신고 <i class="fa-solid fa-circle-exclamation"></i></li>
           </ul>
         </div>
       </div>
       <div class="content">
         <div class="content-image">
-          <img src="/assets/image/iugold3.png" alt="게시물 사진">
+          <img src="/assets/image/camping.png" alt="게시물 사진">
         </div>
         <div class="content-wrap">
           <div class="content-wrap-profile">
@@ -123,11 +176,13 @@ export default {
           </div>
           <div class="content-wrap-emotion">
             <div class="content-wrap-emotion-like">
-              <span><i class="fa-regular fa-heart"></i></span>
-              <span>23,812</span>
+              <span v-if="heartCount<1" @click="heartActive"><i class="fa-regular fa-heart"></i></span>
+              <span v-else @click="heartActive"><i class="fa-solid fa-heart"></i></span>
+              <span>{{ heartCount }}</span>
             </div>
             <div class="content-wrap-emotion-book">
-              <span><i class="fa-solid fa-bookmark"></i></span>
+              <span v-if="bookmark<1" @click="bookmarkActive"><i class="fa-regular fa-bookmark"></i></span>
+              <span v-else @click="bookmarkActive"><i class="fa-solid fa-bookmark"></i></span>
             </div>
             <div class="content-wrap-emotion-book">
               <span><i class="fa-solid fa-share-nodes"></i></span>

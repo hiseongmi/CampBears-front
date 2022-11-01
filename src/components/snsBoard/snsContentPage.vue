@@ -86,6 +86,7 @@ export default {
         contentData.value = data.data;
       }
     };
+
     onMounted(() => {
       window.addEventListener("SEARCH", handleSearch); //search 이벤트를 찾아서 handel이벤트로 보냄
       getContent();
@@ -146,13 +147,13 @@ export default {
     </div>
   </div>
   <div class="news-ul">
-    <div class="news-ul-li" v-for="(item,index) in contentData">
+    <div class="news-ul-li" v-for="item in contentData">
       <div>
         <profile :name="item.userNickName"></profile>
       </div>
       <div class="news-ul-li-wrap">
         <div class="news-ul-li-wrap-write" @click="openDetail(item.boardIdx)">
-          <img src="/assets/image/iugold3.png" alt="Posts" />
+          <img src="/assets/image/camping.png" alt="Posts" />
         </div>
         <div class="detail">
           <div class="detail-wrap">
@@ -170,7 +171,7 @@ export default {
             </div>
           </div>
           <div class="contents">
-            <span class="contents-writing">{{ index }} : {{ item.boardBody }}</span>
+            <span class="contents-writing">{{ item.boardBody }}</span>
             <span><i class="fa-solid fa-chevron-down"></i></span>
           </div>
           <div class="comments">

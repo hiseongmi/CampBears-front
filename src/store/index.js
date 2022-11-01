@@ -6,8 +6,6 @@ export const STORE_TYPE = {
   popupType: "popupType",
   loginUserIdx: "loginUserIdx",
   boardIdx: "boardIdx",
-  boardBody: "boardBody",
-  userNickName: "userNickName",
 };
 
 export const POPUP_TYPE = {
@@ -15,6 +13,7 @@ export const POPUP_TYPE = {
   WRITE_BOARD: "WRITE_BOARD",
   DETAIL_SCREEN: "DETAIL_SCREEN",
   REPORT: "REPORT",
+  UPDATE: "UPDATE",
 };
 
 const store = createStore({
@@ -23,8 +22,6 @@ const store = createStore({
     popupType: POPUP_TYPE.NONE,
     loginUserIdx: "",
     boardIdx: "",
-    boardBody: "",
-    userNickName: "",
   },
   mutations: {
     /**
@@ -55,14 +52,6 @@ const store = createStore({
      */
     boardIdx(state, value) {
       state.boardIdx = value;
-    },
-    /**
-     *
-     * @param {store} state
-     * @param {string} value
-     */
-    boardBody(state, value) {
-      state.boardBody = value;
     },
   },
 });
