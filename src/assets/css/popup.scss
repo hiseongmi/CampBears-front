@@ -565,14 +565,59 @@
       }
     }
 
+    //신고팝업
     &-report {
       @include center();
       position: fixed;
       max-width: 80%;
       background-color: #ffffff;
       box-shadow: 0 4px 6px;
-      width: 600px;
-      height: 500px;
+      width: 280px;
+      height: 280px;
+
+      span {
+        margin: 5px;
+        cursor: pointer;
+        float: right;
+      }
+
+      &-content {
+        margin: 20px 10px;
+      }
+
+      .custom-input {
+        border: 2px solid #B9B9B9;
+        border-radius: 0;
+        padding: 0 20px;
+        max-width: none;
+        min-width: 100px;
+        height: 124px;
+        color: #000000;
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+
+      &-btn {
+        display: flex;
+        border: 1px solid #B9B9B9;
+        justify-content: space-around;
+
+        .custom-button {
+          position: relative;
+          min-width: 70px;
+          width: 40px;
+          height: 26px;
+          border: none;
+          border-radius: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          cursor: pointer;
+          color: white;
+          background-color: rgba(255, 255, 255, 0);
+        }
+      }
     }
   }
 

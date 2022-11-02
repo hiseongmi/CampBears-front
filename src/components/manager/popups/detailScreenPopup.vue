@@ -30,7 +30,8 @@ export default {
       RerActive.value = !RerActive.value;
     }; //수정신고삭제 옵션
     const RerCommentActive = ref(false);
-    const RerCommentOption = () => {
+    const RerCommentOption = (commentIdx) => {
+      store.commit(STORE_TYPE.commentIdx, commentIdx);
       RerCommentActive.value = !RerCommentActive.value;
     }; //댓글수정신고삭제 옵션
 
@@ -119,7 +120,7 @@ export default {
     const deleteCommentData = ref({
       boardIdx: store.state.boardIdx,
       commentBody: "",
-      commentIdx: commentListData.value.commentIdx,
+      commentIdx: store.state.commentIdx,
       dateMod: "",
       dateReg: "",
       userIdx: "",

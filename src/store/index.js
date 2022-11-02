@@ -7,6 +7,7 @@ export const STORE_TYPE = {
   loginUserIdx: "loginUserIdx",
   boardIdx: "boardIdx",
   commentIdx: "commentIdx",
+  commentLength: "commentLength",
 };
 
 export const POPUP_TYPE = {
@@ -24,6 +25,7 @@ const store = createStore({
     loginUserIdx: "",
     boardIdx: "",
     commentIdx: "",
+    commentLength: "",
   },
   mutations: {
     /**
@@ -62,6 +64,14 @@ const store = createStore({
      */
     commentIdx(state, value) {
       state.commentIdx = value;
+    },
+    /**
+     *
+     * @param {store} state
+     * @param {string} value
+     */
+    commentLength(state, value) {
+      state.commentLength = value;
     },
   },
 });
