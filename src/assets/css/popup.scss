@@ -405,34 +405,39 @@
             background-color: #EEEEEE;
             display: flex;
 
-            .custom-input {
+            &-wrap {
+              position: relative;
               flex: 1 0 0;
               border-bottom: 1px solid #818181;
-              border-right: none;
-              border-left: none;
-              border-top: none;
-              border-radius: 0;
-              padding: 0 10px;
-              max-width: none;
-              min-width: 100px;
-              height: 30px;
-              margin-bottom: 0;
-              background-color: #EEEEEE;
-              color: #000000;
 
-              .comment {
+              .custom-input {
+                border: none;
+                border-radius: 0;
+                padding: 0 10px;
+                max-width: none;
+                min-width: 100px;
+                height: 30px;
+                margin-bottom: 0;
+                background-color: #EEEEEE;
+                color: #000000;
+                width: 100%;
+              }
 
+              svg {
+                position: absolute;
+                left: 155px;
+                bottom: 7px;
               }
             }
 
-            span {
+            button {
               margin-left: 20px;
+              border: none;
+              cursor: pointer;
 
               i {
-                position: relative;
                 font-size: 25px;
                 color: #818181;
-                top: 6px;
               }
             }
 

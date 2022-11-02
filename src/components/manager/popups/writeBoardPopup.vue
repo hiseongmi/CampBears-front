@@ -1,55 +1,58 @@
 <script>
-import {ref} from "vue";
-import {apiClient} from "../../../utils/axios.js";
+import { ref } from "vue";
+import { apiClient } from "../../../utils/axios.js";
 import CustomButton from "../../layout/customButton.vue";
 import CustomInput from "../../layout/customInput.vue";
-import {getStore, POPUP_TYPE, STORE_TYPE} from "../../../store/index.js";
+import { getStore, POPUP_TYPE, STORE_TYPE } from "../../../store/index.js";
+import router from "../../../router/index.js";
 
 export default {
   name: "writeBoardPopup",
-  components: {CustomInput, CustomButton},
+  components: { CustomInput, CustomButton },
   props: {
     clickClose: {
       type: Function,
-      required: true
-    }
+      required: true,
+    },
   },
   setup() {
+    const store = getStore();
+    const isPopup = ref(store.state.popupType);
+
     const upLoadData = ref({
       boardBody: "",
-      optionList: ["SHOWER", 'PARMERCY', 'CAFE', 'FITTING', 'SUBWAY', 'MARKET', 'STORE', 'DRINK', 'PARK', 'RESTROOM', 'STARBUCKS', 'MOVIE', 'RESTAURANT', 'SHUTTLE']
-    })
-    const store = getStore()
-    const isPopup = ref(store.state.popupType)
+      optionList: ["SHOWER", "PARMERCY", "CAFE", "FITTING", "SUBWAY", "MARKET", "STORE", "DRINK", "PARK", "RESTROOM", "STARBUCKS", "MOVIE", "RESTAURANT", "SHUTTLE"],
+    });
     const upLoad = async () => {
-      const data = await apiClient("/sns/insert", upLoadData.value)
-      console.log(upLoadData.value.boardBody)
-      console.log(data)
+      const data = await apiClient("/sns/insert", upLoadData.value);
+      console.log(upLoadData.value.boardBody);
+      console.log(data);
       if (data.resultCode === 0) {
-        store.commit(STORE_TYPE.popupType, POPUP_TYPE.NONE) //팝업 닫기
+        router.go();
+        store.commit(STORE_TYPE.popupType, POPUP_TYPE.NONE); //팝업 닫기
       } else {
-        window.alert("내용을 입력해주세요.")
+        window.alert("내용을 입력해주세요.");
       }
-    }
+    };
     return {
       upLoadData,
       upLoad,
       isPopup,
-    }
-  }
-}
+    };
+  },
+};
 </script>
 <template>
   <div class="modal-inner">
     <div class="save-btn">
-      <custom-button :customClass="'cancel'" :placeholder="'취소'" :onClick="clickClose"/>
-      <custom-button :customClass="'save'" :placeholder="'저장'" :onClick="clickClose"/>
-      <custom-button :customClass="'upLoad'" :placeholder="'올리기'" :onClick="upLoad"/>
+      <custom-button :customClass="'cancel'" :placeholder="'취소'" :onClick="clickClose" />
+      <custom-button :customClass="'save'" :placeholder="'저장'" :onClick="clickClose" />
+      <custom-button :customClass="'upLoad'" :placeholder="'올리기'" :onClick="upLoad" />
     </div>
     <div class="modal-inner-wrap">
       <div class="content">
         <div class="file">
-          <input type="file"/>
+          <input type="file" />
         </div>
         <div class="content-profile">
           <div class="content-profile-wrap">
@@ -63,8 +66,7 @@ export default {
         </div>
         <div class="content-content">
           <custom-input :custom-class="'content'" :placeholder="'문구 입력...'"
-                        @update:value="upLoadData.boardBody = $event"/>
-          <textarea @update:value="upLoadData.boardBody = $event">문구 입력...</textarea>
+                        @update:value="upLoadData.boardBody = $event" />
           <div class="count">
             (0 / 200)
           </div>
@@ -98,7 +100,7 @@ export default {
           </div>
         </div>
         <div class="comment">
-          test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test
+          test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test
         </div>
       </div>
     </div>

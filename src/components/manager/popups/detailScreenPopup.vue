@@ -37,6 +37,7 @@ export default {
       console.log(data);
     };//팔로우 매니저
 
+    //상세게시물
     const detailData = ref({
       boardIdx: store.state.boardIdx,
       followIdx: "",
@@ -52,6 +53,7 @@ export default {
       detailData.value = data.data;
       console.log(detailData.value.boardBody);
     };
+    //삭제 api
     const deleteData = ref({
       boardIdx: store.state.boardIdx,
       userIdx: "",
@@ -71,13 +73,36 @@ export default {
         window.alert("다시시도해주세요");
       }
     };
-
-
+    //댓글추가 api
+    const commentData = ref({ commentBody: "", boardIdx: store.state.boardIdx });
+    const upComment = async () => {
+      const data = await apiClient("/comment/insertComment", commentData.value);
+      console.log(commentData.value.commentBody);
+      console.log(data);
+      console.log(data.data);
+    };
+    //댓글조회 api
+    const commentListData = ref({
+      boardIdx: store.state.boardIdx,
+      commentBody: "",
+      commentIdx: "",
+      dateMod: "",
+      dateReg: "",
+      userIdx: "",
+      userNickName: "",
+    });
+    const commentList = async () => {
+      const data = await apiClient("/comment/getCommentList", commentListData.value);
+      console.log(data);
+      console.log(data.data);
+      commentListData.value = data.data;
+    };
+    //팝업닫기
     const closePopup = () => { //popup close
       store.commit(STORE_TYPE.popupType, POPUP_TYPE.NONE);
       store.commit(STORE_TYPE.boardIdx, "");
     };
-
+    //좋아요, 북마크
     const heartCount = ref(0);
     const heartState = ref(false);
     const heartActive = () => {
@@ -97,6 +122,7 @@ export default {
 
     onMounted(() => {
       detail();
+      commentList();
       //api 조회
       // if (store.state.boardIdx !== "" && store.state.boardIdx !== null && store.state.boardIdx !== undefined) {
       //   // console.log(`boardIdx : `, store.state.boardIdx);
@@ -112,6 +138,10 @@ export default {
     });
 
     return {
+      commentListData,
+      commentList,
+      upComment,
+      commentData,
       bookmark,
       bookmarkActive,
       heartActive,
@@ -185,6 +215,7 @@ export default {
             </div>
           </div>
         </div>
+        <!--        댓글창-->
         <div class="content-line">
           <div class="content-line-wrap">
             <span>댓글20</span>
@@ -192,41 +223,25 @@ export default {
           </div>
         </div>
         <div class="content-enterComment">
-          <custom-input :custom-class="'comment'" :placeholder="'댓글을 입력해주세요.'" />
-          <span><i class="fa-regular fa-comment"></i></span>
+          <div class="content-enterComment-wrap">
+            <custom-input :custom-class="'comment'" :placeholder="'댓글을 입력해주세요.'"
+                          @update:value="commentData.commentBody = $event" />
+            <svg width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M13.1262 1V0H11.1262V1H13.1262ZM12.1262 11.5V12.5H13.1262V11.5H12.1262ZM1 11.5V10.5C0.614909 10.5 0.264033 10.7211 0.0978755 11.0685C-0.068282 11.4159 -0.020195 11.8279 0.22151 12.1277L1 11.5ZM2.64026 15.1277L3.26792 15.9061L4.8249 14.6508L4.19724 13.8723L2.64026 15.1277ZM11.1262 1V11.5H13.1262V1H11.1262ZM12.1262 10.5H1V12.5H12.1262V10.5ZM0.22151 12.1277L2.64026 15.1277L4.19724 13.8723L1.77849 10.8723L0.22151 12.1277Z"
+                fill="#818181" />
+            </svg>
+          </div>
+          <button @click="upComment"><i class="fa-regular fa-comment"></i></button>
         </div>
-        <div class="content-comments">
+        <div class="content-comments" v-for="item in commentListData">
           <img src="/assets/image/iugold5.png" />
           <div class="content-comments-user">
-            <span> hi.sungmi </span>
-            <p>very good!</p>
+            <span>{{ item.userNickName }}</span>
+            <p>{{ item.commentBody }}</p>
           </div>
           <div class="content-comments-option">
-            <span class="date">2022-11-01 23:21</span>
-            <span class="cocoment"><i class="fa-regular fa-comment"></i></span>
-            <span class="report"><i class="fa-solid fa-circle-exclamation"></i></span>
-          </div>
-        </div>
-        <div class="content-comments">
-          <img src="/assets/image/iugold5.png" />
-          <div class="content-comments-user">
-            <span> hi.sungmi </span>
-            <p>very good!</p>
-          </div>
-          <div class="content-comments-option">
-            <span class="date">2022-11-01 23:21</span>
-            <span class="cocoment"><i class="fa-regular fa-comment"></i></span>
-            <span class="report"><i class="fa-solid fa-circle-exclamation"></i></span>
-          </div>
-        </div>
-        <div class="content-comments">
-          <img src="/assets/image/iugold5.png" />
-          <div class="content-comments-user">
-            <span> hi.sungmi </span>
-            <p>very good!</p>
-          </div>
-          <div class="content-comments-option">
-            <span class="date">2022-11-01 23:21</span>
+            <span class="date">{{ item.dateReg }}</span>
             <span class="cocoment"><i class="fa-regular fa-comment"></i></span>
             <span class="report"><i class="fa-solid fa-circle-exclamation"></i></span>
           </div>
