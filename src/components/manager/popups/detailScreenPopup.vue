@@ -29,6 +29,10 @@ export default {
     const RerOption = () => {
       RerActive.value = !RerActive.value;
     }; //수정신고삭제 옵션
+    const RerCommentActive = ref(false);
+    const RerCommentOption = () => {
+      RerCommentActive.value = !RerCommentActive.value;
+    }; //댓글수정신고삭제 옵션
 
     const followData = ref({ followType: "", targetIdx: "", targetType: "" });
     const follow = async () => {
@@ -37,7 +41,7 @@ export default {
       console.log(data);
     };//팔로우 매니저
 
-    //상세게시물
+    //상세게시물 api
     const detailData = ref({
       boardIdx: store.state.boardIdx,
       followIdx: "",
@@ -49,11 +53,11 @@ export default {
     });
     const detail = async () => {
       const data = await apiClient("/sns/getSnsDetail", detailData.value);
-      console.log(data.data);
+      // console.log(data.data);
       detailData.value = data.data;
       console.log(detailData.value.boardBody);
     };
-    //삭제 api
+    //게시물 삭제 api
     const deleteData = ref({
       boardIdx: store.state.boardIdx,
       userIdx: "",
@@ -73,15 +77,7 @@ export default {
         window.alert("다시시도해주세요");
       }
     };
-    //댓글추가 api
-    const commentData = ref({ commentBody: "", boardIdx: store.state.boardIdx });
-    const upComment = async () => {
-      const data = await apiClient("/comment/insertComment", commentData.value);
-      console.log(commentData.value.commentBody);
-      console.log(data);
-      console.log(data.data);
-    };
-    //댓글조회 api
+    //댓글 조회 api
     const commentListData = ref({
       boardIdx: store.state.boardIdx,
       commentBody: "",
@@ -93,10 +89,54 @@ export default {
     });
     const commentList = async () => {
       const data = await apiClient("/comment/getCommentList", commentListData.value);
-      console.log(data);
-      console.log(data.data);
-      commentListData.value = data.data;
+      if (data.resultCode === 0) {
+        console.log(data.data);
+        commentListData.value = data.data;
+      } else {
+        window.alert("댓글 조회에 실패했습니다.");
+      }
     };
+    //댓글 추가 api
+    const commentData = ref({
+      boardIdx: store.state.boardIdx,
+      commentBody: "",
+      commentIdx: "",
+      dateMod: "",
+      dateReg: "",
+      userIdx: "",
+      userNickName: "",
+    });
+    const upComment = async () => {
+      const data = await apiClient("/comment/insertComment", commentData.value);
+      if (data.resultCode === 0) {
+        console.log(commentData.value.commentBody);
+        console.log(data.data);
+      } else {
+        window.alert("댓글을 입력해주세요");
+      }
+    };
+    //댓글 삭제 api
+    const deleteCommentData = ref({
+      boardIdx: store.state.boardIdx,
+      commentBody: "",
+      commentIdx: commentListData.value.commentIdx,
+      dateMod: "",
+      dateReg: "",
+      userIdx: "",
+      userNickName: "",
+    });
+    const deleteComment = async () => {
+      const data = await apiClient("/comment/deleteComment", commentData.value);
+      if (data.resultCode === 0) {
+        console.log(data);
+        console.log(data.data);
+        window.alert("삭제되었습니다.");
+        RerCommentOption();
+      } else {
+        window.alert("다시 시도해주세요");
+      }
+    };
+
     //팝업닫기
     const closePopup = () => { //popup close
       store.commit(STORE_TYPE.popupType, POPUP_TYPE.NONE);
@@ -138,6 +178,8 @@ export default {
     });
 
     return {
+      deleteCommentData,
+      deleteComment,
       commentListData,
       commentList,
       upComment,
@@ -153,13 +195,14 @@ export default {
       followData,
       RerActive,
       RerOption,
+      RerCommentActive,
+      RerCommentOption,
       goToReport,
       goToUpdate,
       postImage,
       closePopup,
     };
   },
-
 };
 </script>
 <template>
@@ -218,7 +261,7 @@ export default {
         <!--        댓글창-->
         <div class="content-line">
           <div class="content-line-wrap">
-            <span>댓글20</span>
+            <span>댓글{{ commentListData.length }}</span>
             <span>조회수2,500</span>
           </div>
         </div>
@@ -236,14 +279,24 @@ export default {
         </div>
         <div class="content-comments" v-for="item in commentListData">
           <img src="/assets/image/iugold5.png" />
-          <div class="content-comments-user">
+          <div class="content-comments-wrap">
+            <!--            <div class="content-comments-wrap-user">-->
             <span>{{ item.userNickName }}</span>
             <p>{{ item.commentBody }}</p>
+            <!--            </div>-->
+            <!--            <span class="cocoment">답글달기</span>-->
           </div>
           <div class="content-comments-option">
             <span class="date">{{ item.dateReg }}</span>
-            <span class="cocoment"><i class="fa-regular fa-comment"></i></span>
-            <span class="report"><i class="fa-solid fa-circle-exclamation"></i></span>
+            <span> <i class="fa-regular fa-comment"></i></span>
+            <span @click="RerCommentOption(item.commentIdx)"><i class="fa-solid fa-ellipsis-vertical"></i></span>
+          </div>
+          <div class="commentPop" v-if="RerCommentActive">
+            <ul>
+              <li @click="deleteComment">삭제</li>
+              <li @click="goToReport">신고</li>
+              <li @click="RerCommentOption">취소</li>
+            </ul>
           </div>
         </div>
 

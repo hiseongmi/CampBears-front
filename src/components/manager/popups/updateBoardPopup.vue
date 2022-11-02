@@ -14,10 +14,6 @@ export default {
       type: Function,
       required: true,
     },
-    getContent: {
-      type: Function,
-      required: true,
-    },
   },
   setup() {
     const updateData = ref({
