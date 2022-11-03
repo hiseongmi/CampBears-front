@@ -21,32 +21,48 @@
       box-shadow: 0 4px 6px;
       width: 600px;
       height: 500px;
+      border-radius: 0 0 6px 6px;
 
       //취소 저장 올리기 버튼
       .save-btn {
+        display: flex;
         background-color: white;
         padding: 15px;
         position: relative;
         bottom: 48px;
+        border-radius: 6px 6px 0 0;
 
         .custom-button {
+          flex: 1 0 0;
           padding-left: 10px;
           border: none;
           display: initial;
           min-width: 50px;
           height: 50px;
+          cursor: initial;
 
           .cancel {
+            cursor: pointer;
             color: #000000;
           }
+        }
 
-          .save {
-            color: #000000;
-          }
+        &-wrap {
+          .custom-button {
+            padding-left: 10px;
+            border: none;
+            display: initial;
+            min-width: 50px;
+            height: 50px;
 
-          .upLoad {
-            color: #F32626;
+            .save {
+              color: #000000;
+            }
 
+            .upLoad {
+              color: #F32626;
+
+            }
           }
         }
       }
@@ -140,6 +156,12 @@
               .title {
                 flex: 1 0 0;
               }
+
+              span {
+                i {
+                  cursor: pointer;
+                }
+              }
             }
           }
 
@@ -185,6 +207,24 @@
 
       &-wrap::-webkit-scrollbar {
         display: none;
+      }
+
+      &-map {
+        position: absolute;
+        background-color: #ffffff;
+        width: 100%;
+        height: 99%;
+        top: 0;
+
+        #map {
+          width: 400px;
+          height: 400px;
+          border: 1px #a8a8a8 solid;
+        }
+
+        &-btn {
+          cursor: pointer;
+        }
       }
     }
 
@@ -279,6 +319,7 @@
           &-image {
             img {
               width: 100%;
+
             }
           }
 
@@ -442,6 +483,16 @@
             }
 
 
+          }
+
+          &-null {
+            .state {
+              height: 160px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              color: #818181;
+            }
           }
 
           //댓글들

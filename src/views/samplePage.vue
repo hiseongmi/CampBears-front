@@ -11,7 +11,7 @@ export default {
     customInput,
     customButton,
     customSelect,
-    customDatePicker
+    customDatePicker,
   },
   setup() {
     const inputValue = ref();
@@ -43,7 +43,7 @@ export default {
       { key: "two", value: "2" },
       { key: "three", value: "3" },
       { key: "four", value: "4" },
-      { key: "five", value: "5" }
+      { key: "five", value: "5" },
     ];
 
 
@@ -55,13 +55,12 @@ export default {
       inputValue,
       selectData,
       selectedValue,
-      date
+      date,
     };
-  }
+  },
 };
 </script>
 <template>
-
   <!--  custom input 사용 예시-->
   <custom-input :placeholder="`hi`" @update:value="updateValue" :custom-class="`test-input`">
     <template v-slot:element>result :</template>

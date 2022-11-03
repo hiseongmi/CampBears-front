@@ -1,12 +1,10 @@
 <script>
-
-import modalHome from "../components/sungmi/modalHome.vue";
-import {onMounted, ref} from "vue";
+import { onMounted, ref } from "vue";
 import PopupManager from "../App.vue";
-import store, {POPUP_TYPE, STORE_TYPE} from "../store/index.js";
+import store, { POPUP_TYPE, STORE_TYPE } from "../store/index.js";
 import profile from "../components/snsBoard/profile.vue";
 import snsContentPage from "../components/snsBoard/snsContentPage.vue";
-import {apiClient} from "../utils/axios.js";
+import { apiClient } from "../utils/axios.js";
 import customInput from "../components/layout/customInput.vue";
 
 export default {
@@ -14,18 +12,17 @@ export default {
   components: {
     snsContentPage,
     PopupManager,
-    modalHome,
     profile,
-    customInput
+    customInput,
   },
   setup() {
-    const inquiryData = ref({keyword: ""})
+    const inquiryData = ref({ keyword: "" });
     const getContent = async () => {
-      const data = await apiClient("/sns/getSnsList", inquiryData.value)
+      const data = await apiClient("/sns/getSnsList", inquiryData.value);
       // console.log(data.data) //태그 장소 검색 글 데이터
       // contentData.value = data.data
-      dispatchEvent(new CustomEvent('SEARCH', {detail: inquiryData.value.keyword})); //search 이벤트를 날림
-    }
+      dispatchEvent(new CustomEvent("SEARCH", { detail: inquiryData.value.keyword })); //search 이벤트를 날림
+    };
 
 
     return {
@@ -44,7 +41,7 @@ export default {
       </div>
       <!--      <hr class="line"/>-->
       <div class="news-wrap-search">
-        <custom-input :placeholder="'태그, 장소 찾아 보기'" @update:value="inquiryData.keyword = $event"/>
+        <custom-input :placeholder="'태그, 장소 찾아 보기'" @update:value="inquiryData.keyword = $event" />
         <button @click="getContent"><i class="fa-solid fa-magnifying-glass"></i></button>
       </div>
     </div>

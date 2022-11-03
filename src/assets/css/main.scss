@@ -365,7 +365,7 @@
 }
 
 //소식
-@media (min-width: 767px) {
+@media (min-width: 768px) {
   .news {
     &-wrap {
       display: flex;
@@ -512,7 +512,7 @@
           position: relative;
           border-radius: 8px;
           box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
-          height: 268px;
+          height: 279px;
 
           //게시판 사진부분
           &-write {
@@ -522,6 +522,7 @@
               border-radius: 8px;
               cursor: pointer;
               object-fit: cover;
+
             }
           }
 
@@ -770,13 +771,13 @@
           position: relative;
           border-radius: 8px;
           box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
-          height: 323px;
+          height: 300px;
 
           //게시판 사진부분
           &-write {
             img {
-              width: 296px;
-              height: 296px;
+              width: 262px;
+              height: 262px;
               border-radius: 8px;
               cursor: pointer;
               object-fit: cover;
@@ -825,7 +826,7 @@
               height: 40px;
               color: #4C4C4C;
               display: flex;
-              width: 296px;
+              width: 262px;
 
               &-writing {
                 font-size: 15px;
@@ -900,11 +901,11 @@
       &-search {
         position: relative;
 
-        input {
+        .custom-input {
           border: 1.5px solid rgba(204, 204, 204, 0.8);
           border-radius: 8px;
-          height: 20px;
-          width: 125px;
+          height: 28px;
+          width: 135px;
           box-shadow: 5px 5px 5px #999999;
         }
 
@@ -913,12 +914,22 @@
           font-size: 10px;
         }
 
-        i {
+        button {
           position: absolute;
-          right: 5px;
-          top: 5px;
-          font-size: 13px;
-          color: #615f5f;
+          right: 0;
+          top: 4px;
+          background: none;
+          border: none;
+          cursor: pointer;
+
+          i {
+            color: #000000;
+            font-size: 14px;
+          }
+
+          i:hover {
+            color: #ec671a;
+          }
         }
       }
     }
@@ -989,7 +1000,7 @@
           position: relative;
           border-radius: 8px;
           box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
-          height: 238px;
+          height: 228px;
 
           //게시판 사진부분
           &-write {
@@ -1041,7 +1052,7 @@
             //게시판 내용
             .contents {
               padding: 3px;
-              height: 40px;
+              height: 30px;
               color: #4C4C4C;
               display: flex;
               width: 183px;
@@ -1106,7 +1117,7 @@
 }
 
 ///mmmmmmmmmmmmm메인페이지mmmmmmmmmmmmm
-@media (min-width: 1202px) {
+@media (min-width: 768px) {
   .main-box {
 
     text-align: center;
@@ -1220,7 +1231,6 @@
       inline-size: -webkit-fill-available;
     }
   }
-
 
 
   //1200

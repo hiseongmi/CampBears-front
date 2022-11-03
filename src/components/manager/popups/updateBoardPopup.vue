@@ -14,6 +14,10 @@ export default {
       type: Function,
       required: true,
     },
+    goDetail: {
+      type: Function,
+      required: true,
+    },
   },
   setup() {
     const updateData = ref({
@@ -37,7 +41,26 @@ export default {
         window.alert("다시시도해주세요");
       }
     };
+    //상세게시물 api
+    const detailData = ref({
+      boardIdx: store.state.boardIdx,
+      followIdx: "",
+      userIdx: "",
+      targetType: "",
+      dateReg: "",
+      boardBody: "",
+      userNickName: "",
+    });
+    const detail = async () => {
+      const data = await apiClient("/sns/getSnsDetail", detailData.value);
+      // console.log(data.data);
+      detailData.value = data.data;
+      console.log(detailData.value.boardBody);
+    };
     return {
+      close,
+      detailData,
+      detail,
       updateData,
       update,
     };
@@ -47,8 +70,10 @@ export default {
 <template>
   <div class="modal-inner">
     <div class="save-btn">
-      <custom-button :customClass="'cancel'" :placeholder="'취소'" :onClick="clickClose" />
-      <custom-button :customClass="'upLoad'" :placeholder="'수정'" :onClick="update" />
+      <custom-button :customClass="'cancel'" :placeholder="'취소'" :onClick="goDetail" />
+      <div class="save-btn-wrap">
+        <custom-button :customClass="'upLoad'" :placeholder="'수정'" :onClick="update" />
+      </div>
     </div>
     <div class="modal-inner-wrap">
       <div class="content">
@@ -66,8 +91,9 @@ export default {
           </div>
         </div>
         <div class="content-content">
-          <custom-input :custom-class="'content'" :placeholder="'문구 입력...'"
-                        @update:value="updateData.boardBody = $event" />
+          <custom-input :custom-class="'content'" :placeholder="detailData.boardBody"
+                        @update:value="updateData.boardBody = $event">
+          </custom-input>
           <div class="count">
             (0 / 200)
           </div>

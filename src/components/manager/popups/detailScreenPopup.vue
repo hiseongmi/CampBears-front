@@ -25,15 +25,14 @@ export default {
       store.commit(STORE_TYPE.popupType, POPUP_TYPE.UPDATE);
     }; //수정팝업열기
 
-    const RerActive = ref(false);
+    const RerAction = ref(false);
     const RerOption = () => {
-      RerActive.value = !RerActive.value;
+      RerAction.value = !RerAction.value;
     }; //수정신고삭제 옵션
     const RerCommentActive = ref(false);
     const RerCommentOption = (commentIdx) => {
-      store.commit(STORE_TYPE.commentIdx, commentIdx);
       RerCommentActive.value = !RerCommentActive.value;
-    }; //댓글수정신고삭제 옵션
+    }; //댓글 수정 신고 삭제 옵션
 
     const followData = ref({ followType: "", targetIdx: "", targetType: "" });
     const follow = async () => {
@@ -42,7 +41,7 @@ export default {
       console.log(data);
     };//팔로우 매니저
 
-    //상세게시물 api
+    //상세 게시물 조회 api
     const detailData = ref({
       boardIdx: store.state.boardIdx,
       followIdx: "",
@@ -56,7 +55,8 @@ export default {
       const data = await apiClient("/sns/getSnsDetail", detailData.value);
       // console.log(data.data);
       detailData.value = data.data;
-      console.log(detailData.value.boardBody);
+      console.log("이 글 내용 : ", detailData.value.boardBody);
+      await commentList();
     };
     //게시물 삭제 api
     const deleteData = ref({
@@ -79,66 +79,55 @@ export default {
       }
     };
     //댓글 조회 api
-    const commentListData = ref({
+    const getCommentList = ref({
       boardIdx: store.state.boardIdx,
-      commentBody: "",
-      commentIdx: "",
-      dateMod: "",
-      dateReg: "",
-      userIdx: "",
-      userNickName: "",
     });
+    const commentListData = ref({});
     const commentList = async () => {
-      const data = await apiClient("/comment/getCommentList", commentListData.value);
+      const data = await apiClient("/comment/getCommentList", getCommentList.value);
       if (data.resultCode === 0) {
-        console.log(data.data);
+        console.log("댓글들: ", data.data);
         commentListData.value = data.data;
       } else {
-        window.alert("댓글 조회에 실패했습니다.");
+        console.log("댓글 조회에 실패했습니다.");
       }
     };
     //댓글 추가 api
     const commentData = ref({
       boardIdx: store.state.boardIdx,
       commentBody: "",
-      commentIdx: "",
-      dateMod: "",
-      dateReg: "",
-      userIdx: "",
-      userNickName: "",
     });
     const upComment = async () => {
       const data = await apiClient("/comment/insertComment", commentData.value);
       if (data.resultCode === 0) {
-        console.log(commentData.value.commentBody);
+        console.log("추가한 댓글 : ", commentData.value.commentBody);
         console.log(data.data);
+        await commentList();
       } else {
         window.alert("댓글을 입력해주세요");
+        await commentList();
       }
     };
     //댓글 삭제 api
     const deleteCommentData = ref({
-      boardIdx: store.state.boardIdx,
-      commentBody: "",
-      commentIdx: store.state.commentIdx,
-      dateMod: "",
-      dateReg: "",
-      userIdx: "",
-      userNickName: "",
+      commentIdx: "",
     });
+    const putCommentIdx = (commentIdx) => {
+      deleteCommentData.value.commentIdx = commentIdx;
+      console.log("이 댓글 idx: ", deleteCommentData.value.commentIdx);
+      deleteComment();
+    };//댓글 idx를 리스트에 담는다.
     const deleteComment = async () => {
-      const data = await apiClient("/comment/deleteComment", commentData.value);
+      const data = await apiClient("/comment/deleteComment", deleteCommentData.value);
       if (data.resultCode === 0) {
         console.log(data);
-        console.log(data.data);
         window.alert("삭제되었습니다.");
-        RerCommentOption();
+        await detail();
       } else {
         window.alert("다시 시도해주세요");
       }
     };
-
-    //팝업닫기
+    //팝업 닫기
     const closePopup = () => { //popup close
       store.commit(STORE_TYPE.popupType, POPUP_TYPE.NONE);
       store.commit(STORE_TYPE.boardIdx, "");
@@ -160,10 +149,8 @@ export default {
     const bookmarkActive = () => {
       bookmark.value = !bookmark.value;
     };
-
     onMounted(() => {
       detail();
-      commentList();
       //api 조회
       // if (store.state.boardIdx !== "" && store.state.boardIdx !== null && store.state.boardIdx !== undefined) {
       //   // console.log(`boardIdx : `, store.state.boardIdx);
@@ -173,14 +160,15 @@ export default {
       // }
     });
     // delete store boardIdx
-
     onUnmounted(() => {
       // closePopup();
     });
 
     return {
+      putCommentIdx,
       deleteCommentData,
       deleteComment,
+      getCommentList,
       commentListData,
       commentList,
       upComment,
@@ -194,7 +182,7 @@ export default {
       detailData,
       follow,
       followData,
-      RerActive,
+      RerAction,
       RerOption,
       RerCommentActive,
       RerCommentOption,
@@ -219,7 +207,7 @@ export default {
             <span></span>
           </label>
         </div>
-        <div class="pop" v-if="RerActive">
+        <div class="pop" v-if="RerAction">
           <ul>
             <li @click="goToUpdate">수정</li>
             <li @click="deleteContent">삭제</li>
@@ -278,7 +266,13 @@ export default {
           </div>
           <button @click="upComment"><i class="fa-regular fa-comment"></i></button>
         </div>
-        <div class="content-comments" v-for="item in commentListData">
+        <div class="content-null"
+             v-if="commentListData.length === 0">
+          <div class="state">
+            댓글이 없습니다.
+          </div>
+        </div>
+        <div class="content-comments" v-for="item in commentListData" v-else>
           <img src="/assets/image/iugold5.png" />
           <div class="content-comments-wrap">
             <!--            <div class="content-comments-wrap-user">-->
@@ -294,13 +288,12 @@ export default {
           </div>
           <div class="commentPop" v-if="RerCommentActive">
             <ul>
-              <li @click="deleteComment">삭제</li>
+              <li @click="putCommentIdx(item.commentIdx)">삭제</li>
               <li @click="goToReport">신고</li>
               <li @click="RerCommentOption">취소</li>
             </ul>
           </div>
         </div>
-
       </div>
     </div>
     <span class="right">

@@ -20,7 +20,8 @@ export default {
   methods: {
     handleInput(e) {
       this.$emit("update:value", e.target.value);
-    }
+
+    },
   }
 };
 </script>
