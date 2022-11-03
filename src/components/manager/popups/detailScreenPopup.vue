@@ -30,7 +30,7 @@ export default {
       RerAction.value = !RerAction.value;
     }; //수정신고삭제 옵션
     const RerCommentActive = ref(false);
-    const RerCommentOption = (commentIdx) => {
+    const RerCommentOption = () => {
       RerCommentActive.value = !RerCommentActive.value;
     }; //댓글 수정 신고 삭제 옵션
 
@@ -53,7 +53,7 @@ export default {
     });
     const detail = async () => {
       const data = await apiClient("/sns/getSnsDetail", detailData.value);
-      // console.log(data.data);
+      console.log(data.data);
       detailData.value = data.data;
       console.log("이 글 내용 : ", detailData.value.boardBody);
       await commentList();
@@ -61,10 +61,6 @@ export default {
     //게시물 삭제 api
     const deleteData = ref({
       boardIdx: store.state.boardIdx,
-      userIdx: "",
-      dateMod: "",
-      dateReg: "",
-      boardBody: "",
     });
     const deleteContent = async () => {
       const data = await apiClient("/sns/deleteSns", deleteData.value);
@@ -72,6 +68,7 @@ export default {
         console.log(data);
         console.log(data.data);
         window.alert("삭제되었습니다.");
+        // await getContent();
         closePopup();
         router.go();//새로고침
       } else {
@@ -79,12 +76,10 @@ export default {
       }
     };
     //댓글 조회 api
-    const getCommentList = ref({
-      boardIdx: store.state.boardIdx,
-    });
+    const getComment = ref({ boardIdx: store.state.boardIdx });
     const commentListData = ref({});
     const commentList = async () => {
-      const data = await apiClient("/comment/getCommentList", getCommentList.value);
+      const data = await apiClient("/comment/getCommentList", getComment.value);
       if (data.resultCode === 0) {
         console.log("댓글들: ", data.data);
         commentListData.value = data.data;
@@ -101,11 +96,9 @@ export default {
       const data = await apiClient("/comment/insertComment", commentData.value);
       if (data.resultCode === 0) {
         console.log("추가한 댓글 : ", commentData.value.commentBody);
-        console.log(data.data);
         await commentList();
       } else {
         window.alert("댓글을 입력해주세요");
-        await commentList();
       }
     };
     //댓글 삭제 api
@@ -168,7 +161,7 @@ export default {
       putCommentIdx,
       deleteCommentData,
       deleteComment,
-      getCommentList,
+      getComment,
       commentListData,
       commentList,
       upComment,
@@ -275,16 +268,13 @@ export default {
         <div class="content-comments" v-for="item in commentListData" v-else>
           <img src="/assets/image/iugold5.png" />
           <div class="content-comments-wrap">
-            <!--            <div class="content-comments-wrap-user">-->
             <span>{{ item.userNickName }}</span>
             <p>{{ item.commentBody }}</p>
-            <!--            </div>-->
-            <!--            <span class="cocoment">답글달기</span>-->
           </div>
           <div class="content-comments-option">
             <span class="date">{{ item.dateReg }}</span>
             <span> <i class="fa-regular fa-comment"></i></span>
-            <span @click="RerCommentOption(item.commentIdx)"><i class="fa-solid fa-ellipsis-vertical"></i></span>
+            <span @click="RerCommentOption()"><i class="fa-solid fa-ellipsis-vertical"></i></span>
           </div>
           <div class="commentPop" v-if="RerCommentActive">
             <ul>

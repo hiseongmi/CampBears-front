@@ -22,45 +22,20 @@ export default {
   setup() {
     const updateData = ref({
       boardIdx: store.state.boardIdx,
-      userIdx: "",
-      dateMod: "",
-      dateReg: "",
       boardBody: "",
-      optionList: ["SHOWER", "PARMERCY", "CAFE", "FITTING", "SUBWAY", "MARKET", "STORE", "DRINK", "PARK", "RESTROOM", "STARBUCKS", "MOVIE", "RESTAURANT", "SHUTTLE"],
     });
     const update = async () => {
       const data = await apiClient("/sns/updateSns", updateData.value);
-
       if (data.resultCode === 0) {
-        console.log(data);
-        console.log(data.data);
         window.alert("수정되었습니다.");
         await store.commit(STORE_TYPE.popupType, POPUP_TYPE.DETAIL_SCREEN);
-        // router.go(); //새로고침
       } else {
-        window.alert("다시시도해주세요");
+        window.alert("다시 시도해주세요");
       }
     };
-    //상세게시물 api
-    const detailData = ref({
-      boardIdx: store.state.boardIdx,
-      followIdx: "",
-      userIdx: "",
-      targetType: "",
-      dateReg: "",
-      boardBody: "",
-      userNickName: "",
-    });
-    const detail = async () => {
-      const data = await apiClient("/sns/getSnsDetail", detailData.value);
-      // console.log(data.data);
-      detailData.value = data.data;
-      console.log(detailData.value.boardBody);
-    };
+
     return {
       close,
-      detailData,
-      detail,
       updateData,
       update,
     };
