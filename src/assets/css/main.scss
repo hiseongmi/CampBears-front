@@ -512,14 +512,14 @@
           position: relative;
           border-radius: 8px;
           box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
-          height: 340px;
+          height: 268px;
 
           //게시판 사진부분
           &-write {
             img {
               width: 241px;
               height: 241px;
-              border-radius: 8px 8px 0 0;
+              border-radius: 8px;
               cursor: pointer;
               object-fit: cover;
             }
@@ -770,14 +770,14 @@
           position: relative;
           border-radius: 8px;
           box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
-          height: 315px;
+          height: 323px;
 
           //게시판 사진부분
           &-write {
             img {
-              width: 230px;
-              height: 230px;
-              border-radius: 8px 8px 0 0;
+              width: 296px;
+              height: 296px;
+              border-radius: 8px;
               cursor: pointer;
               object-fit: cover;
             }
@@ -825,7 +825,7 @@
               height: 40px;
               color: #4C4C4C;
               display: flex;
-              width: 229px;
+              width: 296px;
 
               &-writing {
                 font-size: 15px;
@@ -900,13 +900,12 @@
       &-search {
         position: relative;
 
-        .custom-input {
+        input {
           border: 1.5px solid rgba(204, 204, 204, 0.8);
           border-radius: 8px;
           height: 20px;
-          width: 130px;
+          width: 125px;
           box-shadow: 5px 5px 5px #999999;
-          margin-bottom: 0;
         }
 
         input::placeholder {
@@ -914,22 +913,12 @@
           font-size: 10px;
         }
 
-        button {
+        i {
           position: absolute;
-          right: 0;
-          top: 0;
-          background: none;
-          border: none;
-          cursor: pointer;
-
-          i {
-            color: #000000;
-            font-size: 12px;
-          }
-
-          i:hover {
-            color: #ec671a;
-          }
+          right: 5px;
+          top: 5px;
+          font-size: 13px;
+          color: #615f5f;
         }
       }
     }
@@ -1000,7 +989,7 @@
           position: relative;
           border-radius: 8px;
           box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
-          height: 256px;
+          height: 238px;
 
           //게시판 사진부분
           &-write {
@@ -1052,7 +1041,7 @@
             //게시판 내용
             .contents {
               padding: 3px;
-              height: 25px;
+              height: 40px;
               color: #4C4C4C;
               display: flex;
               width: 183px;
@@ -1231,6 +1220,7 @@
       inline-size: -webkit-fill-available;
     }
   }
+
 
 
   //1200

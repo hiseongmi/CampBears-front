@@ -91,14 +91,34 @@ export default {
       </div>
     </div>
     <div class="myContents">
-      <div class="tapBar">
-        <custom-button :placeholder="'피드'" :onClick="() => componentChange(tabType.FEED)" />
-        <custom-button :placeholder="'판매'" :onClick="() => componentChange(tabType.SELL)" />
-        <custom-button :placeholder="'대여'" :onClick="() => componentChange(tabType.RENT)" />
-        <custom-button :placeholder="'저장'" :onClick="() => componentChange(tabType.SAVE)" />
-        <custom-button :placeholder="'후기'" :onClick="() => componentChange(tabType.REVIEW)" />
+      <div class="tabBar">
+        <custom-button
+          :placeholder="'피드'"
+          :onClick="() => componentChange(tabType.FEED)"
+          :custom-class="tabIndex === tabType.FEED ? 'active' : ''"
+        />
+        <custom-button
+          :placeholder="'판매'"
+          :onClick="() => componentChange(tabType.SELL)"
+          :custom-class="tabIndex === tabType.SELL ? 'active' : ''"
+        />
+        <custom-button
+          :placeholder="'대여'"
+          :onClick="() => componentChange(tabType.RENT)"
+          :custom-class="tabIndex === tabType.RENT ? 'active' : ''"
+        />
+        <custom-button
+          :placeholder="'저장'"
+          :onClick="() => componentChange(tabType.SAVE)"
+          :custom-class="tabIndex === tabType.SAVE ? 'active' : ''"
+        />
+        <custom-button
+          :placeholder="'후기'"
+          :onClick="() => componentChange(tabType.REVIEW)"
+          :custom-class="tabIndex === tabType.REVIEW ? 'active' : ''"
+        />
       </div>
-      <div class="content-area">
+      <div class="contents-area">
         <sns-content-page v-if="tabIndex === tabType.FEED" />
         <sns-content-page v-else-if="tabIndex === tabType.SELL" />
         <sns-content-page v-else-if="tabIndex === tabType.RENT" />

@@ -88,11 +88,16 @@
   }
 
   .myContents {
-    display: flex;
+    .tabBar {
+      display: inline-block;
+      height: auto;
+      position: absolute;
+      border-radius: 10px;
+      margin-block: 10px;
+      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.13);
 
-    .tapBar {
       .custom-button {
-        background-color: #f5f5f5;
+        background-color: transparent;
         border: hidden;
         border-radius: 0;
 
@@ -108,11 +113,28 @@
           color: #ffffff;
         }
       }
+
+      :first-child {
+        border-radius: 10px 10px 0 0;
+      }
+
+      :last-child {
+        border-radius: 0 0 10px 10px;
+      }
+
+      .active {
+        background-color: #2f2e2c;
+
+        a {
+          color: #ffffff;
+        }
+      }
     }
 
-    .content-area {
-      background-color: #f5f5f5;
-      width: 650px;
+    .contents-area {
+      width: auto;
+      margin-left: 140px;
+      height: 1300px;
 
       .profile {
         display: none;
@@ -229,7 +251,7 @@
       .myReview {
         position: relative;
         width: 100%;
-        padding: 10px 20px 20px 0;
+        padding: 10px 20px 20px 10px;
 
         .reviewItem {
           display: flex;
