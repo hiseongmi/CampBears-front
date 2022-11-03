@@ -190,6 +190,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        cursor: pointer;
 
         svg {
           background-color: white;
@@ -203,7 +204,9 @@
       &-moSearch {
         display: block;
 
+
         i {
+          cursor: pointer;
           font-size: 30px;
           color: black;
           padding: 0 10px;

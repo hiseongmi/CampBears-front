@@ -110,6 +110,7 @@
                 padding-left: 10px;
               }
             }
+
             //공개여부
             &-public {
               span {
@@ -208,6 +209,7 @@
       &-wrap::-webkit-scrollbar {
         display: none;
       }
+
       //지도가 보여질거야
       &-map {
         position: absolute;
@@ -259,6 +261,7 @@
             color: #a5a5a5;
           }
         }
+
         //신고 수정 삭제 리스트
         .pop {
           width: 80px;
@@ -297,6 +300,7 @@
             }
           }
         }
+
         //게시물 내용
         .content {
           background-color: white;
@@ -321,6 +325,7 @@
               img {
                 @include profile();
               }
+
               //이름,팔로우 버튼,내용,해시태그
               &-info {
                 padding: 0 10px;
@@ -359,10 +364,12 @@
                     }
                   }
                 }
+
                 //글내용
                 &-intro {
                   font-size: 14px;
                 }
+
                 //해시 태그
                 &-tag {
                   margin: 15px 0 0 0;
@@ -1230,6 +1237,18 @@
                 }
               }
 
+            }
+
+            //댓글 없습니다.
+            &-null {
+              .state {
+                font-size: 14px;
+                height: 120px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: #818181;
+              }
             }
 
           }
