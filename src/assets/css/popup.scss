@@ -82,7 +82,7 @@
           display: flex;
           flex-direction: column;
 
-
+          //사진 업로드
           .file {
             padding: 15px;
           }
@@ -93,7 +93,7 @@
             align-items: center;
             justify-content: space-between;
             padding: 7px 15px;
-
+            //프사 이름
             &-wrap {
               display: flex;
               align-items: center;
@@ -110,7 +110,7 @@
                 padding-left: 10px;
               }
             }
-
+            //공개여부
             &-public {
               span {
                 padding-left: 10px;
@@ -208,7 +208,7 @@
       &-wrap::-webkit-scrollbar {
         display: none;
       }
-
+      //지도가 보여질거야
       &-map {
         position: absolute;
         background-color: #ffffff;
@@ -247,40 +247,23 @@
         overflow: hidden;
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
-
+        //신고 수정 삭제 리스트 버튼
         .container {
           position: fixed;
           right: 6px;
           top: 5px;
 
-          &-trigger {
-            display: none;
-
-            &-label {
-              width: 7px;
-              display: block;
-              position: relative;
-              cursor: pointer;
-
-              span {
-                display: block;
-                height: 7px;
-                background-color: #606060;
-                left: 0;
-                width: 100%;
-                transition: 0.3s;
-                z-index: 1000;
-                margin: 2px 0;
-                border-radius: 70%;
-              }
-            }
+          i {
+            cursor: pointer;
+            font-size: 28px;
+            color: #a5a5a5;
           }
         }
-
+        //신고 수정 삭제 리스트
         .pop {
           width: 80px;
           height: 100px;
-          background-color: white;
+          background-color: rgba(255, 255, 255, 0.51);
           border-radius: 8px;
           position: fixed;
           top: 5px;
@@ -301,6 +284,8 @@
               width: 100%;
               text-align: center;
               cursor: pointer;
+              height: 100%;
+              padding: 5px;
 
               i {
                 color: $red;
@@ -312,10 +297,10 @@
             }
           }
         }
-
+        //게시물 내용
         .content {
           background-color: white;
-
+          //게시물 사진
           &-image {
             img {
               width: 100%;
@@ -326,20 +311,20 @@
           &-wrap {
             display: flex;
 
-
+            //프로필
             &-profile {
               display: flex;
               flex: 1 0 0;
               padding: 10px;
               align-items: center;
-
+              //프사
               img {
                 @include profile();
               }
-
+              //이름,팔로우 버튼,내용,해시태그
               &-info {
                 padding: 0 10px;
-
+                //이름 팔로우 버튼
                 .follow {
                   display: flex;
                   align-items: center;
@@ -374,11 +359,11 @@
                     }
                   }
                 }
-
+                //글내용
                 &-intro {
                   font-size: 14px;
                 }
-
+                //해시 태그
                 &-tag {
                   margin: 15px 0 0 0;
                   font-size: 12px;
@@ -387,18 +372,18 @@
               }
             }
 
+            //좋아요 북마크
             &-emotion {
               display: flex;
               margin: 6px;
               align-items: flex-start;
-
+              //좋아요
               &-like {
                 display: grid;
                 justify-items: center;
                 padding: 3px 7px 0 0;
 
                 span {
-
                   i {
                     font-size: 21px;
                     color: #F32626;
@@ -410,8 +395,8 @@
                 }
               }
 
+              //북마크
               &-book {
-
                 i {
                   cursor: pointer;
                   font-size: 21px;
@@ -428,12 +413,12 @@
             margin: 0 14px;
             border-bottom: 1px solid #CCCCCC;
             justify-content: flex-end;
-
+            //댓글수 조회수
             &-wrap {
-              font-size: 13px;
               color: #818181;
 
               span {
+                font-size: 13px;
                 padding-left: 17px;
               }
             }
@@ -471,6 +456,7 @@
               }
             }
 
+            //댓글 올리기버튼
             button {
               margin-left: 20px;
               border: none;
@@ -481,8 +467,6 @@
                 color: #818181;
               }
             }
-
-
           }
 
           &-null {
@@ -674,6 +658,664 @@
 
 }
 
+@include mb() {
+  .popup-manager {
+    .black {
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+      top: 0;
+      background-color: rgba(0, 0, 0, 0.8);
+      color: black;
+    }
+
+    .modal {
+      position: absolute;
+      z-index: 1;
+
+      //글쓰기 내용
+      &-inner {
+        @include center();
+        position: fixed;
+        max-width: 80%;
+        background-color: #ffffff;
+        box-shadow: 0 4px 6px;
+        width: 600px;
+        height: 500px;
+        border-radius: 0 0 6px 6px;
+
+        //취소 저장 올리기 버튼
+        .save-btn {
+          display: flex;
+          background-color: white;
+          padding: 15px;
+          position: relative;
+          bottom: 48px;
+          border-radius: 6px 6px 0 0;
+
+          .custom-button {
+            flex: 1 0 0;
+            padding-left: 10px;
+            border: none;
+            display: initial;
+            min-width: 50px;
+            height: 50px;
+            cursor: initial;
+            //취소
+            .cancel {
+              cursor: pointer;
+              color: #000000;
+            }
+          }
+
+          &-wrap {
+            .custom-button {
+              padding-left: 10px;
+              border: none;
+              display: initial;
+              min-width: 50px;
+              height: 50px;
+
+              .save {
+                color: #000000;
+              }
+
+              .upLoad {
+                color: #F32626;
+
+              }
+            }
+          }
+        }
+
+        //팝업내용 감싸기
+        &-wrap {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          overflow: hidden;
+          overflow-y: auto;
+          -webkit-overflow-scrolling: touch;
+          //글쓰기 팝업 내용
+          .content {
+            display: flex;
+            flex-direction: column;
+
+            //사진
+            .file {
+              padding: 15px;
+            }
+
+            //프로필 부분
+            &-profile {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              padding: 7px 15px;
+              //프사 , 이름
+              &-wrap {
+                display: flex;
+                align-items: center;
+
+                img {
+                  border-radius: 70%;
+                  width: 50px;
+                  height: 47px;
+                  box-shadow: none;
+                  object-fit: cover;
+                }
+
+                span {
+                  padding-left: 10px;
+                }
+              }
+
+              //전체공개, 비공개
+              &-public {
+                span {
+                  padding-left: 10px;
+                }
+
+              }
+            }
+
+            //내용입력 부분
+            &-content {
+              position: relative;
+              border-bottom: 1px solid #696969;
+              padding: 7px 15px;
+
+              .custom-input {
+                border: none;
+                border-radius: 0px;
+                padding: 0 20px;
+                width: 100%;
+                height: 184px;
+                max-width: none;
+                min-width: 0;
+                color: #000000;
+              }
+
+              //글자수
+              .count {
+                position: absolute;
+                bottom: 0;
+                right: 0;
+              }
+            }
+
+            //위치태그
+            &-position {
+              border-bottom: 1px solid #696969;
+
+              &-wrap {
+                display: flex;
+                padding: 15px;
+                font-size: 18px;
+
+                .title {
+                  flex: 1 0 0;
+                }
+
+                span {
+                  i {
+                    cursor: pointer;
+                  }
+                }
+              }
+            }
+
+            //인원수
+            &-person {
+
+
+              &-wrap {
+                padding: 15px;
+
+                span {
+                  font-size: 18px;
+                }
+              }
+            }
+
+            //태그입력
+            &-tag {
+              &-div {
+                border-bottom: 1px solid #696969;
+                padding: 2px 15px;
+                font-size: 18px;
+              }
+
+              &-wrap {
+                padding: 7px 15px;
+
+                .custom-input {
+                  border: none;
+                  border-radius: 0px;
+                  padding: 0 20px;
+                  width: 100%;
+                  height: 184px;
+                  max-width: none;
+                  min-width: 0;
+                  color: #000000;
+                }
+              }
+            }
+          }
+
+        }
+
+        &-wrap::-webkit-scrollbar {
+          display: none;
+        }
+
+        //지도 보여주기
+        &-map {
+          position: absolute;
+          background-color: #ffffff;
+          width: 100%;
+          height: 99%;
+          top: 0;
+
+          #map {
+            width: 400px;
+            height: 400px;
+            border: 1px #a8a8a8 solid;
+          }
+
+          //취소 완료 버튼
+          &-btn {
+            cursor: pointer;
+          }
+        }
+      }
+
+      //게시물 상세
+      &-detail {
+        z-index: 1;
+        @include center;
+        position: fixed;
+        max-width: 80%;
+        //box-shadow: 0 4px 6px;
+        width: 600px;
+        height: 500px;
+        //내용
+        &-content {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          overflow: hidden;
+          overflow-y: auto;
+          -webkit-overflow-scrolling: touch;
+          //게시물 수정 삭제 신고 메뉴
+          .container {
+            position: fixed;
+            right: 5px;
+            top: 5px;
+
+            i {
+              cursor: pointer;
+              font-size: 20px;
+              color: #a5a5a5;
+            }
+          }
+
+          //게시물 수정 삭제 신고
+          .pop {
+            width: 60px;
+            height: 80px;
+            background-color: rgba(255, 255, 255, 0.51);
+            border-radius: 8px;
+            position: fixed;
+            top: 5px;
+            right: 20px;
+            transition: 0.3s;
+
+            ul {
+
+              height: 80px;
+              list-style: none;
+              padding: 0;
+              display: grid;
+              align-items: center;
+              justify-items: center;
+
+
+              li {
+                font-size: 12px;
+                width: 100%;
+                text-align: center;
+                cursor: pointer;
+
+                i {
+                  font-size: 12px;
+                  color: $red;
+                }
+
+                &:hover {
+                  background-color: #dedede;
+                }
+              }
+            }
+          }
+
+          .content {
+            background-color: white;
+
+            &-image {
+              img {
+                width: 100%;
+
+              }
+            }
+
+            &-wrap {
+              display: flex;
+
+              //프로필
+              &-profile {
+                display: flex;
+                flex: 1 0 0;
+                padding: 10px;
+                align-items: center;
+                //프로필사진
+                img {
+                  border-radius: 70%;
+                  width: 66px;
+                  height: 66px;
+                  box-shadow: none;
+                  object-fit: cover;
+                }
+
+                //이름, 팔로우버튼
+                &-info {
+                  padding: 0 10px;
+
+                  .follow {
+                    display: flex;
+                    align-items: center;
+
+                    span {
+                      font-size: 16px;
+                      font-weight: bold;
+                      padding-right: 10px;
+                    }
+
+                    .custom-button {
+                      min-width: 0;
+                      height: 0;
+                      border: none;
+                      border-radius: 0;
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                      cursor: pointer;
+                      background-color: white;
+
+                      .follow_btn {
+                        margin: 0;
+                        padding: 0 12px;
+                        background-color: white;
+                        border: 1px solid #FA6C1A;
+                        font-size: 10px;
+                        font-weight: bold;
+                        border-radius: 15px;
+                        cursor: pointer;
+                        color: #000000;
+                      }
+                    }
+                  }
+
+                  //글내용
+                  &-intro {
+                    font-size: 12px;
+                  }
+
+                  //태그
+                  &-tag {
+                    margin: 15px 0 0 0;
+                    font-size: 10px;
+                    color: #0093E7;
+                  }
+                }
+              }
+
+              //좋아요 북마크 공유
+              &-emotion {
+                display: flex;
+                margin: 6px;
+                align-items: flex-start;
+
+                &-like {
+                  display: grid;
+                  justify-items: center;
+                  padding: 3px 7px 0 0;
+
+                  span {
+
+                    i {
+                      font-size: 18px;
+                      color: #F32626;
+                      cursor: pointer;
+                    }
+
+                    font-size: 10px;
+                    font-weight: bold;
+                  }
+                }
+
+                &-book {
+
+                  i {
+                    cursor: pointer;
+                    font-size: 18px;
+                    padding: 7px;
+                    color: #4A5568;
+                  }
+                }
+              }
+            }
+
+            //선 댓글, 조회수
+            &-line {
+              display: flex;
+              margin: 0 14px;
+              border-bottom: 1px solid #CCCCCC;
+              justify-content: flex-end;
+
+              &-wrap {
+                color: #818181;
+
+                span {
+                  font-size: 12px;
+                  padding-left: 17px;
+                }
+              }
+            }
+
+            //댓글 입력해주세요
+            &-enterComment {
+              margin: 10px 0;
+              padding: 10px;
+              background-color: #EEEEEE;
+              display: flex;
+
+              &-wrap {
+                position: relative;
+                flex: 1 0 0;
+                border-bottom: 1px solid #818181;
+
+                .custom-input {
+                  font-size: 14px;
+                  border: none;
+                  border-radius: 0;
+                  padding: 0 10px;
+                  max-width: none;
+                  min-width: 100px;
+                  height: 30px;
+                  margin-bottom: 0;
+                  background-color: #EEEEEE;
+                  color: #000000;
+                  width: 100%;
+                }
+
+                svg {
+                  position: absolute;
+                  left: 155px;
+                  bottom: 7px;
+                }
+              }
+
+              button {
+                margin-left: 10px;
+                border: none;
+                cursor: pointer;
+
+                i {
+                  font-size: 18px;
+                  color: #818181;
+                }
+              }
+
+
+            }
+
+            //댓글들
+            &-comments {
+              position: relative;
+              display: flex;
+              align-items: center;
+              padding: 8px 0;
+              margin: 0 11px;
+              border-bottom: 1px solid #EEEEEE;
+              //댓글프로필이미지
+              img {
+                width: 46px;
+                height: 46px;
+                object-fit: cover;
+                border-radius: 70%;
+              }
+
+              &-wrap {
+                display: grid;
+                align-content: space-around;
+                flex: 1 0 0;
+                margin-left: 10px;
+                height: 50px;
+                //유저 이름
+                span {
+                  font-weight: 700;
+                  font-size: 14px;
+                }
+
+                //유저 댓글
+                p {
+                  font-size: 14px;
+                }
+              }
+
+              //남긴시간 대댓글, 신고 버튼
+              &-option {
+                display: flex;
+                align-items: center;
+
+                span {
+                  color: #818181;
+                  margin: 0 7px;
+
+                  i {
+                    cursor: pointer;
+                    font-size: 16px;
+                  }
+                }
+
+                .date {
+                  font-size: 10px;
+                }
+
+                .report {
+                  color: #B70000;
+                }
+              }
+
+              .commentPop {
+                width: 35px;
+                height: 50px;
+                background-color: rgba(151, 151, 151, 0.76);
+                border-radius: 8px;
+                position: absolute;
+                top: 6px;
+                right: -4px;
+
+                ul {
+                  list-style: none;
+                  padding-inline-start: 0;
+                  display: grid;
+                  margin-top: 5px;
+
+                  li {
+                    width: 100%;
+                    text-align: center;
+                    cursor: pointer;
+                    font-size: 12px;
+
+                    &:hover {
+                      background-color: #dedede;
+                    }
+                  }
+                }
+              }
+
+            }
+
+          }
+        }
+
+        &-content::-webkit-scrollbar {
+          display: none;
+        }
+
+        .right {
+          cursor: pointer;
+          color: white;
+          position: relative;
+          top: 50%;
+          left: 830px;
+          font-size: 20px;
+        }
+
+        .left {
+          cursor: pointer;
+          color: white;
+          position: relative;
+          top: 50%;
+          right: 240px;
+          font-size: 20px;
+        }
+      }
+
+      //신고팝업
+      &-report {
+        @include center();
+        position: fixed;
+        max-width: 80%;
+        background-color: #ffffff;
+        box-shadow: 0 4px 6px;
+        width: 280px;
+        height: 280px;
+
+        span {
+          margin: 5px;
+          cursor: pointer;
+          float: right;
+        }
+
+        &-content {
+          margin: 20px 10px;
+        }
+
+        .custom-input {
+          border: 2px solid #B9B9B9;
+          border-radius: 0;
+          padding: 0 20px;
+          max-width: none;
+          min-width: 100px;
+          height: 124px;
+          color: #000000;
+          font-size: 16px;
+          font-weight: bold;
+          margin-bottom: 5px;
+        }
+
+        &-btn {
+          display: flex;
+          border: 1px solid #B9B9B9;
+          justify-content: space-around;
+
+          .custom-button {
+            position: relative;
+            min-width: 70px;
+            width: 40px;
+            height: 26px;
+            border: none;
+            border-radius: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            color: white;
+            background-color: rgba(255, 255, 255, 0);
+          }
+        }
+      }
+    }
+
+  }
+}
 
 .fade-enter-active,
 .fade-leave-active {

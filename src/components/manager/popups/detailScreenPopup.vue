@@ -193,12 +193,7 @@ export default {
     <div class="modal-detail-content">
       <div>
         <div class="container" @click="RerOption">
-          <input type="checkbox" class="container-trigger">
-          <label class="container-trigger-label">
-            <span></span>
-            <span></span>
-            <span></span>
-          </label>
+          <i class="fa-solid fa-ellipsis-vertical"></i>
         </div>
         <div class="pop" v-if="RerAction">
           <ul>
