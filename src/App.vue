@@ -55,7 +55,7 @@ export default {
     return {
       isLoading,
       isPopup,
-      POPUP_TYPE
+      POPUP_TYPE,
     };
   }
 };

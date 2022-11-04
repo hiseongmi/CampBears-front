@@ -11,6 +11,7 @@ import CustomLoading from "../components/layout/customLoading.vue";
 import HeaderPage from "../components/headerPage.vue";
 import customSelect from "../components/layout/customSelect.vue";
 import CustomDatePicker from "../components/layout/customDatePicker.vue";
+import pagination from "../components/layout/pagination.vue";
 
 export default {
   name: "mainPage",
@@ -23,11 +24,34 @@ export default {
     snsPage,
     myPage,
     HeaderPage,
+    pagination,
   },
 
   setup() {
+
+    const tagList = [
+      {
+        name: "#목포",
+        link: "http://localhost:3001/#/snsPage"
+      },
+      {
+        name: "#애견",
+        link: "http://localhost:3001/#/login"
+      },
+      {
+        name: "#파주",
+        link: "/snsPage"
+
+      },
+      {
+        name: "#차박"
+      },
+      {
+        name: "#노지"
+      },
+    ]
     const move = () => {
-      window.location.href = '#'
+      window.location.href = ''
     }
     const moving = () => {
       window.location.href = '#'
@@ -46,8 +70,9 @@ export default {
       // }
     };
     onMounted(initMap)
-    
+
     return {
+      tagList,
       initMap,
       move,
       moving,
@@ -86,6 +111,15 @@ export default {
       </svg>
       </span>
     </div>
+
+    <div class="info-box">
+      <div class="info-shapbox" v-for="item in tagList">
+        <a class="info-shap" :href="item.link">
+          {{ item.name }}
+        </a>
+      </div>
+    </div>
+
     <div class="info-mapbtn">
       <custom-button placeholder="지역별"></custom-button>
     </div>
@@ -99,7 +133,7 @@ export default {
       </div>
     </div>
     <!--    지도-->
-    <div id="map" style="width:32%;height:330px;margin: 0 auto">지도</div>
+    <div id="map" style="width:55%; height: 350px;margin: 0 auto; z-index: 0">지도</div>
 
   </div>
 
@@ -112,15 +146,30 @@ export default {
       <option value="3">리뷰순</option>
     </select>
     <select name="count" data-title="필터">
-      <option value="0">필터 ▼</option>
-      <option value="1">시간순</option>
-      <option value="2">가나다순</option>
-      <option value="3">리뷰순</option>
+      <option value="0">인원 ▼</option>
+      <option value="1">`</option>
+      <option value="2">`</option>
+      <option value="3">`</option>
+    </select>
+    <select name="count" data-title="필터">
+      <option value="0">가격 ▼</option>
+      <option value="1">`</option>
+      <option value="2">`</option>
+      <option value="3">`</option>
+    </select>
+    <select name="count" data-title="필터">
+      <option value="0">구비시설 ▼</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">2</option>
     </select>
   </div>
   <div class="info-camp">
     <div class="info-content">
 
     </div>
+  </div>
+  <div class="info-pagination">
+    <pagination></pagination>
   </div>
 </template>

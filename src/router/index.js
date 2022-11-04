@@ -43,6 +43,7 @@ const routes = [
         component: () => import("../views/infoPage.vue"),
     },
 
+
 ];
 
 const router = createRouter({

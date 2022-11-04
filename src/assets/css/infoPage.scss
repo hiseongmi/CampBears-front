@@ -386,7 +386,7 @@
         border-bottom: 1px solid rgba(204, 204, 204, 0.5);
         color: #EA3323;
         font-size: 20px;
-        //inline-size: -webkit-fill-available;
+
         text-align: left;
         margin: 13px;
         margin-bottom: 0px;
@@ -447,10 +447,10 @@
   height: 880px;
   position: relative;
   top: -126px;
-  
-.header {
-  padding-bottom: 10px;
-}
+
+  .header {
+    padding-bottom: 10px;
+  }
 
   h1 {
     font-size: 40px;
@@ -460,6 +460,7 @@
   .info-serch {
     margin: 2%;
     text-align: center;
+
 
     span {
       position: relative;
@@ -475,8 +476,24 @@
       width: 70%;
       max-width: 500px;
       box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.3);
+
     }
   }
+
+
+  .info-shapbox {
+    display: inline-block;
+
+    .info-shap {
+      text-align: center;
+      position: relative;
+      margin-right: 37px;
+      top: -19px;
+      color: #666666;
+      text-decoration: none;
+    }
+  }
+
 
   .date-box {
     text-align: center;
@@ -594,7 +611,7 @@
     position: relative;
     margin-right: 1.2%;
     border-radius: 5px;
-    left: -372px;
+    left: -269px;
   }
 }
 
@@ -610,5 +627,12 @@
   .info-content {
 
   }
+
+}
+
+.info-pagination {
+  position: relative;
+  text-align: center;
+
 }
 
