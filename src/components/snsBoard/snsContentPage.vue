@@ -6,10 +6,14 @@ import { onMounted, onUnmounted, ref } from "vue";
 import { apiClient } from "../../utils/axios.js";
 import customSelect from "../layout/customSelect.vue";
 import { useRoute } from "vue-router";
+import Pagination from "../layout/pagination.vue";
+import LoginNaver from "../snslogin/loginNaver.vue";
 
 export default {
   name: "snsContentPage",
   components: {
+    LoginNaver,
+    Pagination,
     Profile,
     customSelect,
   },
@@ -187,4 +191,6 @@ export default {
       </div>
     </div>
   </div>
+  <pagination />
+  <login-naver />
 </template>

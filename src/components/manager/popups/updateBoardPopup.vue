@@ -23,6 +23,9 @@ export default {
     const updateData = ref({
       boardIdx: store.state.boardIdx,
       boardBody: "",
+      userIdx: "",
+      dateMod: "",
+      dateReg: "",
     });
     const update = async () => {
       const data = await apiClient("/sns/updateSns", updateData.value);
@@ -35,7 +38,6 @@ export default {
     };
 
     return {
-      close,
       updateData,
       update,
     };
@@ -66,7 +68,7 @@ export default {
           </div>
         </div>
         <div class="content-content">
-          <custom-input :custom-class="'content'" :placeholder="detailData.boardBody"
+          <custom-input :custom-class="'content'" :placeholder="'문구 입력...'"
                         @update:value="updateData.boardBody = $event">
           </custom-input>
           <div class="count">

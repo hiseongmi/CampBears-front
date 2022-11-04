@@ -30,8 +30,14 @@ export default {
       RerAction.value = !RerAction.value;
     }; //수정신고삭제 옵션
     const RerCommentActive = ref(false);
-    const RerCommentOption = () => {
-      RerCommentActive.value = !RerCommentActive.value;
+    const RerCommentOption = (commentIdx) => {
+      store.commit(STORE_TYPE.commentIdx, commentIdx);
+      console.log(store.state.commentIdx);
+      if (store.state.commentIdx) {
+        RerCommentActive.value = !RerCommentActive.value;
+      } else {
+        console.log("x");
+      }
     }; //댓글 수정 신고 삭제 옵션
 
     const followData = ref({ followType: "", targetIdx: "", targetType: "" });
@@ -77,7 +83,7 @@ export default {
     };
     //댓글 조회 api
     const getComment = ref({ boardIdx: store.state.boardIdx });
-    const commentListData = ref({});
+    const commentListData = ref({ commentIdx: "" });
     const commentList = async () => {
       const data = await apiClient("/comment/getCommentList", getComment.value);
       if (data.resultCode === 0) {
@@ -269,7 +275,7 @@ export default {
           <div class="content-comments-option">
             <span class="date">{{ item.dateReg }}</span>
             <span> <i class="fa-regular fa-comment"></i></span>
-            <span @click="RerCommentOption()"><i class="fa-solid fa-ellipsis-vertical"></i></span>
+            <span @click="RerCommentOption(item.commentIdx)"><i class="fa-solid fa-ellipsis-vertical"></i></span>
           </div>
           <div class="commentPop" v-if="RerCommentActive">
             <ul>

@@ -1,15 +1,14 @@
 <script>
-import {onMounted, ref} from "vue";
-import {apiClient} from "../../../utils/axios.js";
+import { onMounted, ref } from "vue";
+import { apiClient } from "../../../utils/axios.js";
 import CustomButton from "../../layout/customButton.vue";
 import CustomInput from "../../layout/customInput.vue";
-import {getStore, POPUP_TYPE, STORE_TYPE} from "../../../store/index.js";
+import { getStore, POPUP_TYPE, STORE_TYPE } from "../../../store/index.js";
 import router from "../../../router/index.js";
-
 
 export default {
   name: "writeBoardPopup",
-  components: {CustomInput, CustomButton,},
+  components: { CustomInput, CustomButton },
   props: {
     clickClose: {
       type: Function,
@@ -17,6 +16,7 @@ export default {
     },
   },
   setup() {
+
     const store = getStore();
     const isPopup = ref(store.state.popupType);
 
@@ -35,6 +35,7 @@ export default {
         window.alert("내용을 입력해주세요.");
       }
     };
+
     const pAction = ref(false);
     const position = () => {
       pAction.value = !pAction.value;
@@ -62,6 +63,9 @@ export default {
     //   initMap();
     // };
 
+    onMounted(() => {
+      initMap();
+    });
 
     return {
       // addScript,
@@ -104,16 +108,16 @@ export default {
 <template>
   <div class="modal-inner">
     <div class="save-btn">
-      <custom-button :customClass="'cancel'" :placeholder="'취소'" :onClick="clickClose"/>
+      <custom-button :customClass="'cancel'" :placeholder="'취소'" :onClick="clickClose" />
       <div class="save-btn-wrap">
-        <custom-button :customClass="'save'" :placeholder="'저장'" :onClick="clickClose"/>
-        <custom-button :customClass="'upLoad'" :placeholder="'올리기'" :onClick="upLoad"/>
+        <custom-button :customClass="'save'" :placeholder="'저장'" :onClick="clickClose" />
+        <custom-button :customClass="'upLoad'" :placeholder="'올리기'" :onClick="upLoad" />
       </div>
     </div>
     <div class="modal-inner-wrap">
       <div class="content">
         <div class="file">
-          <input type="file"/>
+          <input type="file" />
         </div>
         <div class="content-profile">
           <div class="content-profile-wrap">
@@ -127,7 +131,7 @@ export default {
         </div>
         <div class="content-content">
           <custom-input :custom-class="'content'" :placeholder="'문구 입력...'"
-                        @update:value="upLoadData.boardBody = $event"/>
+                        @update:value="upLoadData.boardBody = $event" />
           <div class="count">
             (0 / 200)
           </div>
@@ -161,7 +165,8 @@ export default {
           </div>
         </div>
         <div class="comment">
-          test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test<br/>test
+          <div id="map">
+          </div>
         </div>
       </div>
     </div>
@@ -169,10 +174,9 @@ export default {
       <div id="map">
 
       </div>
-
       <div class="modal-inner-map-btn">
         <span @click="position">취소</span>
-        <span @click="initMap">완료</span>
+        <span @click="initMap">지도보기</span>
       </div>
     </div>
 
