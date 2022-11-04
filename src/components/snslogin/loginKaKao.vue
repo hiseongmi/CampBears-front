@@ -1,7 +1,7 @@
 <script>
 import axios from "axios";
 import {onMounted} from "vue";
-import data from "../../data/index.js";
+
 
 export default {
   name: "loginKakao",

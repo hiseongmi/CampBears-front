@@ -1,11 +1,11 @@
 <script>
-import { useRoute } from "vue-router";
+import {useRoute} from "vue-router";
 import customLoading from "./components/layout/customLoading.vue";
-import { computed, onMounted, onUnmounted, ref, watch } from "vue";
-import { CONSTANTS } from "./constants.js";
-import { apiClient } from "./utils/axios.js";
+import {computed, onMounted, onUnmounted, ref, watch} from "vue";
+import {CONSTANTS} from "./constants.js";
+import {apiClient} from "./utils/axios.js";
 import popupManager from "./components/manager/popupManager.vue";
-import { getStore, POPUP_TYPE } from "./store/index.js";
+import {getStore, POPUP_TYPE} from "./store/index.js";
 import HeaderPage from "./components/headerPage.vue";
 import FooterPage from "./components/footerPage.vue";
 
@@ -36,10 +36,10 @@ export default {
     };
 
     watch(
-      () => store.state.popupType,
-      () => {
-        isPopup.value = store.state.popupType;
-      }
+        () => store.state.popupType,
+        () => {
+          isPopup.value = store.state.popupType;
+        }
     );
 
     onMounted(() => {
@@ -62,13 +62,13 @@ export default {
 </script>
 
 <template>
-  <header-page />
-  <router-view />
+  <header-page/>
+  <router-view/>
   <custom-loading v-if="isLoading"></custom-loading>
   <Transition name="fade">
     <popup-manager v-if="isPopup !== POPUP_TYPE.NONE"></popup-manager>
   </Transition>
-  <footer-page />
+  <footer-page/>
 </template>
 
 <style lang="scss">

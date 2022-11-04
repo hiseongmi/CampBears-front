@@ -4,17 +4,22 @@ import customInput from "../components/layout/customInput.vue";
 import customButton from "../components/layout/customButton.vue";
 import snsPage from "./snsPage.vue";
 import myPage from "./myPage.vue";
+import infoPage from "./infoPage.vue";
 import {apiClient} from "../utils/axios.js";
 import {onMounted} from "vue";
+import CustomLoading from "../components/layout/customLoading.vue";
+// import {e} from "../../dist/assets/index.a54a7291.js";
 
 
 export default {
   name: "mainPage",
   components: {
+    CustomLoading,
     customInput,
     customButton,
     snsPage,
     myPage,
+    infoPage,
   },
 
   setup() {
@@ -24,31 +29,10 @@ export default {
     const moving = () => {
       window.location.href = '#'
     }
-    const right = () => {
-      // .news-ul {
-      //   transform: translateX(241px)
-      // }
-    }
-    // function filter() {
-
-    // var content = document.getElementById("searchbar").value;
-    // if (content.trim() === "") {
-    //   alert("검색어를 입력해주세요")
-    //   return false;
-    // } else if (content.trim() === "") {
-    //   alert("")
-    // }
-    // window.onload = function () {//윈도우가 열리면
-    //   document.getElementById("A").onclick = function () {
-    //     alert("A함수호5출");
-    //     console.log(el.value)
-    //   }
+    // const mousewheel = () => {
+    //   scrollX -= (date * 40)
     //
-    //   document.getElementById("B").onclick = function () {
-    //     alert("B함수호출");
-    //   }
-    // }
-
+    //   e()
     // }
 
     return {
@@ -60,8 +44,6 @@ export default {
 };
 </script>
 <template>
-  <!--  <input type="button" value="A함수호출" id="A" @click="filter"/>-->
-  <!--  <input type="button" value="B함수호출" id="B"/>-->
 
   <div class="main-box">
     <div class="main-fir">
@@ -73,7 +55,6 @@ export default {
       <custom-button :placeholder="`캠핑용품 중고거래`" :onClick="moving"></custom-button>
     </div>
   </div>
-
 
   <div class="main-icon">
     <a href="#">
@@ -217,7 +198,7 @@ export default {
       <span>오토캠핑</span>
     </a>
 
-  
+
     <a href="">
       <svg width="68" height="68" viewBox="0 0 68 68" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g filter="url(#filter0_d_1_2)">
@@ -329,7 +310,7 @@ export default {
     <sns-page></sns-page>
   </div>
   <div class="view-all">
-    <custom-button :placeholder="`view All`" :onClick="moving"></custom-button>
+    <custom-button :placeholder="`더보기`" :onClick="moving"></custom-button>
   </div>
 
   <div class="add-banner">
@@ -342,7 +323,7 @@ export default {
   </div>
   <div class="main-campsite">
     <h2>HAND OVER A CAMPSITE</h2>
-    <custom-button :placeholder="`view All`" :onClick="moving"></custom-button>
+    <custom-button :placeholder="`더보기`" :onClick="moving"></custom-button>
   </div>
 
   <div class="autocamp-box">
@@ -440,11 +421,11 @@ export default {
 
   <div class="main-campsite">
     <h2>USED MARKET</h2>
-    <custom-button :placeholder="`view All`" :onClick="moving"></custom-button>
+    <custom-button :placeholder="`더보기`" :onClick="moving"></custom-button>
   </div>
   <div class="market-box">
     <!--    1-->
-    <div class="main-market">
+    <div class="main-market-fir">
       <div class="market-img">
         <svg width="50" height="19" viewBox="0 0 50 19" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect width="50" height="19" rx="5" fill="#EA3323"/>
@@ -454,86 +435,25 @@ export default {
         </svg>
       </div>
       <div class="market-content">
+
         <h1>Shim Craft [심크레프트]</h1>
-        <span class="market-sub">나는야 판매왕</span>
-        <span class="market-exp">한번밖에 쓰지 않은 심크레프트    정수기 팝니다~
-컬러: 브론드 컬러  </span>
-        <span class="market-price">59.000원</span>
-      </div>
-      <div class="market-calendar">
-        <span class="market-time">3일 전</span>
-        <span class="market-like">3</span>
-        <span class="market-see">89</span>
-      </div>
-    </div>
-    <!--    2-->
-    <div class="main-market">
-      <div class="market-img">
-        <svg width="50" height="19" viewBox="0 0 50 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect width="50" height="19" rx="5" fill="#EA3323"/>
-          <path
-              d="M7.708 4.628V5.9H13.636V4.628H7.708ZM7.588 9.92C9.424 9.92 11.944 9.872 14.128 9.488L14.02 8.312C11.872 8.6 9.292 8.624 7.42 8.624L7.588 9.92ZM8.584 5.516V9.2H10.12V5.516H8.584ZM11.236 5.516V9.2H12.76V5.516H11.236ZM14.632 3.956V10.136H16.228V3.956H14.632ZM15.784 6.344V7.652H17.704V6.344H15.784ZM8.968 10.556V14.948H16.228V10.556H14.644V11.504H10.552V10.556H8.968ZM10.552 12.74H14.644V13.676H10.552V12.74ZM26.2111 3.956V15.068H27.8071V3.956H26.2111ZM19.1071 5.012V11.912H20.6911V5.012H19.1071ZM19.1071 10.976V12.332H20.0911C21.7831 12.332 23.6191 12.212 25.5271 11.816L25.3471 10.496C23.5111 10.856 21.7111 10.976 20.0911 10.976H19.1071ZM36.6621 3.944V15.092H38.2701V3.944H36.6621ZM37.9101 8.06V9.368H39.8781V8.06H37.9101ZM29.9901 11.096V12.416H30.9261C32.8581 12.416 34.3821 12.368 36.0621 12.068L35.9061 10.748C34.2741 11.036 32.7981 11.096 30.9261 11.096H29.9901ZM29.9901 4.976V11.732H31.5741V6.26H35.1741V4.976H29.9901Z"
-              fill="white"/>
-        </svg>
-      </div>
-      <div class="market-content">
-        <h1>Shim Craft [심크레프트]</h1>
-        <span class="market-sub">나는야 판매왕</span>
-        <span class="market-exp">한번밖에 쓰지 않은 심크레프트    정수기 팝니다~
-컬러: 브론드 컬러  </span>
-        <span class="market-price">59.000원</span>
-      </div>
-      <div class="market-calendar">
-        <span class="market-time">3일 전</span>
-        <span class="market-like">3</span>
-        <span class="market-see">89</span>
-      </div>
-    </div>
-    <!--    3-->
-    <div class="main-market">
-      <div class="market-img">
-        <svg width="50" height="19" viewBox="0 0 50 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect width="50" height="19" rx="5" fill="#EA3323"/>
-          <path
-              d="M7.708 4.628V5.9H13.636V4.628H7.708ZM7.588 9.92C9.424 9.92 11.944 9.872 14.128 9.488L14.02 8.312C11.872 8.6 9.292 8.624 7.42 8.624L7.588 9.92ZM8.584 5.516V9.2H10.12V5.516H8.584ZM11.236 5.516V9.2H12.76V5.516H11.236ZM14.632 3.956V10.136H16.228V3.956H14.632ZM15.784 6.344V7.652H17.704V6.344H15.784ZM8.968 10.556V14.948H16.228V10.556H14.644V11.504H10.552V10.556H8.968ZM10.552 12.74H14.644V13.676H10.552V12.74ZM26.2111 3.956V15.068H27.8071V3.956H26.2111ZM19.1071 5.012V11.912H20.6911V5.012H19.1071ZM19.1071 10.976V12.332H20.0911C21.7831 12.332 23.6191 12.212 25.5271 11.816L25.3471 10.496C23.5111 10.856 21.7111 10.976 20.0911 10.976H19.1071ZM36.6621 3.944V15.092H38.2701V3.944H36.6621ZM37.9101 8.06V9.368H39.8781V8.06H37.9101ZM29.9901 11.096V12.416H30.9261C32.8581 12.416 34.3821 12.368 36.0621 12.068L35.9061 10.748C34.2741 11.036 32.7981 11.096 30.9261 11.096H29.9901ZM29.9901 4.976V11.732H31.5741V6.26H35.1741V4.976H29.9901Z"
-              fill="white"/>
-        </svg>
-      </div>
-      <div class="market-content">
-        <h1>Shim Craft [심크레프트]</h1>
-        <span class="market-sub">나는야 판매왕</span>
-        <span class="market-exp">한번밖에 쓰지 않은 심크레프트    정수기 팝니다~
-컬러: 브론드 컬러  </span>
-        <span class="market-price">59.000원</span>
-      </div>
-      <div class="market-calendar">
-        <span class="market-time">3일 전</span>
-        <span class="market-like">3</span>
-        <span class="market-see">89</span>
-      </div>
-    </div>
-    <!--    4-->
-    <div class="main-market">
-      <div class="market-img">
-        <svg width="50" height="19" viewBox="0 0 50 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect width="50" height="19" rx="5" fill="#EA3323"/>
-          <path
-              d="M7.708 4.628V5.9H13.636V4.628H7.708ZM7.588 9.92C9.424 9.92 11.944 9.872 14.128 9.488L14.02 8.312C11.872 8.6 9.292 8.624 7.42 8.624L7.588 9.92ZM8.584 5.516V9.2H10.12V5.516H8.584ZM11.236 5.516V9.2H12.76V5.516H11.236ZM14.632 3.956V10.136H16.228V3.956H14.632ZM15.784 6.344V7.652H17.704V6.344H15.784ZM8.968 10.556V14.948H16.228V10.556H14.644V11.504H10.552V10.556H8.968ZM10.552 12.74H14.644V13.676H10.552V12.74ZM26.2111 3.956V15.068H27.8071V3.956H26.2111ZM19.1071 5.012V11.912H20.6911V5.012H19.1071ZM19.1071 10.976V12.332H20.0911C21.7831 12.332 23.6191 12.212 25.5271 11.816L25.3471 10.496C23.5111 10.856 21.7111 10.976 20.0911 10.976H19.1071ZM36.6621 3.944V15.092H38.2701V3.944H36.6621ZM37.9101 8.06V9.368H39.8781V8.06H37.9101ZM29.9901 11.096V12.416H30.9261C32.8581 12.416 34.3821 12.368 36.0621 12.068L35.9061 10.748C34.2741 11.036 32.7981 11.096 30.9261 11.096H29.9901ZM29.9901 4.976V11.732H31.5741V6.26H35.1741V4.976H29.9901Z"
-              fill="white"/>
-        </svg>
-      </div>
-      <div class="market-content">
-        <h1>Shim Craft [심크레프트]</h1>
-        <span class="market-sub">나는야 판매왕</span>
-        <span class="market-exp">한번밖에 쓰지 않은 심크레프트    정수기 팝니다~
-컬러: 브론드 컬러  </span>
-        <span class="market-price">59.000원</span>
-      </div>
-      <div class="market-calendar">
-        <span class="market-time">3일 전</span>
-        <span class="market-like">
-          <svg width="14" height="11" viewBox="0 0 14 11" fill="none"
-               xmlns="http://www.w3.org/2000/svg">
+        <a>나는야 판매왕</a>
+        <span>한번밖에 쓰지 않은 심크레프트 <br>정수기 팝니다~</span>
+        <span>컬러: 브론즈 컬러</span>
+        <p>59.000원</p>
+
+        <p class="market-like">
+          <a>
+            <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                  d="M5.5 10C7.98528 10 10 7.98528 10 5.5C10 3.01472 7.98528 1 5.5 1C3.01472 1 1 3.01472 1 5.5C1 7.98528 3.01472 10 5.5 10Z"
+                  stroke="#818181" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M5.5 2.80005V5.50005L7.3 6.40005" stroke="#818181" stroke-width="0.9" stroke-linecap="round"
+                    stroke-linejoin="round"/>
+            </svg>
+            3일전
+          </a>
+          <span><svg width="14" height="11" viewBox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M1 5.5C1 5.5 3.25 1 7.1875 1C11.125 1 13.375 5.5 13.375 5.5" stroke="#818181" stroke-linecap="round"
       stroke-linejoin="round"/>
 <path d="M1 5.50031C1 5.50031 3.25 10.0003 7.1875 10.0003C11.125 10.0003 13.375 5.50031 13.375 5.50031" stroke="#818181"
@@ -541,11 +461,182 @@ export default {
 <path
     d="M7.1875 7.18774C8.11948 7.18774 8.875 6.43222 8.875 5.50024C8.875 4.56826 8.11948 3.81274 7.1875 3.81274C6.25552 3.81274 5.5 4.56826 5.5 5.50024C5.5 6.43222 6.25552 7.18774 7.1875 7.18774Z"
     stroke="#818181" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-3
-        </span>
-        <span class="market-see">89</span>
+</svg>89
+</span>
+
+          <span><svg width="12" height="11" viewBox="0 0 12 11" fill="none"
+                     xmlns="http://www.w3.org/2000/svg">
+<path
+    d="M1.60844 5.59993C0.526769 4.13324 0.887326 1.93321 2.69011 1.19987C4.49289 0.466523 5.57457 1.93321 5.93512 2.66656C6.29568 1.93321 7.73791 0.466523 9.54069 1.19987C11.3435 1.93321 11.3435 4.13324 10.2618 5.59993C9.18013 7.06662 5.93512 10 5.93512 10C5.93512 10 2.69011 7.06662 1.60844 5.59993Z"
+    stroke="#818181" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>3
+</span>
+        </p>
       </div>
+
+    </div>
+    <!--    2-->
+    <div class="main-market-sec">
+      <div class="market-img">
+        <svg width="50" height="19" viewBox="0 0 50 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="50" height="19" rx="5" fill="#EA3323"/>
+          <path
+              d="M7.708 4.628V5.9H13.636V4.628H7.708ZM7.588 9.92C9.424 9.92 11.944 9.872 14.128 9.488L14.02 8.312C11.872 8.6 9.292 8.624 7.42 8.624L7.588 9.92ZM8.584 5.516V9.2H10.12V5.516H8.584ZM11.236 5.516V9.2H12.76V5.516H11.236ZM14.632 3.956V10.136H16.228V3.956H14.632ZM15.784 6.344V7.652H17.704V6.344H15.784ZM8.968 10.556V14.948H16.228V10.556H14.644V11.504H10.552V10.556H8.968ZM10.552 12.74H14.644V13.676H10.552V12.74ZM26.2111 3.956V15.068H27.8071V3.956H26.2111ZM19.1071 5.012V11.912H20.6911V5.012H19.1071ZM19.1071 10.976V12.332H20.0911C21.7831 12.332 23.6191 12.212 25.5271 11.816L25.3471 10.496C23.5111 10.856 21.7111 10.976 20.0911 10.976H19.1071ZM36.6621 3.944V15.092H38.2701V3.944H36.6621ZM37.9101 8.06V9.368H39.8781V8.06H37.9101ZM29.9901 11.096V12.416H30.9261C32.8581 12.416 34.3821 12.368 36.0621 12.068L35.9061 10.748C34.2741 11.036 32.7981 11.096 30.9261 11.096H29.9901ZM29.9901 4.976V11.732H31.5741V6.26H35.1741V4.976H29.9901Z"
+              fill="white"/>
+        </svg>
+      </div>
+      <div class="market-content">
+
+        <h1>캠핑 BBQ 화로 그린 [오슬로]</h1>
+        <a>첫날밤꿈에젖어</a>
+        <span>오슬로 화로 팔아요
+<br>상태 양호 합니다
+<br>택배거래 / 직거래 가능합니다
+ </span>
+
+        <p>40.000원</p>
+
+        <p class="market-like">
+          <a>
+            <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                  d="M5.5 10C7.98528 10 10 7.98528 10 5.5C10 3.01472 7.98528 1 5.5 1C3.01472 1 1 3.01472 1 5.5C1 7.98528 3.01472 10 5.5 10Z"
+                  stroke="#818181" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M5.5 2.80005V5.50005L7.3 6.40005" stroke="#818181" stroke-width="0.9" stroke-linecap="round"
+                    stroke-linejoin="round"/>
+            </svg>
+            7일 전
+          </a>
+          <span><svg width="14" height="11" viewBox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M1 5.5C1 5.5 3.25 1 7.1875 1C11.125 1 13.375 5.5 13.375 5.5" stroke="#818181" stroke-linecap="round"
+      stroke-linejoin="round"/>
+<path d="M1 5.50031C1 5.50031 3.25 10.0003 7.1875 10.0003C11.125 10.0003 13.375 5.50031 13.375 5.50031" stroke="#818181"
+      stroke-linecap="round" stroke-linejoin="round"/>
+<path
+    d="M7.1875 7.18774C8.11948 7.18774 8.875 6.43222 8.875 5.50024C8.875 4.56826 8.11948 3.81274 7.1875 3.81274C6.25552 3.81274 5.5 4.56826 5.5 5.50024C5.5 6.43222 6.25552 7.18774 7.1875 7.18774Z"
+    stroke="#818181" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>112
+</span>
+
+          <span><svg width="12" height="11" viewBox="0 0 12 11" fill="none"
+                     xmlns="http://www.w3.org/2000/svg">
+<path
+    d="M1.60844 5.59993C0.526769 4.13324 0.887326 1.93321 2.69011 1.19987C4.49289 0.466523 5.57457 1.93321 5.93512 2.66656C6.29568 1.93321 7.73791 0.466523 9.54069 1.19987C11.3435 1.93321 11.3435 4.13324 10.2618 5.59993C9.18013 7.06662 5.93512 10 5.93512 10C5.93512 10 2.69011 7.06662 1.60844 5.59993Z"
+    stroke="#818181" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>5
+</span>
+        </p>
+      </div>
+
+    </div>
+    <!--    3-->
+    <div class="main-market-thi">
+      <div class="market-img">
+        <svg width="50" height="19" viewBox="0 0 50 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="50" height="19" rx="5" fill="#EA3323"/>
+          <path
+              d="M7.708 4.628V5.9H13.636V4.628H7.708ZM7.588 9.92C9.424 9.92 11.944 9.872 14.128 9.488L14.02 8.312C11.872 8.6 9.292 8.624 7.42 8.624L7.588 9.92ZM8.584 5.516V9.2H10.12V5.516H8.584ZM11.236 5.516V9.2H12.76V5.516H11.236ZM14.632 3.956V10.136H16.228V3.956H14.632ZM15.784 6.344V7.652H17.704V6.344H15.784ZM8.968 10.556V14.948H16.228V10.556H14.644V11.504H10.552V10.556H8.968ZM10.552 12.74H14.644V13.676H10.552V12.74ZM26.2111 3.956V15.068H27.8071V3.956H26.2111ZM19.1071 5.012V11.912H20.6911V5.012H19.1071ZM19.1071 10.976V12.332H20.0911C21.7831 12.332 23.6191 12.212 25.5271 11.816L25.3471 10.496C23.5111 10.856 21.7111 10.976 20.0911 10.976H19.1071ZM36.6621 3.944V15.092H38.2701V3.944H36.6621ZM37.9101 8.06V9.368H39.8781V8.06H37.9101ZM29.9901 11.096V12.416H30.9261C32.8581 12.416 34.3821 12.368 36.0621 12.068L35.9061 10.748C34.2741 11.036 32.7981 11.096 30.9261 11.096H29.9901ZM29.9901 4.976V11.732H31.5741V6.26H35.1741V4.976H29.9901Z"
+              fill="white"/>
+        </svg>
+      </div>
+      <div class="market-content">
+
+        <h1>제품명을 적어주세요........</h1>
+        <a>인증회원명</a>
+        <span> 제품상세텍스트 제품설명 제품정보
+<br>.
+<br>.
+ </span>
+
+        <p>85.000원</p>
+
+        <p class="market-like">
+          <a>
+            <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                  d="M5.5 10C7.98528 10 10 7.98528 10 5.5C10 3.01472 7.98528 1 5.5 1C3.01472 1 1 3.01472 1 5.5C1 7.98528 3.01472 10 5.5 10Z"
+                  stroke="#818181" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M5.5 2.80005V5.50005L7.3 6.40005" stroke="#818181" stroke-width="0.9" stroke-linecap="round"
+                    stroke-linejoin="round"/>
+            </svg>
+            2시간 전
+          </a>
+          <span><svg width="14" height="11" viewBox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M1 5.5C1 5.5 3.25 1 7.1875 1C11.125 1 13.375 5.5 13.375 5.5" stroke="#818181" stroke-linecap="round"
+      stroke-linejoin="round"/>
+<path d="M1 5.50031C1 5.50031 3.25 10.0003 7.1875 10.0003C11.125 10.0003 13.375 5.50031 13.375 5.50031" stroke="#818181"
+      stroke-linecap="round" stroke-linejoin="round"/>
+<path
+    d="M7.1875 7.18774C8.11948 7.18774 8.875 6.43222 8.875 5.50024C8.875 4.56826 8.11948 3.81274 7.1875 3.81274C6.25552 3.81274 5.5 4.56826 5.5 5.50024C5.5 6.43222 6.25552 7.18774 7.1875 7.18774Z"
+    stroke="#818181" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>1
+</span>
+
+          <span><svg width="12" height="11" viewBox="0 0 12 11" fill="none"
+                     xmlns="http://www.w3.org/2000/svg">
+<path
+    d="M1.60844 5.59993C0.526769 4.13324 0.887326 1.93321 2.69011 1.19987C4.49289 0.466523 5.57457 1.93321 5.93512 2.66656C6.29568 1.93321 7.73791 0.466523 9.54069 1.19987C11.3435 1.93321 11.3435 4.13324 10.2618 5.59993C9.18013 7.06662 5.93512 10 5.93512 10C5.93512 10 2.69011 7.06662 1.60844 5.59993Z"
+    stroke="#818181" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>0
+</span>
+        </p>
+      </div>
+
+    </div>
+    <!--    4-->
+    <div class="main-market-for">
+      <div class="market-img">
+        <span>거래 완료</span>
+        <svg width="50" height="19" viewBox="0 0 50 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="50" height="19" rx="5" fill="#EA3323"/>
+          <path
+              d="M7.708 4.628V5.9H13.636V4.628H7.708ZM7.588 9.92C9.424 9.92 11.944 9.872 14.128 9.488L14.02 8.312C11.872 8.6 9.292 8.624 7.42 8.624L7.588 9.92ZM8.584 5.516V9.2H10.12V5.516H8.584ZM11.236 5.516V9.2H12.76V5.516H11.236ZM14.632 3.956V10.136H16.228V3.956H14.632ZM15.784 6.344V7.652H17.704V6.344H15.784ZM8.968 10.556V14.948H16.228V10.556H14.644V11.504H10.552V10.556H8.968ZM10.552 12.74H14.644V13.676H10.552V12.74ZM26.2111 3.956V15.068H27.8071V3.956H26.2111ZM19.1071 5.012V11.912H20.6911V5.012H19.1071ZM19.1071 10.976V12.332H20.0911C21.7831 12.332 23.6191 12.212 25.5271 11.816L25.3471 10.496C23.5111 10.856 21.7111 10.976 20.0911 10.976H19.1071ZM36.6621 3.944V15.092H38.2701V3.944H36.6621ZM37.9101 8.06V9.368H39.8781V8.06H37.9101ZM29.9901 11.096V12.416H30.9261C32.8581 12.416 34.3821 12.368 36.0621 12.068L35.9061 10.748C34.2741 11.036 32.7981 11.096 30.9261 11.096H29.9901ZM29.9901 4.976V11.732H31.5741V6.26H35.1741V4.976H29.9901Z"
+              fill="white"/>
+        </svg>
+      </div>
+      <div class="market-content">
+
+        <h1>제품명을 적어주세요........</h1>
+        <a>인증회원명</a>
+        <span> 제품상세텍스트 제품설명 제품정보
+<br>.
+<br>.
+ </span>
+
+        <p>85.000원</p>
+
+        <p class="market-like">
+          <a>
+            <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                  d="M5.5 10C7.98528 10 10 7.98528 10 5.5C10 3.01472 7.98528 1 5.5 1C3.01472 1 1 3.01472 1 5.5C1 7.98528 3.01472 10 5.5 10Z"
+                  stroke="#818181" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M5.5 2.80005V5.50005L7.3 6.40005" stroke="#818181" stroke-width="0.9" stroke-linecap="round"
+                    stroke-linejoin="round"/>
+            </svg>
+            1시간 전
+          </a>
+          <span><svg width="14" height="11" viewBox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M1 5.5C1 5.5 3.25 1 7.1875 1C11.125 1 13.375 5.5 13.375 5.5" stroke="#818181" stroke-linecap="round"
+      stroke-linejoin="round"/>
+<path d="M1 5.50031C1 5.50031 3.25 10.0003 7.1875 10.0003C11.125 10.0003 13.375 5.50031 13.375 5.50031" stroke="#818181"
+      stroke-linecap="round" stroke-linejoin="round"/>
+<path
+    d="M7.1875 7.18774C8.11948 7.18774 8.875 6.43222 8.875 5.50024C8.875 4.56826 8.11948 3.81274 7.1875 3.81274C6.25552 3.81274 5.5 4.56826 5.5 5.50024C5.5 6.43222 6.25552 7.18774 7.1875 7.18774Z"
+    stroke="#818181" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>1
+</span>
+
+          <span><svg width="12" height="11" viewBox="0 0 12 11" fill="none"
+                     xmlns="http://www.w3.org/2000/svg">
+<path
+    d="M1.60844 5.59993C0.526769 4.13324 0.887326 1.93321 2.69011 1.19987C4.49289 0.466523 5.57457 1.93321 5.93512 2.66656C6.29568 1.93321 7.73791 0.466523 9.54069 1.19987C11.3435 1.93321 11.3435 4.13324 10.2618 5.59993C9.18013 7.06662 5.93512 10 5.93512 10C5.93512 10 2.69011 7.06662 1.60844 5.59993Z"
+    stroke="#818181" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>1
+</span>
+        </p>
+      </div>
+
     </div>
 
   </div>
