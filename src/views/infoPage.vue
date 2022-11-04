@@ -32,8 +32,23 @@ export default {
     const moving = () => {
       window.location.href = '#'
     }
-
+    const initMap = () => {
+      // if (window.kakao && window.kakao.maps) {
+      const container = document.getElementById("map");
+      const options = {
+        center: new window.kakao.maps.LatLng(37.71173, 126.88878),
+        level: 5,
+      };
+      const map = new window.kakao.maps.Map(container, options);
+      console.log(map);
+      // } else {
+      //   addScript();
+      // }
+    };
+    onMounted(initMap)
+    
     return {
+      initMap,
       move,
       moving,
     };
@@ -48,7 +63,7 @@ export default {
   <!--          src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8cd7ea967a72d603b3fd12c735e76a49"></script>-->
   <!--  <div id="map" style="width:500px;height:400px;"></div>-->
   <div class="info-main">
-    <!--    <header-page></header-page>-->
+    <header-page></header-page>
     <div class="info-side">
       <div class="info-name">
         <a href="">캠핑장 정보</a>
@@ -84,8 +99,10 @@ export default {
       </div>
     </div>
     <!--    지도-->
-    <!--    <div id="map" style="width:500px;height:400px;"></div>-->
+    <div id="map" style="width:32%;height:330px;margin: 0 auto">지도</div>
+
   </div>
+
 
   <div class="info-select">
     <select name="count" data-title="인기순">
@@ -100,5 +117,10 @@ export default {
       <option value="2">가나다순</option>
       <option value="3">리뷰순</option>
     </select>
+  </div>
+  <div class="info-camp">
+    <div class="info-content">
+
+    </div>
   </div>
 </template>
