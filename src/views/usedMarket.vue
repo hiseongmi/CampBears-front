@@ -2,10 +2,11 @@
 import CustomButton from "../components/layout/customButton.vue";
 import { ref } from "vue";
 import UsedContentsComponent from "../components/usedMarket/usedContentsComponent.vue";
+import Pagination from "../components/layout/pagination.vue";
 
 export default {
   name: "usedMarket",
-  components: { UsedContentsComponent, CustomButton },
+  components: { Pagination, UsedContentsComponent, CustomButton },
   setup() {
     const tabType = {
       SELL: "sell",
@@ -55,6 +56,9 @@ export default {
       </div>
       <custom-button :placeholder="'글쓰기'" />
     </div>
-    <used-contents-component />
+    <div class="used-contents-area">
+      <used-contents-component />
+      <pagination />
+    </div>
   </div>
 </template>
