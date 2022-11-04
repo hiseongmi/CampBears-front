@@ -6,14 +6,16 @@
     top: 0;
     background-color: rgba(0, 0, 0, 0.8);
     color: black;
+    z-index: 2;
   }
 
   .modal {
     position: absolute;
-    z-index: 1;
+
 
     //글쓰기 내용
     &-inner {
+      z-index: 3;
       @include center();
       position: fixed;
       max-width: 80%;
@@ -232,7 +234,7 @@
 
     //게시물 상세
     &-detail {
-      z-index: 1;
+      z-index: 3;
       @include center;
       position: fixed;
       max-width: 80%;
@@ -609,6 +611,7 @@
 
     //신고팝업
     &-report {
+      z-index: 3;
       @include center();
       position: fixed;
       max-width: 80%;
@@ -674,6 +677,7 @@
       top: 0;
       background-color: rgba(0, 0, 0, 0.8);
       color: black;
+      z-index: 2;
     }
 
     .modal {
@@ -682,6 +686,7 @@
 
       //글쓰기 내용
       &-inner {
+        z-index: 3;
         @include center();
         position: fixed;
         max-width: 80%;
@@ -901,7 +906,7 @@
 
       //게시물 상세
       &-detail {
-        z-index: 1;
+        z-index: 3;
         @include center;
         position: fixed;
         max-width: 80%;
@@ -1279,6 +1284,7 @@
 
       //신고팝업
       &-report {
+        z-index: 3;
         @include center();
         position: fixed;
         max-width: 80%;

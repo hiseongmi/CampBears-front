@@ -3,8 +3,8 @@ import customButton from "../components/layout/customButton.vue";
 import customInput from "../components/layout/customInput.vue";
 import { ref } from "vue";
 import snsContentPage from "../components/snsBoard/snsContentPage.vue";
-import UpdateProfile from "../components/mypage/updateProfile.vue";
-import MyReview from "../components/mypage/myReview.vue";
+import UpdateProfile from "../components/myPage/updateProfile.vue";
+import MyReview from "../components/myPage/myReview.vue";
 
 export default {
   name: "myPage",

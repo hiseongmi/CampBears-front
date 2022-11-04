@@ -6,12 +6,12 @@ export default {
   props: {
     placeholder: {
       type: String,
-      required: false
+      required: false,
     },
     customClass: {
       type: String,
-      required: false
-    }
+      required: false,
+    },
   },
   emits: ["update:value"],
   setup() {
@@ -20,9 +20,8 @@ export default {
   methods: {
     handleInput(e) {
       this.$emit("update:value", e.target.value);
-
     },
-  }
+  },
 };
 </script>
 <template>
