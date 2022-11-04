@@ -2,6 +2,8 @@
 @media (min-width: 768px) {
   .header {
     margin-bottom: 30px;
+    position: relative;
+    z-index: 1;
 
     &-bar {
       display: flex;
@@ -2015,7 +2017,6 @@
       display: inline-block;
     }
   }
-
 
 
   .main-bottom {
