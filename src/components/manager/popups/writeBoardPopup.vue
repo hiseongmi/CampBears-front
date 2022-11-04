@@ -37,31 +37,33 @@ export default {
     const pAction = ref(false);
     const position = () => {
       pAction.value = !pAction.value;
-      initMap();
     };
     //kakao 지도
     const initMap = () => {
-      if (window.kakao && window.kakao.maps) {
-        const container = document.getElementById("map");
-        const options = {
-          center: new window.kakao.maps.LatLng(33.450701, 126.570667),
-          level: 5,
-        };
-        const map = new window.kakao.maps.Map(container, options);
-      } else {
-        addScript();
-      }
+      // if (window.kakao && window.kakao.maps) {
+      const container = document.getElementById("map");
+      const options = {
+        center: new window.kakao.maps.LatLng(37.71173, 126.88878),
+        level: 5,
+      };
+      const map = new window.kakao.maps.Map(container, options);
+      console.log(map);
+      // } else {
+      //   addScript();
+      // }
     };
-    const addScript = () => {
-      const script = document.createElement("script");
-      script.src = `//dapi.kakao.com/v2/maps/sdk.js?autoload=false$appkey=37b652b280e20ff8c7240ecd75bfdbb5`;
-      script.onload = () => window.kakao.maps.load(initMap);
-      document.head.appendChild(script);
-    };
-
+    // const addScript = () => {
+    //   const script = document.createElement("script");
+    //   script.src = `//dapi.kakao.com/v2/maps/sdk.js?autoload=false$appkey=37b652b280e20ff8c7240ecd75bfdbb5`;
+    //   script.onload = () => window.kakao.maps.load(initMap);
+    //   document.head.appendChild(script);
+    //   initMap();
+    // };
+    onMounted(() => {
+    });
 
     return {
-      addScript,
+      // addScript,
       initMap,
       pAction,
       position,
@@ -163,14 +165,16 @@ export default {
       </div>
     </div>
     <div class="modal-inner-map" v-if="pAction">
-      <div id="map" class="modal-inner-map-wrap">
+      <div id="map">
+
       </div>
       <div class="modal-inner-map-btn">
         <span @click="position">취소</span>
-        <span @click="position">완료</span>
+        <span @click="initMap">완료</span>
       </div>
     </div>
 
   </div>
 
 </template>
+
