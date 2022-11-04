@@ -45,6 +45,7 @@ export default {
       tabIndex,
       tabType,
       componentChange,
+      page: 1,
     };
   },
 };
@@ -125,6 +126,7 @@ export default {
         <sns-content-page v-else-if="tabIndex === tabType.SAVE" />
         <my-review v-else-if="tabIndex === tabType.REVIEW" />
         <update-profile v-else-if="tabIndex === tabType.EDIT" />
+        <v-pagination v-model="page" :length="15"></v-pagination>
       </div>
     </div>
   </div>
