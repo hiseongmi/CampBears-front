@@ -22,6 +22,7 @@ export default {
 
     const upLoadData = ref({
       boardBody: "",
+      hashTag: [""],
       optionList: ["SHOWER", "PARMERCY", "CAFE", "FITTING", "SUBWAY", "MARKET", "STORE", "DRINK", "PARK", "RESTROOM", "STARBUCKS", "MOVIE", "RESTAURANT", "SHUTTLE"],
     });
     const upLoad = async () => {
@@ -54,18 +55,6 @@ export default {
       //   addScript();
       // }
     };
-    // onMounted(initMap)
-    // const addScript = () => {
-    //   const script = document.createElement("script");
-    //   script.src = `//dapi.kakao.com/v2/maps/sdk.js?autoload=false$appkey=37b652b280e20ff8c7240ecd75bfdbb5`;
-    //   script.onload = () => window.kakao.maps.load(initMap);
-    //   document.head.appendChild(script);
-    //   initMap();
-    // };
-
-    onMounted(() => {
-      initMap();
-    });
 
     return {
       // addScript,
@@ -77,32 +66,6 @@ export default {
       isPopup,
     };
   },
-  // data() {
-  //   return {
-  //     map: null,
-  //   };
-  // },
-  // created() {
-  //   if (window.kakao && window.kakao.maps) {
-  //     this.initMap();
-  //   } else {
-  //     // const script = document.createElement("script");
-  //     // script.onload = () => kakao.maps.load(initMap);
-  //     // script.src = "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=37b652b280e20ff8c7240ecd75bfdbb5";
-  //     // document.head.appendChild(script);
-  //   }
-  // },
-  // methods: {
-  //   initMap() {
-  //     const container = document.getElementById("map");
-  //     const options = {
-  //       center: new kakao.maps.LatLng(33.450701, 126.570667),
-  //       level: 5,
-  //     };
-  //     this.map = new kakao.maps.Map(container, options);
-  //     this.displayMarker([[this.latitude, this.longitude]]);
-  //   },
-  // },
 };
 </script>
 <template>
@@ -161,18 +124,18 @@ export default {
             태그 설정
           </div>
           <div class="content-tag-wrap">
-            <custom-input :custom-class="'content'" :placeholder="'# 태그입력 (최대 30개)'"></custom-input>
+            <custom-input :custom-class="'content'" :placeholder="'# 태그입력 (최대 30개)'"
+                          @update:value="upLoadData.hashTag = $event"></custom-input>
           </div>
         </div>
-        <div class="comment">
-          <div id="map">
-          </div>
-        </div>
+        <!--        <div class="comment">-->
+        <!--          <div id="map">-->
+        <!--          </div>-->
+        <!--        </div>-->
       </div>
     </div>
     <div class="modal-inner-map" v-if="pAction">
       <div id="map">
-
       </div>
       <div class="modal-inner-map-btn">
         <span @click="position">취소</span>

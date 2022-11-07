@@ -1276,6 +1276,12 @@
         margin: auto;
       }
     }
+
+    .pagination {
+      display: none;
+    }
+
+
   }
   //1200
   .view-all {
@@ -1848,6 +1854,10 @@
       .news-ul-li {
         margin: auto;
       }
+    }
+
+    .pagination {
+      display: none;
     }
   }
 

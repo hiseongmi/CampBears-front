@@ -23,7 +23,12 @@ export default {
       RECENT: "RECENT",
       LONG: "LONG",
     };
-
+    const showTypeValue = ref();
+    const SHOW_TYPE = {
+      ALL: "ALL",
+      FOLLOW: "FOLLOW",
+      HASH: "HASH",
+    };
     const selectedUpdateValue = value => {
       selectedValue.value = value;
       console.log(selectedValue.value);
@@ -79,7 +84,7 @@ export default {
     const contentData = ref();
     let keyword = "";
     const getContent = async () => {
-      let param = { keyword: keyword, sorted: "RECENT" };
+      let param = { keyword: keyword, sorted: "RECENT", showType: "ALL" };
       if (selectedValue.value !== null && selectedValue.value !== undefined) {
         param = Object.assign({}, param, { sorted: selectedValue.value }); //ob 내장함수 합침
         param.sorted = selectedValue.value;
@@ -102,6 +107,8 @@ export default {
 
 
     return {
+      showTypeValue,
+      SHOW_TYPE,
       selectedUpdateValue,
       selectSortData,
       selectedValue,
@@ -179,7 +186,7 @@ export default {
             <span><i class="fa-solid fa-chevron-down"></i></span>
           </div>
           <div class="comments">
-            <span>댓글 256개</span>
+            <span>댓글 {{ item.commentCount }}</span>
             <span><i class="fa-solid fa-chevron-down"></i></span>
           </div>
         </div>
@@ -191,6 +198,8 @@ export default {
       </div>
     </div>
   </div>
-  <pagination />
-  <login-naver />
+  <div class="pagination">
+    <pagination></pagination>
+    <!--    <login-naver></login-naver>-->
+  </div>
 </template>

@@ -223,7 +223,7 @@ export default {
                                @update:value="followData.targetIdx"></custom-button>
               </div>
               <p class="content-wrap-profile-info-intro">{{ detailData.boardBody }}</p>
-              <p class="content-wrap-profile-info-tag">#내친구 #camp #인생은 #즐거워</p>
+              <p class="content-wrap-profile-info-tag">{{ detailData.hashTag }}</p>
             </div>
           </div>
           <div class="content-wrap-emotion">
@@ -245,7 +245,7 @@ export default {
         <div class="content-line">
           <div class="content-line-wrap">
             <span>댓글{{ commentListData.length }}</span>
-            <span>조회수2,500</span>
+            <span>조회수 없음</span>
           </div>
         </div>
         <div class="content-enterComment">

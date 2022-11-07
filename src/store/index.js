@@ -25,7 +25,6 @@ const store = createStore({
     loginUserIdx: "",
     boardIdx: "",
     commentIdx: "",
-    commentLength: "",
   },
   mutations: {
     /**
@@ -64,14 +63,6 @@ const store = createStore({
      */
     commentIdx(state, value) {
       state.commentIdx = value;
-    },
-    /**
-     *
-     * @param {store} state
-     * @param {string} value
-     */
-    commentLength(state, value) {
-      state.commentLength = value;
     },
   },
 });
