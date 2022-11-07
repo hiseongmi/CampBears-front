@@ -25,7 +25,6 @@ export default {
       dispatchEvent(new CustomEvent("SEARCH", { detail: inquiryData.value.keyword })); //search 이벤트를 날림
     };
 
-
     return {
       inquiryData,
       getContent,
@@ -43,9 +42,9 @@ export default {
       <!--      <hr class="line"/>-->
       <div class="news-wrap-search">
         <custom-input :placeholder="'태그, 장소 찾아 보기'" @update:value="inquiryData.keyword = $event" />
-        <button @click="getContent"><i class="fa-solid fa-magnifying-glass"></i></button>
+        <button @click="getContent"><i class="fa-solid fa-magnifying-glass" /></button>
       </div>
     </div>
-    <sns-content-page></sns-content-page>
+    <sns-content-page />
   </div>
 </template>

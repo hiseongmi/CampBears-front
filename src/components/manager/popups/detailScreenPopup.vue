@@ -20,7 +20,7 @@ export default {
   setup() {
     const goToReport = () => {
       store.commit(STORE_TYPE.popupType, POPUP_TYPE.REPORT);
-    };//신고창열기
+    }; //신고창열기
     const goToUpdate = () => {
       store.commit(STORE_TYPE.popupType, POPUP_TYPE.UPDATE);
     }; //수정팝업열기
@@ -30,7 +30,7 @@ export default {
       RerAction.value = !RerAction.value;
     }; //수정신고삭제 옵션
     const RerCommentActive = ref(false);
-    const RerCommentOption = (commentIdx) => {
+    const RerCommentOption = commentIdx => {
       store.commit(STORE_TYPE.commentIdx, commentIdx);
       console.log(store.state.commentIdx);
       if (store.state.commentIdx) {
@@ -45,7 +45,7 @@ export default {
       const data = await apiClient("/common/doFollow", followData.value);
       console.log(followData.value);
       console.log(data);
-    };//팔로우 매니저
+    }; //팔로우 매니저
 
     //상세 게시물 조회 api
     const detailData = ref({
@@ -76,7 +76,7 @@ export default {
         window.alert("삭제되었습니다.");
         // await getContent();
         closePopup();
-        router.go();//새로고침
+        router.go(); //새로고침
       } else {
         window.alert("다시시도해주세요");
       }
@@ -111,11 +111,11 @@ export default {
     const deleteCommentData = ref({
       commentIdx: "",
     });
-    const putCommentIdx = (commentIdx) => {
+    const putCommentIdx = commentIdx => {
       deleteCommentData.value.commentIdx = commentIdx;
       console.log("이 댓글 idx: ", deleteCommentData.value.commentIdx);
       deleteComment();
-    };//댓글 idx를 리스트에 담는다.
+    }; //댓글 idx를 리스트에 담는다.
     const deleteComment = async () => {
       const data = await apiClient("/comment/deleteComment", deleteCommentData.value);
       if (data.resultCode === 0) {
@@ -127,7 +127,8 @@ export default {
       }
     };
     //팝업 닫기
-    const closePopup = () => { //popup close
+    const closePopup = () => {
+      //popup close
       store.commit(STORE_TYPE.popupType, POPUP_TYPE.NONE);
       store.commit(STORE_TYPE.boardIdx, "");
     };
@@ -211,16 +212,20 @@ export default {
       </div>
       <div class="content">
         <div class="content-image">
-          <img src="/assets/image/camping.png" alt="게시물 사진">
+          <img src="/assets/image/camping.png" alt="게시물 사진" />
         </div>
         <div class="content-wrap">
           <div class="content-wrap-profile">
-            <img src="/assets/image/IU.png" alt="프로필 사진">
+            <img src="/assets/image/IU.png" alt="프로필 사진" />
             <div class="content-wrap-profile-info">
               <div class="follow">
                 <span>{{ detailData.userNickName }}</span>
-                <custom-button :placeholder="'팔로우'" :custom-class="'follow_btn'" @click="follow"
-                               @update:value="followData.targetIdx"></custom-button>
+                <custom-button
+                  :placeholder="'팔로우'"
+                  :custom-class="'follow_btn'"
+                  @click="follow"
+                  @update:value="followData.targetIdx"
+                ></custom-button>
               </div>
               <p class="content-wrap-profile-info-intro">{{ detailData.boardBody }}</p>
               <p class="content-wrap-profile-info-tag">{{ detailData.hashTag }}</p>
@@ -228,12 +233,12 @@ export default {
           </div>
           <div class="content-wrap-emotion">
             <div class="content-wrap-emotion-like">
-              <span v-if="heartCount<1" @click="heartActive"><i class="fa-regular fa-heart"></i></span>
+              <span v-if="heartCount < 1" @click="heartActive"><i class="fa-regular fa-heart"></i></span>
               <span v-else @click="heartActive"><i class="fa-solid fa-heart"></i></span>
               <span>{{ heartCount }}</span>
             </div>
             <div class="content-wrap-emotion-book">
-              <span v-if="bookmark<1" @click="bookmarkActive"><i class="fa-regular fa-bookmark"></i></span>
+              <span v-if="bookmark < 1" @click="bookmarkActive"><i class="fa-regular fa-bookmark"></i></span>
               <span v-else @click="bookmarkActive"><i class="fa-solid fa-bookmark"></i></span>
             </div>
             <div class="content-wrap-emotion-book">
@@ -250,21 +255,17 @@ export default {
         </div>
         <div class="content-enterComment">
           <div class="content-enterComment-wrap">
-            <custom-input :custom-class="'comment'" :placeholder="'댓글을 입력해주세요.'"
-                          @update:value="commentData.commentBody = $event" />
-            <svg width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M13.1262 1V0H11.1262V1H13.1262ZM12.1262 11.5V12.5H13.1262V11.5H12.1262ZM1 11.5V10.5C0.614909 10.5 0.264033 10.7211 0.0978755 11.0685C-0.068282 11.4159 -0.020195 11.8279 0.22151 12.1277L1 11.5ZM2.64026 15.1277L3.26792 15.9061L4.8249 14.6508L4.19724 13.8723L2.64026 15.1277ZM11.1262 1V11.5H13.1262V1H11.1262ZM12.1262 10.5H1V12.5H12.1262V10.5ZM0.22151 12.1277L2.64026 15.1277L4.19724 13.8723L1.77849 10.8723L0.22151 12.1277Z"
-                fill="#818181" />
-            </svg>
+            <custom-input
+              :custom-class="'comment'"
+              :placeholder="'댓글을 입력해주세요.'"
+              @update:value="commentData.commentBody = $event"
+            />
+            <img src="/assets/image/icon/breakArrow.png" alt="" />
           </div>
           <button @click="upComment"><i class="fa-regular fa-comment"></i></button>
         </div>
-        <div class="content-null"
-             v-if="commentListData.length === 0">
-          <div class="state">
-            댓글이 없습니다.
-          </div>
+        <div class="content-null" v-if="commentListData.length === 0">
+          <div class="state">댓글이 없습니다.</div>
         </div>
         <div class="content-comments" v-for="item in commentListData" v-else>
           <img src="/assets/image/iugold5.png" />

@@ -74,3 +74,79 @@
 
   }
 }
+
+//회원가입
+
+.signup {
+  margin: 0 auto;
+  height: 650px;
+  width: 70%;
+  padding-top: 168px;
+  text-align: right;
+
+  .signup-img-fir {
+    display: inline-block;
+
+
+    img {
+      top: 498px;
+      left: 461px;
+      width: 556px;
+      height: 266px;
+      position: absolute;
+    }
+  }
+
+  .signup-img-sec {
+    display: inline-block;
+
+    img {
+      top: 243px;
+      left: 461px;
+      width: 393px;
+      height: 282px;
+      position: absolute;
+    }
+
+
+  }
+
+  .signup-form {
+    display: inline-block;
+    top: -64px;
+    left: -295px;
+    position: relative;
+    text-align: center;
+    background: rgba(238, 238, 238, 0.8);
+    width: 400px;
+    height: 550px;
+    text-align: -webkit-center;
+
+    .custom-button {
+      background-color: $primary-color;
+      border-color: $primary-color;
+      position: relative;
+      top: 124px;
+      max-width: 515px;
+      width: 275px;
+
+      a {
+        color: white;
+      }
+    }
+
+    span {
+      font-size: 30px;
+      color: $primary-color;
+      top: 44px;
+      position: relative;
+    }
+
+    .custom-input {
+      display: block;
+      text-align: center;
+      top: 89px;
+      position: relative;
+    }
+  }
+}

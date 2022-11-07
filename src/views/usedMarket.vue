@@ -48,11 +48,7 @@ export default {
     </div>
     <div class="used-banner">
       <div class="used-banner-popup" @click="">
-        <svg width="18" height="18" viewBox="0 0 23 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <line x1="1.5" y1="1.5" x2="21.5" y2="1.5" stroke="black" stroke-width="3" stroke-linecap="round" />
-          <line x1="1.5" y1="9.16602" x2="21.5" y2="9.16602" stroke="black" stroke-width="3" stroke-linecap="round" />
-          <line x1="1.5" y1="16.834" x2="21.5" y2="16.834" stroke="black" stroke-width="3" stroke-linecap="round" />
-        </svg>
+        <img src="/assets/image/icon/dropMenu.png" alt="" />
       </div>
       <custom-button :placeholder="'글쓰기'" />
     </div>

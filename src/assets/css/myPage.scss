@@ -241,7 +241,7 @@
               color: #ffffff;
             }
 
-            svg {
+            img {
               margin-left: 5px;
             }
           }
@@ -280,13 +280,16 @@
             }
 
             .itemOption {
-              padding-top: 8px;
+              margin-block: 3px 8px;
               font-size: 12px;
             }
 
             .itemGrade {
-              padding-top: 8px;
               display: inline-flex;
+
+              img {
+                margin: 0 2px;
+              }
             }
 
             .itemComments {

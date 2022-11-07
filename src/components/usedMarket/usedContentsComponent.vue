@@ -4,18 +4,21 @@ import { apiClient } from "../../utils/axios.js";
 
 export default {
   name: "usedContentsComponent",
-  setup() {
+  components: {},
+  setup: function () {
     let keyword = "";
     const postData = ref();
     const selectedValue = ref();
 
-    const getContent = async () => {
-      let param = { keyword: keyword, sorted: "RECENT" };
+    const getData = async () => {
+      let param = {};
+
       if (selectedValue.value !== null && selectedValue.value !== undefined) {
         param = Object.assign({}, param, { sorted: selectedValue.value }); //ob 내장함수 합침
         param.sorted = selectedValue.value;
       }
-      const data = await apiClient("/sns/getSnsList", param);
+
+      const data = await apiClient("/product/getProductList", param);
       if (data.data) {
         console.log(data.data);
         postData.value = data.data;
@@ -31,12 +34,12 @@ export default {
         keyword = e.detail;
         //inquiryData.value = ""
       }
-      getContent();
+      getData();
     };
 
     onMounted(() => {
       window.addEventListener("SEARCH", handleSearch); //search 이벤트를 찾아서 handel이벤트로 보냄
-      getContent();
+      getData();
     });
 
     onUnmounted(() => {
@@ -45,7 +48,7 @@ export default {
 
     return {
       postData,
-      getContent,
+      getData,
     };
   },
 };
@@ -59,39 +62,13 @@ export default {
       </div>
       <div class="used-post-info">
         <div class="used-post-title">title</div>
-        <div class="used-post-seller-name">seller-name</div>
+        <div class="used-post-seller-name">{{ item.userNickName }}</div>
         <div class="used-post-contents">contents contents contents contents contents</div>
-        <div class="used-post-coast">100$</div>
+        <div class="used-post-coast">{{ item.productPrice }}</div>
         <div class="used-post-footer">
           <div class="used-post-date">
-            <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M5.5 10C7.98528 10 10 7.98528 10 5.5C10 3.01472 7.98528 1 5.5 1C3.01472 1 1 3.01472 1 5.5C1 7.98528 3.01472 10 5.5 10Z"
-                stroke="#818181"
-                stroke-width="0.9"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M5.5 2.80078V5.50078L7.3 6.40078"
-                stroke="#818181"
-                stroke-width="0.9"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-            <a>2022.11.01</a>
-          </div>
-          <div class="used-post-like">
-            <svg width="12" height="11" viewBox="0 0 12 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M1.60844 5.59993C0.526769 4.13324 0.887326 1.93321 2.69011 1.19987C4.49289 0.466523 5.57457 1.93321 5.93512 2.66656C6.29568 1.93321 7.73791 0.466523 9.54069 1.19987C11.3435 1.93321 11.3435 4.13324 10.2618 5.59993C9.18013 7.06662 5.93512 10 5.93512 10C5.93512 10 2.69011 7.06662 1.60844 5.59993Z"
-                stroke="#818181"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-            <a>22</a>
+            <img src="/assets/image/icon/time.png" alt="" />
+            <a>{{ item.dateReg.slice(5, 10) }}</a>
           </div>
         </div>
       </div>
