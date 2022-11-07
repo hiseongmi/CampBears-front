@@ -102,7 +102,7 @@ export default {
           <ul>
             <li v-if="!loginUser">
               <a @click="goToX('/login')">로그인</a>
-              <a @click="goToX('/')">회원가입</a>
+              <a @click="goToX('/signup')">회원가입</a>
             </li>
             <li v-else>
               <a @click="goToX('/myPage')">마이페이지</a>
@@ -128,7 +128,7 @@ export default {
             <ul>
               <li v-if="!loginUser">
                 <a @click="goToX('/login')">로그인</a>
-                <a @click="goToX('/')"> 회원가입 </a>
+                <a @click="goToX('/signup')"> 회원가입 </a>
               </li>
               <li v-else>
                 <a @click="logOut()">로그아웃</a>

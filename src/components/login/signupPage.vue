@@ -30,7 +30,7 @@ export default {
       if (reg.test(target)) {
         console.log('true')
       } else {
-        console.log('이메일형식을맞춰라')
+        console.log('이메일형식')
       }
       // e.target.value;
       // console.log(e.target.value)
