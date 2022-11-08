@@ -8,6 +8,7 @@ import customSelect from "../layout/customSelect.vue";
 import { useRoute } from "vue-router";
 import Pagination from "../layout/pagination.vue";
 import LoginNaver from "../snslogin/loginNaver.vue";
+import customButton from "../layout/customButton.vue";
 
 export default {
   name: "snsContentPage",
@@ -16,18 +17,24 @@ export default {
     Pagination,
     Profile,
     customSelect,
+    customButton,
   },
   setup() {
+    const showType = {
+      ALL: "ALL",
+      FOLLOW: "FOLLOW",
+      HASH: "HASH",
+    };
+    const showIndex = ref();
+    const showChange = v => {
+      console.log(v);
+      showIndex.value = v;
+    };
+
     const selectedValue = ref();
     const SORT_TYPE = {
       RECENT: "RECENT",
       LONG: "LONG",
-    };
-    const showTypeValue = ref();
-    const SHOW_TYPE = {
-      ALL: "ALL",
-      FOLLOW: "FOLLOW",
-      HASH: "HASH",
     };
     const selectedUpdateValue = value => {
       selectedValue.value = value;
@@ -96,6 +103,7 @@ export default {
       }
     };
 
+
     onMounted(() => {
       window.addEventListener("SEARCH", handleSearch); //search 이벤트를 찾아서 handel이벤트로 보냄
       getContent();
@@ -107,8 +115,10 @@ export default {
 
 
     return {
-      showTypeValue,
-      SHOW_TYPE,
+
+      showChange,
+      showIndex,
+      showType,
       selectedUpdateValue,
       selectSortData,
       selectedValue,
@@ -125,6 +135,23 @@ export default {
 </script>
 <template>
   <div class="news-menu">
+    <div class="news-menu-showBtn">
+      <custom-button
+        :placeholder="'전체 게시물'"
+        :onClick="() => showChange(showType.ALL)"
+        :custom-class="showIndex === showType.ALL ? 'showActive' : ''"
+      />
+      <custom-button
+        :placeholder="'팔로워 게시물'"
+        :onClick="() => showChange(showType.FOLLOW)"
+        :custom-class="showIndex === showType.FOLLOW ? 'showActive' : ''"
+      />
+      <custom-button
+        :placeholder="'해시태그 게시물'"
+        :onClick="() => showChange(showType.HASH)"
+        :custom-class="showIndex === showType.HASH ? 'showActive' : ''"
+      />
+    </div>
     <div class="news-menu-select">
       <ul>
         <li>

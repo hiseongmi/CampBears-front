@@ -115,10 +115,20 @@
 
             //공개여부
             &-public {
-              span {
-                padding-left: 10px;
+              display: flex;
+
+              .custom-button {
+                position: relative;
+                min-width: 0;
+                border: none;
+                border-radius: 0;
+                display: inherit;
+                width: 90px;
               }
 
+              .active {
+                color: $text-color;
+              }
             }
           }
 
@@ -371,6 +381,18 @@
                       border-radius: 15px;
                       cursor: pointer;
                       color: #000000;
+                    }
+
+                    .followActive {
+                      margin: 0;
+                      padding: 2px 12px;
+                      background-color: #FA6C1A;
+                      border: 1px solid #FA6C1A;
+                      font-size: 10px;
+                      font-weight: bold;
+                      border-radius: 15px;
+                      cursor: pointer;
+                      color: white;
                     }
                   }
                 }

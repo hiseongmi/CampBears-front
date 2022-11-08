@@ -23,12 +23,11 @@ export default {
     const updateData = ref({
       boardIdx: store.state.boardIdx,
       boardBody: "",
-      userIdx: "",
-      dateMod: "",
-      dateReg: "",
+      hashTag: [""],
     });
     const update = async () => {
       const data = await apiClient("/sns/updateSns", updateData.value);
+      console.log(data.data);
       if (data.resultCode === 0) {
         window.alert("수정되었습니다.");
         await store.commit(STORE_TYPE.popupType, POPUP_TYPE.DETAIL_SCREEN);
@@ -100,11 +99,9 @@ export default {
             태그 설정
           </div>
           <div class="content-tag-wrap">
-            <custom-input :custom-class="'content'" :placeholder="'# 태그입력 (최대 30개)'"></custom-input>
+            <custom-input :custom-class="'content'" :placeholder="'# 태그입력 (최대 30개)'"
+                          @update:value="updateData.hashTag = $event"></custom-input>
           </div>
-        </div>
-        <div class="comment">
-          test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test<br />test
         </div>
       </div>
     </div>

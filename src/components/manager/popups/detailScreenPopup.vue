@@ -18,6 +18,7 @@ export default {
   },
 
   setup() {
+
     const goToReport = () => {
       store.commit(STORE_TYPE.popupType, POPUP_TYPE.REPORT);
     }; //신고창열기
@@ -39,14 +40,27 @@ export default {
         console.log("x");
       }
     }; //댓글 수정 신고 삭제 옵션
-
-    const followData = ref({ followType: "", targetIdx: "", targetType: "" });
-    const follow = async () => {
-      const data = await apiClient("/common/doFollow", followData.value);
+    // 해당 유저를 팔로우 하고 있는지, 아닌지
+    const followType = ref({
+      STATE: "UNFOLLOW",
+    });
+    const followData = ref({
+      followType: "", // 내가 지금 팔로우 할 건지, 아닌지
+      targetIdx: "",
+      targetType: "USER",
+    });
+    const followManager = async () => {
+      if (followType.value.STATE === "UNFOLLOW") { //안하고있으니까
+        followData.value.followType = "FOLLOW"; // 팔로우했다
+        followType.value.STATE = "FOLLOW"; //상태도 팔로우상태
+      } else {
+        followData.value.followType = "UNFOLLOW"; //언팔했다
+        followType.value.STATE = "UNFOLLOW"; //상태도 언팔
+      }
       console.log(followData.value);
+      const data = await apiClient("/common/doFollow", followData.value);
       console.log(data);
-    }; //팔로우 매니저
-
+    };
     //상세 게시물 조회 api
     const detailData = ref({
       boardIdx: store.state.boardIdx,
@@ -61,9 +75,14 @@ export default {
       const data = await apiClient("/sns/getSnsDetail", detailData.value);
       console.log(data.data);
       detailData.value = data.data;
+      console.log();
+      if (detailData.value) {
+        followData.value.targetIdx = detailData.value.userIdx;
+      }
       console.log("이 글 내용 : ", detailData.value.boardBody);
       await commentList();
     };
+
     //게시물 삭제 api
     const deleteData = ref({
       boardIdx: store.state.boardIdx,
@@ -126,6 +145,8 @@ export default {
         window.alert("다시 시도해주세요");
       }
     };
+
+
     //팝업 닫기
     const closePopup = () => {
       //popup close
@@ -134,11 +155,30 @@ export default {
     };
     //좋아요, 북마크
     const heartCount = ref(0);
-    const heartState = ref(false);
+    const heartState = ref({
+      STATE: "DISLIKE",
+    });
+    const heartData = ref({
+      targetIdx: "",
+      likeType: "",
+      targetType: "USER",
+    });
+    const doLike = async () => {
+      if (heartState.value.STATE === "DISLIKE") {
+        heartData.value.likeType = "LIKE";
+        heartState.value.STATE = "LIKE";
+      } else {
+        heartData.value.likeType = "DISLIKE";
+        heartState.value.STATE = "DISLIKE";
+      }
+      const data = await apiClient("/common/doLike", heartData.value);
+      console.log(data);
+    };
     const heartActive = () => {
       if (!heartState.value) {
         heartCount.value++;
         heartState.value = !heartState.value;
+
       } else {
         heartCount.value -= 1;
         heartState.value = !heartState.value;
@@ -149,8 +189,10 @@ export default {
     const bookmarkActive = () => {
       bookmark.value = !bookmark.value;
     };
+
     onMounted(() => {
       detail();
+
       //api 조회
       // if (store.state.boardIdx !== "" && store.state.boardIdx !== null && store.state.boardIdx !== undefined) {
       //   // console.log(`boardIdx : `, store.state.boardIdx);
@@ -165,6 +207,9 @@ export default {
     });
 
     return {
+      followType,
+      followData,
+      followManager,
       putCommentIdx,
       deleteCommentData,
       deleteComment,
@@ -180,8 +225,6 @@ export default {
       deleteContent,
       detail,
       detailData,
-      follow,
-      followData,
       RerAction,
       RerOption,
       RerCommentActive,
@@ -222,8 +265,8 @@ export default {
                 <span>{{ detailData.userNickName }}</span>
                 <custom-button
                   :placeholder="'팔로우'"
-                  :custom-class="'follow_btn'"
-                  @click="follow"
+                  :custom-class="followType.STATE === 'FOLLOW' ? 'followActive' : 'follow_btn'"
+                  @click="followManager"
                   @update:value="followData.targetIdx"
                 ></custom-button>
               </div>
@@ -249,7 +292,7 @@ export default {
         <!--        댓글창-->
         <div class="content-line">
           <div class="content-line-wrap">
-            <span>댓글{{ commentListData.length }}</span>
+            <span>댓글{{ detailData.commentCount }}</span>
             <span>조회수 없음</span>
           </div>
         </div>
