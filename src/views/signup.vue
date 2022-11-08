@@ -45,17 +45,20 @@ export default {
       // contentData.value = data.data
       //search 이벤트를 날림
     };
-    // const checkEmail = (e) => {
-    //   const target = e.target.value;
-    //   const reg = /^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/
-    //   if (reg.test(target)) {
-    //     console.log('true')
-    //   } else {
-    //     console.log('이메일형식')
-    //   }
-    //   // e.target.value;
-    //   // console.log(e.target.value)
-    // };
+    /**이메일 유효성검사함수*/
+    const checkEmail = (e) => {
+      const target = e.target.value;
+      const reg = /^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/
+      if (reg.test(target)) {
+        joinUser()
+        console.log('가입완료')
+      } else {
+        console.log('이메일형식')
+      }
+      /**e.target.value;
+       console.log(e.target.value)*/
+    };
+
     const joinUser = async () => {
 
       // console.log("가입 좀 하자: ", joinUserData.value)
