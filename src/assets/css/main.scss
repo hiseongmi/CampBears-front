@@ -443,12 +443,14 @@
       max-width: 855px;
       margin: 0 auto;
       padding: 20px 40px;
-
+      //게시문 공개
       &-showBtn {
         display: flex;
+
         .custom-button {
           position: relative;
           min-width: 0;
+          height: 20px;
           border: none;
           border-radius: 0;
           display: inherit;
@@ -456,6 +458,7 @@
           width: 120px;
           padding: 0 5px;
         }
+
         .showActive {
           color: $text-color;
         }
@@ -470,6 +473,7 @@
         ul {
           display: flex;
           list-style: none;
+          padding-inline-start: 10px;
 
           li {
             padding: 0 10px;
@@ -718,6 +722,25 @@
       margin: 0 auto;
       padding: 20px 30px;
 
+      &-showBtn {
+        display: flex;
+
+        .custom-button {
+          position: relative;
+          min-width: 0;
+          border: none;
+          border-radius: 0;
+          display: inherit;
+          cursor: pointer;
+          width: 60px;
+          padding: 0 5px;
+        }
+
+        .showActive {
+          color: $text-color;
+        }
+      }
+
       &-select {
         .slider {
           width: 100px;
@@ -726,6 +749,7 @@
         ul {
           display: flex;
           list-style: none;
+          padding-inline-start: 0;
 
           li {
             padding: 0 10px;

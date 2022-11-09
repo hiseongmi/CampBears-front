@@ -31,7 +31,7 @@ export default {
 
     const upLoadData = ref({
       boardBody: "",
-      hashTag: [""],
+      hashTag: [],
       optionList: ["SHOWER", "PARMERCY", "CAFE", "FITTING", "SUBWAY", "MARKET", "STORE", "DRINK", "PARK", "RESTROOM", "STARBUCKS", "MOVIE", "RESTAURANT", "SHUTTLE"],
     });
     const upLoad = async () => {
@@ -39,7 +39,6 @@ export default {
       console.log(upLoadData.value.boardBody);
       console.log(data);
       if (data.resultCode === 0) {
-        router.go();
         store.commit(STORE_TYPE.popupType, POPUP_TYPE.NONE); //팝업 닫기
       } else {
         window.alert("내용을 입력해주세요.");
@@ -144,7 +143,7 @@ export default {
           </div>
           <div class="content-tag-wrap">
             <custom-input :custom-class="'content'" :placeholder="'# 태그입력 (최대 30개)'"
-                          @update:value="upLoadData.hashTag = $event"></custom-input>
+                          @update:value="[upLoadData.hashTag = $event]"></custom-input>
           </div>
         </div>
         <!--        <div class="comment">-->

@@ -283,7 +283,7 @@
         }
 
         //신고 수정 삭제 리스트
-        .pop {
+        .myPop {
           width: 80px;
           height: 100px;
           background-color: rgba(255, 255, 255, 0.51);
@@ -315,6 +315,46 @@
               }
 
               &:hover {
+                border-radius: 8px;
+                background-color: #dedede;
+              }
+            }
+          }
+        }
+
+        .pop {
+          width: 80px;
+          height: 30px;
+          background-color: rgba(255, 255, 255, 0.51);
+          border-radius: 8px;
+          position: fixed;
+          top: 5px;
+          right: 20px;
+          transition: 0.3s;
+
+          ul {
+            font-size: 14px;
+            height: 100%;
+            list-style: none;
+            padding: 0;
+            display: grid;
+            align-items: center;
+            justify-items: center;
+
+
+            li {
+              width: 100%;
+              text-align: center;
+              cursor: pointer;
+              height: 100%;
+              padding: 5px;
+
+              i {
+                color: $red;
+              }
+
+              &:hover {
+                border-radius: 8px;
                 background-color: #dedede;
               }
             }
@@ -488,7 +528,7 @@
                 width: 100%;
               }
 
-              svg {
+              img {
                 position: absolute;
                 left: 155px;
                 bottom: 7px;
@@ -1165,7 +1205,7 @@
                   width: 100%;
                 }
 
-                svg {
+                img {
                   position: absolute;
                   left: 155px;
                   bottom: 7px;

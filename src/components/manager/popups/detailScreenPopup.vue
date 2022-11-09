@@ -6,6 +6,7 @@ import { apiClient } from "../../../utils/axios.js";
 import CustomButton from "../../layout/customButton.vue";
 import CustomInput from "../../layout/customInput.vue";
 import router from "../../../router/index.js";
+import dayjs from "dayjs";
 
 export default {
   name: "detailScreenPopup",
@@ -18,6 +19,8 @@ export default {
   },
 
   setup() {
+    //로컬스토리지에 저장된 유저정보
+    const userData = JSON.parse(localStorage.getItem("userData")) || "";
 
     const goToReport = () => {
       store.commit(STORE_TYPE.popupType, POPUP_TYPE.REPORT);
@@ -26,20 +29,6 @@ export default {
       store.commit(STORE_TYPE.popupType, POPUP_TYPE.UPDATE);
     }; //수정팝업열기
 
-    const RerAction = ref(false);
-    const RerOption = () => {
-      RerAction.value = !RerAction.value;
-    }; //수정신고삭제 옵션
-    const RerCommentActive = ref(false);
-    const RerCommentOption = commentIdx => {
-      store.commit(STORE_TYPE.commentIdx, commentIdx);
-      console.log(store.state.commentIdx);
-      if (store.state.commentIdx) {
-        RerCommentActive.value = !RerCommentActive.value;
-      } else {
-        console.log("x");
-      }
-    }; //댓글 수정 신고 삭제 옵션
     // 해당 유저를 팔로우 하고 있는지, 아닌지
     const followType = ref({
       STATE: "UNFOLLOW",
@@ -61,6 +50,29 @@ export default {
       const data = await apiClient("/common/doFollow", followData.value);
       console.log(data);
     };
+    //좋아요
+    const heartCount = ref(0);
+    const heartState = ref({
+      STATE: "DISLIKE",
+    });
+    const heartData = ref({
+      targetIdx: "",
+      likeType: "",
+      targetType: "USER",
+    });
+    const doLike = async () => {
+      if (heartState.value.STATE === "DISLIKE") {
+        heartData.value.likeType = "LIKE";
+        heartState.value.STATE = "LIKE";
+        heartCount.value++;
+      } else {
+        heartData.value.likeType = "DISLIKE";
+        heartState.value.STATE = "DISLIKE";
+        heartCount.value -= 1;
+      }
+      console.log(heartData.value);
+      const data = await apiClient("/common/doLike", heartData.value);
+    };
     //상세 게시물 조회 api
     const detailData = ref({
       boardIdx: store.state.boardIdx,
@@ -68,6 +80,7 @@ export default {
       userIdx: "",
       targetType: "",
       dateReg: "",
+      hashTag: "",
       boardBody: "",
       userNickName: "",
     });
@@ -79,9 +92,21 @@ export default {
       if (detailData.value) {
         followData.value.targetIdx = detailData.value.userIdx;
       }
+      if (detailData.value) {
+        heartData.value.targetIdx = detailData.value.userIdx;
+      }
       console.log("이 글 내용 : ", detailData.value.boardBody);
       await commentList();
     };
+    const MyRerAction = ref(false);
+    const RerAction = ref(false);
+    const RerOption = () => {
+      if (userData.userIdx === detailData.value.userIdx) {
+        MyRerAction.value = !MyRerAction.value;
+      } else {
+        RerAction.value = !RerAction.value;
+      }
+    }; //수정신고삭제 옵션
 
     //게시물 삭제 api
     const deleteData = ref({
@@ -100,6 +125,19 @@ export default {
         window.alert("다시시도해주세요");
       }
     };
+    //댓글 수정 신고 삭제 옵션
+    const RerCommentActive = ref(false);
+    const RerCommentOption = commentIdx => {
+      store.commit(STORE_TYPE.commentIdx, commentIdx);
+      console.log(store.state.commentIdx);
+      console.log(commentListData.value.commentIdx);
+      if (store.state.commentIdx) {
+        RerCommentActive.value = !RerCommentActive.value;
+      } else {
+        console.log("x");
+      }
+    };
+
     //댓글 조회 api
     const getComment = ref({ boardIdx: store.state.boardIdx });
     const commentListData = ref({ commentIdx: "" });
@@ -108,10 +146,13 @@ export default {
       if (data.resultCode === 0) {
         console.log("댓글들: ", data.data);
         commentListData.value = data.data;
+        const date = dayjs(commentListData.value[0].dateReg, "YYYY-MM-DD HH:mm");
+        console.log(date.format("YYYY-MM-DD HH:mm"));
       } else {
         console.log("댓글 조회에 실패했습니다.");
       }
     };
+
     //댓글 추가 api
     const commentData = ref({
       boardIdx: store.state.boardIdx,
@@ -153,38 +194,8 @@ export default {
       store.commit(STORE_TYPE.popupType, POPUP_TYPE.NONE);
       store.commit(STORE_TYPE.boardIdx, "");
     };
-    //좋아요, 북마크
-    const heartCount = ref(0);
-    const heartState = ref({
-      STATE: "DISLIKE",
-    });
-    const heartData = ref({
-      targetIdx: "",
-      likeType: "",
-      targetType: "USER",
-    });
-    const doLike = async () => {
-      if (heartState.value.STATE === "DISLIKE") {
-        heartData.value.likeType = "LIKE";
-        heartState.value.STATE = "LIKE";
-      } else {
-        heartData.value.likeType = "DISLIKE";
-        heartState.value.STATE = "DISLIKE";
-      }
-      const data = await apiClient("/common/doLike", heartData.value);
-      console.log(data);
-    };
-    const heartActive = () => {
-      if (!heartState.value) {
-        heartCount.value++;
-        heartState.value = !heartState.value;
 
-      } else {
-        heartCount.value -= 1;
-        heartState.value = !heartState.value;
-      }
-      console.log(heartCount.value);
-    };
+    //북마크
     const bookmark = ref(false);
     const bookmarkActive = () => {
       bookmark.value = !bookmark.value;
@@ -192,14 +203,6 @@ export default {
 
     onMounted(() => {
       detail();
-
-      //api 조회
-      // if (store.state.boardIdx !== "" && store.state.boardIdx !== null && store.state.boardIdx !== undefined) {
-      //   // console.log(`boardIdx : `, store.state.boardIdx);
-      //   detail();
-      // } else {
-      //   closePopup();
-      // }
     });
     // delete store boardIdx
     onUnmounted(() => {
@@ -207,6 +210,7 @@ export default {
     });
 
     return {
+      userData,
       followType,
       followData,
       followManager,
@@ -220,12 +224,14 @@ export default {
       commentData,
       bookmark,
       bookmarkActive,
-      heartActive,
       heartCount,
+      heartData,
+      doLike,
       deleteContent,
       detail,
       detailData,
       RerAction,
+      MyRerAction,
       RerOption,
       RerCommentActive,
       RerCommentOption,
@@ -245,10 +251,15 @@ export default {
         <div class="container" @click="RerOption">
           <i class="fa-solid fa-ellipsis-vertical"></i>
         </div>
-        <div class="pop" v-if="RerAction">
+        <div class="myPop" v-if="MyRerAction">
           <ul>
             <li @click="goToUpdate">수정</li>
             <li @click="deleteContent">삭제</li>
+            <li @click="goToReport">신고 <i class="fa-solid fa-circle-exclamation"></i></li>
+          </ul>
+        </div>
+        <div class="pop" v-if="RerAction">
+          <ul>
             <li @click="goToReport">신고 <i class="fa-solid fa-circle-exclamation"></i></li>
           </ul>
         </div>
@@ -276,8 +287,8 @@ export default {
           </div>
           <div class="content-wrap-emotion">
             <div class="content-wrap-emotion-like">
-              <span v-if="heartCount < 1" @click="heartActive"><i class="fa-regular fa-heart"></i></span>
-              <span v-else @click="heartActive"><i class="fa-solid fa-heart"></i></span>
+              <span v-if="heartCount < 1 " @click="doLike"><i class="fa-regular fa-heart"></i></span>
+              <span v-else @click="doLike"><i class="fa-solid fa-heart"></i></span>
               <span>{{ heartCount }}</span>
             </div>
             <div class="content-wrap-emotion-book">
@@ -292,7 +303,7 @@ export default {
         <!--        댓글창-->
         <div class="content-line">
           <div class="content-line-wrap">
-            <span>댓글{{ detailData.commentCount }}</span>
+            <span>댓글{{ commentListData.length }}</span>
             <span>조회수 없음</span>
           </div>
         </div>

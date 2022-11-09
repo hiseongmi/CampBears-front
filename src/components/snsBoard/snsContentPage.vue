@@ -5,7 +5,6 @@ import store, { POPUP_TYPE, STORE_TYPE } from "../../store/index.js";
 import { onMounted, onUnmounted, ref } from "vue";
 import { apiClient } from "../../utils/axios.js";
 import customSelect from "../layout/customSelect.vue";
-import { useRoute } from "vue-router";
 import Pagination from "../layout/pagination.vue";
 import LoginNaver from "../snslogin/loginNaver.vue";
 import customButton from "../layout/customButton.vue";
@@ -20,15 +19,15 @@ export default {
     customButton,
   },
   setup() {
+    const showIndex = ref();
     const showType = {
       ALL: "ALL",
       FOLLOW: "FOLLOW",
       HASH: "HASH",
     };
-    const showIndex = ref();
     const showChange = v => {
-      console.log(v);
       showIndex.value = v;
+      console.log(showIndex.value);
     };
 
     const selectedValue = ref();
@@ -80,9 +79,11 @@ export default {
     const handleSearch = (e) => { //이벤트를 받음
       if (e.detail !== "") {
         keyword = e.detail;
+        hashKeyWord = e.detail;
         //inquiryData.value = {keyword: e.detail} ///빈값이 아닐때  keyword 로 값을 보냄
       } else {
         keyword = e.detail;
+        hashKeyWord = e.detail;
         //inquiryData.value = ""
       }
       getContent();
@@ -90,8 +91,9 @@ export default {
     //키워드 검색
     const contentData = ref();
     let keyword = "";
+    let hashKeyWord = [""]; //데이터 가공해서 넣기
     const getContent = async () => {
-      let param = { keyword: keyword, sorted: "RECENT", showType: "ALL" };
+      let param = { like: false, keyword: keyword, hashKeyWord: hashKeyWord, sorted: "RECENT", showType: "ALL" };
       if (selectedValue.value !== null && selectedValue.value !== undefined) {
         param = Object.assign({}, param, { sorted: selectedValue.value }); //ob 내장함수 합침
         param.sorted = selectedValue.value;
@@ -106,11 +108,13 @@ export default {
 
     onMounted(() => {
       window.addEventListener("SEARCH", handleSearch); //search 이벤트를 찾아서 handel이벤트로 보냄
+      window.addEventListener("SEARCH_HASH", handleSearch); //search 이벤트를 찾아서 handel이벤트로 보냄
       getContent();
     });
 
     onUnmounted(() => {
       window.removeEventListener("SEARCH", handleSearch);
+      window.removeEventListener("SEARCH_HASH", handleSearch);
     });
 
 
@@ -136,20 +140,20 @@ export default {
 <template>
   <div class="news-menu">
     <div class="news-menu-showBtn">
-      <custom-button
+      <customButton
         :placeholder="'전체 게시물'"
         :onClick="() => showChange(showType.ALL)"
-        :custom-class="showIndex === showType.ALL ? 'showActive' : ''"
+        :customClass="showIndex === showType.ALL ? 'showActive' : ''"
       />
-      <custom-button
-        :placeholder="'팔로워 게시물'"
+      <customButton
+        :placeholder="'팔로우 게시물'"
         :onClick="() => showChange(showType.FOLLOW)"
-        :custom-class="showIndex === showType.FOLLOW ? 'showActive' : ''"
+        :customClass="showIndex === showType.FOLLOW ? 'showActive' : ''"
       />
-      <custom-button
-        :placeholder="'해시태그 게시물'"
+      <customButton
+        :placeholder="'태그 게시물'"
         :onClick="() => showChange(showType.HASH)"
-        :custom-class="showIndex === showType.HASH ? 'showActive' : ''"
+        :customClass="showIndex === showType.HASH ? 'showActive' : ''"
       />
     </div>
     <div class="news-menu-select">
@@ -205,7 +209,7 @@ export default {
               <span><i class="fa-solid fa-briefcase"></i></span>
             </div>
             <div class="detail-wrap-icon">
-              <span><i class="fa-solid fa-bookmark"></i></span>
+              <span><i class="fa-regular fa-bookmark"></i></span>
             </div>
           </div>
           <div class="contents">

@@ -25,6 +25,8 @@ export default {
       // contentData.value = data.data
 
       dispatchEvent(new CustomEvent("SEARCH", { detail: inquiryData.value.keyword })); //search 이벤트를 날림
+      dispatchEvent(new CustomEvent("SEARCH_HASH", { detail: inquiryData.value.hashKeyWord })); //search 이벤트를 날림
+
     };
 
     return {
