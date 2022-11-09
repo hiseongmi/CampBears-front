@@ -16,6 +16,8 @@ export default {
     customInput,
   },
   setup() {
+
+
     const inquiryData = ref({ keyword: "", hashKeyWord: "" });
     const getContent = async () => {
       const data = await apiClient("/sns/getSnsList", inquiryData.value);

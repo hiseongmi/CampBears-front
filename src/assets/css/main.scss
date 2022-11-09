@@ -435,7 +435,7 @@
       }
     }
 
-    //셀렉박스
+
     &-menu {
       display: flex;
       justify-content: flex-end;
@@ -444,6 +444,24 @@
       margin: 0 auto;
       padding: 20px 40px;
 
+      &-showBtn {
+        display: flex;
+        .custom-button {
+          position: relative;
+          min-width: 0;
+          border: none;
+          border-radius: 0;
+          display: inherit;
+          cursor: pointer;
+          width: 120px;
+          padding: 0 5px;
+        }
+        .showActive {
+          color: $text-color;
+        }
+      }
+
+      //셀렉박스
       &-select {
         .slider {
           width: 100px;

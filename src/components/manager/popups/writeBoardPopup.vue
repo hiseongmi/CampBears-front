@@ -16,6 +16,15 @@ export default {
     },
   },
   setup() {
+    const publicType = {
+      All: "ALL",
+      FOLLOW: "FOLLOW",
+    };
+    const publicIndex = ref();
+    const checkValue = v => {
+      console.log(v);
+      publicIndex.value = v;
+    };
 
     const store = getStore();
     const isPopup = ref(store.state.popupType);
@@ -57,7 +66,9 @@ export default {
     };
 
     return {
-      // addScript,
+      publicType,
+      publicIndex,
+      checkValue,
       initMap,
       pAction,
       position,
@@ -88,8 +99,16 @@ export default {
             <span>dlwlrma</span>
           </div>
           <div class="content-profile-public">
-            <span>전체공개</span>
-            <span>비공개</span>
+            <custom-button
+              :placeholder="'전체 공개'"
+              :onClick="() => checkValue(publicType.All)"
+              :custom-class="publicIndex === publicType.All ? 'active' : ''"
+            />
+            <custom-button
+              :placeholder="'팔로워 공개'"
+              :onClick="() => checkValue(publicType.FOLLOW)"
+              :custom-class="publicIndex === publicType.FOLLOW ? 'active' : ''"
+            />
           </div>
         </div>
         <div class="content-content">
