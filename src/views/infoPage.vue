@@ -88,6 +88,10 @@ export default {
 // 지도를 생성합니다
       var map = new kakao.maps.Map(mapContainer, mapOption);
 
+      // 지도에 확대 축소 컨트롤을 생성한다
+      var zoomControl = new kakao.maps.ZoomControl();
+      // 지도의 우측에 확대 축소 컨트롤을 추가한다
+      map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 // 장소 검색 객체를 생성합니다
       var ps = new kakao.maps.services.Places();
 
@@ -103,6 +107,12 @@ export default {
         const keyword = document.getElementById('keyword').value;
         console.log(keyword);
 
+        const searchForm = document.getElementById("submit-btn");
+        searchForm?.addEventListener("click", function (e) {
+          e.preventDefault();
+          searchPlaces();
+        });
+        
         if (!keyword.replace(/^\s+|\s+$/g, '')) {
           alert('키워드를 입력해주세요!');
           return false;
@@ -358,8 +368,8 @@ export default {
           <div class="option">
             <div>
               <form onsubmit="searchPlaces(); return false;">
-                키워드 : <input type="text" value="강서구" id="keyword" size="15">
-                <button type="submit" onclick="searchPlaces()">검색하기</button>
+                키워드 : <input type="text" value="중부대학교 고양캠퍼스" id="keyword" size="15">
+                <button id="submit-btn" type="submit">검색하기</button>
               </form>
             </div>
           </div>
