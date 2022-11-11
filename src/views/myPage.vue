@@ -1,19 +1,25 @@
 <script>
 import customButton from "../components/layout/customButton.vue";
 import customInput from "../components/layout/customInput.vue";
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import snsContentPage from "../components/snsBoard/snsContentPage.vue";
 import UpdateProfile from "../components/myPage/updateProfile.vue";
 import MyReview from "../components/myPage/myReview.vue";
+import myFeed from "../components/myPage/myFeedBoard.vue";
+import pagination from "../components/layout/customPagination.vue";
+import { apiClient } from "../utils/axios.js";
+import commonUtil from "../utils/common-util.js";
 
 export default {
   name: "myPage",
   components: {
+    myFeed,
     MyReview,
     UpdateProfile,
     snsContentPage,
     customButton,
     customInput,
+    pagination,
   },
   setup() {
     const tabType = {
@@ -28,7 +34,7 @@ export default {
     const tabIndex = ref(tabType.FEED);
 
     const componentChange = v => {
-      console.log(v);
+      //console.log(v);
       tabIndex.value = v;
     };
 
@@ -39,6 +45,19 @@ export default {
       nickName: "베어 물어쓰",
       introduce: "캠핑을 좋아하는 30대 아저씨에요^^",
     }); // 소개에 띄워줄 내용
+
+    const getMyInfo = async () => {
+      const data = await apiClient("user/getMe", {});
+      if (data) {
+        console.log(data);
+        profileInfo.value.nickName = data.data.userNickName;
+        profileInfo.value.profilePicture = commonUtil.getImgUrl(data.data.fileName);
+      }
+    };
+
+    onMounted(() => {
+      getMyInfo();
+    });
 
     return {
       profileInfo,
@@ -96,13 +115,12 @@ export default {
         />
       </div>
       <div class="contents-area">
-        <sns-content-page v-if="tabIndex === tabType.FEED" />
-        <sns-content-page v-else-if="tabIndex === tabType.SELL" />
+        <my-feed v-if="tabIndex === tabType.FEED" />
+        <my-feed v-else-if="tabIndex === tabType.SELL" />
         <sns-content-page v-else-if="tabIndex === tabType.RENT" />
         <sns-content-page v-else-if="tabIndex === tabType.SAVE" />
         <my-review v-else-if="tabIndex === tabType.REVIEW" />
         <update-profile v-else-if="tabIndex === tabType.EDIT" />
-        <v-pagination v-model="page" :length="15"></v-pagination>
       </div>
     </div>
   </div>

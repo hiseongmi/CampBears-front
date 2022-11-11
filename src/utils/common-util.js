@@ -7,15 +7,15 @@ import lzString from "lz-string";
  * @param {string | object} value
  */
 const setLocalStorage = (key, value) => {
-	if (typeof key === "string") {
-		if (typeof value === "object") {
-			value = makeJson(value);
-		}
-		const compData = lzString.compressToUTF16(value);
-		window.localStorage.setItem(key, compData);
-	} else {
-		console.error(CONSTANTS.KEY_LIST.ALERT_LIST.INVALID_PARAM);
-	}
+  if (typeof key === "string") {
+    if (typeof value === "object") {
+      value = makeJson(value);
+    }
+    const compData = lzString.compressToUTF16(value);
+    window.localStorage.setItem(key, compData);
+  } else {
+    console.error(CONSTANTS.KEY_LIST.ALERT_LIST.INVALID_PARAM);
+  }
 };
 
 /**
@@ -24,13 +24,13 @@ const setLocalStorage = (key, value) => {
  * @returns {undefined|string}
  */
 const getLocalStorage = key => {
-	if (typeof key === "string") {
-		const compData = window.localStorage.getItem(key);
-		return lzString.decompressFromUTF16(compData);
-	} else {
-		console.error(CONSTANTS.KEY_LIST.ALERT_LIST.INVALID_PARAM);
-		return undefined;
-	}
+  if (typeof key === "string") {
+    const compData = window.localStorage.getItem(key);
+    return lzString.decompressFromUTF16(compData);
+  } else {
+    console.error(CONSTANTS.KEY_LIST.ALERT_LIST.INVALID_PARAM);
+    return undefined;
+  }
 };
 
 /**
@@ -38,9 +38,9 @@ const getLocalStorage = key => {
  * @param {string} key
  */
 const removeLocalStorage = key => {
-	if (typeof key === "string") {
-		window.localStorage.removeItem(key);
-	}
+  if (typeof key === "string") {
+    window.localStorage.removeItem(key);
+  }
 };
 
 /**
@@ -49,7 +49,7 @@ const removeLocalStorage = key => {
  * @returns {string}
  */
 const makeJson = value => {
-	return JSON.stringify(value);
+  return JSON.stringify(value);
 };
 
 /**
@@ -58,12 +58,12 @@ const makeJson = value => {
  * @returns {any}
  */
 const parseJson = value => {
-	if (typeof value === "string") {
-		return JSON.parse(value);
-	} else {
-		console.error(CONSTANTS.KEY_LIST.ALERT_LIST.INVALID_PARAM);
-		return undefined;
-	}
+  if (typeof value === "string") {
+    return JSON.parse(value);
+  } else {
+    console.error(CONSTANTS.KEY_LIST.ALERT_LIST.INVALID_PARAM);
+    return undefined;
+  }
 };
 
 /**
@@ -72,25 +72,25 @@ const parseJson = value => {
  * @returns {boolean}
  */
 const checkForm = form => {
-	if (form) {
-		for (let item in form) {
-			if (isCheckNull(form[item])) {
-				return false;
-			}
-		}
-	}
-	return true;
+  if (form) {
+    for (let item in form) {
+      if (isCheckNull(form[item])) {
+        return false;
+      }
+    }
+  }
+  return true;
 };
 
 //form{}, msg list
 const checkFormToList = (form, msg) => {
-	if (form) {
-		for (let item in form) {
-			if (isCheckNull(form[item])) {
-				return false;
-			}
-		}
-	}
+  if (form) {
+    for (let item in form) {
+      if (isCheckNull(form[item])) {
+        return false;
+      }
+    }
+  }
 };
 
 /**
@@ -99,8 +99,8 @@ const checkFormToList = (form, msg) => {
  * @returns {string}
  */
 const getImageUrl = url => {
-	//todo file-server url 연결
-	return "assets/image/profile.jpeg";
+  //todo file-server url 연결
+  return "assets/image/profile.jpeg";
 };
 
 /**
@@ -109,27 +109,34 @@ const getImageUrl = url => {
  * @returns {boolean}
  */
 const isCheckNull = target => {
-	return !(target === null || target === "" || target === undefined);
+  return !(target === null || target === "" || target === undefined);
 };
 
 const logOutUser = () => {
-	const u = getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO);
-	const ut = getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO_TOKEN);
-	if (u && ut) {
-		console.log("remove");
-		removeLocalStorage(CONSTANTS.KEY_LIST.USER_INFO);
-		removeLocalStorage(CONSTANTS.KEY_LIST.USER_INFO_TOKEN);
-	}
+  const u = getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO);
+  const ut = getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO_TOKEN);
+  if (u && ut) {
+    //console.log("remove");
+    removeLocalStorage(CONSTANTS.KEY_LIST.USER_INFO);
+    removeLocalStorage(CONSTANTS.KEY_LIST.USER_INFO_TOKEN);
+  }
+};
+
+const getImgUrl = fileName => {
+  if (fileName && typeof fileName === "string") {
+    return CONSTANTS.FILE_SERVER + fileName;
+  }
 };
 
 export default {
-	getLocalStorage,
-	setLocalStorage,
-	makeJson,
-	parseJson,
-	checkForm,
-	getImageUrl,
-	isCheckNull,
-	logOutUser,
-	removeLocalStorage,
+  getLocalStorage,
+  setLocalStorage,
+  makeJson,
+  parseJson,
+  checkForm,
+  getImageUrl,
+  isCheckNull,
+  logOutUser,
+  removeLocalStorage,
+  getImgUrl,
 };
