@@ -112,7 +112,7 @@ export default {
           e.preventDefault();
           searchPlaces();
         });
-        
+
         if (!keyword.replace(/^\s+|\s+$/g, '')) {
           alert('키워드를 입력해주세요!');
           return false;

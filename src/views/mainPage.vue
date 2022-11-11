@@ -5,8 +5,8 @@ import customButton from "../components/layout/customButton.vue";
 import snsPage from "./snsPage.vue";
 import myPage from "./myPage.vue";
 import infoPage from "./infoPage.vue";
-import { apiClient } from "../utils/axios.js";
-import { onMounted } from "vue";
+import {apiClient} from "../utils/axios.js";
+import {onMounted} from "vue";
 import CustomLoading from "../components/layout/customLoading.vue";
 import UsedContentsComponent from "../components/usedMarket/usedContentsComponent.vue";
 // import {e} from "../../dist/assets/index.a54a7291.js";
@@ -56,43 +56,43 @@ export default {
   </div>
   <div class="main-icon">
     <a href="#">
-      <img src="/assets/image/icon/categoryTent.png" alt="" />
+      <img src="/assets/image/icon/categoryTent.png" alt=""/>
       <span>텐트</span>
     </a>
 
     <a href="">
-      <img src="/assets/image/icon/categoryCaravane.png" alt="" />
+      <img src="/assets/image/icon/categoryCaravane.png" alt=""/>
       <span>카라반</span>
     </a>
 
     <a href="">
-      <img src="/assets/image/icon/categoryGlamping.png" alt="" />
+      <img src="/assets/image/icon/categoryGlamping.png" alt=""/>
       <span>글램핑</span>
     </a>
 
     <a href="">
-      <img src="/assets/image/icon/categoryAutoCamping.png" alt="" />
+      <img src="/assets/image/icon/categoryAutoCamping.png" alt=""/>
       <span>오토캠핑</span>
     </a>
 
     <a href="">
-      <img src="/assets/image/icon/categoryPet.png" alt="" />
+      <img src="/assets/image/icon/categoryPet.png" alt=""/>
       <span>반려동물</span>
     </a>
 
     <a href="">
-      <img src="/assets/image/icon/categoryKids.png" alt="" />
+      <img src="/assets/image/icon/categoryKids.png" alt=""/>
       <span>키즈</span>
     </a>
 
     <a href="">
-      <img src="/assets/image/icon/categoryCampnic.png" alt="" />
+      <img src="/assets/image/icon/categoryCampnic.png" alt=""/>
       <span>캠프닉</span>
     </a>
   </div>
 
   <div class="main-story">
-    <img src="/assets/image/icon/mainCampingStory.png" alt="" />
+    <img src="/assets/image/icon/mainCampingStory.png" alt=""/>
     <span>자신의 캠핑스타일 자랑해보세요</span>
   </div>
   <div class="main-sns">
@@ -118,19 +118,19 @@ export default {
   <div class="autocamp-box">
     <div class="main-autocamp">
       <div class="autocamp">
-        <!--      <img src="/public/assets/image/mainutoCamp.png" alt="">-->
+        <!--      <img src="/assets/image/mainutoCamp.png" alt="">-->
       </div>
       <div class="autocam-cont">
         <h1>피아골 오토 캠핑장</h1>
         <span>테크 13번 9/27~9/29 양도합니다. 테크 4*4...</span>
         <a href="">
-          <img src="/assets/image/icon/locationBlue.png" alt="" />
+          <img src="/assets/image/icon/locationBlue.png" alt=""/>
           전라남도 구례군
         </a>
         <div>
           <h2>845.000원</h2>
           <span>
-            <img src="/assets/image/icon/time.png" alt="" />
+            <img src="/assets/image/icon/time.png" alt=""/>
             1시간 전
           </span>
         </div>
@@ -138,19 +138,19 @@ export default {
     </div>
     <div class="main-autocamp">
       <div class="autocamp">
-        <!--      <img src="/public/assets/image/mainutoCamp.png" alt="">-->
+        <!--      <img src="/assets/image/mainutoCamp.png" alt="">-->
       </div>
       <div class="autocam-cont">
         <h1>피아골 성미 캠핑장</h1>
         <span>테크 13번 9/27~9/29 양도합니다. 테크 4*4...</span>
         <a href="">
-          <img src="/assets/image/icon/locationBlue.png" alt="" />
+          <img src="/assets/image/icon/locationBlue.png" alt=""/>
           경기도 어디였더라
         </a>
         <div>
           <h2>450.000원</h2>
           <span>
-            <img src="/assets/image/icon/time.png" alt="" />
+            <img src="/assets/image/icon/time.png" alt=""/>
             1시간 전
           </span>
         </div>
@@ -158,19 +158,19 @@ export default {
     </div>
     <div class="main-autocamp">
       <div class="autocamp">
-        <!--      <img src="/public/assets/image/mainutoCamp.png" alt="">-->
+        <!--      <img src="/assets/image/mainutoCamp.png" alt="">-->
       </div>
       <div class="autocam-cont">
         <h1>피아골 정운 캠핑장</h1>
         <span>테크 13번 9/27~9/29 양도합니다. 테크 4*4...</span>
         <a href="">
-          <img src="/assets/image/icon/locationBlue.png" alt="" />
+          <img src="/assets/image/icon/locationBlue.png" alt=""/>
           경기도 고양시
         </a>
         <div>
           <h2>995.000원</h2>
           <span>
-            <img src="/assets/image/icon/time.png" alt="" />
+            <img src="/assets/image/icon/time.png" alt=""/>
             1시간 전
           </span>
         </div>
@@ -178,8 +178,8 @@ export default {
     </div>
   </div>
   <div class="used-market-box">
-    <custom-button :customClass="'usedMarketButton'" :placeholder="`USED MARKET >`" :onClick="moving" />
-    <used-contents-component />
+    <custom-button :customClass="'usedMarketButton'" :placeholder="`USED MARKET >`" :onClick="moving"/>
+    <used-contents-component/>
   </div>
   <div class="main-bottom">
     <span>
@@ -194,7 +194,7 @@ export default {
               <span>추천해요</span>
             </div>
             <div class="recomend-arow">
-              <img src="/assets/image/icon/arrowRight.png" alt="" />
+              <img src="/assets/image/icon/arrowRight.png" alt=""/>
             </div>
           </div>
           <div class="recomend-text">
@@ -207,14 +207,14 @@ export default {
         <div class="camping-jang">
           <p>학동 자동차 야영지</p>
           <s>
-            <img src="/assets/image/icon/fullStar.png" alt="" />
-            <img src="/assets/image/icon/fullStar.png" alt="" />
-            <img src="/assets/image/icon/fullStar.png" alt="" />
-            <img src="/assets/image/icon/emptyStar.png" alt="" />
-            <img src="/assets/image/icon/emptyStar.png" alt="" />
+            <img src="/assets/image/icon/fullStar.png" alt=""/>
+            <img src="/assets/image/icon/fullStar.png" alt=""/>
+            <img src="/assets/image/icon/fullStar.png" alt=""/>
+            <img src="/assets/image/icon/emptyStar.png" alt=""/>
+            <img src="/assets/image/icon/emptyStar.png" alt=""/>
           </s>
           <span>
-            <img src="/assets/image/icon/campingLink.png" alt="" />
+            <img src="/assets/image/icon/campingLink.png" alt=""/>
           </span>
         </div>
       </div>
@@ -223,14 +223,14 @@ export default {
         <div class="camping-jang">
           <p>오시아노 오토 캠핑장</p>
           <s>
-            <img src="/assets/image/icon/fullStar.png" alt="" />
-            <img src="/assets/image/icon/fullStar.png" alt="" />
-            <img src="/assets/image/icon/fullStar.png" alt="" />
-            <img src="/assets/image/icon/emptyStar.png" alt="" />
-            <img src="/assets/image/icon/emptyStar.png" alt="" />
+            <img src="/assets/image/icon/fullStar.png" alt=""/>
+            <img src="/assets/image/icon/fullStar.png" alt=""/>
+            <img src="/assets/image/icon/fullStar.png" alt=""/>
+            <img src="/assets/image/icon/emptyStar.png" alt=""/>
+            <img src="/assets/image/icon/emptyStar.png" alt=""/>
           </s>
           <span>
-            <img src="/assets/image/icon/campingLink.png" alt="" />
+            <img src="/assets/image/icon/campingLink.png" alt=""/>
           </span>
         </div>
       </div>
@@ -239,14 +239,14 @@ export default {
         <div class="camping-jang">
           <p>학암포 오토 캠핑장</p>
           <s>
-            <img src="/assets/image/icon/fullStar.png" alt="" />
-            <img src="/assets/image/icon/fullStar.png" alt="" />
-            <img src="/assets/image/icon/fullStar.png" alt="" />
-            <img src="/assets/image/icon/emptyStar.png" alt="" />
-            <img src="/assets/image/icon/emptyStar.png" alt="" />
+            <img src="/assets/image/icon/fullStar.png" alt=""/>
+            <img src="/assets/image/icon/fullStar.png" alt=""/>
+            <img src="/assets/image/icon/fullStar.png" alt=""/>
+            <img src="/assets/image/icon/emptyStar.png" alt=""/>
+            <img src="/assets/image/icon/emptyStar.png" alt=""/>
           </s>
           <span>
-            <img src="/assets/image/icon/campingLink.png" alt="" />
+            <img src="/assets/image/icon/campingLink.png" alt=""/>
           </span>
         </div>
       </div>
