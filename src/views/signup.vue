@@ -22,6 +22,7 @@ export default {
           userEmail: "",
           userType: "",
           userPassword: "",
+          userPassCheck: "",
           userAddress: "",
           userPhone: "",
           userNickName: "",
@@ -46,17 +47,36 @@ export default {
       //search 이벤트를 날림
     };
     /**이메일 유효성검사함수*/
-    const checkEmail = (e) => {
-      const target = e.target.value;
+    const checkForm = (e) => {
+
       const reg = /^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/
-      if (reg.test(target)) {
-        joinUser()
-        console.log('가입완료')
-      } else {
-        console.log('이메일형식')
+      const passCheck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/
+
+      if (joinUserData.value.userName === "") {
+        alert("이름을 입력해주세여");
+        console.log(joinUserData.value.userName)
+        return false;
       }
-      /**e.target.value;
-       console.log(e.target.value)*/
+      if (reg.test(joinUserData.value.userEmail) === false) {
+        alert("이메일 형식이 올바르지 않아요");
+
+        return false;
+      }
+      if (!passCheck.test(joinUserData.value.userPassword)) {
+        alert("비밀번호는 영문자 + 숫자 + 특수문자 조합으로 8~25자리 사용해야해요");
+
+        return false;
+      }
+      if (joinUserData.value.userPassword === joinUserData.value.userPassCheck) {
+        alert("비밀번호가 일치하지않습니다.");
+
+        return false;
+      }
+
+
+      // return false;
+
+      joinUser()
     };
 
     const joinUser = async () => {
@@ -80,6 +100,7 @@ export default {
       joinUser,
       typeSearch,
       typeSearchData,
+      checkForm,
 
     };
   },
@@ -100,10 +121,11 @@ export default {
       <custom-input :placeholder="'이메일'" @update:value="joinUserData.userEmail = $event"></custom-input>
       <custom-input :placeholder="'비밀번호'"
                     @update:value="joinUserData.userPassword = $event"></custom-input>
+      <custom-input :placeholder="'비밀번호확인'" @update:value="joinUserData.userPassCheck = $event"></custom-input>
       <custom-input :placeholder="'주소'" @update:value="joinUserData.userAddress = $event"></custom-input>
       <custom-input :placeholder="'닉네임'" @update:value="joinUserData.userNickName = $event"></custom-input>
       <custom-input :placeholder="'번호'" @update:value="joinUserData.userPhone = $event"></custom-input>
-      <custom-button :placeholder="'회원가입'" @click="joinUser"></custom-button>
+      <custom-button :placeholder="'회원가입'" @click="checkForm"></custom-button>
     </div>
   </div>
 </template>

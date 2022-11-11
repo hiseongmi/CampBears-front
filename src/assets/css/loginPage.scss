@@ -113,10 +113,9 @@
 
   .signup-form {
     display: inline-block;
-    top: -64px;
-    left: -295px;
-    position: relative;
-    text-align: center;
+    top: 228px;
+    left: 931px;
+    position: absolute;
     background: rgba(238, 238, 238, 0.8);
     width: 400px;
     height: 550px;
@@ -126,7 +125,7 @@
       background-color: $primary-color;
       border-color: $primary-color;
       position: relative;
-      top: 124px;
+      top: 91px;
       max-width: 515px;
       width: 275px;
 
@@ -145,7 +144,7 @@
     .custom-input {
       display: block;
       text-align: center;
-      top: 89px;
+      top: 68px;
       position: relative;
     }
   }
