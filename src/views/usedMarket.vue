@@ -2,11 +2,11 @@
 import CustomButton from "../components/layout/customButton.vue";
 import { ref } from "vue";
 import UsedContentsComponent from "../components/usedMarket/usedContentsComponent.vue";
-import Pagination from "../components/layout/pagination.vue";
+import customPagination from "../components/layout/customPagination.vue";
 
 export default {
   name: "usedMarket",
-  components: { Pagination, UsedContentsComponent, CustomButton },
+  components: { customPagination, UsedContentsComponent, CustomButton },
   setup() {
     const tabType = {
       SELL: "sell",
@@ -16,7 +16,7 @@ export default {
     const tabIndex = ref(tabType.SELL);
 
     const componentChange = v => {
-      console.log(v);
+      //console.log(v);
       tabIndex.value = v;
     };
 
@@ -54,7 +54,7 @@ export default {
     </div>
     <div class="used-contents-area">
       <used-contents-component />
-      <pagination />
+      <custom-pagination />
     </div>
   </div>
 </template>

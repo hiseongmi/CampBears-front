@@ -1,18 +1,16 @@
 <script>
-import {ref} from "vue";
+import { ref } from "vue";
 import HeaderPage from "../headerPage.vue";
 import FooterPage from "../footerPage.vue";
 // import customInput from "src/components/layout/customInput.vue";
 // import customButton from "src/components/layout/customButton.vue";
 // import re from "../../../dist/assets/newsPage.e4b93b35.js";
 
-
 export default {
   name: "signupPage",
   components: {
     FooterPage,
     HeaderPage,
-
   },
   setup() {
     const userInfo = ref({
@@ -24,18 +22,17 @@ export default {
       birthDate: "",
     });
 
-    const checkEmail = (e) => {
+    const checkEmail = e => {
       const target = e.target.value;
-      const reg = /^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/
+      const reg = /^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
       if (reg.test(target)) {
-        console.log('true')
+        ////console.log('true')
       } else {
-        console.log('이메일형식')
+        ////console.log('이메일형식')
       }
       // e.target.value;
-      // console.log(e.target.value)
+      // ////console.log(e.target.value)
     };
-
 
     // const updateEmailValue = (e) => {
     //   userInfo.value.email = e;
@@ -118,7 +115,7 @@ export default {
     //     window.alert("이메일써")
     //     return false;
     //   } else if (!checkValue(userInfo.value.password)) {
-    //     console.log(userInfo.value.password);
+    //     ////console.log(userInfo.value.password);
     //     window.alert("비번쓰셈")
     //     return false;
     //   } else if (type === "join" && !checkValue(userInfo.value.nickName)) {
@@ -146,44 +143,49 @@ export default {
       // updateBirthDateValue,
       // doLogin,
       // gogo,
-
-
-    }
+    };
   },
-}
-
+};
 </script>
 
 <template>
-
   <div class="container">
     <div>
       <label for="email">email</label>
-      <input type="text" id="email" required="required"
-             title="이메일형식에 맞춰주세요 제발"
-             v-model="userInfo.email" @input="checkEmail"/>
-
+      <input
+        type="text"
+        id="email"
+        required="required"
+        title="이메일형식에 맞춰주세요 제발"
+        v-model="userInfo.email"
+        @input="checkEmail"
+      />
     </div>
     <div>
       <label for="name">성함</label>
-      <input type="text" id="name" required="required" pattern="/^[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]{2,}$/" title="한글2글자 이상 입력해주세요 제발"
-             v-model="userInfo.name"/>
+      <input
+        type="text"
+        id="name"
+        required="required"
+        pattern="/^[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]{2,}$/"
+        title="한글2글자 이상 입력해주세요 제발"
+        v-model="userInfo.name"
+      />
     </div>
     <div>
       <label for="password">비밀번호</label>
-      <input type="password" id="password" required="required" v-model="userInfo.password"/>
+      <input type="password" id="password" required="required" v-model="userInfo.password" />
     </div>
     <div>
       <label for="passwordConfirm">비밀번호 확인</label>
-      <input type="password" id="passwordConfirm" required="required" v-model="userInfo.passwordConfirm"/>
+      <input type="password" id="passwordConfirm" required="required" v-model="userInfo.passwordConfirm" />
     </div>
     <div>
       <!--          <input v-model="onlyNumber"/>-->
     </div>
-    <input type="submit" value="회원가입">
+    <input type="submit" value="회원가입" />
   </div>
   <div class="checkbox_group">
-
     <div class="auth">
       <div id="certificationNumber">000000</div>
       <button id="send-message">인증번호 전송</button>
@@ -203,12 +205,12 @@ export default {
       <div id="areaError" class="error"></div>
     </div>
     <div class="gender">
-      <input id="gender_man" type="radio" name="gender">남성
-      <input id="gender_woman" type="radio" name="gender">여성
+      <input id="gender_man" type="radio" name="gender" />남성
+      <input id="gender_woman" type="radio" name="gender" />여성
       <div id="genderError" class="error"></div>
     </div>
     <div class="line">
-      <hr>
+      <hr />
     </div>
     <div class="signUp">
       <button type="button" @click="checkEmail">회원가입</button>
@@ -221,43 +223,36 @@ export default {
     <div class="contents">
       <form action="/" method="POST" id="form__wrap">
         <div class="terms__check__all">
-          <input type="checkbox" name="checkAll" id="checkAll"/>
+          <input type="checkbox" name="checkAll" id="checkAll" />
           <label for="checkAll"
-          >JUN 이용약관, 개인정보 수집 및 이용, 프로모션 정보 수신(선택)에<br/>모두 동의합니다.</label
+            >JUN 이용약관, 개인정보 수집 및 이용, 프로모션 정보 수신(선택)에<br />모두 동의합니다.</label
           >
         </div>
         <ul class="terms__list">
           <li class="terms__box">
             <div class="input__check">
-              <input type="checkbox" name="agreement" id="termsOfService" value="termsOfService" required/>
+              <input type="checkbox" name="agreement" id="termsOfService" value="termsOfService" required />
               <label for="termsOfService" class="required">JUN 이용약관 동의</label>
             </div>
-            <div class="terms__content">
-              감사
-            </div>
+            <div class="terms__content">감사</div>
           </li>
           <li class="terms__box">
             <div class="input__check">
-              <input type="checkbox" name="agreement" id="privacyPolicy" value="privacyPolicy" required/>
+              <input type="checkbox" name="agreement" id="privacyPolicy" value="privacyPolicy" required />
               <label for="privacyPolicy" class="required">개인정보 수집 및 이용 동의</label>
             </div>
-            <div class="terms__content">
-              개인정보
-            </div>
+            <div class="terms__content">개인정보</div>
           </li>
           <li class="terms__box">
             <div class="input__check">
-              <input type="checkbox" name="agreement" id="allowPromotions" value="allowPromotions"/>
+              <input type="checkbox" name="agreement" id="allowPromotions" value="allowPromotions" />
               <label for="allowPromotions">프로모션 정보 수신 동의</label>
             </div>
-            <div class="terms__content">
-              동의
-            </div>
+            <div class="terms__content">동의</div>
           </li>
         </ul>
         <button type="submit" class="next-button" disabled>확인</button>
       </form>
     </div>
   </div>
-
 </template>

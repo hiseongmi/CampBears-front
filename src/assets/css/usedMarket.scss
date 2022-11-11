@@ -170,23 +170,3 @@
     }
   }
 }
-
-.pagination {
-  display: inline-flex;
-  justify-content: center;
-  margin: 20px auto;
-
-  .custom-button {
-    border: none;
-    min-width: 20px;
-    width: auto;
-    height: auto;
-    margin: auto 5px;
-
-    a {
-      font-size: 24px;
-      font-weight: 400;
-      color: $text-color;
-    }
-  }
-}

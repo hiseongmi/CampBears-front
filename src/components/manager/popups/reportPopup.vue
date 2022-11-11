@@ -21,7 +21,7 @@ export default {
   setup() {
     const arr = ref([{ detailReason: "" }]);
     const checkArr = () => {
-      console.log(arr.value);
+      ////console.log(arr.value);
     };
 
     return {
@@ -36,16 +36,19 @@ export default {
   <div class="modal-report">
     <span @click="goDetail" type="button">X</span>
     <div class="modal-report-content">
-      <div><input type="checkbox" v-model="arr" value="그냥1"> 그냥</div>
-      <div><input type="checkbox" v-model="arr" value="그냥2"> 그냥2</div>
-      <div><input type="checkbox" v-model="arr" value="그냥3"> 그냥3</div>
-      <div><input type="checkbox" v-model="arr" value="그냥4"> 그냥4</div>
-      <div><input type="checkbox" v-model="arr" value="그냥5"> 그냥5</div>
-      <div><input type="checkbox" v-model="arr" value="그냥6"> 그냥6</div>
+      <div><input type="checkbox" v-model="arr" value="그냥1" /> 그냥</div>
+      <div><input type="checkbox" v-model="arr" value="그냥2" /> 그냥2</div>
+      <div><input type="checkbox" v-model="arr" value="그냥3" /> 그냥3</div>
+      <div><input type="checkbox" v-model="arr" value="그냥4" /> 그냥4</div>
+      <div><input type="checkbox" v-model="arr" value="그냥5" /> 그냥5</div>
+      <div><input type="checkbox" v-model="arr" value="그냥6" /> 그냥6</div>
     </div>
     <div>
-      <custom-input :custom-class="'detailedReason'" :placeholder="'상세 이유 작성'"
-                    @update:value="arr.detailReason = $event" />
+      <custom-input
+        :custom-class="'detailedReason'"
+        :placeholder="'상세 이유 작성'"
+        @update:value="arr.detailReason = $event"
+      />
     </div>
     <div class="modal-report-btn">
       <custom-button @click="goDetail">취소</custom-button>

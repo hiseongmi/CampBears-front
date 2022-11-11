@@ -1,6 +1,6 @@
 <script>
-import {onMounted, ref} from "vue";
-import {useRoute} from "vue-router";
+import { onMounted, ref } from "vue";
+import { useRoute } from "vue-router";
 import axios from "axios";
 
 export default {
@@ -12,23 +12,20 @@ export default {
       // 네이버 사용자 프로필 조회
       const url = "/me";
       const header = "Bearer " + naver_id_login.oauthParams.access_token;
-      axios.get(url, {headers: {"Authorization": header}}).then(res => { //변조X jwt-token, http protocol
+      axios.get(url, { headers: { Authorization: header } }).then(res => {
+        //변조X jwt-token, http protocol
         if (res.status === 200) {
           userData.value = res.data.response;
-          console.log(userData.value);
+          //console.log(userData.value);
         }
       });
-
     });
-    return {userData};
-  }
-
+    return { userData };
+  },
 };
-
 </script>
 <template>
   <div>Login Access Pages</div>
   {{ userData }}
   <!--  <div id="naverIdLogin" style="display: none"></div>-->
-
 </template>

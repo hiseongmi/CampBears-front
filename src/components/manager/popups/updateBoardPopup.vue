@@ -27,7 +27,7 @@ export default {
     });
     const update = async () => {
       const data = await apiClient("/sns/updateSns", updateData.value);
-      console.log(data.data);
+      ////console.log(data.data);
       if (data.resultCode === 0) {
         window.alert("수정되었습니다.");
         await store.commit(STORE_TYPE.popupType, POPUP_TYPE.DETAIL_SCREEN);
@@ -58,7 +58,7 @@ export default {
         </div>
         <div class="content-profile">
           <div class="content-profile-wrap">
-            <img src="/assets/image/IU.png">
+            <img src="/assets/image/IU.png" />
             <span>dlwlrma</span>
           </div>
           <div class="content-profile-public">
@@ -67,12 +67,13 @@ export default {
           </div>
         </div>
         <div class="content-content">
-          <custom-input :custom-class="'content'" :placeholder="'문구 입력...'"
-                        @update:value="updateData.boardBody = $event">
+          <custom-input
+            :custom-class="'content'"
+            :placeholder="'문구 입력...'"
+            @update:value="updateData.boardBody = $event"
+          >
           </custom-input>
-          <div class="count">
-            (0 / 200)
-          </div>
+          <div class="count">(0 / 200)</div>
         </div>
         <div class="content-position">
           <div class="content-position-wrap">
@@ -89,23 +90,20 @@ export default {
         <div class="content-person">
           <div class="content-person-wrap">
             <span>인원</span>
-            <div>
-              range slider
-            </div>
+            <div>range slider</div>
           </div>
         </div>
         <div class="content-tag">
-          <div class="content-tag-div">
-            태그 설정
-          </div>
+          <div class="content-tag-div">태그 설정</div>
           <div class="content-tag-wrap">
-            <custom-input :custom-class="'content'" :placeholder="'# 태그입력 (최대 30개)'"
-                          @update:value="updateData.hashTag = $event"></custom-input>
+            <custom-input
+              :custom-class="'content'"
+              :placeholder="'# 태그입력 (최대 30개)'"
+              @update:value="updateData.hashTag = $event"
+            ></custom-input>
           </div>
         </div>
       </div>
     </div>
-
   </div>
-
 </template>

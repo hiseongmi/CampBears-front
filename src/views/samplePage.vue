@@ -20,21 +20,21 @@ export default {
 
     const date = ref();
 
-    const selectedUpdateValue = (value) => {
+    const selectedUpdateValue = value => {
       selectedValue.value = value;
-      console.log(selectedValue.value);
+      //console.log(selectedValue.value);
     };
 
-    const updateValue = (event) => {
+    const updateValue = event => {
       inputValue.value = event;
-      console.log(inputValue.value);
+      //console.log(inputValue.value);
     };
 
     const btnClickEvent = () => {
-      console.log(`this is btnClick Event`);
+      //console.log(`this is btnClick Event`);
     };
 
-    const setDate = (event) => {
+    const setDate = event => {
       date.value = event;
     };
 
@@ -45,7 +45,6 @@ export default {
       { key: "four", value: "4" },
       { key: "five", value: "5" },
     ];
-
 
     return {
       updateValue,
@@ -78,7 +77,6 @@ export default {
   <!--  custom-date-picker 사용법-->
   <custom-date-picker @update:value="setDate"></custom-date-picker>
   {{ date }}
-
 </template>
 
 <style lang="scss">

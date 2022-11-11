@@ -25,7 +25,7 @@ export default {
     const doLogin = async () => {
       const data = await apiClient("/user/login", userData.value);
       if (data.resultCode === 0) {
-        console.log(data.data);
+        //console.log(data.data);
         await router.push("/");
         if (data.data.token) {
           setHeader(data.data.token);
@@ -43,18 +43,16 @@ export default {
       // if (checkForm("join")) window.alert("join");
     };
 
-
     const clickJoin = () => {
       window.alert("회원가입");
     };
-
 
     const findIdPwd = () => {
       window.alert("준비중입니다.");
     };
 
     //엔터 이벤트 받기
-    const handleEnter = (e) => {
+    const handleEnter = e => {
       if (e.key === "Enter") {
         doLogin();
       }
@@ -75,7 +73,6 @@ export default {
       doLogin,
       doJoin,
       clickJoin,
-
     };
   },
 };
@@ -84,7 +81,7 @@ export default {
   <section class="login">
     <div class="login-area">
       <div class="logo-area">
-        <img src="/assets/images/login/logo.webp" alt="logo">
+        <img src="/assets/images/login/logo.webp" alt="logo" />
         <h1>로그인 해볼까요?</h1>
       </div>
       <div v-if="loginState" class="form">
@@ -102,9 +99,7 @@ export default {
       <!--      <custom-input :custom-class="`input`" :placeholder="`CHECK PASSWORD`" @update:value="updateCheckPasswordValue" />-->
       <!--      <custom-button :placeholder="`회원가입`" :onClick="doJoin"></custom-button>-->
       <!--    </div>-->
-      <p @click="findIdPwd">
-        아이디/비밀번호 찾기
-      </p>
+      <p @click="findIdPwd">아이디/비밀번호 찾기</p>
     </div>
     <div class="join-btn" @click="clickJoin">
       SNS 계정으로 간편 로그인/회원가입

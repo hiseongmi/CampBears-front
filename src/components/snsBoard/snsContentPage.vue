@@ -5,7 +5,7 @@ import store, { POPUP_TYPE, STORE_TYPE } from "../../store/index.js";
 import { onMounted, onUnmounted, ref } from "vue";
 import { apiClient } from "../../utils/axios.js";
 import customSelect from "../layout/customSelect.vue";
-import Pagination from "../layout/pagination.vue";
+import Pagination from "../layout/customPagination.vue";
 import LoginNaver from "../snslogin/loginNaver.vue";
 import customButton from "../layout/customButton.vue";
 
@@ -27,7 +27,7 @@ export default {
     };
     const showChange = v => {
       showIndex.value = v;
-      console.log(showIndex.value);
+      //console.log(showIndex.value);
     };
 
     const selectedValue = ref();
@@ -37,7 +37,7 @@ export default {
     };
     const selectedUpdateValue = value => {
       selectedValue.value = value;
-      console.log(selectedValue.value);
+      //console.log(selectedValue.value);
     };
 
     const selectSortData = [
@@ -71,12 +71,13 @@ export default {
       store.commit(STORE_TYPE.popupType, POPUP_TYPE.WRITE_BOARD);
     }; //글쓰기 팝업열기
 
-    const openDetail = (boardIdx) => {
+    const openDetail = boardIdx => {
       store.commit(STORE_TYPE.popupType, POPUP_TYPE.DETAIL_SCREEN);
       store.commit(STORE_TYPE.boardIdx, boardIdx); //<-item.boardIdx 값을 넣었다
     }; //게시물 상세 페이지 팝업 열기
 
-    const handleSearch = (e) => { //이벤트를 받음
+    const handleSearch = e => {
+      //이벤트를 받음
       if (e.detail !== "") {
         keyword = e.detail;
         hashKeyWord = e.detail;
@@ -100,11 +101,10 @@ export default {
       }
       const data = await apiClient("/sns/getSnsList", param);
       if (data.data) {
-        console.log(data.data);
+        //console.log(data.data);
         contentData.value = data.data;
       }
     };
-
 
     onMounted(() => {
       window.addEventListener("SEARCH", handleSearch); //search 이벤트를 찾아서 handel이벤트로 보냄
@@ -117,9 +117,7 @@ export default {
       window.removeEventListener("SEARCH_HASH", handleSearch);
     });
 
-
     return {
-
       showChange,
       showIndex,
       showType,

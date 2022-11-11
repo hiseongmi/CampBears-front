@@ -20,7 +20,7 @@ export default {
 
       const data = await apiClient("/product/getProductList", param);
       if (data.data) {
-        console.log(data.data);
+        //console.log(data.data);
         postData.value = data.data;
       }
     };

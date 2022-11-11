@@ -39,16 +39,17 @@ export default {
       targetType: "USER",
     });
     const followManager = async () => {
-      if (followType.value.STATE === "UNFOLLOW") { //안하고있으니까
+      if (followType.value.STATE === "UNFOLLOW") {
+        //안하고있으니까
         followData.value.followType = "FOLLOW"; // 팔로우했다
         followType.value.STATE = "FOLLOW"; //상태도 팔로우상태
       } else {
         followData.value.followType = "UNFOLLOW"; //언팔했다
         followType.value.STATE = "UNFOLLOW"; //상태도 언팔
       }
-      console.log(followData.value);
+      ////console.log(followData.value);
       const data = await apiClient("/common/doFollow", followData.value);
-      console.log(data);
+      ////console.log(data);
     };
     //좋아요
     const heartCount = ref(0);
@@ -70,7 +71,7 @@ export default {
         heartState.value.STATE = "DISLIKE";
         heartCount.value -= 1;
       }
-      console.log(heartData.value);
+      ////console.log(heartData.value);
       const data = await apiClient("/common/doLike", heartData.value);
     };
     //상세 게시물 조회 api
@@ -86,16 +87,16 @@ export default {
     });
     const detail = async () => {
       const data = await apiClient("/sns/getSnsDetail", detailData.value);
-      console.log(data.data);
+      ////console.log(data.data);
       detailData.value = data.data;
-      console.log();
+      ////console.log();
       if (detailData.value) {
         followData.value.targetIdx = detailData.value.userIdx;
       }
       if (detailData.value) {
         heartData.value.targetIdx = detailData.value.userIdx;
       }
-      console.log("이 글 내용 : ", detailData.value.boardBody);
+      ////console.log("이 글 내용 : ", detailData.value.boardBody);
       await commentList();
     };
     const MyRerAction = ref(false);
@@ -115,8 +116,8 @@ export default {
     const deleteContent = async () => {
       const data = await apiClient("/sns/deleteSns", deleteData.value);
       if (data.resultCode === 0) {
-        console.log(data);
-        console.log(data.data);
+        ////console.log(data);
+        ////console.log(data.data);
         const check = confirm("삭제하시겠습니까?");
         if (check === true) {
           window.alert("삭제되었습니다.");
@@ -125,7 +126,7 @@ export default {
         closePopup();
         router.go(); //새로고침
       } else {
-        console.log(data);
+        ////console.log(data);
         window.alert("다시시도해주세요");
       }
     };
@@ -133,12 +134,12 @@ export default {
     const RerCommentActive = ref(false);
     const RerCommentOption = commentIdx => {
       store.commit(STORE_TYPE.commentIdx, commentIdx);
-      console.log(store.state.commentIdx);
-      console.log(commentListData.value.commentIdx);
+      ////console.log(store.state.commentIdx);
+      ////console.log(commentListData.value.commentIdx);
       if (store.state.commentIdx) {
         RerCommentActive.value = !RerCommentActive.value;
       } else {
-        console.log("x");
+        ////console.log("x");
       }
     };
 
@@ -148,12 +149,12 @@ export default {
     const commentList = async () => {
       const data = await apiClient("/comment/getCommentList", getComment.value);
       if (data.resultCode === 0) {
-        console.log("댓글들: ", data.data);
+        ////console.log("댓글들: ", data.data);
         commentListData.value = data.data;
         // const date = dayjs(commentListData.value[0].dateReg, "YYYY-MM-DD HH:mm");
-        // console.log(date.format("YYYY-MM-DD HH:mm"));
+        // ////console.log(date.format("YYYY-MM-DD HH:mm"));
       } else {
-        console.log("댓글 조회에 실패했습니다.");
+        ////console.log("댓글 조회에 실패했습니다.");
       }
     };
 
@@ -165,7 +166,7 @@ export default {
     const upComment = async () => {
       const data = await apiClient("/comment/insertComment", commentData.value);
       if (data.resultCode === 0) {
-        console.log("추가한 댓글 : ", commentData.value.commentBody);
+        ////console.log("추가한 댓글 : ", commentData.value.commentBody);
         await commentList();
       } else {
         window.alert("댓글을 입력해주세요");
@@ -177,20 +178,19 @@ export default {
     });
     const putCommentIdx = commentIdx => {
       deleteCommentData.value.commentIdx = commentIdx;
-      console.log("이 댓글 idx: ", deleteCommentData.value.commentIdx);
+      ////console.log("이 댓글 idx: ", deleteCommentData.value.commentIdx);
       deleteComment();
     }; //댓글 idx를 리스트에 담는다.
     const deleteComment = async () => {
       const data = await apiClient("/comment/deleteComment", deleteCommentData.value);
       if (data.resultCode === 0) {
-        console.log(data);
+        ////console.log(data);
         window.alert("삭제되었습니다.");
         await detail();
       } else {
         window.alert("다시 시도해주세요");
       }
     };
-
 
     //팝업 닫기
     const closePopup = () => {
@@ -291,7 +291,7 @@ export default {
           </div>
           <div class="content-wrap-emotion">
             <div class="content-wrap-emotion-like">
-              <span v-if="heartCount < 1 " @click="doLike"><i class="fa-regular fa-heart"></i></span>
+              <span v-if="heartCount < 1" @click="doLike"><i class="fa-regular fa-heart"></i></span>
               <span v-else @click="doLike"><i class="fa-solid fa-heart"></i></span>
               <span>{{ heartCount }}</span>
             </div>

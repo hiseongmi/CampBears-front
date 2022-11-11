@@ -435,7 +435,6 @@
       }
     }
 
-
     &-menu {
       display: flex;
       justify-content: flex-end;
@@ -1329,8 +1328,6 @@
     .pagination {
       display: none;
     }
-
-
   }
   //1200
   .view-all {
@@ -2227,6 +2224,33 @@
         height: 250px;
         background-image: url(" /assets/image/mainpageslider4.png");
       }
+    }
+  }
+}
+
+// pagination
+.custom-pagination {
+  display: flex;
+  justify-content: center;
+  align-content: end;
+  margin: 20px auto auto;
+
+  .custom-button {
+    border: none;
+    min-width: 20px;
+    width: auto;
+    height: auto;
+    margin: auto 5px;
+    color: black;
+
+    a {
+      font-size: 24px;
+      color: $text-color;
+    }
+
+    a:visited {
+      font-size: 24px;
+      color: black;
     }
   }
 }

@@ -22,7 +22,7 @@ export default {
     };
     const publicIndex = ref();
     const checkValue = v => {
-      console.log(v);
+      //console.log(v);
       publicIndex.value = v;
     };
 
@@ -32,17 +32,32 @@ export default {
     const upLoadData = ref({
       boardBody: "",
       keyword: "",
-      optionList: ["SHOWER", "PARMERCY", "CAFE", "FITTING", "SUBWAY", "MARKET", "STORE", "DRINK", "PARK", "RESTROOM", "STARBUCKS", "MOVIE", "RESTAURANT", "SHUTTLE"],
+      optionList: [
+        "SHOWER",
+        "PARMERCY",
+        "CAFE",
+        "FITTING",
+        "SUBWAY",
+        "MARKET",
+        "STORE",
+        "DRINK",
+        "PARK",
+        "RESTROOM",
+        "STARBUCKS",
+        "MOVIE",
+        "RESTAURANT",
+        "SHUTTLE",
+      ],
     });
     const hashTag = ref({ hashTag: "" });
     const upLoad = async () => {
       let a = hashTag.value.hashTag.split(" ");
-      console.log(a);
+      //console.log(a);
       a = Object.assign({ keyword: "" }, a, upLoadData.value);
-      console.log(a);
+      //console.log(a);
       // const data = await apiClient("/sns/insert", upLoadData.value);
-      // console.log(upLoadData.value.boardBody);
-      // console.log(data);
+      // //console.log(upLoadData.value.boardBody);
+      // //console.log(data);
       // if (data.resultCode === 0) {
       //   router.go();
       //   store.commit(STORE_TYPE.popupType, POPUP_TYPE.NONE); //팝업 닫기
@@ -64,7 +79,7 @@ export default {
         level: 5,
       };
       const map = new window.kakao.maps.Map(container, options);
-      console.log(map);
+      //console.log(map);
       // } else {
       //   addScript();
       // }
@@ -101,7 +116,7 @@ export default {
         </div>
         <div class="content-profile">
           <div class="content-profile-wrap">
-            <img src="/assets/image/IU.png">
+            <img src="/assets/image/IU.png" />
             <span>dlwlrma</span>
           </div>
           <div class="content-profile-public">
@@ -118,11 +133,12 @@ export default {
           </div>
         </div>
         <div class="content-content">
-          <custom-input :custom-class="'content'" :placeholder="'문구 입력...'"
-                        @update:value="upLoadData.boardBody = $event" />
-          <div class="count">
-            (0 / 200)
-          </div>
+          <custom-input
+            :custom-class="'content'"
+            :placeholder="'문구 입력...'"
+            @update:value="upLoadData.boardBody = $event"
+          />
+          <div class="count">(0 / 200)</div>
         </div>
         <div class="content-position">
           <div class="content-position-wrap">
@@ -139,18 +155,17 @@ export default {
         <div class="content-person">
           <div class="content-person-wrap">
             <span>인원</span>
-            <div>
-              range slider
-            </div>
+            <div>range slider</div>
           </div>
         </div>
         <div class="content-tag">
-          <div class="content-tag-div">
-            태그 설정
-          </div>
+          <div class="content-tag-div">태그 설정</div>
           <div class="content-tag-wrap">
-            <custom-input :custom-class="'content'" :placeholder="'# 태그입력 (최대 30개)'"
-                          @update:value="hashTag.hashTag = $event"></custom-input>
+            <custom-input
+              :custom-class="'content'"
+              :placeholder="'# 태그입력 (최대 30개)'"
+              @update:value="hashTag.hashTag = $event"
+            ></custom-input>
             <button @click="hash">클릭</button>
           </div>
         </div>
@@ -161,15 +176,11 @@ export default {
       </div>
     </div>
     <div class="modal-inner-map" v-if="pAction">
-      <div id="map">
-      </div>
+      <div id="map"></div>
       <div class="modal-inner-map-btn">
         <span @click="position">취소</span>
         <span @click="initMap">지도보기</span>
       </div>
     </div>
-
   </div>
-
 </template>
-

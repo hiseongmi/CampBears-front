@@ -38,9 +38,9 @@ export default {
           userPassword: ''
         }
       }).then((res) => {
-        console.log(res);
+         res);
       }).catch(error => {
-        console.log(error);
+         error);
         throw new Error(error);
       });
     }

@@ -12,22 +12,22 @@ export default {
     //상단 헤더 리스트
     const headerBarList = [
       {
-        name: "SNS",
+        name: "커뮤니티",
         key: "SNS",
         target: "/snsPage",
       },
       {
-        name: "Bears 플리마켓",
+        name: "중고거래",
         key: "MARKET",
         target: "/usedMarket",
       },
       {
-        name: "Bears 쇼핑",
+        name: "쇼핑",
         key: "SHOP",
         target: "/",
       },
       {
-        name: "캠핑장 정보",
+        name: "캠핑장",
         key: "BOARD",
         target: "/infoPage",
       },

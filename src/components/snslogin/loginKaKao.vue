@@ -14,7 +14,7 @@ export default {
       "Content-type": "application/x-www-form-urlencoded;charset=utf-8",
     };
     const getKakaoToken = async code => {
-      console.log("loginWithKakao");
+      //console.log("loginWithKakao");
       try {
         const data = {
           grant_type: "authorization_code",
@@ -25,10 +25,10 @@ export default {
         const queryString = Object.keys(data)
           .map(k => encodeURIComponent(k) + "=" + encodeURIComponent(data[k]))
           .join("&");
-        console.log(queryString);
+        //console.log(queryString);
         const result = await axios.post("https://kauth.kakao.com/oauth/token", queryString, { headers: kakaoHeader });
-        console.log("카카오 토큰", queryString);
-        console.log(result);
+        //console.log("카카오 토큰", queryString);
+        //console.log(result);
         return result;
       } catch (e) {
         return e;
@@ -43,10 +43,10 @@ export default {
     //       data = response;
     //     },
     //     fail: function (error) {
-    //       console.log(error);
+    //       //console.log(error);
     //     },
     //   });
-    //   console.log("카카오 계정 정보", data);
+    //   //console.log("카카오 계정 정보", data);
     //   return data;
     // };
     return {

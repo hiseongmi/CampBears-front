@@ -26,8 +26,10 @@ export default {
       // 	// 추가해줘 응애
 
       const data = await apiClient("", userData.value);
-      if (!data && data.length < 1) console.log("axios error");
-      if (data.data.status === 200) alert("변경 완료!");
+      if (!data && data.length < 1)
+        if (data.data.status === 200)
+          //console.log("axios error");
+          alert("변경 완료!");
       // }
     };
 

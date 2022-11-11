@@ -3,7 +3,7 @@ import { ref, computed } from "vue";
 import CustomButton from "./customButton.vue";
 
 export default {
-  name: "pagination",
+  name: "customPagination",
   components: { CustomButton },
   setup() {
     let page = ref(1);
@@ -46,7 +46,7 @@ export default {
 </script>
 
 <template>
-  <div class="pagination">
+  <div class="custom-pagination">
     <div v-for="item in paginatedData" :key="item.index" />
     <custom-button :placeholder="`<`" :onClick="backPage" />
     <custom-button v-for="item in Math.ceil(data.length / perPage)" :key="item" @click="() => goToPage(item)">

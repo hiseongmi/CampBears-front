@@ -16,17 +16,14 @@ export default {
     customInput,
   },
   setup() {
-
-
     const inquiryData = ref({ keyword: "", hashKeyWord: "" });
     const getContent = async () => {
       const data = await apiClient("/sns/getSnsList", inquiryData.value);
-      // console.log(data.data) //태그 장소 검색 글 데이터
+      // //console.log(data.data) //태그 장소 검색 글 데이터
       // contentData.value = data.data
 
       dispatchEvent(new CustomEvent("SEARCH", { detail: inquiryData.value.keyword })); //search 이벤트를 날림
       dispatchEvent(new CustomEvent("SEARCH_HASH", { detail: inquiryData.value.hashKeyWord })); //search 이벤트를 날림
-
     };
 
     return {
