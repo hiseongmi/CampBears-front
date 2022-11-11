@@ -1164,7 +1164,7 @@
       background-image: url("/assets/image/mainpage2.png");
       width: 50%;
       height: 520px;
-    //mainpage2.png"
+      //mainpage2.png"
       span {
         color: $white;
         position: relative;
@@ -1266,8 +1266,15 @@
   }
 
   .main-story {
+    display: grid;
     text-align: center;
     padding-top: 60px;
+
+    img {
+      place-self: center;
+      border-style: none;
+      display: inline-block;
+    }
 
     span {
       display: inline-block;
