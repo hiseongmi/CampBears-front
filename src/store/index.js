@@ -21,7 +21,7 @@ export const POPUP_TYPE = {
 const store = createStore({
   state: {
     isLoading: false,
-    popupType: [POPUP_TYPE.NONE],
+    popupType: POPUP_TYPE.NONE,
     loginUserIdx: "",
     boardIdx: "",
     commentIdx: "",

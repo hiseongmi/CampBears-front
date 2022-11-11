@@ -31,18 +31,24 @@ export default {
 
     const upLoadData = ref({
       boardBody: "",
-      hashTag: [],
+      keyword: "",
       optionList: ["SHOWER", "PARMERCY", "CAFE", "FITTING", "SUBWAY", "MARKET", "STORE", "DRINK", "PARK", "RESTROOM", "STARBUCKS", "MOVIE", "RESTAURANT", "SHUTTLE"],
     });
+    const hashTag = ref({ hashTag: "" });
     const upLoad = async () => {
-      const data = await apiClient("/sns/insert", upLoadData.value);
-      console.log(upLoadData.value.boardBody);
-      console.log(data);
-      if (data.resultCode === 0) {
-        store.commit(STORE_TYPE.popupType, POPUP_TYPE.NONE); //팝업 닫기
-      } else {
-        window.alert("내용을 입력해주세요.");
-      }
+      let a = hashTag.value.hashTag.split(" ");
+      console.log(a);
+      a = Object.assign({ keyword: "" }, a, upLoadData.value);
+      console.log(a);
+      // const data = await apiClient("/sns/insert", upLoadData.value);
+      // console.log(upLoadData.value.boardBody);
+      // console.log(data);
+      // if (data.resultCode === 0) {
+      //   router.go();
+      //   store.commit(STORE_TYPE.popupType, POPUP_TYPE.NONE); //팝업 닫기
+      // } else {
+      //   window.alert("내용을 입력해주세요.");
+      // }
     };
 
     const pAction = ref(false);
@@ -65,6 +71,7 @@ export default {
     };
 
     return {
+      hashTag,
       publicType,
       publicIndex,
       checkValue,
@@ -143,7 +150,8 @@ export default {
           </div>
           <div class="content-tag-wrap">
             <custom-input :custom-class="'content'" :placeholder="'# 태그입력 (최대 30개)'"
-                          @update:value="[upLoadData.hashTag = $event]"></custom-input>
+                          @update:value="hashTag.hashTag = $event"></custom-input>
+            <button @click="hash">클릭</button>
           </div>
         </div>
         <!--        <div class="comment">-->

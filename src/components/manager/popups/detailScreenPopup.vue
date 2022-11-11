@@ -117,11 +117,15 @@ export default {
       if (data.resultCode === 0) {
         console.log(data);
         console.log(data.data);
-        window.alert("삭제되었습니다.");
+        const check = confirm("삭제하시겠습니까?");
+        if (check === true) {
+          window.alert("삭제되었습니다.");
+        }
         // await getContent();
         closePopup();
         router.go(); //새로고침
       } else {
+        console.log(data);
         window.alert("다시시도해주세요");
       }
     };
@@ -146,8 +150,8 @@ export default {
       if (data.resultCode === 0) {
         console.log("댓글들: ", data.data);
         commentListData.value = data.data;
-        const date = dayjs(commentListData.value[0].dateReg, "YYYY-MM-DD HH:mm");
-        console.log(date.format("YYYY-MM-DD HH:mm"));
+        // const date = dayjs(commentListData.value[0].dateReg, "YYYY-MM-DD HH:mm");
+        // console.log(date.format("YYYY-MM-DD HH:mm"));
       } else {
         console.log("댓글 조회에 실패했습니다.");
       }
