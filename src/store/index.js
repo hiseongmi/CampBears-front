@@ -25,6 +25,7 @@ const store = createStore({
     loginUserIdx: "",
     boardIdx: "",
     commentIdx: "",
+    popupList: [],
   },
   mutations: {
     /**

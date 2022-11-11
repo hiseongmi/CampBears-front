@@ -7,10 +7,11 @@ import CustomButton from "../../layout/customButton.vue";
 import CustomInput from "../../layout/customInput.vue";
 import router from "../../../router/index.js";
 import dayjs from "dayjs";
+import reportPopup from "./reportPopup.vue";
 
 export default {
   name: "detailScreenPopup",
-  components: { CustomButton, CustomInput },
+  components: { CustomButton, CustomInput, reportPopup },
   props: {
     clickClose: {
       type: Function,
@@ -109,6 +110,11 @@ export default {
       }
     }; //수정신고삭제 옵션
 
+    const reportAction = ref(false);
+    const reportPop = () => {
+      reportAction.value = !reportAction.value;
+    };
+
     //게시물 삭제 api
     const deleteData = ref({
       boardIdx: store.state.boardIdx,
@@ -121,25 +127,15 @@ export default {
         const check = confirm("삭제하시겠습니까?");
         if (check === true) {
           window.alert("삭제되었습니다.");
+          // await getContent();
+          closePopup();
+          router.go(); //새로고침
+        } else {
+          console.log("취손데 삭제 된다 ㅋㅋ");
         }
-        // await getContent();
-        closePopup();
-        router.go(); //새로고침
       } else {
         ////console.log(data);
         window.alert("다시시도해주세요");
-      }
-    };
-    //댓글 수정 신고 삭제 옵션
-    const RerCommentActive = ref(false);
-    const RerCommentOption = commentIdx => {
-      store.commit(STORE_TYPE.commentIdx, commentIdx);
-      ////console.log(store.state.commentIdx);
-      ////console.log(commentListData.value.commentIdx);
-      if (store.state.commentIdx) {
-        RerCommentActive.value = !RerCommentActive.value;
-      } else {
-        ////console.log("x");
       }
     };
 
@@ -149,12 +145,23 @@ export default {
     const commentList = async () => {
       const data = await apiClient("/comment/getCommentList", getComment.value);
       if (data.resultCode === 0) {
-        ////console.log("댓글들: ", data.data);
+        console.log("댓글들: ", data.data);
         commentListData.value = data.data;
         // const date = dayjs(commentListData.value[0].dateReg, "YYYY-MM-DD HH:mm");
         // ////console.log(date.format("YYYY-MM-DD HH:mm"));
       } else {
         ////console.log("댓글 조회에 실패했습니다.");
+      }
+    };
+    const MySelectedComment = ref("");
+    const selectedComment = ref("");
+    //댓글 수정 신고 삭제 옵션
+    const RerCommentActive = ref(false);
+    const RerCommentOption = comment => {
+      if (detailData.value.userIdx === userData.userIdx || userData.userIdx === comment.userIdx) {
+        MySelectedComment.value = comment.commentIdx; //특정만 나와
+      } else if (detailData.value.userIdx === userData.userIdx) {
+        selectedComment.value = comment.commentIdx;
       }
     };
 
@@ -185,7 +192,10 @@ export default {
       const data = await apiClient("/comment/deleteComment", deleteCommentData.value);
       if (data.resultCode === 0) {
         ////console.log(data);
-        window.alert("삭제되었습니다.");
+        const check = confirm("삭제하시겠습니까?");
+        if (check === true) {
+          window.alert("삭제되었습니다.");
+        }
         await detail();
       } else {
         window.alert("다시 시도해주세요");
@@ -243,6 +253,10 @@ export default {
       goToUpdate,
       postImage,
       closePopup,
+      reportAction,
+      reportPop,
+      selectedComment,
+      MySelectedComment,
     };
   },
 };
@@ -259,12 +273,12 @@ export default {
           <ul>
             <li @click="goToUpdate">수정</li>
             <li @click="deleteContent">삭제</li>
-            <li @click="goToReport">신고 <i class="fa-solid fa-circle-exclamation"></i></li>
+            <li @click="reportPop">신고 <i class="fa-solid fa-circle-exclamation"></i></li>
           </ul>
         </div>
         <div class="pop" v-if="RerAction">
           <ul>
-            <li @click="goToReport">신고 <i class="fa-solid fa-circle-exclamation"></i></li>
+            <li @click="reportPop">신고 <i class="fa-solid fa-circle-exclamation"></i></li>
           </ul>
         </div>
       </div>
@@ -334,13 +348,19 @@ export default {
           <div class="content-comments-option">
             <span class="date">{{ item.dateReg }}</span>
             <span> <i class="fa-regular fa-comment"></i></span>
-            <span @click="RerCommentOption(item.commentIdx)"><i class="fa-solid fa-ellipsis-vertical"></i></span>
+            <span @click="RerCommentOption(item)"><i class="fa-solid fa-ellipsis-vertical"></i></span>
           </div>
-          <div class="commentPop" v-if="RerCommentActive">
+          <div class="commentPop" v-if="item.commentIdx === MySelectedComment">
             <ul>
               <li @click="putCommentIdx(item.commentIdx)">삭제</li>
-              <li @click="goToReport">신고</li>
-              <li @click="RerCommentOption">취소</li>
+              <li @click="reportPop">신고</li>
+              <li>취소</li>
+            </ul>
+          </div>
+          <div class="commentPop" v-if="item.commentIdx === selectedComment">
+            <ul>
+              <li @click="reportPop">신고</li>
+              <li>취소</li>
             </ul>
           </div>
         </div>
@@ -352,5 +372,8 @@ export default {
     <span class="left">
       <i class="fa-solid fa-circle-chevron-left"></i>
     </span>
+    <div v-if="reportAction" class="detailBlack">
+      <report-popup :reportPop="reportPop"></report-popup>
+    </div>
   </div>
 </template>

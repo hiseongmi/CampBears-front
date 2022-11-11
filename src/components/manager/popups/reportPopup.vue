@@ -9,6 +9,10 @@ export default {
   name: "reportPopup",
   components: { CustomInput, CustomButton },
   props: {
+    reportPop: {
+      type: Function,
+      required: true,
+    },
     clickClose: {
       type: Function,
       required: true,
@@ -34,7 +38,7 @@ export default {
 </script>
 <template>
   <div class="modal-report">
-    <span @click="goDetail" type="button">X</span>
+    <span @click="reportPop" type="button">X</span>
     <div class="modal-report-content">
       <div><input type="checkbox" v-model="arr" value="그냥1" /> 그냥</div>
       <div><input type="checkbox" v-model="arr" value="그냥2" /> 그냥2</div>
@@ -51,7 +55,7 @@ export default {
       />
     </div>
     <div class="modal-report-btn">
-      <custom-button @click="goDetail">취소</custom-button>
+      <custom-button @click="reportPop">취소</custom-button>
       <custom-button @click="checkArr">신고하기</custom-button>
     </div>
   </div>

@@ -1,6 +1,6 @@
 <script>
 import store, { getStore, STORE_TYPE, POPUP_TYPE } from "../../store/index.js";
-import { ref, watch } from "vue";
+import { onMounted, ref, watch } from "vue";
 import writeBoardPopup from "./popups/writeBoardPopup.vue";
 import DetailScreenPopup from "./popups/detailScreenPopup.vue";
 import ReportPopup from "./popups/reportPopup.vue";
@@ -12,6 +12,7 @@ export default {
   setup() {
     const store = getStore();
     const isPopup = ref(store.state.popupType);
+    const PopupList = ref(store.state.popupList);
     const clickClose = () => {
       store.commit(STORE_TYPE.popupType, POPUP_TYPE.NONE);
     };
@@ -20,9 +21,11 @@ export default {
     };
     watch(() => store.state.popupType, () => {
       isPopup.value = store.state.popupType;
+      PopupList.value.push(store.state.popupList);
     });
 
     return {
+      PopupList,
       store,
       isPopup,
       POPUP_TYPE,

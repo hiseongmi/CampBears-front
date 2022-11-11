@@ -92,7 +92,7 @@ export default {
     //키워드 검색
     const contentData = ref();
     let keyword = "";
-    let hashKeyWord = [""]; //데이터 가공해서 넣기
+    let hashKeyWord = []; //데이터 가공해서 넣기
     const getContent = async () => {
       let param = { like: false, keyword: keyword, hashKeyWord: hashKeyWord, sorted: "RECENT", showType: "ALL" };
       if (selectedValue.value !== null && selectedValue.value !== undefined) {
@@ -101,7 +101,7 @@ export default {
       }
       const data = await apiClient("/sns/getSnsList", param);
       if (data.data) {
-        //console.log(data.data);
+        console.log(data.data);
         contentData.value = data.data;
       }
     };
@@ -222,13 +222,12 @@ export default {
         <div class="heart">
           <span><i class="fa-regular fa-heart"></i></span>
           <!--          <i class="fa-solid fa-circle-heart"></i> 이 아이콘은 안보임-->
-          <span>127</span>
+          <span>0</span>
         </div>
       </div>
     </div>
   </div>
   <div class="pagination">
-    <pagination></pagination>
     <!--    <login-naver></login-naver>-->
   </div>
 </template>

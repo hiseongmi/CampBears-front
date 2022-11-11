@@ -16,13 +16,14 @@ export default {
     },
   },
   setup() {
+    const userData = JSON.parse(localStorage.getItem("userData")) || "";
     const publicType = {
       All: "ALL",
       FOLLOW: "FOLLOW",
     };
     const publicIndex = ref();
     const checkValue = v => {
-      //console.log(v);
+      // console.log(v);
       publicIndex.value = v;
     };
 
@@ -31,33 +32,20 @@ export default {
 
     const upLoadData = ref({
       boardBody: "",
-      keyword: "",
-      optionList: [
-        "SHOWER",
-        "PARMERCY",
-        "CAFE",
-        "FITTING",
-        "SUBWAY",
-        "MARKET",
-        "STORE",
-        "DRINK",
-        "PARK",
-        "RESTROOM",
-        "STARBUCKS",
-        "MOVIE",
-        "RESTAURANT",
-        "SHUTTLE",
-      ],
+      optionList: ["SHOWER", "PARMERCY", "CAFE", "FITTING", "SUBWAY", "MARKET", "STORE", "DRINK", "PARK", "RESTROOM", "STARBUCKS", "MOVIE", "RESTAURANT", "SHUTTLE"],
     });
+    const inputHashTag = ref("");
     const hashTag = ref({ hashTag: "" });
-    const upLoad = async () => {
-      let a = hashTag.value.hashTag.split(" ");
-      //console.log(a);
-      a = Object.assign({ keyword: "" }, a, upLoadData.value);
-      //console.log(a);
-      // const data = await apiClient("/sns/insert", upLoadData.value);
-      // //console.log(upLoadData.value.boardBody);
-      // //console.log(data);
+    const hashTagList = ref([]);
+    const uploadSnsBoard = async () => {
+      // let a = hashTag.value.hashTag.split("#");
+      // a = Object.assign({ hashTag: a }, upLoadData.value);
+      // console.log(a);
+      const param = Object.assign({}, upLoadData.value, { hashTag: hashTagList.value });
+      console.log(param);
+      // const data = await apiClient("/sns/insert", a);
+      // console.log(upLoadData.value.boardBody);
+      // console.log(data);
       // if (data.resultCode === 0) {
       //   router.go();
       //   store.commit(STORE_TYPE.popupType, POPUP_TYPE.NONE); //팝업 닫기
@@ -79,23 +67,64 @@ export default {
         level: 5,
       };
       const map = new window.kakao.maps.Map(container, options);
-      //console.log(map);
+      console.log(map);
       // } else {
       //   addScript();
       // }
     };
 
+    const handleInput = (e) => {
+      let target = e.target.value;
+      target = target.trim();
+      //
+      // if (target.includes("#")) {
+      //   console.log(target.includes("#"));
+      // }
+      if (target[0] === "#") {
+        inputHashTag.value = target;
+        console.log(inputHashTag.value);
+      } else {
+        const eng = /^[a-z|A-Z]+$/;
+        if (eng.test(e.target.value)) {
+          e.target.value = "#" + e.target.value;
+        } else {
+          e.target.value = "#" + e.target.value.substring(1);
+        }
+        // inputHashTag.value = "#" + inputHashTag.value;
+      }
+
+    };
+
+    const handleEnterEvent = (e) => {
+
+      // inputHashTag.value = inputHashTag.value.trim();
+      if (e.key === "Enter") {
+        if (inputHashTag.value[0] === "#") {
+          const param = inputHashTag.value.substring(1).trim();
+          hashTagList.value.push(param);
+          inputHashTag.value = undefined;
+          console.log("hashTagList : ", hashTagList.value);
+        }
+      }
+
+    };
+
     return {
+      userData,
       hashTag,
       publicType,
       publicIndex,
+      pAction,
+      upLoadData,
+      isPopup,
+      inputHashTag,
+      hashTagList,
       checkValue,
       initMap,
-      pAction,
       position,
-      upLoadData,
-      upLoad,
-      isPopup,
+      uploadSnsBoard,
+      handleInput,
+      handleEnterEvent,
     };
   },
 };
@@ -106,7 +135,7 @@ export default {
       <custom-button :customClass="'cancel'" :placeholder="'취소'" :onClick="clickClose" />
       <div class="save-btn-wrap">
         <custom-button :customClass="'save'" :placeholder="'저장'" :onClick="clickClose" />
-        <custom-button :customClass="'upLoad'" :placeholder="'올리기'" :onClick="upLoad" />
+        <custom-button :customClass="'upLoad'" :placeholder="'올리기'" :onClick="uploadSnsBoard" />
       </div>
     </div>
     <div class="modal-inner-wrap">
@@ -116,7 +145,7 @@ export default {
         </div>
         <div class="content-profile">
           <div class="content-profile-wrap">
-            <img src="/assets/image/IU.png" />
+            <img src="/assets/image/IU.png">
             <span>dlwlrma</span>
           </div>
           <div class="content-profile-public">
@@ -133,12 +162,11 @@ export default {
           </div>
         </div>
         <div class="content-content">
-          <custom-input
-            :custom-class="'content'"
-            :placeholder="'문구 입력...'"
-            @update:value="upLoadData.boardBody = $event"
-          />
-          <div class="count">(0 / 200)</div>
+          <custom-input :custom-class="'content'" :placeholder="'문구 입력...'"
+                        @update:value="upLoadData.boardBody = $event" />
+          <div class="count">
+            (0 / 200)
+          </div>
         </div>
         <div class="content-position">
           <div class="content-position-wrap">
@@ -155,19 +183,23 @@ export default {
         <div class="content-person">
           <div class="content-person-wrap">
             <span>인원</span>
-            <div>range slider</div>
+            <div>
+              range slider
+            </div>
           </div>
         </div>
         <div class="content-tag">
-          <div class="content-tag-div">태그 설정</div>
-          <div class="content-tag-wrap">
-            <custom-input
-              :custom-class="'content'"
-              :placeholder="'# 태그입력 (최대 30개)'"
-              @update:value="hashTag.hashTag = $event"
-            ></custom-input>
-            <button @click="hash">클릭</button>
+          <div class="content-tag-div">
+            태그 설정
           </div>
+          <div v-if="hashTagList.length > 0">
+            <span v-for="item in hashTagList">#{{ item }}</span>
+          </div>
+
+          <div class="content-tag-wrap">
+            <input type="text" v-model="inputHashTag" @keydown="handleEnterEvent" @input="handleInput">
+          </div>
+          {{ hashTagList }}
         </div>
         <!--        <div class="comment">-->
         <!--          <div id="map">-->
@@ -176,11 +208,15 @@ export default {
       </div>
     </div>
     <div class="modal-inner-map" v-if="pAction">
-      <div id="map"></div>
+      <div id="map">
+      </div>
       <div class="modal-inner-map-btn">
         <span @click="position">취소</span>
         <span @click="initMap">지도보기</span>
       </div>
     </div>
+
   </div>
+
 </template>
+
