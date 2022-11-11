@@ -120,22 +120,20 @@ export default {
       boardIdx: store.state.boardIdx,
     });
     const deleteContent = async () => {
-      const data = await apiClient("/sns/deleteSns", deleteData.value);
-      if (data.resultCode === 0) {
-        ////console.log(data);
-        ////console.log(data.data);
-        const check = confirm("삭제하시겠습니까?");
-        if (check === true) {
+      const check = confirm("삭제하시겠습니까?");
+      if (check === true) {
+        const data = await apiClient("/sns/deleteSns", deleteData.value);
+        if (data.resultCode === 0) {
+          ////console.log(data);
+          ////console.log(data.data);
           window.alert("삭제되었습니다.");
           // await getContent();
           closePopup();
           router.go(); //새로고침
         } else {
-          console.log("취손데 삭제 된다 ㅋㅋ");
+          ////console.log(data);
+          window.alert("다시시도해주세요");
         }
-      } else {
-        ////console.log(data);
-        window.alert("다시시도해주세요");
       }
     };
 
@@ -189,16 +187,15 @@ export default {
       deleteComment();
     }; //댓글 idx를 리스트에 담는다.
     const deleteComment = async () => {
-      const data = await apiClient("/comment/deleteComment", deleteCommentData.value);
-      if (data.resultCode === 0) {
-        ////console.log(data);
-        const check = confirm("삭제하시겠습니까?");
-        if (check === true) {
+      const check = confirm("삭제하시겠습니까?");
+      if (check === true) {
+        const data = await apiClient("/comment/deleteComment", deleteCommentData.value);
+        if (data.resultCode === 0) {
           window.alert("삭제되었습니다.");
+          await detail();
+        } else {
+          window.alert("다시 시도해주세요");
         }
-        await detail();
-      } else {
-        window.alert("다시 시도해주세요");
       }
     };
 

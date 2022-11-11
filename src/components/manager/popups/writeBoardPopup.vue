@@ -35,23 +35,19 @@ export default {
       optionList: ["SHOWER", "PARMERCY", "CAFE", "FITTING", "SUBWAY", "MARKET", "STORE", "DRINK", "PARK", "RESTROOM", "STARBUCKS", "MOVIE", "RESTAURANT", "SHUTTLE"],
     });
     const inputHashTag = ref("");
-    const hashTag = ref({ hashTag: "" });
     const hashTagList = ref([]);
     const uploadSnsBoard = async () => {
-      // let a = hashTag.value.hashTag.split("#");
-      // a = Object.assign({ hashTag: a }, upLoadData.value);
-      // console.log(a);
       const param = Object.assign({}, upLoadData.value, { hashTag: hashTagList.value });
       console.log(param);
-      // const data = await apiClient("/sns/insert", a);
-      // console.log(upLoadData.value.boardBody);
-      // console.log(data);
-      // if (data.resultCode === 0) {
-      //   router.go();
-      //   store.commit(STORE_TYPE.popupType, POPUP_TYPE.NONE); //팝업 닫기
-      // } else {
-      //   window.alert("내용을 입력해주세요.");
-      // }
+      const data = await apiClient("/sns/insert", param);
+      console.log(upLoadData.value.boardBody);
+      console.log(data);
+      if (data.resultCode === 0) {
+        router.go();
+        store.commit(STORE_TYPE.popupType, POPUP_TYPE.NONE); //팝업 닫기
+      } else {
+        window.alert("내용을 입력해주세요.");
+      }
     };
 
     const pAction = ref(false);
@@ -82,7 +78,6 @@ export default {
       // }
       if (target[0] === "#") {
         inputHashTag.value = target;
-        console.log(inputHashTag.value);
       } else {
         const eng = /^[a-z|A-Z]+$/;
         if (eng.test(e.target.value)) {
@@ -103,7 +98,6 @@ export default {
           const param = inputHashTag.value.substring(1).trim();
           hashTagList.value.push(param);
           inputHashTag.value = undefined;
-          console.log("hashTagList : ", hashTagList.value);
         }
       }
 
@@ -111,7 +105,6 @@ export default {
 
     return {
       userData,
-      hashTag,
       publicType,
       publicIndex,
       pAction,
@@ -146,7 +139,7 @@ export default {
         <div class="content-profile">
           <div class="content-profile-wrap">
             <img src="/assets/image/IU.png">
-            <span>dlwlrma</span>
+            <span>{{ userData.userNickName }}</span>
           </div>
           <div class="content-profile-public">
             <custom-button
