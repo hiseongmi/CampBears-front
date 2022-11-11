@@ -88,10 +88,10 @@ export default {
 <template>
   <div class="signup">
     <div class="signup-img-fir">
-      <img src="/public/assets/image/login-camp1.png" alt="">
+      <img src="/assets/image/login-camp1.png" alt="">
     </div>
     <div class="signup-img-sec">
-      <img src="/public/assets/image/login-camp2.png" alt="">
+      <img src="/assets/image/login-camp2.png" alt="">
     </div>
     <div class="signup-form">
 <span>캠퍼가 되어봐요!
