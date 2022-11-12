@@ -1,9 +1,10 @@
 <script>
 import { apiClient } from "../../utils/axios.js";
-import { ref } from "vue";
-// import { checkForm } from "../../utils/common-util.js";
+import { onMounted, ref } from "vue";
 import customButton from "../layout/customButton.vue";
 import customInput from "../layout/customInput.vue";
+import commonUtil from "../../utils/common-util.js";
+import { CONSTANTS } from "../../constants.js";
 
 export default {
   name: "updateProfile",
@@ -12,31 +13,31 @@ export default {
     customInput,
   },
   setup() {
-    const input = ref("");
-    const input2 = ref("");
+    const profileInfo = ref({
+      userAddress: "",
+      userEmail: "",
+      userName: "",
+      userNickName: "",
+      userDescription: "",
+      userPassword: "",
+      userPhone: "",
+    }); // 소개에 띄워줄 내용
+
+    onMounted(() => {
+      profileInfo.value = commonUtil.parseJson(commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO));
+    });
 
     const updateProfile = async () => {
-      const userData = ref({
-        userName: "",
-        userEmail: "",
-        userPassword: "",
-      });
-
-      // if (checkForm.checkForm(userData)) {
-      // 	// 추가해줘 응애
-
-      const data = await apiClient("", userData.value);
-      if (!data && data.length < 1)
-        if (data.data.status === 200)
-          //console.log("axios error");
-          alert("변경 완료!");
-      // }
+      const data = await apiClient("user/update", profileInfo.value);
+      if (data) {
+        alert("변경 완료!");
+        location.reload();
+      }
     };
 
     return {
       updateProfile,
-      input,
-      input2,
+      profileInfo,
     };
   },
 };
@@ -45,25 +46,32 @@ export default {
 <template>
   <div class="updateProfile">
     <div class="inputBox">
-      <span>이름</span>
-      <custom-input :placeholder="'베어 물어쓰'" @update:value="input = $event" />
-    </div>
-    <div class="inputBox">
-      <span>이메일</span>
-      <custom-input :placeholder="'test@test.com'" @update:value="input2 = $event" />
+      <span>닉네임</span>
+      <custom-input :placeholder="profileInfo.userNickName" @update:value="profileInfo.userNickName = $event" />
     </div>
     <div class="inputBox">
       <span>소개</span>
-      <custom-input :placeholder="'캠핑을 좋아하는 30대 아저씨에요^^'" @update:value="input2 = $event" />
+      <custom-input :placeholder="profileInfo.userDescription" @update:value="profileInfo.userDescription = $event" />
     </div>
-    <div class="profilePictureBox">
-      <span>이미지</span>
+    <custom-button :class="'save'" :placeholder="'저장'" :onClick="updateProfile">
+      <img src="/assets/image/icon/pen.png" alt="" />
+    </custom-button>
+
+    <div class="inputBox">
+      <span>이름</span>
+      <div class="fixedInfo">{{ profileInfo.userName }}</div>
     </div>
-    <div class="buttonBox">
-      <custom-button :class="'cancel'" :placeholder="'취소'" :onClick="updateProfile" />
-      <custom-button :class="'save'" :placeholder="'저장'" :onClick="updateProfile">
-        <img src="/assets/image/icon/pen.png" alt="" />
-      </custom-button>
+    <div class="inputBox">
+      <span>이메일</span>
+      <div class="fixedInfo">{{ profileInfo.userEmail }}</div>
+    </div>
+    <div class="inputBox">
+      <span>주소</span>
+      <div class="fixedInfo">{{ profileInfo.userAddress }}</div>
+    </div>
+    <div class="inputBox">
+      <span>연락처</span>
+      <div class="fixedInfo">{{ profileInfo.userPhone }}</div>
     </div>
   </div>
 </template>

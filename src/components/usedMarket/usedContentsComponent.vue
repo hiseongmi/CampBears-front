@@ -1,10 +1,11 @@
 <script>
 import { onMounted, onUnmounted, ref } from "vue";
 import { apiClient } from "../../utils/axios.js";
+import customPagination from "../layout/customPagination.vue";
 
 export default {
   name: "usedContentsComponent",
-  components: {},
+  components: { customPagination },
   setup: function () {
     let keyword = "";
     const postData = ref();
@@ -73,5 +74,6 @@ export default {
         </div>
       </div>
     </div>
+    <custom-pagination />
   </div>
 </template>

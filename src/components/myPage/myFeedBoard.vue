@@ -2,26 +2,21 @@
 import { onMounted, ref } from "vue";
 import { apiClient } from "../../utils/axios.js";
 import customPagination from "../layout/customPagination.vue";
+import commonUtil from "../../utils/common-util.js";
+import { CONSTANTS } from "../../constants.js";
 
 export default {
-  name: "myFeed",
+  name: "myFeedBoard",
   components: { customPagination },
   component: {
     customPagination,
   },
   setup() {
-    const selectedValue = ref();
     const contentData = ref({});
 
     const getData = async () => {
-      let param = { showType: "HASH" };
-      if (selectedValue.value !== null && selectedValue.value !== undefined) {
-        param = Object.assign({}, param, { sorted: selectedValue.value }); //ob 내장함수 합침
-        param.sorted = selectedValue.value;
-      }
-      const data = await apiClient("sns/getSnsList", param);
-      if (data.data) {
-        //console.log(data.data);
+      const data = await apiClient("sns/getSnsMine", {});
+      if (data) {
         contentData.value = data.data;
       }
     };

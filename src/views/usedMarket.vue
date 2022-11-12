@@ -2,11 +2,10 @@
 import CustomButton from "../components/layout/customButton.vue";
 import { ref } from "vue";
 import UsedContentsComponent from "../components/usedMarket/usedContentsComponent.vue";
-import customPagination from "../components/layout/customPagination.vue";
 
 export default {
   name: "usedMarket",
-  components: { customPagination, UsedContentsComponent, CustomButton },
+  components: { UsedContentsComponent, CustomButton },
   setup() {
     const tabType = {
       SELL: "sell",
@@ -54,7 +53,6 @@ export default {
     </div>
     <div class="used-contents-area">
       <used-contents-component />
-      <custom-pagination />
     </div>
   </div>
 </template>

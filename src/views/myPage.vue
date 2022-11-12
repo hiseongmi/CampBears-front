@@ -5,15 +5,16 @@ import { onMounted, ref } from "vue";
 import snsContentPage from "../components/snsBoard/snsContentPage.vue";
 import UpdateProfile from "../components/myPage/updateProfile.vue";
 import MyReview from "../components/myPage/myReview.vue";
-import myFeed from "../components/myPage/myFeedBoard.vue";
+import myFeedBoard from "../components/myPage/myFeedBoard.vue";
 import pagination from "../components/layout/customPagination.vue";
 import { apiClient } from "../utils/axios.js";
 import commonUtil from "../utils/common-util.js";
+import { CONSTANTS } from "../constants.js";
 
 export default {
   name: "myPage",
   components: {
-    myFeed,
+    myFeedBoard,
     MyReview,
     UpdateProfile,
     snsContentPage,
@@ -24,34 +25,41 @@ export default {
   setup() {
     const tabType = {
       FEED: "feed",
-      SELL: "sell",
+      USED: "used",
       RENT: "rent",
       SAVE: "save",
       REVIEW: "review",
       EDIT: "profileUpdate",
+      PROFILE: "profile",
     }; // 컴포넌트 이름
 
     const tabIndex = ref(tabType.FEED);
 
     const componentChange = v => {
-      //console.log(v);
       tabIndex.value = v;
     };
 
     const profileInfo = ref({
-      backgroundPicture: "/assets/image/camping.png",
-      profilePicture: "/assets/image/bgs.png",
-      temperature: "100.0",
-      nickName: "베어 물어쓰",
-      introduce: "캠핑을 좋아하는 30대 아저씨에요^^",
+      profilePicture: "",
+      backgroundPicture: "",
     }); // 소개에 띄워줄 내용
 
     const getMyInfo = async () => {
       const data = await apiClient("user/getMe", {});
       if (data) {
         console.log(data);
-        profileInfo.value.nickName = data.data.userNickName;
-        profileInfo.value.profilePicture = commonUtil.getImgUrl(data.data.fileName);
+        profileInfo.value = data.data;
+        if (data.data.file && data.data.file.length > 0) {
+          data.data.file.map(v => {
+            if (v.fileType === "USER_PROFILE") {
+              profileInfo.value.profilePicture = commonUtil.getImgUrl(v.fileName);
+            }
+            if (v.fileType === "USER_BACKGROUND") {
+              profileInfo.value.backgroundPicture = commonUtil.getImgUrl(v.fileName);
+            }
+          });
+        }
+        commonUtil.setLocalStorage(CONSTANTS.KEY_LIST.USER_INFO, data.data);
       }
     };
 
@@ -73,17 +81,14 @@ export default {
 <template>
   <div class="myPage">
     <div class="myProfile">
-      <img class="backgroundPicture" :src="profileInfo.backgroundPicture" alt="" />
-      <img class="profilePicture" :src="profileInfo.profilePicture" alt="" />
+      <img v-if="profileInfo.backgroundPicture" class="backgroundPicture" :src="profileInfo.backgroundPicture" alt="" />
+      <div v-else style="background-color: #ffffff" />
+      <img v-if="profileInfo.profilePicture" class="profilePicture" :src="profileInfo.profilePicture" alt="" />
+      <div v-else style="background-color: #ffffff" />
+
       <div class="profileIntroduce">
-        <span class="nickName">{{ profileInfo.nickName }}</span>
-        <span class="introduce">
-          {{ profileInfo.introduce }}
-          <custom-button class="profileEdit" :onClick="() => componentChange(tabType.EDIT)">
-            <img src="/assets/image/icon/penWrite.png" alt="" />
-            <span>프로필 편집</span>
-          </custom-button>
-        </span>
+        <div class="userNickName">{{ profileInfo.userNickName }}</div>
+        <div class="userDescription">{{ profileInfo.userDescription }}</div>
       </div>
     </div>
     <div class="myContents">
@@ -95,8 +100,8 @@ export default {
         />
         <custom-button
           :placeholder="'판매'"
-          :onClick="() => componentChange(tabType.SELL)"
-          :custom-class="tabIndex === tabType.SELL ? 'active' : ''"
+          :onClick="() => componentChange(tabType.USED)"
+          :custom-class="tabIndex === tabType.USED ? 'active' : ''"
         />
         <custom-button
           :placeholder="'대여'"
@@ -113,14 +118,19 @@ export default {
           :onClick="() => componentChange(tabType.REVIEW)"
           :custom-class="tabIndex === tabType.REVIEW ? 'active' : ''"
         />
+        <custom-button
+          :placeholder="'프로필'"
+          :onClick="() => componentChange(tabType.PROFILE)"
+          :custom-class="tabIndex === tabType.PROFILE ? 'active' : ''"
+        />
       </div>
       <div class="contents-area">
-        <my-feed v-if="tabIndex === tabType.FEED" />
-        <my-feed v-else-if="tabIndex === tabType.SELL" />
-        <sns-content-page v-else-if="tabIndex === tabType.RENT" />
-        <sns-content-page v-else-if="tabIndex === tabType.SAVE" />
+        <my-feed-board v-if="tabIndex === tabType.FEED" />
+        <my-feed-board v-else-if="tabIndex === tabType.USED" />
+        <my-feed-board v-else-if="tabIndex === tabType.RENT" />
+        <my-feed-board v-else-if="tabIndex === tabType.SAVE" />
         <my-review v-else-if="tabIndex === tabType.REVIEW" />
-        <update-profile v-else-if="tabIndex === tabType.EDIT" />
+        <update-profile v-else-if="tabIndex === tabType.PROFILE" />
       </div>
     </div>
   </div>

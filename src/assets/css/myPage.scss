@@ -48,43 +48,14 @@
         }
       }
 
-      .nickName {
+      .userNickName {
         font-weight: bold;
         font-size: 26px;
       }
 
-      .introduce {
+      .userDescription {
         color: #4c4c4c;
         font-size: 14px;
-        display: flex;
-        justify-content: space-between;
-        margin-top: 5px;
-
-        .profileEdit {
-          background-color: transparent;
-          border: 1.2px solid #4c4c4c;
-          max-width: none;
-          min-width: 90px;
-          height: 22px;
-          border-radius: 15px;
-          margin-right: 10px;
-          margin-top: -4px;
-          font-weight: 440;
-
-          img {
-            height: 12px;
-
-            path {
-              border: 5px solid #4c4c4c;
-            }
-          }
-
-          span {
-            margin-left: 2px;
-            color: #4c4c4c;
-            font-size: 11px;
-          }
-        }
       }
     }
   }
@@ -136,7 +107,9 @@
     .contents-area {
       width: 634px;
       margin-left: 145px;
-      height: 1300px;
+      min-height: 400px;
+      height: auto;
+      padding-top: 10px;
 
       .contents-box {
         display: inline-flex;
@@ -174,6 +147,17 @@
           margin-inline: auto;
           width: auto;
           height: 50px;
+
+          .custom-input {
+            font-weight: 500;
+            color: $gray;
+          }
+
+          .fixedInfo {
+            color: $text-color;
+            margin: auto 20px;
+            font-weight: 500;
+          }
         }
 
         span {
@@ -181,7 +165,7 @@
           align-self: center;
           text-align: center;
           font-size: 16px;
-          font-weight: 600;
+          font-weight: 500;
           border-right: 1px solid #2f2e2c;
         }
 
@@ -199,36 +183,33 @@
         .custom-input {
           border: transparent;
           background-color: transparent;
-          width: 500px;
+          width: 600px;
           margin: 0;
           outline: none;
         }
 
-        .buttonBox {
-          display: flex;
-          justify-content: center;
-          margin-top: 20px;
+        .custom-button {
+          margin-inline: 5px;
+          border-radius: 6px;
+          width: 100px;
+          height: 30px;
+          font-size: 16px;
+          font-style: normal;
+        }
 
-          .custom-button {
-            margin-inline: 5px;
-            border-radius: 6px;
-            width: 100px;
-            height: 30px;
-            font-size: 16px;
-            font-style: normal;
+        .save {
+          display: flex;
+          margin: 30px auto 50px;
+          background-color: #fa6c1a;
+
+          a {
+            font-weight: 400;
+            margin-bottom: 2px;
+            color: #ffffff;
           }
 
-          .save {
-            background-color: #fa6c1a;
-
-            a {
-              margin-bottom: 2px;
-              color: #ffffff;
-            }
-
-            img {
-              margin-left: 5px;
-            }
+          img {
+            margin-left: 5px;
           }
         }
       }
@@ -236,7 +217,7 @@
       .myReview {
         position: relative;
         width: 100%;
-        padding: 10px 20px 20px 10px;
+        padding: 0 20px;
 
         .reviewItem {
           display: flex;
