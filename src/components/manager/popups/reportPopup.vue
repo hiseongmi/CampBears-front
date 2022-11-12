@@ -17,7 +17,7 @@ export default {
   setup() {
     const arr = ref([{ detailReason: "" }]);
     const checkArr = () => {
-      ////console.log(arr.value);
+      // console.log(arr.value);
     };
 
     return {
@@ -32,12 +32,12 @@ export default {
   <div class="modal-report">
     <span @click="reportPop" type="button">X</span>
     <div class="modal-report-content">
-      <div><input type="checkbox" v-model="arr" value="그냥1" /> 그냥</div>
-      <div><input type="checkbox" v-model="arr" value="그냥2" /> 그냥2</div>
-      <div><input type="checkbox" v-model="arr" value="그냥3" /> 그냥3</div>
-      <div><input type="checkbox" v-model="arr" value="그냥4" /> 그냥4</div>
-      <div><input type="checkbox" v-model="arr" value="그냥5" /> 그냥5</div>
-      <div><input type="checkbox" v-model="arr" value="그냥6" /> 그냥6</div>
+      <div class="checkbox"><input type="checkbox" v-model="arr" value="그냥1" /> 그냥</div>
+      <div class="checkbox"><input type="checkbox" v-model="arr" value="그냥2" /> 그냥2</div>
+      <div class="checkbox"><input type="checkbox" v-model="arr" value="그냥3" /> 그냥3</div>
+      <div class="checkbox"><input type="checkbox" v-model="arr" value="그냥4" /> 그냥4</div>
+      <div class="checkbox"><input type="checkbox" v-model="arr" value="그냥5" /> 그냥5</div>
+      <div class="checkbox"><input type="checkbox" v-model="arr" value="그냥6" /> 그냥6</div>
     </div>
     <div>
       <custom-input
