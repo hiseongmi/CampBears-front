@@ -40,7 +40,7 @@ export default {
     <div class="black" @click.prevent.stop="clickClose()"></div>
     <writeBoardPopup v-if="isPopup === POPUP_TYPE.WRITE_BOARD" :clickClose="clickClose"></writeBoardPopup>
     <detail-screen-popup v-if="isPopup === POPUP_TYPE.DETAIL_SCREEN" :click-close="clickClose"></detail-screen-popup>
-    <report-popup v-if="isPopup === POPUP_TYPE.REPORT " :click-close="clickClose" :go-detail="goDetail"></report-popup>
+    <!--    <report-popup v-if="isPopup === POPUP_TYPE.REPORT " :click-close="clickClose" :go-detail="goDetail"></report-popup>-->
     <UpdateBoardPopup v-if="isPopup === POPUP_TYPE.UPDATE " :click-close="clickClose"
                       :go-detail="goDetail"></UpdateBoardPopup>
   </div>

@@ -124,14 +124,10 @@ export default {
       if (check === true) {
         const data = await apiClient("/sns/deleteSns", deleteData.value);
         if (data.resultCode === 0) {
-          ////console.log(data);
-          ////console.log(data.data);
           window.alert("삭제되었습니다.");
-          // await getContent();
           closePopup();
           router.go(); //새로고침
         } else {
-          ////console.log(data);
           window.alert("다시시도해주세요");
         }
       }
@@ -164,6 +160,7 @@ export default {
     };
 
     //댓글 추가 api
+    const inputComment = ref("");
     const commentData = ref({
       boardIdx: store.state.boardIdx,
       commentBody: "",
@@ -171,8 +168,9 @@ export default {
     const upComment = async () => {
       const data = await apiClient("/comment/insertComment", commentData.value);
       if (data.resultCode === 0) {
-        ////console.log("추가한 댓글 : ", commentData.value.commentBody);
+        inputComment.value = "";
         await commentList();
+        console.log(commentData.value.commentBody);
       } else {
         window.alert("댓글을 입력해주세요");
       }
@@ -224,36 +222,37 @@ export default {
       userData,
       followType,
       followData,
-      followManager,
-      putCommentIdx,
-      deleteCommentData,
-      deleteComment,
       getComment,
+      deleteCommentData,
       commentListData,
-      commentList,
-      upComment,
       commentData,
       bookmark,
-      bookmarkActive,
       heartCount,
       heartData,
-      doLike,
-      deleteContent,
-      detail,
       detailData,
       RerAction,
       MyRerAction,
-      RerOption,
       RerCommentActive,
+      reportAction,
+      selectedComment,
+      MySelectedComment,
+      inputComment,
+      postImage,
+      putCommentIdx,
+      followManager,
+      deleteComment,
+      commentList,
+      upComment,
+      bookmarkActive,
+      doLike,
+      deleteContent,
+      detail,
+      RerOption,
       RerCommentOption,
       goToReport,
       goToUpdate,
-      postImage,
       closePopup,
-      reportAction,
       reportPop,
-      selectedComment,
-      MySelectedComment,
     };
   },
 };
@@ -327,6 +326,7 @@ export default {
             <custom-input
               :custom-class="'comment'"
               :placeholder="'댓글을 입력해주세요.'"
+              v-model="inputComment"
               @update:value="commentData.commentBody = $event"
             />
             <img src="/assets/image/icon/breakArrow.png" alt="" />
@@ -337,7 +337,7 @@ export default {
           <div class="state">댓글이 없습니다.</div>
         </div>
         <div class="content-comments" v-for="item in commentListData" v-else>
-          <img src="/assets/image/iugold5.png" />
+          <img src="/assets/image/iugold5.png" alt="" />
           <div class="content-comments-wrap">
             <span>{{ item.userNickName }}</span>
             <p>{{ item.commentBody }}</p>

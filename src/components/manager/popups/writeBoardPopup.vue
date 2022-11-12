@@ -39,8 +39,9 @@ export default {
     const uploadSnsBoard = async () => {
       const param = Object.assign({}, upLoadData.value, { hashTag: hashTagList.value });
       console.log(param);
+      console.log(inputHashTag.value);
       const data = await apiClient("/sns/insert", param);
-      console.log(upLoadData.value.boardBody);
+      // console.log(upLoadData.value.boardBody);
       console.log(data);
       if (data.resultCode === 0) {
         router.go();
@@ -48,6 +49,12 @@ export default {
       } else {
         window.alert("내용을 입력해주세요.");
       }
+    };
+
+    //태그 지우기
+    const deleteTag = (index) => {
+      hashTagList.value.index = index;
+      hashTagList.value.splice(hashTagList.value.index, 1);
     };
 
     const pAction = ref(false);
@@ -87,23 +94,22 @@ export default {
         }
         // inputHashTag.value = "#" + inputHashTag.value;
       }
-
     };
 
     const handleEnterEvent = (e) => {
-
       // inputHashTag.value = inputHashTag.value.trim();
       if (e.key === "Enter") {
-        if (inputHashTag.value[0] === "#") {
+        if (inputHashTag.value[0] === "#" && inputHashTag.value.length >= 2) {
           const param = inputHashTag.value.substring(1).trim();
           hashTagList.value.push(param);
-          inputHashTag.value = undefined;
+          inputHashTag.value = "";
         }
       }
 
     };
 
     return {
+      deleteTag,
       userData,
       publicType,
       publicIndex,
@@ -185,14 +191,15 @@ export default {
           <div class="content-tag-div">
             태그 설정
           </div>
-          <div v-if="hashTagList.length > 0">
-            <span v-for="item in hashTagList">#{{ item }}</span>
+          <div class="content-tag-main" v-if="hashTagList.length > 0 ">
+            <div class="content-tag-main-content" v-for="(item,index) in hashTagList" :key="index">#{{ item }}
+              <span class="deleteTag" @click="deleteTag(index)">x</span>
+            </div>
           </div>
-
           <div class="content-tag-wrap">
-            <input type="text" v-model="inputHashTag" @keydown="handleEnterEvent" @input="handleInput">
+            <input type="text" placeholder="# 태그입력...(최대 30개)" v-model="inputHashTag" @keydown="handleEnterEvent"
+                   @input="handleInput">
           </div>
-          {{ hashTagList }}
         </div>
         <!--        <div class="comment">-->
         <!--          <div id="map">-->

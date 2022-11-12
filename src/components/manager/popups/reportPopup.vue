@@ -13,14 +13,6 @@ export default {
       type: Function,
       required: true,
     },
-    clickClose: {
-      type: Function,
-      required: true,
-    },
-    goDetail: {
-      type: Function,
-      required: true,
-    },
   },
   setup() {
     const arr = ref([{ detailReason: "" }]);
