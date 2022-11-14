@@ -5,10 +5,12 @@ import customButton from "../layout/customButton.vue";
 import customInput from "../layout/customInput.vue";
 import commonUtil from "../../utils/common-util.js";
 import { CONSTANTS } from "../../constants.js";
+import CustomInputFileButton from "../layout/customInputFileButton.vue";
 
 export default {
   name: "updateProfile",
   components: {
+    CustomInputFileButton,
     customButton,
     customInput,
   },
@@ -23,21 +25,63 @@ export default {
       userPhone: "",
     }); // 소개에 띄워줄 내용
 
+    const getData = async () => {
+      profileInfo.value = await commonUtil.parseJson(commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO));
+      profileInfo.value.file.map(v => {
+        if (v.fileType === "USER_PROFILE") {
+          profileInfo.value.profileImg = commonUtil.getImgUrl(v.fileName);
+        }
+        if (v.fileType === "USER_BACKGROUND") {
+          profileInfo.value.backgroundImg = commonUtil.getImgUrl(v.fileName);
+        }
+      });
+    };
+
     onMounted(() => {
-      profileInfo.value = commonUtil.parseJson(commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO));
+      getData();
     });
 
     const updateProfile = async () => {
+      if (profileFormData) await apiClient("user/update", profileFormData);
+      if (backgroundFormData) await apiClient("user/updateBackground", backgroundFormData);
       const data = await apiClient("user/update", profileInfo.value);
       if (data) {
         alert("변경 완료!");
-        location.reload();
+        // location.reload();
       }
+    };
+
+    const handleInput = e => {
+      this.$emit("update:value", e.target.value);
+    };
+
+    let profileFormData = new FormData();
+    let backgroundFormData = new FormData();
+
+    const profilePreview = ref();
+    const backgroundPreview = ref();
+
+    const profileImgUpload = x => {
+      profilePreview.value = URL.createObjectURL(x.target.files[0]);
+      profileFormData.append("userNickName", profileInfo.value.userNickName);
+      profileFormData.append("file", x.target.files[0]);
+    };
+
+    const backgroundImgUpload = y => {
+      backgroundPreview.value = URL.createObjectURL(y.target.files[0]);
+      console.log(backgroundPreview);
+      backgroundFormData.append("userNickName", profileInfo.value.userNickName);
+      backgroundFormData.append("file", y.target.files[0]);
     };
 
     return {
       updateProfile,
       profileInfo,
+      handleInput,
+      profileImgUpload,
+      backgroundImgUpload,
+      profilePreview,
+      backgroundPreview,
     };
   },
 };
@@ -45,33 +89,56 @@ export default {
 
 <template>
   <div class="updateProfile">
-    <div class="inputBox">
+    <div class="input-area">
       <span>닉네임</span>
       <custom-input :placeholder="profileInfo.userNickName" @update:value="profileInfo.userNickName = $event" />
     </div>
-    <div class="inputBox">
+    <div class="input-area">
       <span>소개</span>
       <custom-input :placeholder="profileInfo.userDescription" @update:value="profileInfo.userDescription = $event" />
+    </div>
+    <div class="input-area">
+      <span>사진</span>
+      <div class="img-upload-area">
+        <div class="img-upload-area-ul">
+          <div class="img-upload-area-ul-li">
+            <div class="img-upload-area-ul-li-wrap">
+              <img v-show="!profilePreview" :src="profileInfo.profileImg" alt="" />
+              <img v-show="profilePreview" :src="profilePreview" alt="" />
+            </div>
+            <custom-input-file-button @change="profileImgUpload" />
+          </div>
+          <div class="img-upload-area-ul">
+            <div class="img-upload-area-ul-li">
+              <div class="img-upload-area-ul-li-wrap">
+                <img v-show="!backgroundPreview" :src="profileInfo.backgroundImg" alt="" />
+                <img v-show="backgroundPreview" :src="backgroundPreview" alt="" />
+              </div>
+              <custom-input-file-button @change="backgroundImgUpload" />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <custom-button :class="'save'" :placeholder="'저장'" :onClick="updateProfile">
       <img src="/assets/image/icon/pen.png" alt="" />
     </custom-button>
 
-    <div class="inputBox">
+    <div class="input-area">
       <span>이름</span>
-      <div class="fixedInfo">{{ profileInfo.userName }}</div>
+      <div class="fixed-info">{{ profileInfo.userName }}</div>
     </div>
-    <div class="inputBox">
+    <div class="input-area">
       <span>이메일</span>
-      <div class="fixedInfo">{{ profileInfo.userEmail }}</div>
+      <div class="fixed-info">{{ profileInfo.userEmail }}</div>
     </div>
-    <div class="inputBox">
+    <div class="input-area">
       <span>주소</span>
-      <div class="fixedInfo">{{ profileInfo.userAddress }}</div>
+      <div class="fixed-info">{{ profileInfo.userAddress }}</div>
     </div>
-    <div class="inputBox">
+    <div class="input-area">
       <span>연락처</span>
-      <div class="fixedInfo">{{ profileInfo.userPhone }}</div>
+      <div class="fixed-info">{{ profileInfo.userPhone }}</div>
     </div>
   </div>
 </template>

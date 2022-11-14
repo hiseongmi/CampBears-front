@@ -40,14 +40,6 @@
       padding-top: 190px;
       padding-left: 200px;
 
-      .temperature {
-        font-size: 12px;
-
-        svg {
-          margin-left: -2px;
-        }
-      }
-
       .userNickName {
         font-weight: bold;
         font-size: 26px;
@@ -140,25 +132,7 @@
         justify-content: center;
         margin: 10px 0 30px 0;
         padding: 0 80px;
-
-        .inputBox {
-          display: flex;
-          border-bottom: 1px solid;
-          margin-inline: auto;
-          width: auto;
-          height: 50px;
-
-          .custom-input {
-            font-weight: 500;
-            color: $gray;
-          }
-
-          .fixedInfo {
-            color: $text-color;
-            margin: auto 20px;
-            font-weight: 500;
-          }
-        }
+        flex-wrap: nowrap;
 
         span {
           min-width: 100px;
@@ -167,6 +141,66 @@
           font-size: 16px;
           font-weight: 500;
           border-right: 1px solid #2f2e2c;
+        }
+
+        .input-area {
+          display: flex;
+          border-bottom: 1px solid;
+          margin-inline: auto;
+          width: auto;
+
+          .custom-input {
+            font-weight: 500;
+            color: $gray;
+          }
+
+          .fixed-info {
+            display: flex;
+            align-items: center;
+            color: $text-color;
+            margin: auto 20px;
+            font-weight: 500;
+            height: 50px;
+          }
+
+          .img-upload-area {
+            margin: 10px;
+
+            &-ul {
+              display: flex;
+              width: auto;
+
+              &-li {
+                flex-wrap: wrap;
+                display: inline-flex;
+                justify-content: center;
+                width: auto;
+                margin: auto;
+
+                &-wrap {
+                  display: flex;
+                  position: relative;
+                  height: 150px;
+                  width: 150px;
+
+                  img {
+                    width: 100%;
+                    height: 100%;
+                  }
+                }
+
+                .custom-input-file-button {
+                  margin-top: 10px;
+                }
+              }
+            }
+
+            .img-upload-button {
+              display: flex;
+              margin: 10px 12px 0;
+              justify-content: space-between;
+            }
+          }
         }
 
         .profilePictureBox {
@@ -191,10 +225,15 @@
         .custom-button {
           margin-inline: 5px;
           border-radius: 6px;
-          width: 100px;
+          width: 80px;
           height: 30px;
           font-size: 16px;
-          font-style: normal;
+          font-weight: normal;
+
+          a {
+            color: $text_color;
+            font-weight: 400;
+          }
         }
 
         .save {
@@ -225,7 +264,6 @@
           border: 1px solid #c1c1c1;
           border-radius: 10px;
           width: 100%;
-          //height: auto;
 
           .itemImg {
             top: 0;

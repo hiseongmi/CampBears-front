@@ -47,18 +47,19 @@ export default {
     const getMyInfo = async () => {
       const data = await apiClient("user/getMe", {});
       if (data) {
-        console.log(data);
         profileInfo.value = data.data;
         if (data.data.file && data.data.file.length > 0) {
           data.data.file.map(v => {
             if (v.fileType === "USER_PROFILE") {
-              profileInfo.value.profilePicture = commonUtil.getImgUrl(v.fileName);
+              profileInfo.value.profileImg = commonUtil.getImgUrl(v.fileName);
             }
             if (v.fileType === "USER_BACKGROUND") {
-              profileInfo.value.backgroundPicture = commonUtil.getImgUrl(v.fileName);
+              profileInfo.value.backgroundImg = commonUtil.getImgUrl(v.fileName);
             }
           });
         }
+        console.log(data.data);
+
         commonUtil.setLocalStorage(CONSTANTS.KEY_LIST.USER_INFO, data.data);
       }
     };
@@ -81,9 +82,9 @@ export default {
 <template>
   <div class="myPage">
     <div class="myProfile">
-      <img v-if="profileInfo.backgroundPicture" class="backgroundPicture" :src="profileInfo.backgroundPicture" alt="" />
+      <img v-if="profileInfo.backgroundImg" class="backgroundPicture" :src="profileInfo.backgroundImg" alt="" />
       <div v-else style="background-color: #ffffff" />
-      <img v-if="profileInfo.profilePicture" class="profilePicture" :src="profileInfo.profilePicture" alt="" />
+      <img v-if="profileInfo.profileImg" class="profilePicture" :src="profileInfo.profileImg" alt="" />
       <div v-else style="background-color: #ffffff" />
 
       <div class="profileIntroduce">

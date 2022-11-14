@@ -63,6 +63,59 @@
       font-size: 12px;
     }
   }
+
+  // pagination
+  &-pagination {
+    display: flex;
+    justify-content: center;
+    align-content: end;
+    margin: 20px auto auto;
+
+    .custom-button {
+      border: none;
+      min-width: 20px;
+      width: auto;
+      height: auto;
+      margin: auto 5px;
+      color: black;
+
+      a {
+        font-size: 24px;
+        color: $text-color;
+      }
+
+      a:visited {
+        font-size: 24px;
+        color: black;
+      }
+    }
+  }
+
+  // custom-input-file-button
+  &-input-file-button {
+    display: flex;
+    border: 1px solid #000000;
+    border-radius: 4px;
+    min-width: 100px;
+    min-height: 30px;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+
+    input {
+      display: none;
+    }
+  }
+
+  &-input-file-button:hover {
+    cursor: pointer;
+    background-color: #2f2e2c;
+
+    a {
+      cursor: pointer;
+      color: #ffffff;
+    }
+  }
 }
 
 #loading-bar {
@@ -93,4 +146,3 @@
 //    //-webkit-transform: rotate(360deg);
 //  }
 //}
-
