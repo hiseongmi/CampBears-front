@@ -2,14 +2,15 @@
 import CustomButton from "../components/layout/customButton.vue";
 import { ref } from "vue";
 import UsedContentsComponent from "../components/usedMarket/usedContentsComponent.vue";
+import chat from "../components/chat.vue";
 
 export default {
   name: "usedMarket",
-  components: { UsedContentsComponent, CustomButton },
+  components: { UsedContentsComponent, CustomButton, chat },
   setup() {
     const tabType = {
       SELL: "sell",
-      BUY: "buy",
+      BUY: "buy"
     }; // 컴포넌트 이름
 
     const tabIndex = ref(tabType.SELL);
@@ -22,9 +23,9 @@ export default {
     return {
       tabType,
       tabIndex,
-      componentChange,
+      componentChange
     };
-  },
+  }
 };
 </script>
 
@@ -55,4 +56,5 @@ export default {
       <used-contents-component />
     </div>
   </div>
+  <chat />
 </template>
