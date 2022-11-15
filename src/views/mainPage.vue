@@ -25,10 +25,10 @@ export default {
 
   setup() {
     const move = () => {
-      window.location.href = "#";
+      window.location.href = "";
     };
     const moving = () => {
-      window.location.href = "#";
+      window.location.href = "/myPage";
     };
     // const mousewheel = () => {
     //   scrollX -= (date * 40)

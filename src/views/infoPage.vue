@@ -49,17 +49,20 @@ export default {
         name: "#노지",
       },
     ];
+    const goToX = v => {
+      v ? router.push(v) : window.alert("준비중입니다.");
+    };
     const move = () => {
       window.location.href = "";
     };
     const moving = () => {
       window.location.href = "#";
     };
-    window.onload = function () {
-      console.log("함수실행")
-      document.getElementById("keyword").value = '중부대';
-      initMap();
-    }
+    // window.onload = function () {
+    //   console.log("함수실행")
+    //   document.getElementById("keyword").value = '중부대';
+    //   initMap();
+    // }
     const initMap = () => {
       // // if (window.kakao && window.kakao.maps) {
       // const container = document.getElementById("map");
@@ -122,7 +125,7 @@ export default {
 
       const first = () => {
         const keyword = document.getElementById('keyword').value = "캠핑장";
-        console.log(keyword);
+        // console.log(keyword);
 
 
         if (!keyword.replace(/^\s+|\s+$/g, '')) {
@@ -142,7 +145,7 @@ export default {
       function searchPlaces() {
 
         const keyword = document.getElementById('keyword').value;
-        console.log(keyword);
+        // console.log(keyword);
 
 
         if (!keyword.replace(/^\s+|\s+$/g, '')) {
@@ -346,6 +349,7 @@ export default {
       initMap,
       move,
       moving,
+      goToX,
     };
   },
 };
