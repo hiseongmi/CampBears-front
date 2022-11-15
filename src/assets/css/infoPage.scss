@@ -441,10 +441,12 @@
 
 // ㅡㅡㅡㅡㅡ캠핑장정보
 .info-main {
+  text-align: -webkit-center;
 
   .map-box {
     position: relative;
     text-align: -webkit-center;
+    width: 100%;
 
     svg {
       display: none;
@@ -739,27 +741,12 @@
 
   .info-side {
     position: fixed;
-    width: 150px;
+    width: 8%;
     background-color: white;
+    height: 30%;
     top: 20%;
-    height: 196px;
-
-    .info-name {
-      position: relative;
-      width: 159px;
-      height: 39px;
-      color: white;
-      border-radius: 0 5px 5px 0;
-      background-color: #2F2E2C;
-      text-align: center;
-
-      a {
-        position: relative;
-        top: 10px;
-        color: white;
-        text-decoration: none;
-      }
-    }
+    border-radius: 0 10px 10px 0;
+    z-index: 1;
 
     .info-navi {
       border-top: 2px solid;
@@ -771,23 +758,114 @@
       top: 44px;
     }
 
-    .info-dic {
+    .info {
+      text-align: center;
+      padding: 15px 0 15px 0;
       position: relative;
-      display: inline-block;
-      left: 7px;
-      top: -17px;
-      text-decoration: none;
-      color: #999999;
+      top: 10%;
+      left: -2%;
+
+      a {
+        font-size: 20px;
+        position: relative;
+        display: inline-block;
+        color: #2F2E2C;
+        text-decoration: none;
+      }
+    }
+
+    .info-dic:hover {
+      width: 170px;
+      position: relative;
+      color: white;
+      border-radius: 0 5px 5px 0;
+      background-color: #2F2E2C;
+      text-align: center;
+      animation-duration: 0.5s;
+      animation-name: slide;
+      @keyframes slide {
+        from {
+          margin-left: -30px;
+        }
+        to {
+          margin-left: 0;
+        }
+
+      }
+
+      a {
+        color: white;
+      }
+    }
+
+    .info-dic {
+      text-align: center;
+      padding: 15px 0 15px 0;
+      position: relative;
+      top: 15%;
+      left: -2%;
+
+      a {
+        position: relative;
+        display: inline-block;
+        color: #cccccc;
+        text-decoration: none;
+      }
+    }
+
+    .info-food:hover {
+      width: 170px;
+      position: relative;
+      color: white;
+      border-radius: 0 5px 5px 0;
+      background-color: #2F2E2C;
+      text-align: center;
+      animation-duration: 0.5s;
+      animation-name: slide;
+      @keyframes slide {
+        from {
+          margin-left: -30px;
+        }
+        to {
+          margin-left: 0;
+        }
+
+      }
+
+      a {
+        color: white;
+      }
     }
 
     .info-food {
+      text-align: center;
+      padding: 15px 0 15px 0;
       position: relative;
-      display: inline-block;
-      left: 57px;
-      top: 29px;
-      color: #999999;
-      text-decoration: none;
+      top: 15%;
+      left: -2%;
+
+      a {
+        position: relative;
+        display: inline-block;
+        color: #cccccc;
+        text-decoration: none;
+      }
     }
+
+    //.info-food {
+    //  text-align: center;
+    //
+    //  a:hover {
+    //    color: #2F2E2C;
+    //  }
+    //
+    //  a {
+    //    position: relative;
+    //    display: inline-block;
+    //    color: #cccccc;
+    //    text-decoration: none;
+    //  }
+    //}
   }
 
   .info-mapbtn {
@@ -795,7 +873,7 @@
     justify-content: center;
     position: relative;
     right: 0.7%;
-
+    width: 300px;
 
     .custom-button {
       box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.3);

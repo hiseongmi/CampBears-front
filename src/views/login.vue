@@ -58,10 +58,12 @@ export default {
         doLogin();
       }
     };
+    
     const goToX = v => {
       v ? router.push(v) : window.alert("준비중입니다.");
       window.location.replace("/#/signup");
     };
+
     onMounted(() => {
       window.addEventListener("keydown", handleEnter);
     });
@@ -91,7 +93,7 @@ export default {
       </div>
       <div v-if="loginState" class="form">
         <custom-input :placeholder="`이메일`" @update:value="userData.userEmail = $event"/>
-        <custom-input :placeholder="`비밀번호`" @update:value="userData.userPassword = $event"/>
+        <custom-input :placeholder="`비밀번호`" type="password" @update:value="userData.userPassword = $event"/>
         <div class="btn-area">
           <custom-button :placeholder="`로그인`" :onClick="doLogin"></custom-button>
           <custom-button :custom-class="`join`" :placeholder="`회원가입`" @Click="goToX('/signup')"></custom-button>

@@ -156,33 +156,38 @@ export default {
     <div class="signup-img-sec">
       <img src="/assets/image/login-camp2.png" alt=""/>
     </div>
-    <div class="signup-form">
+
+    <div v-if="isShow" class="signup-form">
 
       <span>캠퍼가 되어봐요!</span>
 
-      <div v-if="isShow">
-        <custom-input :placeholder="'이름'"
-                      @update:value="joinUserData.userName = $event"></custom-input>
-        <custom-input :placeholder="'이메일'"
-                      @update:value="joinUserData.userEmail = $event"></custom-input>
-        <custom-input :placeholder="'비밀번호'"
-                      @update:value="joinUserData.userPassword = $event"></custom-input>
-        <custom-input :placeholder="'비밀번호확인'"
-                      @update:value="joinUserData.userPassCheck = $event"></custom-input>
-        <custom-button :placeholder="'추가정보입력!'" @click="checkForm"></custom-button>
-      </div>
-      <div v-if="!isShow">
-        <button @click="back" style="position: relative; top: -20px;">뒤로가기버튼</button>
-        <custom-input :placeholder="'닉네임'"
-                      @update:value="joinUserData.userNickName = $event"></custom-input>
+      <custom-input :placeholder="'이름'"
+                    @update:value="joinUserData.userName = $event"></custom-input>
+      <custom-input :placeholder="'이메일'"
+                    @update:value="joinUserData.userEmail = $event"></custom-input>
+      <custom-input :placeholder="'비밀번호'"
+                    @update:value="joinUserData.userPassword = $event"></custom-input>
+      <custom-input :placeholder="'비밀번호확인'"
+                    @update:value="joinUserData.userPassCheck = $event"></custom-input>
+      <custom-button :placeholder="'추가정보입력!'" @click="checkForm"></custom-button>
 
-        <custom-input :placeholder="'번호'"
-                      @update:value="joinUserData.userPhone = $event"></custom-input>
-        <custom-input :placeholder="'주소'"
-                      @update:value="joinUserData.userAddress = $event"></custom-input>
-        <custom-button :placeholder="'회원가입'" @click="secForm"></custom-button>
-      </div>
-      
+    </div>
+
+    <div v-if="!isShow" class="signup-form-sec">
+
+      <span>캠퍼가 되어봐요!</span>
+
+      <!--      <button @click="back" style="position: relative; top: -20px;">뒤로가기버튼</button>-->
+      <custom-input :placeholder="'닉네임'"
+                    @update:value="joinUserData.userNickName = $event"></custom-input>
+
+      <custom-input :placeholder="'번호'"
+                    @update:value="joinUserData.userPhone = $event"></custom-input>
+      <custom-input :placeholder="'주소'"
+                    @update:value="joinUserData.userAddress = $event"></custom-input>
+      <custom-button :placeholder="'회원가입'" @click="secForm"></custom-button>
+
+
     </div>
   </div>
 </template>

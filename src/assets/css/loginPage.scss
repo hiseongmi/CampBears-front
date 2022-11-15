@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 64px 0 64px 0;
 
   .login-area {
     margin-bottom: 32px;
@@ -79,51 +80,88 @@
 
 .signup {
 
-  height: 650px;
-  padding-top: 168px;
+  padding: 100px 0 100px 0;
   text-align: center;
 
   .signup-img-fir {
+    position: relative;
     display: inline-block;
-
+    top: 179px;
+    left: 231px;
 
     img {
       position: relative;
-
-      width: 556px;
-      height: 266px;
+      width: 543px;
 
     }
   }
 
   .signup-img-sec {
+    position: relative;
     display: inline-block;
+    top: -66px;
+    left: -312px;
 
     img {
       position: relative;
-      width: 393px;
-      height: 282px;
-
+      width: 346px;
     }
-
-
   }
 
   .signup-form {
     display: inline-block;
-    /* top: 294px; */
-    /* left: 960px; */
     position: relative;
+    left: -136px;
+    top: -27px;
     background: rgba(238, 238, 238, 0.8);
     width: 400px;
-    height: 444px;
+    height: 513px;
     text-align: -webkit-center;
 
     .custom-button {
       background-color: $primary-color;
       border-color: $primary-color;
       position: relative;
-      top: 91px;
+      top: 148px;
+      max-width: 515px;
+      width: 275px;
+
+      a {
+        color: white;
+      }
+      
+    }
+
+    span {
+      font-size: 30px;
+      color: $primary-color;
+      top: 55px;
+      position: relative;
+    }
+
+    .custom-input {
+      display: block;
+      text-align: center;
+      top: 102px;
+      position: relative;
+    }
+  }
+
+  .signup-form-sec {
+    display: inline-block;
+    position: relative;
+    left: -136px;
+    top: -86px;
+    background: rgba(238, 238, 238, 0.8);
+    width: 400px;
+    height: 513px;
+    text-align: -webkit-center;
+
+    .custom-button {
+      background-color: $primary-color;
+      border-color: $primary-color;
+      position: relative;
+      top: 148px;
       max-width: 515px;
       width: 275px;
 
@@ -135,15 +173,16 @@
     span {
       font-size: 30px;
       color: $primary-color;
-      top: 44px;
+      top: 55px;
       position: relative;
     }
 
     .custom-input {
       display: block;
       text-align: center;
-      top: 68px;
+      top: 102px;
       position: relative;
     }
   }
 }
+

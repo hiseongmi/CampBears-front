@@ -362,12 +362,25 @@ export default {
   <div class="info-main">
     <header-page></header-page>
     <div class="info-side">
-      <div class="info-name">
-        <a href="">캠핑장 정보</a>
+      <!--      <div class="info-name">-->
+      <!--        <a href="">캠핑장 정보</a>-->
+      <!--      </div>-->
+      <!--      <div class="info-name">-->
+      <!--        <a href="">캠핑장 정보</a>-->
+      <!--      </div>-->
+      <!--      <div class="info-name">-->
+      <!--        <a href="">캠핑장 정보</a>-->
+      <!--      </div>-->
+      <!--      <div class="info-navi"></div>-->
+      <div class="info" href="#">
+        <a href="#">캠핑장 정보</a>
       </div>
-      <div class="info-navi"></div>
-      <a href="#" class="info-dic">캠핑사전</a>
-      <a href="#" class="info-food">캠핑음식</a>
+      <div class="info-dic">
+        <a href="#">캠핑사전</a>
+      </div>
+      <div class="info-food">
+        <a href="#">캠핑음식</a>
+      </div>
     </div>
     <h1>멋진 여행을 기대하고 계신가요?</h1>
     <div class="info-serch">
