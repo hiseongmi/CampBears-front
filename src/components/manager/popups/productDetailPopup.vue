@@ -57,7 +57,7 @@ export default {
         </div>
         <div class="product-price">
           <div class="grade">
-            <span>상품 컨디션</span>
+            <span class="name">상품 컨디션</span>
             <span><i class="fa-solid fa-star"></i></span>
             <span><i class="fa-solid fa-star"></i></span>
             <span><i class="fa-solid fa-star"></i></span>

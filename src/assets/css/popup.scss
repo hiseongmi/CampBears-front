@@ -79,7 +79,7 @@
         overflow: hidden;
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
-        //글쓰기 팝업 내용
+        //sns글쓰기 팝업 내용
         .content {
           display: flex;
           flex-direction: column;
@@ -260,6 +260,135 @@
           }
         }
 
+        //used Market 글쓰기
+        .product {
+
+          &-file {
+            padding: 13px 40px;
+          }
+
+          //제목 입력
+          &-title {
+            display: flex;
+            justify-content: space-between;
+            padding: 13px 40px;
+            margin: 0 10px;
+            border-bottom: 1px solid rgba(204, 204, 204, 0.7);
+
+            .custom-input {
+              border: none;
+              border-radius: 0;
+              padding: 0;
+              max-width: 300px;
+              min-width: 100px;
+              height: 20px;
+              color: $text-color;
+              font-size: 15px;
+              font-weight: 500;
+              margin-bottom: 0;
+            }
+
+            &-type {
+              display: flex;
+
+              .custom-button {
+                position: relative;
+                min-width: 0;
+                height: 20px;
+                border: none;
+                border-radius: 0;
+                display: block;
+                cursor: pointer;
+
+                a {
+                  font-weight: 500;
+                  font-size: 15px;
+                  color: #cccccc;
+                  padding: 0 5px;
+                }
+
+                .active {
+                  a {
+                    color: #818181;
+                  }
+                }
+              }
+
+              .buy {
+                a {
+                  border-right: 2px solid #cccccc;
+                }
+              }
+
+            }
+          }
+
+          //가격, 흥정 상품 컨디션
+          &-option {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 9px 40px;
+            margin: 0 10px;
+            border-bottom: 1px solid rgba(204, 204, 204, 0.7);
+            //가격입력
+            &-price {
+              display: flex;
+              align-items: center;
+              height: 40px;
+              border-right: 1px solid rgba(204, 204, 204, 0.7);
+
+              .custom-input {
+                border: none;
+                border-radius: 0;
+                padding: 0;
+                width: 170px;
+                max-width: 300px;
+                min-width: 100px;
+                height: 20px;
+                color: $text-color;
+                font-size: 15px;
+                font-weight: 500;
+                margin-bottom: 0;
+              }
+
+              button {
+                background: none;
+                border: none;
+                cursor: pointer;
+
+                i {
+                  font-size: 13px;
+                  color: rgba(204, 204, 204, 0.7);;
+                }
+              }
+
+              span {
+                margin-right: 10px;
+                font-size: 13px;
+                font-weight: 700;
+                color: rgba(129, 129, 129, 0.9);;
+              }
+            }
+
+            &-grade {
+              .title {
+                font-size: 15px;
+                padding-right: 12px;
+                color: #818181;
+              }
+
+              span {
+                i {
+                  padding-right: 2px;
+                  font-size: 18px;
+                  color: #D2D2D2;
+                }
+              }
+            }
+          }
+        }
+
       }
 
       &-wrap::-webkit-scrollbar {
@@ -296,6 +425,7 @@
       width: 600px;
       height: 600px;
 
+
       &-content {
         position: absolute;
         top: 0;
@@ -305,6 +435,7 @@
         overflow: hidden;
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
+        border-radius: 10px;
         //sns
         //신고 수정 삭제 리스트 버튼
         .container {
@@ -901,12 +1032,15 @@
             margin-bottom: 50px;
 
             .grade {
-              span {
+              .name {
                 font-size: 13px;
                 padding-right: 8px;
                 color: #818181;
+              }
 
+              span {
                 i {
+                  padding-right: 2px;
                   font-size: 16px;
                   color: #FA6C1A;
                 }
