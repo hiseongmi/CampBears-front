@@ -305,6 +305,7 @@
         overflow: hidden;
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
+        //sns
         //신고 수정 삭제 리스트 버튼
         .container {
           position: fixed;
@@ -691,6 +692,265 @@
           }
 
         }
+
+        //sns끝
+        //used Market
+        .product {
+          background-color: white;
+          //상품 이미지
+          &-image {
+            position: relative;
+
+            img {
+              width: 100%;
+            }
+
+            &-subImg {
+              position: absolute;
+              display: flex;
+              align-items: center;
+              padding: 0 15px;
+              bottom: 0;
+              width: 100%;
+              height: 68px;
+              background: rgba(0, 0, 0, 0.7);
+              box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
+
+              &-list {
+                display: flex;
+
+                &-pick {
+                  border: 2px solid #FFFFFF;
+                  border-radius: 5px;
+                  margin: 0 3px;
+                  height: 52px;
+                  width: 50px;
+
+                }
+
+                img {
+                  border-radius: 5px;
+                  margin: 0 3px;
+                  height: 52px;
+                  width: 50px;
+                }
+              }
+            }
+
+            &-right {
+              position: absolute;
+              right: 10px;
+              top: 50%;
+              color: white;
+            }
+
+            &-left {
+              color: white;
+              position: absolute;
+              left: 10px;
+              top: 50%;
+            }
+          }
+
+          //유저프로필
+          &-wrap {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 25px;
+            margin: 0 11px;
+            border-bottom: 1px solid rgba(204, 204, 204, 0.7);;
+
+            &-profile {
+              display: flex;
+              align-items: center;
+
+              img {
+                border-radius: 70%;
+                width: 39.7px;
+                height: 39px;
+                box-shadow: none;
+                object-fit: cover;
+              }
+
+              &-info {
+                display: grid;
+                align-items: center;
+                margin-left: 10px;
+
+                span {
+                  font-weight: 700;
+                  font-size: 15px;
+                  color: #1B1B1B;
+                }
+
+                p {
+                  color: #818181;
+                  font-size: 13px;
+
+                  i {
+                    padding-left: 2px;
+                    font-size: 13px;
+                    color: #FA6C1A;
+                  }
+                }
+              }
+            }
+
+            &-chat {
+              .custom-button {
+                position: relative;
+                min-width: 0;
+                width: 90px;
+                height: 33px;
+                border: none;
+                border-radius: 5px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+                background-color: #FA6C1A;
+
+                a {
+                  font-size: 15px;
+                  color: white;
+                }
+              }
+            }
+          }
+
+          //상세정보
+          &-main {
+            display: flex;
+            justify-content: space-between;
+            padding: 25px 35px;
+
+            &-wrap {
+              &-title {
+                display: flex;
+                align-items: center;
+
+                .pomsom {
+                  display: flex;
+                  background: #EA3323;
+                  border-radius: 5px;
+                  color: white;
+                  padding: 4px 8px;
+                  font-size: 13px;
+                  align-items: center;
+                }
+
+                span {
+                  font-size: 13px;
+                }
+
+                h4 {
+                  font-size: 20px;
+                  margin-left: 15px;
+                }
+              }
+
+              &-rest {
+                span {
+                  color: #818181;
+                  font-size: 13px;
+                  padding-right: 17px;
+
+                  i {
+                    font-size: 13px;
+                    padding-right: 3px;
+                  }
+                }
+
+              }
+
+            }
+
+            //좋아요 공유
+            &-menu {
+              display: flex;
+
+              span {
+                padding: 7px 9px;
+
+                i {
+                  font-size: 20px;
+                }
+              }
+
+              .heart {
+                i {
+                  color: #F32626;
+                }
+              }
+
+              .share {
+                i {
+                  color: #818181;
+                }
+              }
+
+            }
+          }
+
+          //상품 평점, 가격
+          &-price {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 35px;
+            margin-bottom: 50px;
+
+            .grade {
+              span {
+                font-size: 13px;
+                padding-right: 8px;
+                color: #818181;
+
+                i {
+                  font-size: 16px;
+                  color: #FA6C1A;
+                }
+              }
+            }
+
+            p {
+              color: #ea3323;
+              font-size: 20px;
+              font-weight: 700;
+            }
+          }
+
+          //글 내용
+          &-content {
+            height: 210px;
+
+            &-wrap {
+              padding: 0 35px;
+              font-size: 17px;
+              color: #818181;
+            }
+
+            &-deal {
+              margin-top: 20px;
+              display: flex;
+              padding: 0 35px;
+
+              span {
+                font-size: 13px;
+                color: #818181;
+                font-weight: 700;
+                border: 1px solid #818181;
+                border-radius: 5px;
+                padding: 3px 6px;
+                margin-right: 13px;
+              }
+
+            }
+          }
+
+        }
+
+
       }
 
       &-content::-webkit-scrollbar {
@@ -794,6 +1054,8 @@
         }
       }
     }
+
+
   }
 
 }

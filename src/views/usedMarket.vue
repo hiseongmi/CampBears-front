@@ -3,6 +3,7 @@ import CustomButton from "../components/layout/customButton.vue";
 import { ref } from "vue";
 import UsedContentsComponent from "../components/usedMarket/usedContentsComponent.vue";
 import chat from "../components/chat.vue";
+import store, { POPUP_TYPE, STORE_TYPE } from "../store/index.js";
 
 export default {
   name: "usedMarket",
@@ -10,7 +11,7 @@ export default {
   setup() {
     const tabType = {
       SELL: "sell",
-      BUY: "buy"
+      BUY: "buy",
     }; // 컴포넌트 이름
 
     const tabIndex = ref(tabType.SELL);
@@ -19,13 +20,16 @@ export default {
       //console.log(v);
       tabIndex.value = v;
     };
-
+    const openWrite = () => {
+      store.commit(STORE_TYPE.popupType, POPUP_TYPE.PRODUCT_WRITE);
+    }; //글쓰기 팝업열기
     return {
       tabType,
       tabIndex,
-      componentChange
+      componentChange,
+      openWrite,
     };
-  }
+  },
 };
 </script>
 
@@ -50,7 +54,7 @@ export default {
       <div class="used-banner-popup" @click="">
         <img src="/assets/image/icon/dropMenu.png" alt="" />
       </div>
-      <custom-button :placeholder="'글쓰기'" />
+      <custom-button :placeholder="'글쓰기'" @click="openWrite" />
     </div>
     <div class="used-contents-area">
       <used-contents-component />

@@ -16,6 +16,8 @@ export const POPUP_TYPE = {
   DETAIL_SCREEN: "DETAIL_SCREEN",
   REPORT: "REPORT",
   UPDATE: "UPDATE",
+  PRODUCT_DETAIL: "PRODUCT_DETAIL",
+  PRODUCT_WRITE: "PRODUCT_WRITE",
 };
 
 const store = createStore({

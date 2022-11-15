@@ -4,11 +4,12 @@ import { apiClient } from "../../utils/axios.js";
 import customPagination from "../layout/customPagination.vue";
 import commonUtil from "../../utils/common-util.js";
 import CustomModal from "../layout/customModal.vue";
+import store, { POPUP_TYPE, STORE_TYPE } from "../../store/index.js";
 
 export default {
   name: "usedContentsComponent",
   components: { CustomModal, customPagination },
-  setup: function () {
+  setup: function() {
     let keyword = "";
     const postData = ref({});
     const selectedValue = ref();
@@ -47,6 +48,9 @@ export default {
       }
       getData();
     };
+    const openDetail = () => {
+      store.commit(STORE_TYPE.popupType, POPUP_TYPE.PRODUCT_DETAIL);
+    }; //게시물 상세 페이지 팝업 열기
 
     onMounted(() => {
       window.addEventListener("SEARCH", handleSearch); //search 이벤트를 찾아서 handel이벤트로 보냄
@@ -64,6 +68,7 @@ export default {
     };
 
     return {
+      openDetail,
       postData,
       getData,
       modalControl,
@@ -76,7 +81,7 @@ export default {
 <template>
   <div class="used-contents-area">
     <div class="used-contents-area-ul">
-      <div class="used-post" v-for="item in postData" @click="modalControl(true)">
+      <div class="used-post" v-for="item in postData" @click="openDetail()">
         <div class="used-post-img-wrap">
           <img :src="item.file" alt="Posts" />
         </div>

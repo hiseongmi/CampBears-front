@@ -27,7 +27,7 @@ export default {
 <template>
   <div class="profile">
     <div class="profile-wrap">
-      <img :src="userProfileImg" alt="프로필 사진" />
+      <img :src="userProfileImg" alt="프사" />
       <div class="profile-wrap-data">
         <span>{{ userName }}</span>
         <span class="middle-dot">&#183;</span>

@@ -23,7 +23,6 @@ export default {
     };
     const publicIndex = ref();
     const checkValue = v => {
-      // console.log(v);
       publicIndex.value = v;
     };
 
@@ -32,22 +31,35 @@ export default {
 
     const upLoadData = ref({
       boardBody: "",
-      optionList: ["SHOWER", "PARMERCY", "CAFE", "FITTING", "SUBWAY", "MARKET", "STORE", "DRINK", "PARK", "RESTROOM", "STARBUCKS", "MOVIE", "RESTAURANT", "SHUTTLE"],
+      // optionList: ["SHOWER", "PARMERCY", "CAFE", "FITTING", "SUBWAY", "MARKET", "STORE", "DRINK", "PARK", "RESTROOM", "STARBUCKS", "MOVIE", "RESTAURANT", "SHUTTLE"],
     });
     const inputHashTag = ref("");
     const hashTagList = ref([]);
+    const headers = { "Content-Type": "multipart/form-data" };
+    let formData = new FormData();
     const uploadSnsBoard = async () => {
-      const param = Object.assign({}, upLoadData.value, { hashTag: hashTagList.value });
-      console.log(param);
-      console.log(inputHashTag.value);
-      const data = await apiClient("/sns/insert", param);
-      // console.log(upLoadData.value.boardBody);
+      // const param = Object.assign({}, upLoadData.value, { hashTag: hashTagList.value });
+      // console.log(param);
+      const data = await apiClient("/sns/insert", formData);
       console.log(data);
       if (data.resultCode === 0) {
         router.go();
         store.commit(STORE_TYPE.popupType, POPUP_TYPE.NONE); //팝업 닫기
       } else {
         window.alert("내용을 입력해주세요.");
+      }
+    };
+    //이미지 업로드
+    // const imgPreview = ref();
+    const upFileChange = (e) => {
+      // imgPreview.value = URL.createObjectURL(e.target.files[0]);
+      formData.append("boardBody", upLoadData.value.boardBody);
+      formData.append("file", e.target.files[0]);
+      // formData.append("hashTag", hashTagList.value);
+      // for (let key of formData.entries()) {
+      //   console.log(key[0] + ", " + key[1]);
+      // }
+      if (e.target) {
       }
     };
 
@@ -109,7 +121,6 @@ export default {
     };
 
     return {
-      deleteTag,
       userData,
       publicType,
       publicIndex,
@@ -118,6 +129,9 @@ export default {
       isPopup,
       inputHashTag,
       hashTagList,
+      // imgPreview,
+      upFileChange,
+      deleteTag,
       checkValue,
       initMap,
       position,
@@ -138,74 +152,80 @@ export default {
       </div>
     </div>
     <div class="modal-inner-wrap">
-      <div class="content">
-        <div class="file">
-          <input type="file" />
-        </div>
-        <div class="content-profile">
-          <div class="content-profile-wrap">
-            <img src="/assets/image/IU.png">
-            <span>{{ userData.userNickName }}</span>
+      <form>
+        <div class="content">
+          <div class="file">
+            <!--            <div>-->
+            <!--              <img v-if="!imgPreview" :src=""-->
+            <!--            </div>-->
+            <input type="file" @change="upFileChange" ref="upFileList" accept="image/*" />
+            <!--            <button @click="upFile">클리이익</button>-->
           </div>
-          <div class="content-profile-public">
-            <custom-button
-              :placeholder="'전체 공개'"
-              :onClick="() => checkValue(publicType.All)"
-              :custom-class="publicIndex === publicType.All ? 'active' : ''"
-            />
-            <custom-button
-              :placeholder="'팔로워 공개'"
-              :onClick="() => checkValue(publicType.FOLLOW)"
-              :custom-class="publicIndex === publicType.FOLLOW ? 'active' : ''"
-            />
-          </div>
-        </div>
-        <div class="content-content">
-          <custom-input :custom-class="'content'" :placeholder="'문구 입력...'"
-                        @update:value="upLoadData.boardBody = $event" />
-          <div class="count">
-            (0 / 200)
-          </div>
-        </div>
-        <div class="content-position">
-          <div class="content-position-wrap">
-            <span class="title">위치태그</span>
-            <span @click="position"><i class="fa-solid fa-chevron-right"></i></span>
-          </div>
-        </div>
-        <div class="content-position">
-          <div class="content-position-wrap">
-            <span class="title">장소</span>
-            <span><i class="fa-solid fa-chevron-right"></i></span>
-          </div>
-        </div>
-        <div class="content-person">
-          <div class="content-person-wrap">
-            <span>인원</span>
-            <div>
-              range slider
+          <div class="content-profile">
+            <div class="content-profile-wrap">
+              <img src="/assets/image/IU.png">
+              <span>{{ userData.userNickName }}</span>
+            </div>
+            <div class="content-profile-public">
+              <custom-button
+                :placeholder="'전체 공개'"
+                :onClick="() => checkValue(publicType.All)"
+                :custom-class="publicIndex === publicType.All ? 'active' : ''"
+              />
+              <custom-button
+                :placeholder="'팔로워 공개'"
+                :onClick="() => checkValue(publicType.FOLLOW)"
+                :custom-class="publicIndex === publicType.FOLLOW ? 'active' : ''"
+              />
             </div>
           </div>
-        </div>
-        <div class="content-tag">
-          <div class="content-tag-div">
-            태그 설정
-          </div>
-          <div class="content-tag-main" v-if="hashTagList.length > 0 ">
-            <div class="content-tag-main-content" v-for="(item,index) in hashTagList" :key="index">#{{ item }}
-              <span class="deleteTag" @click="deleteTag(index)">x</span>
+          <div class="content-content">
+            <custom-input :custom-class="'content'" :placeholder="'문구 입력...'"
+                          @update:value="upLoadData.boardBody = $event" />
+            <div class="count">
+              (0 / 200)
             </div>
           </div>
-          <div class="content-tag-wrap">
-            <input type="text" placeholder="# 태그입력...(최대 30개)" v-model="inputHashTag" @keydown="handleEnterEvent"
-                   @input="handleInput">
+          <div class="content-position">
+            <div class="content-position-wrap">
+              <span class="title">위치태그</span>
+              <span @click="position"><i class="fa-solid fa-chevron-right"></i></span>
+            </div>
           </div>
+          <div class="content-position">
+            <div class="content-position-wrap">
+              <span class="title">장소</span>
+              <span><i class="fa-solid fa-chevron-right"></i></span>
+            </div>
+          </div>
+          <div class="content-person">
+            <div class="content-person-wrap">
+              <span>인원</span>
+              <div>
+                range slider
+              </div>
+            </div>
+          </div>
+          <div class="content-tag">
+            <div class="content-tag-div">
+              태그 설정
+            </div>
+            <div class="content-tag-main" v-if="hashTagList.length > 0 ">
+              <div class="content-tag-main-content" v-for="(item,index) in hashTagList" :key="index">#{{ item }}
+                <span class="deleteTag" @click="deleteTag(index)">x</span>
+              </div>
+            </div>
+            <div class="content-tag-wrap">
+              <input type="text" placeholder="# 태그입력...(최대 30개)" v-model="inputHashTag" @keydown="handleEnterEvent"
+                     @input="handleInput">
+            </div>
+          </div>
+          <!--        <div class="comment">-->
+          <!--          <div id="map">-->
+          <!--          </div>-->
+          <!--        </div>-->
         </div>
-        <!--        <div class="comment">-->
-        <!--          <div id="map">-->
-        <!--          </div>-->
-        <!--        </div>-->
-      </div>
+      </form>
     </div>
     <div class="modal-inner-map" v-if="pAction">
       <div id="map">

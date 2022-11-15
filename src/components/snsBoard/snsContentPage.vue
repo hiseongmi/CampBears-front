@@ -67,7 +67,7 @@ export default {
       { key: "SHOWER", value: "샤워장" },
       { key: "PARKING", value: "주차가능" },
     ];
-    const goPop = () => {
+    const openWrite = () => {
       store.commit(STORE_TYPE.popupType, POPUP_TYPE.WRITE_BOARD);
     }; //글쓰기 팝업열기
 
@@ -94,7 +94,7 @@ export default {
     let keyword = "";
     let hashKeyWord = []; //데이터 가공해서 넣기
     const getContent = async () => {
-      let param = { like: false, keyword: keyword, hashKeyWord: hashKeyWord, sorted: "RECENT", showType: "ALL" };
+      let param = { keyword: keyword, hashKeyWord: hashKeyWord, sorted: "RECENT", showType: "ALL" };
       if (selectedValue.value !== null && selectedValue.value !== undefined) {
         param = Object.assign({}, param, { sorted: selectedValue.value }); //ob 내장함수 합침
         param.sorted = selectedValue.value;
@@ -126,7 +126,7 @@ export default {
       selectedValue,
       selectSeasonData,
       selectComfortsData,
-      goPop,
+      openWrite,
       openDetail,
       postImage,
       getContent,
@@ -180,7 +180,7 @@ export default {
       </ul>
     </div>
     <div class="news-menu-button">
-      <button class="write_btn" @click="goPop">
+      <button class="write_btn" @click="openWrite">
         <i class="fa-solid fa-pen"></i>
         <span>글쓰기</span>
       </button>

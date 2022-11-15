@@ -48,9 +48,7 @@ export default {
         followData.value.followType = "UNFOLLOW"; //언팔했다
         followType.value.STATE = "UNFOLLOW"; //상태도 언팔
       }
-      ////console.log(followData.value);
       const data = await apiClient("/common/doFollow", followData.value);
-      ////console.log(data);
     };
     //좋아요
     const heartCount = ref(0);
@@ -72,7 +70,6 @@ export default {
         heartState.value.STATE = "DISLIKE";
         heartCount.value -= 1;
       }
-      ////console.log(heartData.value);
       const data = await apiClient("/common/doLike", heartData.value);
     };
     //상세 게시물 조회 api
@@ -88,7 +85,7 @@ export default {
     });
     const detail = async () => {
       const data = await apiClient("/sns/getSnsDetail", detailData.value);
-      ////console.log(data.data);
+      console.log(data.data);
       detailData.value = data.data;
       ////console.log();
       if (detailData.value) {
@@ -280,11 +277,11 @@ export default {
       </div>
       <div class="content">
         <div class="content-image">
-          <img src="/assets/image/camping.png" alt="게시물 사진" />
+          <img :src="detailData.file" alt="게사" />
         </div>
         <div class="content-wrap">
           <div class="content-wrap-profile">
-            <img src="/assets/image/IU.png" alt="프로필 사진" />
+            <img src="/assets/image/IU.png" alt="프사" />
             <div class="content-wrap-profile-info">
               <div class="follow">
                 <span>{{ detailData.userNickName }}</span>

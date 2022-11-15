@@ -5,10 +5,19 @@ import writeBoardPopup from "./popups/writeBoardPopup.vue";
 import DetailScreenPopup from "./popups/detailScreenPopup.vue";
 import ReportPopup from "./popups/reportPopup.vue";
 import UpdateBoardPopup from "./popups/updateBoardPopup.vue";
+import ProductDetailPopup from "./popups/productDetailPopup.vue";
+import ProductWritePopup from "./popups/productWritePopup.vue";
 
 export default {
   name: "popupManager",
-  components: { UpdateBoardPopup, ReportPopup, DetailScreenPopup, writeBoardPopup },
+  components: {
+    ProductWritePopup,
+    ProductDetailPopup,
+    UpdateBoardPopup,
+    ReportPopup,
+    DetailScreenPopup,
+    writeBoardPopup,
+  },
   setup() {
     const store = getStore();
     const isPopup = ref(store.state.popupType);
@@ -43,5 +52,7 @@ export default {
     <!--    <report-popup v-if="isPopup === POPUP_TYPE.REPORT " :click-close="clickClose" :go-detail="goDetail"></report-popup>-->
     <UpdateBoardPopup v-if="isPopup === POPUP_TYPE.UPDATE " :click-close="clickClose"
                       :go-detail="goDetail"></UpdateBoardPopup>
+    <ProductDetailPopup v-if="isPopup === POPUP_TYPE.PRODUCT_DETAIL" :clickClose="clickClose" />
+    <ProductWritePopup v-if="isPopup === POPUP_TYPE.PRODUCT_WRITE" :clickClose="clickClose" />
   </div>
 </template>
