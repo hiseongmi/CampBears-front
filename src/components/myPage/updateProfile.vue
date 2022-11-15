@@ -42,12 +42,16 @@ export default {
     });
 
     const updateProfile = async () => {
-      if (profileFormData) await apiClient("user/update", profileFormData);
-      if (backgroundFormData) await apiClient("user/updateBackground", backgroundFormData);
+      if (profileFormData) {
+        await apiClient("user/update", profileFormData);
+      }
+      if (backgroundFormData) {
+        await apiClient("user/updateBackground", backgroundFormData);
+      }
       const data = await apiClient("user/update", profileInfo.value);
       if (data) {
         alert("변경 완료!");
-        // location.reload();
+        location.reload();
       }
     };
 
@@ -55,23 +59,23 @@ export default {
       this.$emit("update:value", e.target.value);
     };
 
-    let profileFormData = new FormData();
-    let backgroundFormData = new FormData();
+    const profileFormData = new FormData();
+    const backgroundFormData = new FormData();
 
     const profilePreview = ref();
     const backgroundPreview = ref();
 
-    const profileImgUpload = x => {
-      profilePreview.value = URL.createObjectURL(x.target.files[0]);
-      profileFormData.append("userNickName", profileInfo.value.userNickName);
-      profileFormData.append("file", x.target.files[0]);
+    const profileImgUpload = e => {
+      profilePreview.value = URL.createObjectURL(e.target.files[0]);
+      profileFormData.set("userNickName", profileInfo.value.userNickName);
+      profileFormData.set("file", e.target.files[0]);
+      // profileFormData.set("fileType", "USER_PROFILE");
     };
 
-    const backgroundImgUpload = y => {
-      backgroundPreview.value = URL.createObjectURL(y.target.files[0]);
-      console.log(backgroundPreview);
-      backgroundFormData.append("userNickName", profileInfo.value.userNickName);
-      backgroundFormData.append("file", y.target.files[0]);
+    const backgroundImgUpload = e => {
+      backgroundPreview.value = URL.createObjectURL(e.target.files[0]);
+      backgroundFormData.set("file", e.target.files[0]);
+      // backgroundFormData.set("fileType", "USER_BACKGROUND");
     };
 
     return {
@@ -103,16 +107,16 @@ export default {
         <div class="img-upload-area-ul">
           <div class="img-upload-area-ul-li">
             <div class="img-upload-area-ul-li-wrap">
-              <img v-show="!profilePreview" :src="profileInfo.profileImg" alt="" />
-              <img v-show="profilePreview" :src="profilePreview" alt="" />
+              <img v-if="!profilePreview" :src="profileInfo.profileImg" alt="" />
+              <img v-else :src="profilePreview" alt="" />
             </div>
             <custom-input-file-button @change="profileImgUpload" />
           </div>
           <div class="img-upload-area-ul">
             <div class="img-upload-area-ul-li">
               <div class="img-upload-area-ul-li-wrap">
-                <img v-show="!backgroundPreview" :src="profileInfo.backgroundImg" alt="" />
-                <img v-show="backgroundPreview" :src="backgroundPreview" alt="" />
+                <img v-if="!backgroundPreview" :src="profileInfo.backgroundImg" alt="" />
+                <img v-else :src="backgroundPreview" alt="" />
               </div>
               <custom-input-file-button @change="backgroundImgUpload" />
             </div>

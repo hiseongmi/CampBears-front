@@ -2,7 +2,9 @@
 export default {
   name: "customInputFileButton",
   emits: ["update:value"],
-  props: {},
+  props: {
+    customId: {},
+  },
   setup() {
     return {};
   },
@@ -16,9 +18,9 @@ export default {
 
 <template>
   <div class="custom-input-file-button">
-    <label for="input-file">
+    <label>
       <a>업로드</a>
+      <input type="file" accept="image/*" multiple />
     </label>
-    <input type="file" id="input-file" accept="image/*" @input="handleInput" />
   </div>
 </template>

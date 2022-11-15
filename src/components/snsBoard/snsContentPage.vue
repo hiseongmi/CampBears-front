@@ -189,7 +189,7 @@ export default {
   <div class="news-ul">
     <div class="news-ul-li" v-for="item in contentData">
       <div>
-        <profile :name="item.userNickName"></profile>
+        <profile :name="item.userNickName" :img="item.profileImg"></profile>
       </div>
       <div class="news-ul-li-wrap">
         <div class="news-ul-li-wrap-write" @click="openDetail(item.boardIdx)">

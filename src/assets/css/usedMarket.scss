@@ -82,88 +82,81 @@
 }
 
 .used-contents-area {
-  display: inline-flex;
-  position: relative;
-  flex-wrap: wrap;
-  margin-inline: auto;
-  justify-content: center;
-
-  .used-post {
+  .used-contents-area-ul {
+    display: inline-flex;
     position: relative;
-    width: 200px;
-    border: 1px solid #c1c1c1;
-    border-radius: 10px;
-    padding: 10px 10px 15px;
-    margin: 10px;
+    flex-wrap: wrap;
+    margin-inline: auto;
+    justify-content: center;
 
-    .used-post-img-box {
-      display: flex;
-      //width: 50%;
-      height: auto;
-      margin-bottom: 5px;
+    .used-post {
+      position: relative;
+      width: 200px;
+      border: 1px solid #c1c1c1;
+      border-radius: 10px;
+      padding: 10px 10px 15px;
+      margin: 10px;
 
-      img {
-        max-width: 100%;
-        height: auto;
-        display: block;
-        border-radius: 10px;
-      }
-    }
-
-    .used-post-info {
-      padding: 5px;
-
-      .used-post-title {
-        font-size: 18px;
-        font-weight: 700;
-        white-space: nowrap;
-        overflow: hidden;
-      }
-
-      .used-post-seller-name {
-        font-size: 16px;
-        font-weight: 500;
-        white-space: nowrap;
-        overflow: hidden;
-      }
-
-      .used-post-contents {
-        font-size: 14px;
-        font-weight: 300;
-        padding-block: 15px;
-        word-break: break-all;
-      }
-
-      .used-post-coast {
-        color: $primary-color;
-        font-size: 16px;
-      }
-
-      .used-post-footer {
+      &-img-wrap {
         display: flex;
-        justify-content: space-between;
-        align-content: center;
+        //width: 50%;
         height: auto;
-        margin-top: 5px;
-        border-top: 1px solid $darkgry;
-        padding-top: 5px;
+        margin-bottom: 5px;
 
-        .used-post-date {
-          font-size: 12px;
-          margin: auto 0;
+        img {
+          max-width: 100%;
+          height: auto;
+          display: block;
+          border-radius: 10px;
+        }
+      }
 
-          a {
-            font-size: 12px;
-            margin-left: 3px;
-          }
+      &-info {
+        padding: 5px;
+
+        &-title {
+          font-size: 18px;
+          font-weight: 700;
+          white-space: nowrap;
+          overflow: hidden;
         }
 
-        .used-post-like {
-          margin: auto 0;
+        &-seller-name {
+          font-size: 16px;
+          font-weight: 500;
+          white-space: nowrap;
+          overflow: hidden;
+        }
 
-          a {
+        &-contents {
+          font-size: 14px;
+          font-weight: 300;
+          padding-block: 15px;
+          word-break: break-all;
+        }
+
+        &-coast {
+          color: $primary-color;
+          font-size: 16px;
+        }
+
+        &-footer {
+          display: flex;
+          justify-content: space-between;
+          align-content: center;
+          height: auto;
+          margin-top: 5px;
+          border-top: 1px solid $darkgry;
+          padding-top: 5px;
+
+          &-date {
             font-size: 12px;
-            margin-left: 3px;
+            margin: auto 0;
+
+            a {
+              font-size: 12px;
+              margin-left: 3px;
+            }
           }
         }
       }

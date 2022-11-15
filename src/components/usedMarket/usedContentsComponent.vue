@@ -2,17 +2,19 @@
 import { onMounted, onUnmounted, ref } from "vue";
 import { apiClient } from "../../utils/axios.js";
 import customPagination from "../layout/customPagination.vue";
+import commonUtil from "../../utils/common-util.js";
+import CustomModal from "../layout/customModal.vue";
 
 export default {
   name: "usedContentsComponent",
-  components: { customPagination },
+  components: { CustomModal, customPagination },
   setup: function () {
     let keyword = "";
-    const postData = ref();
+    const postData = ref({});
     const selectedValue = ref();
 
     const getData = async () => {
-      let param = {};
+      let param = { productType: "SELL" };
 
       if (selectedValue.value !== null && selectedValue.value !== undefined) {
         param = Object.assign({}, param, { sorted: selectedValue.value }); //ob 내장함수 합침
@@ -20,9 +22,17 @@ export default {
       }
 
       const data = await apiClient("/product/getProductList", param);
-      if (data.data) {
-        //console.log(data.data);
+      if (data) {
         postData.value = data.data;
+        for (let n = 0; n < postData.value.length; n++) {
+          console.log(postData.value[n]);
+
+          postData.value[n].file.map(v => {
+            if (v.fileType === "PRODUCT") {
+              postData.value[n].file = commonUtil.getImgUrl(v.fileName);
+            }
+          });
+        }
       }
     };
 
@@ -47,9 +57,17 @@ export default {
       window.removeEventListener("SEARCH", handleSearch);
     });
 
+    const isModal = ref(false);
+    const modalControl = state => {
+      console.log(state);
+      isModal.value = state;
+    };
+
     return {
       postData,
       getData,
+      modalControl,
+      isModal,
     };
   },
 };
@@ -57,23 +75,26 @@ export default {
 
 <template>
   <div class="used-contents-area">
-    <div class="used-post" v-for="item in postData">
-      <div class="used-post-img-box">
-        <img src="/assets/image/camping.png" alt="Posts" />
-      </div>
-      <div class="used-post-info">
-        <div class="used-post-title">title</div>
-        <div class="used-post-seller-name">{{ item.userNickName }}</div>
-        <div class="used-post-contents">contents contents contents contents contents</div>
-        <div class="used-post-coast">{{ item.productPrice }}</div>
-        <div class="used-post-footer">
-          <div class="used-post-date">
-            <img src="/assets/image/icon/time.png" alt="" />
-            <a>{{ item.dateReg.slice(5, 10) }}</a>
+    <div class="used-contents-area-ul">
+      <div class="used-post" v-for="item in postData" @click="modalControl(true)">
+        <div class="used-post-img-wrap">
+          <img :src="item.file" alt="Posts" />
+        </div>
+        <div class="used-post-info">
+          <div class="used-post-info-title">{{ item.productName }}</div>
+          <div class="used-post-info-seller-name">{{ item.userNickName }}</div>
+          <div class="used-post-info-contents">{{ item.productDes }}</div>
+          <div class="used-post-info-coast">{{ item.productPrice }}</div>
+          <div class="used-post-info-footer">
+            <div class="used-post-info-footer-date">
+              <!--              <img :src="item.file" alt="" />-->
+              <a>{{ item.dateReg.slice(5, 10) }}</a>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <custom-pagination />
+    <custom-pagination v-if="!isModal" />
+    <custom-modal v-if="isModal" @close="modalControl(false)"></custom-modal>
   </div>
 </template>

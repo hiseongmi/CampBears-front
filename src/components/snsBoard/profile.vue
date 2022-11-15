@@ -1,28 +1,33 @@
 <script>
-import {computed, ref} from "vue";
-import {apiClient} from "../../utils/axios.js";
+import { computed, ref } from "vue";
+import { apiClient } from "../../utils/axios.js";
 
 export default {
-  name: 'profile',
+  name: "profile",
   props: {
     name: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
+    img: {
+      required: true,
+    },
   },
   setup(props) {
-    const userName = ref(props.name)
+    const userName = ref(props.name);
+    const userProfileImg = ref(props.img);
 
     return {
-      userName
-    }
-  }
-}
+      userName,
+      userProfileImg,
+    };
+  },
+};
 </script>
 <template>
   <div class="profile">
     <div class="profile-wrap">
-      <img src="/assets/image/IU.png" alt="프로필 사진"/>
+      <img :src="userProfileImg" alt="프로필 사진" />
       <div class="profile-wrap-data">
         <span>{{ userName }}</span>
         <span class="middle-dot">&#183;</span>
