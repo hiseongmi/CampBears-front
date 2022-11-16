@@ -98,7 +98,9 @@ export default {
     const secForm = () => {
 
       joinUser()
-
+      console.log("회원가입은 확인")
+      goToX('/login')
+      console.log("회원가입후 로그인페이지 자동이동 확인")
     }
     const back = () => {
 
@@ -115,9 +117,10 @@ export default {
     const joinUser = async () => {
       // console.log("가입 좀 하자: ", joinUserData.value)
 
-      const data = await apiClient("/user/join", joinUserData.value);
+      // const data = await apiClient("/user/join", joinUserData.value);
       // console.log(data.data)
       //console.log(data)
+
       //
       // contentData.value = data.data
       // search 이벤트를 날림

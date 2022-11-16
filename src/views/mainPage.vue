@@ -186,69 +186,10 @@ export default {
       <h1>파도소리 들리는 감성 캠핑</h1>
       <h2>한번쯤은 꼭 가볼만한 캠핑장! 추천해요~</h2>
     </span>
-    <div class="main-recomend">
-      <div class="bottom-fir">
-        <div class="camping-jang">
-          <div class="recomend-navi">
-            <div class="recomend">
-              <span>추천해요</span>
-            </div>
-            <div class="recomend-arow">
-              <img src="/assets/image/icon/arrowRight.png" alt=""/>
-            </div>
-          </div>
-          <div class="recomend-text">
-            바다와 파도소리, 밤이면 별이 쏟아지는 해변에서 즐기는 감성캠핑. 그곳으로 떠나요~~
-          </div>
-        </div>
-      </div>
-
-      <div class="bottom-sec">
-        <div class="camping-jang">
-          <p>학동 자동차 야영지</p>
-          <s>
-            <img src="/assets/image/icon/fullStar.png" alt=""/>
-            <img src="/assets/image/icon/fullStar.png" alt=""/>
-            <img src="/assets/image/icon/fullStar.png" alt=""/>
-            <img src="/assets/image/icon/emptyStar.png" alt=""/>
-            <img src="/assets/image/icon/emptyStar.png" alt=""/>
-          </s>
-          <span>
-            <img src="/assets/image/icon/campingLink.png" alt=""/>
-          </span>
-        </div>
-      </div>
-
-      <div class="bottom-thi">
-        <div class="camping-jang">
-          <p>오시아노 오토 캠핑장</p>
-          <s>
-            <img src="/assets/image/icon/fullStar.png" alt=""/>
-            <img src="/assets/image/icon/fullStar.png" alt=""/>
-            <img src="/assets/image/icon/fullStar.png" alt=""/>
-            <img src="/assets/image/icon/emptyStar.png" alt=""/>
-            <img src="/assets/image/icon/emptyStar.png" alt=""/>
-          </s>
-          <span>
-            <img src="/assets/image/icon/campingLink.png" alt=""/>
-          </span>
-        </div>
-      </div>
-
-      <div class="bottom-for">
-        <div class="camping-jang">
-          <p>학암포 오토 캠핑장</p>
-          <s>
-            <img src="/assets/image/icon/fullStar.png" alt=""/>
-            <img src="/assets/image/icon/fullStar.png" alt=""/>
-            <img src="/assets/image/icon/fullStar.png" alt=""/>
-            <img src="/assets/image/icon/emptyStar.png" alt=""/>
-            <img src="/assets/image/icon/emptyStar.png" alt=""/>
-          </s>
-          <span>
-            <img src="/assets/image/icon/campingLink.png" alt=""/>
-          </span>
-        </div>
+    <div class="bot-camp">
+      <img src="/assets/image/mainpageslider1.png" alt="">
+      <div class="bot-camp-info">
+        <span></span>
       </div>
     </div>
   </div>
