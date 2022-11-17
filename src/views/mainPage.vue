@@ -121,7 +121,7 @@ export default {
   </div>
   <div class="main-campsite">
     <h2>HAND OVER A CAMPSITE</h2>
-    <custom-button :placeholder="`더보기`" :onClick="moving"></custom-button>
+    <custom-button :placeholder="`더보기`" @click="goToX('/infoPage')"></custom-button>
   </div>
 
   <div class="autocamp-box">
