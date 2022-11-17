@@ -1156,6 +1156,10 @@
 @media (min-width: 768px) {
   .main-box {
     text-align: center;
+    width: 69%;
+    position: relative;
+    margin: 0 auto;
+    height: 440px;
 
     .main-fir:hover {
       transform: scale(1.05);
@@ -1168,13 +1172,13 @@
       background-size: 100% 100%;
       background-image: url("/assets/image/mainpage2.png");
       width: 50%;
-      height: 520px;
+      height: 100%;
       //mainpage2.png"
       span {
         color: $white;
         position: relative;
-        font-size: 24px;
-        top: 381px;
+        font-size: 23px;
+        top: 329px;
       }
 
       //.custom-button:hover {
@@ -1187,8 +1191,9 @@
         border-color: #fa6c1a;
         background-color: #fa6c1a;
         border-radius: 20px;
-        top: 403px;
-        width: 28%;
+        top: 345px;
+        max-width: 200px;
+        width: 100%;
         height: 43px;
         margin: 0 auto;
 
@@ -1210,13 +1215,13 @@
       background-size: 100% 100%;
       background-image: url("/assets/image/mainpage3.png");
       width: 50%;
-      height: 520px;
+      height: 100%;
 
       span {
-        color: $white;
+        color: white;
         position: relative;
-        font-size: 24px;
-        top: 381px;
+        font-size: 23px;
+        top: 329px;
       }
 
       //.custom-button:hover {
@@ -1228,8 +1233,9 @@
         border-color: #fa6c1a;
         background-color: #fa6c1a;
         border-radius: 20px;
-        top: 403px;
-        width: 28%;
+        max-width: 200px;
+        width: 100%;
+        top: 345px;
         height: 43px;
         margin: 0 auto;
 
@@ -1316,6 +1322,7 @@
       max-width: 70%;
       justify-content: flex-start;
       margin-top: auto;
+      width: 69%;
 
       .news-ul-li:hover {
         margin: auto;
@@ -1359,6 +1366,8 @@
   .add-banner {
     position: relative;
     overflow: hidden;
+    width: 69%;
+    margin: 0 auto;
 
     .add-img {
       background-image: url("/assets/image/mainpage4.png");
@@ -1367,30 +1376,33 @@
       width: 100%;
       height: 240px;
 
-      span {
+      .add-ment {
         position: relative;
-        display: block;
-        color: $white;
-        font-size: 19px;
-        padding: 9px;
-        left: 240px;
-        top: 45px;
-      }
+        top: 20%;
+        left: 10%;
 
-      .custom-button {
-        background-color: #fa6c1a;
-        border-color: #fa6c1a;
-        width: 6%;
-        height: 15%;
-        position: absolute;
-        min-width: 137px;
-        border-radius: 3px;
-        left: 257px;
-        bottom: 40px;
-
-        a {
+        span {
+          position: relative;
+          display: block;
           color: $white;
-          font-size: 12px;
+          font-size: 19px;
+          padding: 9px;
+
+        }
+
+        .custom-button {
+          background-color: #fa6c1a;
+          border-color: #fa6c1a;
+          height: 30%;
+          position: absolute;
+          min-width: 137px;
+          border-radius: 3px;
+          margin: 0 0 0 9px;
+
+          a {
+            color: $white;
+            font-size: 12px;
+          }
         }
       }
     }
@@ -1525,34 +1537,47 @@
       text-align: start;
     }
   }
+  @keyframes slide {
+    from {
 
-  .main-bottom {
-    margin-top: 90px;
+      left: -300px;
 
-    span {
-      position: relative;
-      top: 70px;
-
-      h1 {
-        padding-top: 60px;
-        font-size: 34px;
-        top: -64px;
-        position: relative;
-      }
-
-      h2 {
-        margin: 30px;
-        font-size: 16px;
-        position: relative;
-        top: -65px;
-      }
     }
-
+    to {
+      left: 800px;
+    }
+  }
+  .main-bottom {
+    position: relative;
+    margin-top: 90px;
     background-image: url("/assets/image/main-bottom.png");
     background-size: 100% 100%;
     height: 620px;
     text-align: center;
-    left: 50%;
+
+    h1 {
+
+      padding-top: 60px;
+      font-size: 34px;
+      animation: slide 1s ease-in-out;
+      position: relative;
+    }
+
+    h2 {
+      animation: slide 2s ease-in-out;
+      margin: 30px;
+      font-size: 16px;
+      position: relative;
+
+    }
+
+    span {
+      position: relative;
+
+
+    }
+
+
     top: 50%;
 
     .main-recomend {
@@ -2154,3 +2179,4 @@
   }
 
 }
+

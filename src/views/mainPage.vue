@@ -24,11 +24,14 @@ export default {
   },
 
   setup() {
+    const goToX = v => {
+      v ? router.push(v) : window.alert("준비중입니다.");
+    };
     const move = () => {
       window.location.href = "";
     };
     const moving = () => {
-      window.location.href = "/myPage";
+      window.location.href = "http://localhost:3001/myPage#/usedMarket";
     };
     // const mousewheel = () => {
     //   scrollX -= (date * 40)
@@ -39,11 +42,13 @@ export default {
     return {
       move,
       moving,
+      goToX,
     };
   },
 };
 </script>
 <template>
+
   <div class="main-box">
     <div class="main-fir">
       <span>감성있는 캠핑장을 찾고있나요?</span>
@@ -99,15 +104,19 @@ export default {
     <sns-page></sns-page>
   </div>
   <div class="view-all">
-    <custom-button :placeholder="`더보기`" :onClick="moving"></custom-button>
+    <custom-button :placeholder="`더보기`" @click="goToX('/snsPage')"></custom-button>
   </div>
 
   <div class="add-banner">
     <div class="add-img">
-      <span>#입술 끝에 맺혀있는 말</span>
-      <span>#너만 보면 하고 싶은 말</span>
-      <span>#너무 소중해 아껴두려고 참고 또 참는 말</span>
-      <custom-button :placeholder="`상품 보러가기 ▼`" :onClick="moving"></custom-button>
+      <div class="add-ment">
+        <span>#입술 끝에 맺혀있는 말 <br></span>
+        <span>#너만 보면 하고 싶은 말 <br></span>
+        <span>#너무 소중해 아껴두려고 참고 또 참는 말</span>
+        <custom-button :placeholder="`상품 보러가기 ▼`" :onClick="moving"></custom-button>
+
+      </div>
+
     </div>
   </div>
   <div class="main-campsite">
@@ -130,9 +139,9 @@ export default {
         <div>
           <h2>845.000원</h2>
           <span>
-            <img src="/assets/image/icon/time.png" alt=""/>
-            1시간 전
-          </span>
+              <img src="/assets/image/icon/time.png" alt=""/>
+              1시간 전
+            </span>
         </div>
       </div>
     </div>
@@ -150,9 +159,9 @@ export default {
         <div>
           <h2>450.000원</h2>
           <span>
-            <img src="/assets/image/icon/time.png" alt=""/>
-            1시간 전
-          </span>
+              <img src="/assets/image/icon/time.png" alt=""/>
+              1시간 전
+            </span>
         </div>
       </div>
     </div>
@@ -170,21 +179,22 @@ export default {
         <div>
           <h2>995.000원</h2>
           <span>
-            <img src="/assets/image/icon/time.png" alt=""/>
-            1시간 전
-          </span>
+              <img src="/assets/image/icon/time.png" alt=""/>
+              1시간 전
+            </span>
         </div>
       </div>
     </div>
   </div>
   <div class="used-market-box">
-    <custom-button :customClass="'usedMarketButton'" :placeholder="`USED MARKET >`" :onClick="moving"/>
+    <custom-button :customClass="'usedMarketButton'" :placeholder="`USED MARKET >`" @click="goToX('/usedMarket')"/>
     <used-contents-component/>
   </div>
   <div class="main-bottom">
+    <h1>파도소리 들리는 감성 캠핑</h1>
+    <h2>한번쯤은 꼭 가볼만한 캠핑장! 추천해요~</h2>
     <span>
-      <h1>파도소리 들리는 감성 캠핑78</h1>
-      <h2>한번쯤은 꼭 가볼만한 캠핑장! 추천해요~</h2>
+
     </span>
     <div class="bot-camp">
       <img src="/assets/image/mainpageslider1.png" alt="">
@@ -192,7 +202,6 @@ export default {
         <span></span>
       </div>
     </div>
-    840
-
   </div>
+
 </template>

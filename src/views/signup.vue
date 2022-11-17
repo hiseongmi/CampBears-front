@@ -97,10 +97,10 @@ export default {
     };
     const secForm = () => {
 
-      joinUser()
-      console.log("회원가입은 확인")
+      // joinUser()
+      // console.log("회원가입은 확인")
       goToX('/login')
-      console.log("회원가입후 로그인페이지 자동이동 확인")
+      // console.log("회원가입후 로그인페이지 자동이동 확인")
     }
     const back = () => {
 
