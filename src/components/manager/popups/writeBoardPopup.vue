@@ -5,10 +5,13 @@ import CustomButton from "../../layout/customButton.vue";
 import CustomInput from "../../layout/customInput.vue";
 import { getStore, POPUP_TYPE, STORE_TYPE } from "../../../store/index.js";
 import router from "../../../router/index.js";
+import commonUtil from "../../../utils/common-util.js";
+import { CONSTANTS } from "../../../constants.js";
+import CustomInputFileButton from "../../layout/customInputFileButton.vue";
 
 export default {
   name: "writeBoardPopup",
-  components: { CustomInput, CustomButton },
+  components: { CustomInputFileButton, CustomInput, CustomButton },
   props: {
     clickClose: {
       type: Function,
@@ -31,36 +34,36 @@ export default {
 
     const upLoadData = ref({
       boardBody: "",
-      // optionList: ["SHOWER", "PARMERCY", "CAFE", "FITTING", "SUBWAY", "MARKET", "STORE", "DRINK", "PARK", "RESTROOM", "STARBUCKS", "MOVIE", "RESTAURANT", "SHUTTLE"],
+      optionList: ["SHOWER", "PARMERCY", "CAFE", "FITTING", "SUBWAY", "MARKET", "STORE", "DRINK", "PARK", "RESTROOM", "STARBUCKS", "MOVIE", "RESTAURANT", "SHUTTLE"],
     });
     const inputHashTag = ref("");
     const hashTagList = ref([]);
-    const headers = { "Content-Type": "multipart/form-data" };
-    let formData = new FormData();
+    // const headers = { "Content-Type": "multipart/form-data" };
     const uploadSnsBoard = async () => {
       // const param = Object.assign({}, upLoadData.value, { hashTag: hashTagList.value });
       // console.log(param);
-      const data = await apiClient("/sns/insert", formData);
-      console.log(data);
+      SNSFormData.append("boardBody", upLoadData.value.boardBody);
+      if (hashTagList.value) {
+        SNSFormData.append("hashTag", hashTagList.value);
+      } else {
+        hashTagList.value = " ";
+      }
+      const data = await apiClient("/sns/insert", SNSFormData);
       if (data.resultCode === 0) {
         router.go();
         store.commit(STORE_TYPE.popupType, POPUP_TYPE.NONE); //팝업 닫기
       } else {
-        window.alert("내용을 입력해주세요.");
+        window.alert("다시 시도해주세요.");
       }
     };
     //이미지 업로드
-    // const imgPreview = ref();
+    const SNSImgPreview = ref();
+    let SNSFormData = new FormData();
     const upFileChange = (e) => {
-      // imgPreview.value = URL.createObjectURL(e.target.files[0]);
-      formData.append("boardBody", upLoadData.value.boardBody);
-      formData.append("file", e.target.files[0]);
-      // formData.append("hashTag", hashTagList.value);
-      // for (let key of formData.entries()) {
-      //   console.log(key[0] + ", " + key[1]);
-      // }
-      if (e.target) {
-      }
+      SNSImgPreview.value = URL.createObjectURL(e.target.files[0]); //blob 객체를 가상의 URL을 부여하여 접근할수있게함
+      SNSFormData.append("file", e.target.files[0]);
+      // SNSFormData.append("optionList", upLoadData.value.optionList);
+      // SNSFormData.append("hashTag", hashTagList.value);
     };
 
     //태그 지우기
@@ -121,6 +124,7 @@ export default {
     };
 
     return {
+      SNSImgPreview,
       userData,
       publicType,
       publicIndex,
@@ -154,12 +158,12 @@ export default {
     <div class="modal-inner-wrap">
       <form>
         <div class="content">
-          <div class="file">
-            <!--            <div>-->
-            <!--              <img v-if="!imgPreview" :src=""-->
-            <!--            </div>-->
-            <input type="file" @change="upFileChange" ref="upFileList" accept="image/*" />
-            <!--            <button @click="upFile">클리이익</button>-->
+          <div class="content-file">
+            <div class="content-file-img">
+              <img class="content-file-img-no" v-if="!SNSImgPreview" :src="upLoadData.file" alt="" />
+              <img class="content-file-img-yes" v-else :src="SNSImgPreview" alt="" />
+            </div>
+            <custom-input-file-button @change="upFileChange" />
           </div>
           <div class="content-profile">
             <div class="content-profile-wrap">

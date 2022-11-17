@@ -117,9 +117,11 @@ export default {
       boardIdx: store.state.boardIdx,
     });
     const deleteContent = async () => {
+      console.log(deleteData.value);
       const check = confirm("삭제하시겠습니까?");
       if (check === true) {
         const data = await apiClient("/sns/deleteSns", deleteData.value);
+        console.log(data);
         if (data.resultCode === 0) {
           window.alert("삭제되었습니다.");
           closePopup();

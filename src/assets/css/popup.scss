@@ -85,8 +85,17 @@
           flex-direction: column;
 
           //사진 업로드
-          .file {
+          &-file {
             padding: 15px;
+
+            &-img {
+              &-yes {
+                width: 100%;
+              }
+
+              &-no {
+              }
+            }
           }
 
           //프로필 부분
@@ -169,13 +178,14 @@
             &-wrap {
               display: flex;
               padding: 15px;
-              font-size: 18px;
 
               .title {
                 flex: 1 0 0;
               }
 
               span {
+                font-size: 18px;
+
                 i {
                   cursor: pointer;
                 }
