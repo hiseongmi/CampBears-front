@@ -758,24 +758,14 @@
               flex: 1 0 0;
               border-bottom: 1px solid #818181;
 
-              .custom-input {
-                border: none;
-                border-radius: 0;
-                padding: 0 10px;
-                max-width: none;
-                min-width: 100px;
-                height: 30px;
-                margin-bottom: 0;
-                background-color: #EEEEEE;
-                color: #000000;
+              input {
                 width: 100%;
+                padding: 0 10px;
+                background-color: #EEEEEE;
+                border: none;
+                height: 37px;
               }
 
-              img {
-                position: absolute;
-                left: 155px;
-                bottom: 7px;
-              }
             }
 
             //댓글 올리기버튼
@@ -893,7 +883,6 @@
                 }
               }
             }
-
           }
 
         }

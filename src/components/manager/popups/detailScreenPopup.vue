@@ -117,7 +117,6 @@ export default {
       boardIdx: store.state.boardIdx,
     });
     const deleteContent = async () => {
-      console.log(deleteData.value);
       const check = confirm("삭제하시겠습니까?");
       if (check === true) {
         const data = await apiClient("/sns/deleteSns", deleteData.value);
@@ -149,7 +148,7 @@ export default {
     const MySelectedComment = ref("");
     const selectedComment = ref("");
     //댓글 수정 신고 삭제 옵션
-    const RerCommentActive = ref(false);
+
     const RerCommentOption = comment => {
       if (detailData.value.userIdx === userData.userIdx || userData.userIdx === comment.userIdx) {
         MySelectedComment.value = comment.commentIdx; //특정만 나와
@@ -159,7 +158,12 @@ export default {
     };
 
     //댓글 추가 api
-    const inputComment = ref("");
+    const handleEnterEvent = (e) => {
+      if (e.key === "Enter") {
+        upComment();
+        commentData.value.commentBody = "";
+      }
+    };
     const commentData = ref({
       boardIdx: store.state.boardIdx,
       commentBody: "",
@@ -167,9 +171,8 @@ export default {
     const upComment = async () => {
       const data = await apiClient("/comment/insertComment", commentData.value);
       if (data.resultCode === 0) {
-        inputComment.value = "";
+        commentData.value.commentBody = "";
         await commentList();
-        console.log(commentData.value.commentBody);
       } else {
         window.alert("댓글을 입력해주세요");
       }
@@ -180,7 +183,6 @@ export default {
     });
     const putCommentIdx = commentIdx => {
       deleteCommentData.value.commentIdx = commentIdx;
-      ////console.log("이 댓글 idx: ", deleteCommentData.value.commentIdx);
       deleteComment();
     }; //댓글 idx를 리스트에 담는다.
     const deleteComment = async () => {
@@ -231,11 +233,11 @@ export default {
       detailData,
       RerAction,
       MyRerAction,
-      RerCommentActive,
       reportAction,
       selectedComment,
       MySelectedComment,
-      inputComment,
+
+      handleEnterEvent,
       postImage,
       putCommentIdx,
       followManager,
@@ -322,13 +324,11 @@ export default {
         </div>
         <div class="content-enterComment">
           <div class="content-enterComment-wrap">
-            <custom-input
-              :custom-class="'comment'"
-              :placeholder="'댓글을 입력해주세요.'"
-              v-model="inputComment"
-              @update:value="commentData.commentBody = $event"
+            <input
+              placeholder="댓글을 입력해주세요. ⤶"
+              v-model.trim="commentData.commentBody"
+              @keydown="handleEnterEvent"
             />
-            <img src="/assets/image/icon/breakArrow.png" alt="" />
           </div>
           <button @click="upComment"><i class="fa-regular fa-comment"></i></button>
         </div>
@@ -346,18 +346,20 @@ export default {
             <span> <i class="fa-regular fa-comment"></i></span>
             <span @click="RerCommentOption(item)"><i class="fa-solid fa-ellipsis-vertical"></i></span>
           </div>
-          <div class="commentPop" v-if="item.commentIdx === MySelectedComment">
-            <ul>
-              <li @click="putCommentIdx(item.commentIdx)">삭제</li>
-              <li @click="reportPop">신고</li>
-              <li>취소</li>
-            </ul>
-          </div>
-          <div class="commentPop" v-if="item.commentIdx === selectedComment">
-            <ul>
-              <li @click="reportPop">신고</li>
-              <li>취소</li>
-            </ul>
+          <div>
+            <div class="commentPop" v-if="item.commentIdx === MySelectedComment">
+              <ul>
+                <li @click="putCommentIdx(item.commentIdx)">삭제</li>
+                <li @click="reportPop">신고</li>
+                <li>취소</li>
+              </ul>
+            </div>
+            <div class="commentPop" v-if="item.commentIdx === selectedComment">
+              <ul>
+                <li @click="reportPop">신고</li>
+                <li>취소</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>

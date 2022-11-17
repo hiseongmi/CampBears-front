@@ -94,7 +94,6 @@ export default {
     const handleInput = (e) => {
       let target = e.target.value;
       target = target.trim();
-      //
       // if (target.includes("#")) {
       //   console.log(target.includes("#"));
       // }
