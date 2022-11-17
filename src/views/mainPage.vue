@@ -183,7 +183,7 @@ export default {
   </div>
   <div class="main-bottom">
     <span>
-      <h1>파도소리 들리는 감성 캠핑</h1>
+      <h1>파도소리 들리는 감성 캠핑78</h1>
       <h2>한번쯤은 꼭 가볼만한 캠핑장! 추천해요~</h2>
     </span>
     <div class="bot-camp">
@@ -192,5 +192,7 @@ export default {
         <span></span>
       </div>
     </div>
+    840
+
   </div>
 </template>
