@@ -63,7 +63,6 @@ export default {
 
     const isModal = ref(false);
     const modalControl = state => {
-      console.log(state);
       isModal.value = state;
     };
 
