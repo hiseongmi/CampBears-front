@@ -1981,282 +1981,285 @@
               object-fit: cover;
             }
 
-      .news-ul-li:hover {
-        margin: auto;
-        transform: scale(1.1);
-        transition: 0.5s;
-        opacity: 100%;
+            .news-ul-li:hover {
+              margin: auto;
+              transform: scale(1.1);
+              transition: 0.5s;
+              opacity: 100%;
+            }
+
+
+          }
+
+        }
+
+        .pagination {
+          display: none;
+        }
       }
 
+      .view-all {
+        margin: 0 auto;
+        max-width: 360px;
+        max-height: 35px;
+        padding-top: 30px;
+        padding-bottom: 100px;
 
+        .custom-button {
+          height: 36px;
+          border-radius: 5px;
+          border-color: $darkgry;
+          border-width: 1px;
+
+          a {
+            color: #3e3e3e;
+            font-size: 13px;
+          }
+        }
       }
 
-    }
-
-    .pagination {
-      display: none;
-    }
-  }
-
-  .view-all {
-    margin: 0 auto;
-    max-width: 360px;
-    max-height: 35px;
-    padding-top: 30px;
-    padding-bottom: 100px;
-
-    .custom-button {
-      height: 36px;
-      border-radius: 5px;
-      border-color: $darkgry;
-      border-width: 1px;
-
-      a {
-        color: #3e3e3e;
-        font-size: 13px;
-      }
-    }
-  }
-
-  .add-banner {
-    position: relative;
-    overflow: hidden;
-
-    .add-img {
-      background-image: url("/assets/image/mainpage4.png");
-      display: inline-block;
-      //object-fit: contain;
-      background-size: 100% 100%;
-      width: 100%;
-      height: 160px;
-
-      span {
+      .add-banner {
         position: relative;
-        display: block;
-        color: $white;
-        font-size: 14px;
-        padding: 5px;
-        left: 36px;
-        top: 15px;
-      }
+        overflow: hidden;
 
-      .custom-button {
-        background-color: #fa6c1a;
-        border-color: #fa6c1a;
-        width: 30%;
-        min-width: 100px;
-        max-width: 250px;
-        height: 30px;
-        position: absolute;
-        //min-width: 92px;
-        border-radius: 3px;
-        left: 50px;
-        bottom: 20px;
-        //top: 80%;
-
-        a {
-          color: $white;
-          font-size: 10px;
-        }
-      }
-    }
-  }
-
-  .main-campsite {
-    padding-top: 55px;
-    padding-bottom: 20px;
-
-    text-align: -webkit-center;
-
-    h2 {
-      bottom: 10px;
-    }
-
-    .custom-button {
-      margin-top: 20px;
-      width: 11px;
-      height: 34px;
-      position: relative;
-      border: 0.5px solid $lightgry;
-      border-radius: 3px;
-
-      a {
-        color: $white;
-        font-size: 12px;
-      }
-    }
-  }
-
-  .autocamp-box {
-    position: relative;
-    text-align: center;
-    display: inline-flex;
-    overflow: auto;
-    white-space: nowrap;
-    width: 100%;
-    height: 401px;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-
-    .boxing {
-      position: relative;
-
-      img {
-
-      }
-
-      h1 {
-
-      }
-
-      a {
-
-      }
-
-      p {
-
-      }
-
-      span {
-        img {
-
-        }
-      }
-    }
-
-    .main-autocamp:hover {
-      transform: scale(1.05);
-      transition: 0.2s;
-      z-index: 1;
-    }
-
-    .main-autocamp {
-      text-align: center;
-      display: inline-block;
-      margin-left: 20px;
-      margin-right: 20px;
-      border: 1px solid rgb(204, 204, 204);
-      border-radius: 10px;
-      width: 314px;
-      margin-top: 32px;
-
-      //.autocamp:hover {
-      //  transform: scale(1.5);
-      //  transition: 0.5s;
-      //  z-index: 1;
-      //
-      //}
-
-      .autocamp {
-        border: 1px solid rgba(204, 204, 204, 0.5);
-        background-image: url(" /assets/image/mainutoCamp.png");
-        display: inline-block;
-        background-size: 100% 100%;
-        height: 191px;
-        width: 100%;
-        border-top-right-radius: 10px;
-        border-top-left-radius: 10px;
-
-        img {
-          border-style: none;
-          width: 17%;
-        }
-      }
-
-      .autocam-cont {
-        position: relative;
-        height: 100px;
-
-        h1 {
-          position: relative;
+        .add-img {
+          background-image: url("/assets/image/mainpage4.png");
           display: inline-block;
-          font-size: 23px;
-          float: left;
-          margin: 2%;
-          margin-top: 1%;
+          //object-fit: contain;
+          background-size: 100% 100%;
+          width: 100%;
+          height: 160px;
+
+          span {
+            position: relative;
+            display: block;
+            color: $white;
+            font-size: 14px;
+            padding: 5px;
+            left: 36px;
+            top: 15px;
+          }
+
+          .custom-button {
+            background-color: #fa6c1a;
+            border-color: #fa6c1a;
+            width: 30%;
+            min-width: 100px;
+            max-width: 250px;
+            height: 30px;
+            position: absolute;
+            //min-width: 92px;
+            border-radius: 3px;
+            left: 50px;
+            bottom: 20px;
+            //top: 80%;
+
+            a {
+              color: $white;
+              font-size: 10px;
+            }
+          }
         }
+      }
+
+      .main-campsite {
+        padding-top: 55px;
+        padding-bottom: 20px;
+
+        text-align: -webkit-center;
+
+        h2 {
+          bottom: 10px;
+        }
+
+        .custom-button {
+          margin-top: 20px;
+          width: 11px;
+          height: 34px;
+          position: relative;
+          border: 0.5px solid $lightgry;
+          border-radius: 3px;
+
+          a {
+            color: $white;
+            font-size: 12px;
+          }
+        }
+      }
+
+      .autocamp-box {
+        position: relative;
+        text-align: center;
+        display: inline-flex;
+        overflow: auto;
+        white-space: nowrap;
+        width: 100%;
+        height: 401px;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+
+        .boxing {
+          position: relative;
+
+          img {
+
+          }
+
+          h1 {
+
+          }
+
+          a {
+
+          }
+
+          p {
+
+          }
+
+          span {
+            img {
+
+            }
+          }
+        }
+
+        .main-autocamp:hover {
+          transform: scale(1.05);
+          transition: 0.2s;
+          z-index: 1;
+        }
+
+        .main-autocamp {
+          text-align: center;
+          display: inline-block;
+          margin-left: 20px;
+          margin-right: 20px;
+          border: 1px solid rgb(204, 204, 204);
+          border-radius: 10px;
+          width: 314px;
+          margin-top: 32px;
+
+          //.autocamp:hover {
+          //  transform: scale(1.5);
+          //  transition: 0.5s;
+          //  z-index: 1;
+          //
+          //}
+
+          .autocamp {
+            border: 1px solid rgba(204, 204, 204, 0.5);
+            background-image: url(" /assets/image/mainutoCamp.png");
+            display: inline-block;
+            background-size: 100% 100%;
+            height: 191px;
+            width: 100%;
+            border-top-right-radius: 10px;
+            border-top-left-radius: 10px;
+
+            img {
+              border-style: none;
+              width: 17%;
+            }
+          }
+
+          .autocam-cont {
+            position: relative;
+            height: 100px;
+
+            h1 {
+              position: relative;
+              display: inline-block;
+              font-size: 23px;
+              float: left;
+              margin: 2%;
+              margin-top: 1%;
+            }
+
+            span {
+              position: relative;
+              display: flex;
+              color: #818181;
+              font-size: 16px;
+              justify-content: flex-end;
+              align-items: baseline;
+            }
+
+            a {
+              margin-top: 1%;
+              margin-left: 2%;
+              float: left;
+              text-align: left;
+              position: relative;
+              display: inline-block;
+              color: #0093e7;
+            }
+
+            h2 {
+              font-size: 20px;
+              color: #ea3323;
+              position: relative;
+              display: inline-block;
+              margin-right: 27%;
+              margin-top: 5%;
+              margin-bottom: 2%;
+            }
+          }
+        }
+      }
+
+      .used-market-box {
+        max-width: 1100px;
+        margin: 60px auto;
+        overflow: hidden;
+
+        div.usedMarketButton {
+          margin: 20px auto;
+          max-width: none;
+          max-height: none;
+          border: none;
+
+          a {
+            color: #000000;
+            font-size: 32px;
+            font-weight: bold;
+          }
+        }
+
+        .used-contents-area {
+          flex-wrap: nowrap;
+          text-align: start;
+        }
+      }
+
+      .main-bottom {
+        margin-top: 90px;
 
         span {
           position: relative;
-          display: flex;
-          color: #818181;
-          font-size: 16px;
-          justify-content: flex-end;
-          align-items: baseline;
+          top: 70px;
+
+          h1 {
+            padding-top: 60px;
+            font-size: 34px;
+            top: -64px;
+            position: relative;
+          }
+
+          h2 {
+            margin: 30px;
+            font-size: 16px;
+            position: relative;
+            top: -65px;
+          }
         }
 
-        a {
-          margin-top: 1%;
-          margin-left: 2%;
-          float: left;
-          text-align: left;
-          position: relative;
-          display: inline-block;
-          color: #0093e7;
-        }
-
-        h2 {
-          font-size: 20px;
-          color: #ea3323;
-          position: relative;
-          display: inline-block;
-          margin-right: 27%;
-          margin-top: 5%;
-          margin-bottom: 2%;
-        }
+        background-image: url("/assets/image/main-bottom.png");
+        background-size: 100% 100%;
+        height: 620px;
+        text-align: center;
+        left: 50%;
+        top: 50%;
       }
     }
-  }
-  .used-market-box {
-    max-width: 1100px;
-    margin: 60px auto;
-    overflow: hidden;
-
-    div.usedMarketButton {
-      margin: 20px auto;
-      max-width: none;
-      max-height: none;
-      border: none;
-
-      a {
-        color: #000000;
-        font-size: 32px;
-        font-weight: bold;
-      }
-    }
-
-    .used-contents-area {
-      flex-wrap: nowrap;
-      text-align: start;
-    }
-  }
-  .main-bottom {
-    margin-top: 90px;
-
-    span {
-      position: relative;
-      top: 70px;
-
-      h1 {
-        padding-top: 60px;
-        font-size: 34px;
-        top: -64px;
-        position: relative;
-      }
-
-      h2 {
-        margin: 30px;
-        font-size: 16px;
-        position: relative;
-        top: -65px;
-      }
-    }
-
-    background-image: url("/assets/image/main-bottom.png");
-    background-size: 100% 100%;
-    height: 620px;
-    text-align: center;
-    left: 50%;
-    top: 50%;
-  }
-}
+  }}
