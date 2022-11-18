@@ -3,6 +3,7 @@ import customButton from "../../layout/customButton.vue";
 import { nextTick, onMounted, ref } from "vue";
 import CustomInput from "../../layout/customInput.vue";
 import CustomInputFileButton from "../../layout/customInputFileButton.vue";
+import profile from "../../snsBoard/profile.vue";
 
 export default {
   name: "productWritePopup",
@@ -61,7 +62,6 @@ export default {
       typeIndex.vlaue = v;
     };
     const clickState = ref(false);
-    let star1, star2, star3, star4, star5;
 
     onMounted(() => {
       nextTick(() => {
@@ -72,6 +72,8 @@ export default {
         star5 = document.getElementById("stars5");
       });
     });
+
+    let star1, star2, star3, star4, star5;
 
     const handleMouseOver = index => {
       if (!clickState.value) {
@@ -152,6 +154,13 @@ export default {
       }
     };
 
+    const imgPreview = ref();
+    const formData = new FormData();
+    const uploadImg = e => {
+      imgPreview.value = URL.createObjectURL(e.target.files);
+      formData.set("file", e.target.files);
+    };
+
     return {
       typeType,
       typeIndex,
@@ -160,10 +169,13 @@ export default {
       handleMouseOver,
       handleMouseOut,
       clickHandler,
+      uploadImg,
+      imgPreview,
     };
   },
 };
 </script>
+
 <template>
   <div class="modal-inner">
     <div class="save-btn">
@@ -175,7 +187,10 @@ export default {
     <div class="modal-inner-wrap">
       <div class="product">
         <div class="product-file">
-          <custom-input-file-button />
+          <div class="product-file-wrap">
+            <img :src="imgPreview" alt="" />
+          </div>
+          <custom-input-file-button @change="uploadImg" />
         </div>
         <div class="product-title">
           <custom-input :placeholder="'제목'" />

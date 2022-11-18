@@ -85,10 +85,10 @@ export default {
       <span>반려동물</span>
     </a>
 
-    <!--    <a href="">-->
-    <!--      <img src="/assets/image/icon/categoryKids.png" alt="" />-->
-    <!--      <span>키즈</span>-->
-    <!--    </a>-->
+    <a href="">
+      <img src="/assets/image/icon/categoryKids.png" alt="" />
+      <span>키즈</span>
+    </a>
 
     <a href="">
       <img src="/assets/image/icon/categoryCampnic.png" alt="" />
