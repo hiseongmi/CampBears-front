@@ -20,7 +20,7 @@ export default {
     customButton,
     snsPage,
     myPage,
-    infoPage,
+    infoPage
   },
 
   setup() {
@@ -42,15 +42,16 @@ export default {
     return {
       move,
       moving,
-      goToX,
+      goToX
     };
-  },
+  }
 };
 </script>
 <template>
   <div class="main-box">
     <div class="main-fir">
-      <span>감성있는 캠핑장을 찾고있나요?</span>
+      <div class="black"></div>
+      <span>감성있는 캠핑장을 <br>찾고있나요?</span>
       <custom-button :placeholder="`캠핑장 양도 받기/찾기`" :onClick="move"></custom-button>
     </div>
     <div class="main-sec">
@@ -84,10 +85,10 @@ export default {
       <span>반려동물</span>
     </a>
 
-    <a href="">
-      <img src="/assets/image/icon/categoryKids.png" alt="" />
-      <span>키즈</span>
-    </a>
+    <!--    <a href="">-->
+    <!--      <img src="/assets/image/icon/categoryKids.png" alt="" />-->
+    <!--      <span>키즈</span>-->
+    <!--    </a>-->
 
     <a href="">
       <img src="/assets/image/icon/categoryCampnic.png" alt="" />

@@ -14,28 +14,28 @@ export default {
       {
         name: "커뮤니티",
         key: "SNS",
-        target: "/snsPage",
+        target: "/snsPage"
       },
       {
         name: "중고거래",
         key: "MARKET",
-        target: "/usedMarket",
+        target: "/usedMarket"
       },
       {
         name: "쇼핑",
         key: "SHOP",
-        target: "/",
+        target: "/"
       },
       {
         name: "캠핑장",
         key: "BOARD",
-        target: "/infoPage",
+        target: "/infoPage"
       },
       {
         name: "채팅",
         key: "CATTING",
-        target: "/",
-      },
+        target: "/"
+      }
     ];
     //router 이동
     const goToX = v => {
@@ -75,7 +75,7 @@ export default {
       () => store.state.loginUserIdx,
       () => {
         loginUser.value = commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO);
-      },
+      }
     );
 
     return {
@@ -84,9 +84,9 @@ export default {
       goToX,
       logOut,
       mainContainer,
-      containerAction,
+      containerAction
     };
-  },
+  }
 };
 </script>
 <template>
@@ -112,7 +112,7 @@ export default {
           </ul>
         </div>
         <div class="header-bar-logo" @click="goToX('/')">
-          <img src="/assets/image/icon/bearsLogo.png" alt="" />
+          <img src="/assets/images/login/logo.webp" alt="" />
           <span>Bears</span>
         </div>
         <div class="header-bar-moSearch">

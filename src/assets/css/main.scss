@@ -1,5 +1,5 @@
 //헤더바
-@media (min-width: 768px) {
+@include tb() {
   .header {
     margin-bottom: 30px;
     position: relative;
@@ -32,6 +32,10 @@
         width: 84px;
         border-radius: 0 0 17px 17px;
         cursor: pointer;
+
+        @include mb() {
+          width: 20px;
+        }
 
         span {
           margin: 0 20px 10px 20px;
@@ -127,13 +131,13 @@
 
 @include mb() {
   .header {
-    margin-bottom: 30px;
+    margin-bottom: unset;
 
     &-bar {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 95px;
+      height: 60px;
 
       .mainContainer {
         display: block;
@@ -189,14 +193,21 @@
         flex-direction: column;
         align-items: center;
         cursor: pointer;
+        height: 60px;
+        width: 50px;
+        background-color: unset;
+        border-radius: unset;
 
-        svg {
-          background-color: white;
-
-          path {
-            fill: #2f2e2c;
-          }
+        img {
+          width: 50px;
+          height: 50px;
+          margin-bottom: 5px;
         }
+
+        span {
+          display: none;
+        }
+
       }
 
       &-moSearch {
@@ -1809,17 +1820,28 @@
     text-align: center;
 
     .main-fir {
+      position: relative;
       display: inline-block;
       background-size: 100% 100%;
       background-image: url("/assets/image/mainpage2.png");
+
       width: 100%;
-      height: 500px;
+      height: 300px;
+      object-fit: cover;
+
+
+      .black {
+        @include center-width();
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+      }
 
       span {
+        @include center-width();
+        top: 55%;
         color: $white;
-        position: relative;
         font-size: 20px;
-        top: 70%;
       }
 
       .custom-button {
@@ -1828,6 +1850,8 @@
         border-radius: 20px;
         top: 75%;
         width: 50%;
+        min-width: 150px;
+        max-width: 250px;
         height: 43px;
         margin: 0 auto;
 
@@ -1839,7 +1863,7 @@
     }
 
     .main-sec {
-      display: inline-block;
+      display: none;
       background-size: 100% 100%;
       background-image: url("/assets/image/mainpage3.png");
       width: 100%;
@@ -1877,10 +1901,12 @@
     flex-wrap: wrap;
 
     a {
+      width: 33%;
+      margin-bottom: 20px;
       text-decoration: none;
       color: #000000;
       position: relative;
-      padding: 0 25px 25px 0;
+      //padding: 0 25px 25px 0;
     }
 
     span {
@@ -1927,25 +1953,37 @@
 
     .profile-wrap {
       display: none;
-      bottom: 20px;
     }
 
     .news-ul {
       overflow: scroll;
       flex-wrap: nowrap;
-      transform: translateX(115px);
+      transform: translateX(calc(33vh / 2 - 20px));
       transition: 0.5s;
       animation-timing-function: ease-in-out;
       justify-content: flex-start;
+      //width: 100%;
 
-      .news-ul-li:hover {
-        transform: translate(20px, 50px);
-        transition: 1s;
+      &-li {
+        width: 33vh;
+
+        &-wrap {
+          width: 30vh;
+
+          &-write {
+
+            img {
+              width: 100%;
+              //height: 100%;
+              object-fit: cover;
+            }
+
+          }
+        }
+
+
       }
 
-      .news-ul-li {
-        margin: auto;
-      }
     }
 
     .pagination {
@@ -1980,35 +2018,38 @@
     .add-img {
       background-image: url("/assets/image/mainpage4.png");
       display: inline-block;
+      //object-fit: contain;
       background-size: 100% 100%;
       width: 100%;
-      height: 115px;
+      height: 160px;
 
       span {
         position: relative;
         display: block;
         color: $white;
-        font-size: 2px;
-        padding: 9px;
+        font-size: 14px;
+        padding: 5px;
         left: 36px;
-        top: 3px;
+        top: 15px;
       }
 
       .custom-button {
         background-color: #fa6c1a;
         border-color: #fa6c1a;
-        width: 2%;
-        height: 15%;
+        width: 30%;
+        min-width: 100px;
+        max-width: 250px;
+        height: 30px;
         position: absolute;
-        min-width: 92px;
+        //min-width: 92px;
         border-radius: 3px;
         left: 50px;
-        bottom: 40px;
-        top: 80%;
+        bottom: 20px;
+        //top: 80%;
 
         a {
           color: $white;
-          font-size: 4px;
+          font-size: 10px;
         }
       }
     }
