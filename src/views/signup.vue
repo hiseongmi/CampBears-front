@@ -66,7 +66,7 @@ export default {
     const isShow = ref(true);
     const checkForm = () => {
       const reg = /^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
-      const passCheck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
+      // const passCheck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
       const nameCheck = /^[가-힣]+$/; //한글만 입력가능
       if (nameCheck.test(joinUserData.value.userName) === false) {
         alert("이름은 한글로 입력해주세요 (2~4글자)");
@@ -78,11 +78,11 @@ export default {
 
         return false;
       }
-      if (!passCheck.test(joinUserData.value.userPassword)) {
-        alert("비밀번호는 영문자 + 숫자 + 특수문자 조합으로 8~25자리 사용해야해요");
-
-        return false;
-      }
+      // if (()) {
+      //   alert("비밀번호는 영문자 + 숫자 + 특수문자 조합으로 8~25자리 사용해야해요");
+      //
+      //   return false;
+      // }
       if (joinUserData.value.userPassword !== joinUserData.value.userPassCheck) {
         alert("비밀번호가 일치하지않습니다.");
 
@@ -97,7 +97,7 @@ export default {
     };
     const secForm = () => {
 
-      // joinUser()
+      joinUser()
       // console.log("회원가입은 확인")
       goToX('/login')
       // console.log("회원가입후 로그인페이지 자동이동 확인")
@@ -117,12 +117,12 @@ export default {
     const joinUser = async () => {
       // console.log("가입 좀 하자: ", joinUserData.value)
 
-      // const data = await apiClient("/user/join", joinUserData.value);
+      const data = await apiClient("/user/join", joinUserData.value);
       // console.log(data.data)
       //console.log(data)
 
       //
-      // contentData.value = data.data
+      contentData.value = data.data
       // search 이벤트를 날림
     };
 

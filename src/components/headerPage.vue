@@ -1,7 +1,7 @@
 <script>
 import router from "../router/index.js";
-import { computed, ref, watch } from "vue";
-import { CONSTANTS } from "../constants.js";
+import {computed, ref, watch} from "vue";
+import {CONSTANTS} from "../constants.js";
 import commonUtil from "../utils/common-util.js";
 import store from "../store/index.js";
 
@@ -72,10 +72,10 @@ export default {
     // };
 
     watch(
-      () => store.state.loginUserIdx,
-      () => {
-        loginUser.value = commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO);
-      },
+        () => store.state.loginUserIdx,
+        () => {
+          loginUser.value = commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO);
+        },
     );
 
     return {
@@ -98,6 +98,7 @@ export default {
             <i class="fa-solid fa-bars"></i>
           </label>
         </div>
+
         <div class="containerPop" v-if="containerAction">
           <ul>
             <li v-if="!loginUser">
@@ -108,11 +109,12 @@ export default {
               <a @click="goToX('/myPage')">마이페이지</a>
               <a @click="logOut()">로그아웃</a>
               <a @click="goToX('/snsPage')">SNS</a>
+              <a @click="goToX('/usedMarket')">플리마켓</a>
             </li>
           </ul>
         </div>
         <div class="header-bar-logo" @click="goToX('/')">
-          <img src="/assets/image/icon/bearsLogo.png" alt="" />
+          <img src="/assets/image/icon/bearsLogo.png" alt=""/>
           <span>Bears</span>
         </div>
         <div class="header-bar-moSearch">
@@ -133,7 +135,7 @@ export default {
           </div>
           <div class="header-bar-menu-info">
             <div class="container">
-              <input type="checkbox" class="container-trigger" />
+              <input type="checkbox" class="container-trigger"/>
               <label class="container-trigger-label">
                 <i class="fa-solid fa-bars"></i>
               </label>
@@ -142,7 +144,7 @@ export default {
               <span v-for="item in headerBarList" @click="goToX(item.target)">{{ item.name }}</span>
             </nav>
             <div class="header-bar-menu-info-search">
-              <input type="text" />
+              <input type="text"/>
               <i class="fa-solid fa-magnifying-glass"></i>
             </div>
           </div>

@@ -8,6 +8,7 @@ import common from "../utils/common-util.js";
 import {CONSTANTS} from "../constants.js";
 import router from "../router/index.js";
 import store, {STORE_TYPE} from "../store/index.js";
+import axios from "axios";
 
 export default {
   name: "login",
@@ -17,6 +18,28 @@ export default {
     loginNaver,
   },
   setup() {
+
+
+    // const test = async () => {
+    //   const axiosInstance = axios.create({
+    //     timeout: 1000 * 60 * 3,
+    //     headers: {"contents-type": "Json"},
+    //   });
+    //   const d = await axiosInstance.get('https://apis.data.go.kr/B551011/GoCamping/basedList?MobileOS=ETC&MobileApp=bears&serviceKey=IEdTGqhPUIxJy5mLBtkjPw6g%2BaTd90KXgnnc03HRNuD2NUPhtSQ307ZhzYx3n51j%2FpjYn5Hteigqp1cro1Rg6w%3D%3D')
+    //   console.log(d)
+    // }
+
+    const typeSearch = async () => {
+      const data = await apiClient("/common/getTypeList", typeSearchData.value);
+      //console.log(data.data) //태그 장소 검색 글 데이터
+      typeData.value = data.data;
+      if (typeData.value) {
+        joinUserData.value.userType = typeData.value[0].column;
+        //console.log(joinUserData.value)
+      }
+      // contentData.value = data.data
+      //search 이벤트를 날림
+    };
     const userData = ref({userEmail: "", userPassword: ""});
     const loginState = ref(true);
     const ENTER_EVENT = "ENTER_EVENT";
@@ -26,7 +49,7 @@ export default {
       const data = await apiClient("/user/login", userData.value);
       if (data.resultCode === 0) {
         //console.log(data.data);
-        await router.push("/");
+
         if (data.data.token) {
           setHeader(data.data.token);
           common.setLocalStorage(CONSTANTS.KEY_LIST.USER_INFO, data.data);
@@ -34,7 +57,8 @@ export default {
           store.commit(STORE_TYPE.loginUserIdx, data.data.userIdx);
           localStorage.setItem("userData", JSON.stringify(data.data));
         }
-        window.location.replace("/mainPage");
+        await router.push("/");
+        location.reload();
       } else {
         window.alert(data.resultMsg);
       }
@@ -58,7 +82,7 @@ export default {
         doLogin();
       }
     };
-    
+
     const goToX = v => {
       v ? router.push(v) : window.alert("준비중입니다.");
       window.location.replace("/#/signup");
@@ -66,6 +90,7 @@ export default {
 
     onMounted(() => {
       window.addEventListener("keydown", handleEnter);
+      test();
     });
 
     onUnmounted(() => {
@@ -80,6 +105,7 @@ export default {
       doJoin,
       clickJoin,
       goToX,
+      typeSearch,
     };
   },
 };

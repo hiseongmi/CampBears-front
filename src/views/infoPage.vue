@@ -49,6 +49,11 @@ export default {
         name: "#노지",
       },
     ];
+    const isShow = ref(true);
+    const back = () => {
+      isShow.value = !isShow.value
+    }
+
     const goToX = v => {
       v ? router.push(v) : window.alert("준비중입니다.");
     };
@@ -350,18 +355,26 @@ export default {
       move,
       moving,
       goToX,
+      back,
+      isShow,
     };
   },
 };
 </script>
 
 <template>
+
   <!--  <script type="text/javascript"-->
   <!--          src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8cd7ea967a72d603b3fd12c735e76a49"></script>-->
   <!--  <div id="map" style="width:500px;height:400px;"></div>-->
   <div class="info-main">
     <header-page></header-page>
-    <div class="info-side">
+    <div v-if="isShow">
+      <a @click="back"><img src="/assets/image/noschool.png"></a>
+
+      <custom-button placeholder="열려라" @click="back"></custom-button>
+    </div>
+    <div v-else class="info-side">
       <!--      <div class="info-name">-->
       <!--        <a href="">캠핑장 정보</a>-->
       <!--      </div>-->
@@ -372,6 +385,8 @@ export default {
       <!--        <a href="">캠핑장 정보</a>-->
       <!--      </div>-->
       <!--      <div class="info-navi"></div>-->
+
+      <a @click="back">숨기자숨기자숨기자</a>
       <div class="info" href="#">
         <a href="#">캠핑장 정보</a>
       </div>
