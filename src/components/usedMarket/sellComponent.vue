@@ -7,46 +7,28 @@ import customModal from "../layout/customModal.vue";
 import store, { POPUP_TYPE, STORE_TYPE } from "../../store/index.js";
 
 export default {
-  name: "usedContentsComponent",
+  name: "sellComponent",
   components: { customModal, customPagination },
-  props: {},
   setup() {
     const postData = ref({});
-    const selectedValue = ref();
+    const file = ref("");
     let keyword = "";
 
     const getData = async () => {
-      let param = { productType: "SELL" };
-      if (selectedValue.value !== null && selectedValue.value !== undefined) {
-        param = Object.assign({}, param, { sorted: selectedValue.value }); //ob 내장함수 합침
-        param.sorted = selectedValue.value;
-      }
+      const data = await apiClient("/product/getProductList", { productType: "sell" });
+      if (data) postData.value = data.data;
+    };
 
-      const data = await apiClient("/product/getProductList", param);
-      if (data) {
-        postData.value = data.data;
-        for (let i = 0; i < postData.value.length; i++) {
-          console.log(postData.value[i].file);
-          postData.value[i].file.map(v => {
-            for (let j = 0; j < postData.value[i].file.length; j++) {
-              postData.value[i].file[j] = commonUtil.getImgUrl(v.fileName);
-            }
-          });
-        }
-      }
+    const getImgUrl = file => {
+      return commonUtil.getImgUrl(file.fileName);
     };
 
     const handleSearch = e => {
-      //이벤트를 받음
-      if (e.detail !== "") {
-        keyword = e.detail;
-        //inquiryData.value = {keyword: e.detail} ///빈값이 아닐때  keyword 로 값을 보냄
-      } else {
-        keyword = e.detail;
-        //inquiryData.value = ""
-      }
+      if (e.detail !== "") keyword = e.detail;
+      else keyword = e.detail;
       getData();
     };
+
     const openDetail = () => {
       store.commit(STORE_TYPE.popupType, POPUP_TYPE.PRODUCT_DETAIL);
     }; //게시물 상세 페이지 팝업 열기
@@ -71,6 +53,8 @@ export default {
       getData,
       modalControl,
       isModal,
+      file,
+      getImgUrl,
     };
   },
 };
@@ -81,7 +65,7 @@ export default {
     <div class="used-contents-area-ul">
       <div class="used-post" v-for="item in postData" @click="openDetail()">
         <div class="used-post-img-wrap">
-          <img :src="item.file[0]" alt="Posts" />
+          <img :src="getImgUrl(item.file[0])" alt="Posts" />
         </div>
         <div class="used-post-info">
           <div class="used-post-info-title">{{ item.productName }}</div>
@@ -90,7 +74,7 @@ export default {
           <div class="used-post-info-coast">{{ item.productPrice }}</div>
           <div class="used-post-info-footer">
             <div class="used-post-info-footer-date">
-              <!--              <img :src="item.file" alt="" />-->
+              <img src="/assets/image/icon/time.png" alt="" />
               <a>{{ item.dateReg.slice(5, 10) }}</a>
             </div>
           </div>

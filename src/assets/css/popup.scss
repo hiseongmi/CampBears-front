@@ -12,7 +12,6 @@
   .modal {
     position: absolute;
 
-
     //글쓰기 내용
     &-inner {
       z-index: 3;
@@ -62,8 +61,7 @@
             }
 
             .upLoad {
-              color: #F32626;
-
+              color: #f32626;
             }
           }
         }
@@ -195,8 +193,6 @@
 
           //인원수
           &-person {
-
-
             &-wrap {
               padding: 15px;
 
@@ -272,7 +268,6 @@
 
         //used Market 글쓰기
         .product {
-
           &-file {
             padding: 13px 40px;
           }
@@ -329,7 +324,6 @@
                   border-right: 2px solid #cccccc;
                 }
               }
-
             }
           }
 
@@ -369,7 +363,7 @@
 
                 i {
                   font-size: 13px;
-                  color: rgba(204, 204, 204, 0.7);;
+                  color: rgba(204, 204, 204, 0.7);
                 }
               }
 
@@ -377,7 +371,7 @@
                 margin-right: 10px;
                 font-size: 13px;
                 font-weight: 700;
-                color: rgba(129, 129, 129, 0.9);;
+                color: rgba(129, 129, 129, 0.9);
               }
             }
 
@@ -394,7 +388,7 @@
                   cursor: pointer;
                   padding-right: 2px;
                   font-size: 18px;
-                  color: #D2D2D2;
+                  color: #d2d2d2;
                 }
               }
             }
@@ -417,7 +411,7 @@
               }
 
               .import {
-                color: #FA6C1A;
+                color: #fa6c1a;
               }
             }
 
@@ -438,7 +432,6 @@
               &-type {
                 display: flex;
                 flex-wrap: wrap;
-                margin-top: 15px;
               }
             }
           }
@@ -459,10 +452,8 @@
               font-weight: 500;
               margin-bottom: 0;
             }
-
           }
         }
-
       }
 
       &-wrap::-webkit-scrollbar {
@@ -498,7 +489,6 @@
       //box-shadow: 0 4px 6px;
       width: 600px;
       height: 600px;
-
 
       &-content {
         position: absolute;
@@ -544,7 +534,6 @@
             align-items: center;
             justify-items: center;
 
-
             li {
               width: 100%;
               text-align: center;
@@ -583,7 +572,6 @@
             align-items: center;
             justify-items: center;
 
-
             li {
               width: 100%;
               text-align: center;
@@ -610,7 +598,6 @@
           &-image {
             img {
               width: 100%;
-
             }
           }
 
@@ -657,7 +644,7 @@
                       margin: 0;
                       padding: 2px 12px;
                       background-color: white;
-                      border: 1px solid #FA6C1A;
+                      border: 1px solid #fa6c1a;
                       font-size: 10px;
                       font-weight: bold;
                       border-radius: 15px;
@@ -668,8 +655,8 @@
                     .followActive {
                       margin: 0;
                       padding: 2px 12px;
-                      background-color: #FA6C1A;
-                      border: 1px solid #FA6C1A;
+                      background-color: #fa6c1a;
+                      border: 1px solid #fa6c1a;
                       font-size: 10px;
                       font-weight: bold;
                       border-radius: 15px;
@@ -689,7 +676,7 @@
                 &-tag {
                   margin: 9px 0 0 0;
                   font-size: 12px;
-                  color: #0093E7;
+                  color: #0093e7;
                 }
               }
             }
@@ -708,7 +695,7 @@
                 span {
                   i {
                     font-size: 21px;
-                    color: #F32626;
+                    color: #f32626;
                     cursor: pointer;
                   }
 
@@ -723,7 +710,7 @@
                   cursor: pointer;
                   font-size: 21px;
                   padding: 7px;
-                  color: #4A5568;
+                  color: #4a5568;
                 }
               }
             }
@@ -733,7 +720,7 @@
           &-line {
             display: flex;
             margin: 0 14px;
-            border-bottom: 1px solid #CCCCCC;
+            border-bottom: 1px solid #cccccc;
             justify-content: flex-end;
             //댓글수 조회수
             &-wrap {
@@ -750,7 +737,7 @@
           &-enterComment {
             margin: 20px 0;
             padding: 15px 15px;
-            background-color: #EEEEEE;
+            background-color: #eeeeee;
             display: flex;
 
             &-wrap {
@@ -761,11 +748,10 @@
               input {
                 width: 100%;
                 padding: 0 10px;
-                background-color: #EEEEEE;
+                background-color: #eeeeee;
                 border: none;
                 height: 37px;
               }
-
             }
 
             //댓글 올리기버튼
@@ -798,7 +784,7 @@
             align-items: center;
             padding: 10px 0;
             margin: 0 11px;
-            border-bottom: 1px solid #EEEEEE;
+            border-bottom: 1px solid #eeeeee;
             //댓글프로필이미지
             img {
               width: 65px;
@@ -852,7 +838,7 @@
               }
 
               .report {
-                color: #B70000;
+                color: #b70000;
               }
             }
 
@@ -884,7 +870,6 @@
               }
             }
           }
-
         }
 
         //sns끝
@@ -914,12 +899,11 @@
                 display: flex;
 
                 &-pick {
-                  border: 2px solid #FFFFFF;
+                  border: 2px solid #ffffff;
                   border-radius: 5px;
                   margin: 0 3px;
                   height: 52px;
                   width: 50px;
-
                 }
 
                 img {
@@ -953,7 +937,7 @@
             align-items: center;
             padding: 10px 25px;
             margin: 0 11px;
-            border-bottom: 1px solid rgba(204, 204, 204, 0.7);;
+            border-bottom: 1px solid rgba(204, 204, 204, 0.7);
 
             &-profile {
               display: flex;
@@ -975,7 +959,7 @@
                 span {
                   font-weight: 700;
                   font-size: 15px;
-                  color: #1B1B1B;
+                  color: #1b1b1b;
                 }
 
                 p {
@@ -985,7 +969,7 @@
                   i {
                     padding-left: 2px;
                     font-size: 13px;
-                    color: #FA6C1A;
+                    color: #fa6c1a;
                   }
                 }
               }
@@ -1003,7 +987,7 @@
                 justify-content: center;
                 align-items: center;
                 cursor: pointer;
-                background-color: #FA6C1A;
+                background-color: #fa6c1a;
 
                 a {
                   font-size: 15px;
@@ -1026,7 +1010,7 @@
 
                 .pomsom {
                   display: flex;
-                  background: #EA3323;
+                  background: #ea3323;
                   border-radius: 5px;
                   color: white;
                   padding: 4px 8px;
@@ -1055,9 +1039,7 @@
                     padding-right: 3px;
                   }
                 }
-
               }
-
             }
 
             //좋아요 공유
@@ -1074,7 +1056,7 @@
 
               .heart {
                 i {
-                  color: #F32626;
+                  color: #f32626;
                 }
               }
 
@@ -1083,7 +1065,6 @@
                   color: #818181;
                 }
               }
-
             }
           }
 
@@ -1105,7 +1086,7 @@
                 i {
                   padding-right: 2px;
                   font-size: 16px;
-                  color: #FA6C1A;
+                  color: #fa6c1a;
                 }
               }
             }
@@ -1141,13 +1122,9 @@
                 padding: 3px 6px;
                 margin-right: 13px;
               }
-
             }
           }
-
         }
-
-
       }
 
       &-content::-webkit-scrollbar {
@@ -1173,7 +1150,6 @@
       }
 
       .detailBlack {
-
         position: fixed;
         width: 200vw;
         height: 200vh;
@@ -1182,7 +1158,6 @@
         background-color: rgba(0, 0, 0, 0.8);
         color: black;
         z-index: 2;
-
       }
     }
 
@@ -1213,7 +1188,7 @@
       }
 
       .custom-input {
-        border: 2px solid #B9B9B9;
+        border: 2px solid #b9b9b9;
         border-radius: 0;
         padding: 0 20px;
         max-width: none;
@@ -1228,7 +1203,7 @@
 
       &-btn {
         display: flex;
-        border: 1px solid #B9B9B9;
+        border: 1px solid #b9b9b9;
         justify-content: space-around;
 
         .custom-button {
@@ -1251,10 +1226,7 @@
         }
       }
     }
-
-
   }
-
 }
 
 @include mb() {
@@ -1328,8 +1300,7 @@
               }
 
               .upLoad {
-                color: #F32626;
-
+                color: #f32626;
               }
             }
           }
@@ -1399,7 +1370,6 @@
                 .active {
                   color: $text-color;
                 }
-
               }
             }
 
@@ -1454,8 +1424,6 @@
 
             //인원수
             &-person {
-
-
               &-wrap {
                 padding: 15px;
 
@@ -1504,7 +1472,6 @@
                     font-size: 12px;
                   }
                 }
-
               }
 
               &-wrap {
@@ -1516,12 +1483,10 @@
                   width: 100%;
                   color: #000000;
                   font-size: 14px;
-
                 }
               }
             }
           }
-
         }
 
         &-wrap::-webkit-scrollbar {
@@ -1593,14 +1558,12 @@
             transition: 0.3s;
 
             ul {
-
               height: 80px;
               list-style: none;
               padding: 0;
               display: grid;
               align-items: center;
               justify-items: center;
-
 
               li {
                 font-size: 12px;
@@ -1626,7 +1589,6 @@
             &-image {
               img {
                 width: 100%;
-
               }
             }
 
@@ -1677,7 +1639,7 @@
                         margin: 0;
                         padding: 0 12px;
                         background-color: white;
-                        border: 1px solid #FA6C1A;
+                        border: 1px solid #fa6c1a;
                         font-size: 10px;
                         font-weight: bold;
                         border-radius: 15px;
@@ -1696,7 +1658,7 @@
                   &-tag {
                     margin: 15px 0 0 0;
                     font-size: 10px;
-                    color: #0093E7;
+                    color: #0093e7;
                   }
                 }
               }
@@ -1713,10 +1675,9 @@
                   padding: 3px 7px 0 0;
 
                   span {
-
                     i {
                       font-size: 18px;
-                      color: #F32626;
+                      color: #f32626;
                       cursor: pointer;
                     }
 
@@ -1726,12 +1687,11 @@
                 }
 
                 &-book {
-
                   i {
                     cursor: pointer;
                     font-size: 18px;
                     padding: 7px;
-                    color: #4A5568;
+                    color: #4a5568;
                   }
                 }
               }
@@ -1741,7 +1701,7 @@
             &-line {
               display: flex;
               margin: 0 14px;
-              border-bottom: 1px solid #CCCCCC;
+              border-bottom: 1px solid #cccccc;
               justify-content: flex-end;
 
               &-wrap {
@@ -1758,7 +1718,7 @@
             &-enterComment {
               margin: 10px 0;
               padding: 10px;
-              background-color: #EEEEEE;
+              background-color: #eeeeee;
               display: flex;
 
               &-wrap {
@@ -1775,7 +1735,7 @@
                   min-width: 100px;
                   height: 30px;
                   margin-bottom: 0;
-                  background-color: #EEEEEE;
+                  background-color: #eeeeee;
                   color: #000000;
                   width: 100%;
                 }
@@ -1797,8 +1757,6 @@
                   color: #818181;
                 }
               }
-
-
             }
 
             //댓글들
@@ -1808,7 +1766,7 @@
               align-items: center;
               padding: 8px 0;
               margin: 0 11px;
-              border-bottom: 1px solid #EEEEEE;
+              border-bottom: 1px solid #eeeeee;
               //댓글프로필이미지
               img {
                 width: 46px;
@@ -1855,7 +1813,7 @@
                 }
 
                 .report {
-                  color: #B70000;
+                  color: #b70000;
                 }
               }
 
@@ -1886,7 +1844,6 @@
                   }
                 }
               }
-
             }
 
             //댓글 없습니다.
@@ -1900,7 +1857,6 @@
                 color: #818181;
               }
             }
-
           }
         }
 
@@ -1927,7 +1883,6 @@
         }
 
         .detailBlack {
-
           position: fixed;
           width: 200vw;
           height: 200vh;
@@ -1936,7 +1891,6 @@
           background-color: rgba(0, 0, 0, 0.8);
           color: black;
           z-index: 2;
-
         }
       }
 
@@ -1972,7 +1926,7 @@
         }
 
         .custom-input {
-          border: 2px solid #B9B9B9;
+          border: 2px solid #b9b9b9;
           border-radius: 0;
           padding: 0 20px;
           max-width: none;
@@ -1986,7 +1940,7 @@
 
         &-btn {
           display: flex;
-          border: 1px solid #B9B9B9;
+          border: 1px solid #b9b9b9;
           justify-content: space-around;
 
           .custom-button {
@@ -2011,7 +1965,6 @@
         }
       }
     }
-
   }
 }
 

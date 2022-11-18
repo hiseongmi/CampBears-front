@@ -1,6 +1,6 @@
 <script>
 import customButton from "../../layout/customButton.vue";
-import { ref } from "vue";
+import { nextTick, onMounted, ref } from "vue";
 import CustomInput from "../../layout/customInput.vue";
 import CustomInputFileButton from "../../layout/customInputFileButton.vue";
 
@@ -17,27 +17,38 @@ export default {
     const overall_Type = [
       {
         name: "텐트/타프",
-      }, {
+      },
+      {
         name: "침낭/매트",
-      }, {
+      },
+      {
         name: "테이블/의자",
-      }, {
+      },
+      {
         name: "조명 기구",
-      }, {
+      },
+      {
         name: "주방 용품",
-      }, {
+      },
+      {
         name: "화로/버너",
-      }, {
+      },
+      {
         name: "안전/위생용품",
-      }, {
+      },
+      {
         name: "전기/전자제품",
-      }, {
+      },
+      {
         name: "캠핑카/카라반",
-      }, {
+      },
+      {
         name: "차박 용품",
-      }, {
+      },
+      {
         name: "의류/수납",
-      }, {
+      },
+      {
         name: "기타 용품",
       },
     ];
@@ -49,12 +60,106 @@ export default {
     const checkValue = v => {
       typeIndex.vlaue = v;
     };
+    const clickState = ref(false);
+    let star1, star2, star3, star4, star5;
+
+    onMounted(() => {
+      nextTick(() => {
+        star1 = document.getElementById("stars1");
+        star2 = document.getElementById("stars2");
+        star3 = document.getElementById("stars3");
+        star4 = document.getElementById("stars4");
+        star5 = document.getElementById("stars5");
+      });
+    });
+
+    const handleMouseOver = index => {
+      if (!clickState.value) {
+        if (index >= 1) {
+          star1.style.color = "red";
+        }
+        if (index >= 2) {
+          star2.style.color = "red";
+        }
+        if (index >= 3) {
+          star3.style.color = "red";
+        }
+        if (index >= 4) {
+          star4.style.color = "red";
+        }
+        if (index >= 5) {
+          star5.style.color = "red";
+        }
+      }
+    };
+
+    const handleMouseOut = index => {
+      if (!clickState.value) {
+        if (index >= 1) {
+          star1.style.color = "#d2d2d2";
+        }
+        if (index >= 2) {
+          star2.style.color = "#d2d2d2";
+        }
+        if (index >= 3) {
+          star3.style.color = "#d2d2d2";
+        }
+        if (index >= 4) {
+          star4.style.color = "#d2d2d2";
+        }
+        if (index >= 5) {
+          star5.style.color = "#d2d2d2";
+        }
+      }
+    };
+
+    const clickHandler = index => {
+      clickState.value = true;
+      if (index === 1) {
+        star1.style.color = "red";
+        star2.style.color = "#d2d2d2";
+        star3.style.color = "#d2d2d2";
+        star4.style.color = "#d2d2d2";
+        star5.style.color = "#d2d2d2";
+      }
+      if (index === 2) {
+        star1.style.color = "red";
+        star2.style.color = "red";
+        star3.style.color = "#d2d2d2";
+        star4.style.color = "#d2d2d2";
+        star5.style.color = "#d2d2d2";
+      }
+      if (index === 3) {
+        star1.style.color = "red";
+        star2.style.color = "red";
+        star3.style.color = "red";
+        star4.style.color = "#d2d2d2";
+        star5.style.color = "#d2d2d2";
+      }
+      if (index === 4) {
+        star1.style.color = "red";
+        star2.style.color = "red";
+        star3.style.color = "red";
+        star4.style.color = "red";
+        star5.style.color = "#d2d2d2";
+      }
+      if (index === 5) {
+        star1.style.color = "red";
+        star2.style.color = "red";
+        star3.style.color = "red";
+        star4.style.color = "red";
+        star5.style.color = "red";
+      }
+    };
 
     return {
       typeType,
       typeIndex,
-      checkValue,
       overall_Type,
+      checkValue,
+      handleMouseOver,
+      handleMouseOut,
+      clickHandler,
     };
   },
 };
@@ -96,21 +201,29 @@ export default {
           </div>
           <div class="product-option-grade">
             <span class="title">상품 컨디션</span>
-            <span><i class="fa-solid fa-star"></i></span>
-            <span><i class="fa-solid fa-star"></i></span>
-            <span><i class="fa-solid fa-star"></i></span>
-            <span><i class="fa-solid fa-star"></i></span>
-            <span><i class="fa-solid fa-star"></i></span>
+            <span @mouseover="handleMouseOver(1)" @mouseleave="handleMouseOut(1)"
+              ><i @click="clickHandler(1)" id="stars1" class="fa-solid fa-star"></i
+            ></span>
+            <span @mouseover="handleMouseOver(2)" @mouseleave="handleMouseOut(2)"
+              ><i @click="clickHandler(2)" id="stars2" class="fa-solid fa-star"></i
+            ></span>
+            <span @mouseover="handleMouseOver(3)" @mouseleave="handleMouseOut(3)"
+              ><i @click="clickHandler(3)" id="stars3" class="fa-solid fa-star"></i
+            ></span>
+            <span @mouseover="handleMouseOver(4)" @mouseleave="handleMouseOut(4)"
+              ><i @click="clickHandler(4)" id="stars4" class="fa-solid fa-star"></i
+            ></span>
+            <span @mouseover="handleMouseOver(5)" @mouseleave="handleMouseOut(5)"
+              ><i @click="clickHandler(5)" id="stars5" class="fa-solid fa-star"></i
+            ></span>
           </div>
         </div>
         <div class="product-sort">
           <div class="product-sort-info">
             <span>구분</span>
-            <span class="import">*</span>
+            <span class="import"> *</span>
           </div>
           <div class="product-sort-deal">
-            <span>택배거래</span>
-            <span>직거래</span>
             <div class="product-sort-deal-type">
               <span v-for="item in overall_Type">{{ item.name }}</span>
             </div>
@@ -122,5 +235,4 @@ export default {
       </div>
     </div>
   </div>
-
 </template>
