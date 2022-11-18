@@ -72,10 +72,10 @@ export default {
     // };
 
     watch(
-        () => store.state.loginUserIdx,
-        () => {
-          loginUser.value = commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO);
-        },
+      () => store.state.loginUserIdx,
+      () => {
+        loginUser.value = commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO);
+      },
     );
 
     return {
@@ -114,7 +114,7 @@ export default {
           </ul>
         </div>
         <div class="header-bar-logo" @click="goToX('/')">
-          <img src="/assets/image/icon/bearsLogo.png" alt=""/>
+          <img src="/assets/image/icon/bearsLogo.png" alt="" />
           <span>Bears</span>
         </div>
         <div class="header-bar-moSearch">

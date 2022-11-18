@@ -1360,7 +1360,7 @@
           //글쓰기 팝업 내용
           .content {
             display: flex;
-            flex-direction: column;
+            flex-direction: column !important;
 
             //사진
             .file {
@@ -1419,6 +1419,7 @@
               position: relative;
               border-bottom: 1px solid #696969;
               padding: 7px 15px;
+              border-radius: 10px;
 
               .custom-input {
                 border: none;
@@ -1558,12 +1559,14 @@
       //게시물 상세
       &-detail {
         z-index: 3;
-        @include center;
         position: fixed;
-        max-width: 80%;
-        //box-shadow: 0 4px 6px;
-        width: 600px;
-        height: 600px;
+        top: unset;
+        left: unset;
+        width: 100%;
+        max-width: unset;
+        height: 80%;
+        -webkit-transform: unset;
+        bottom: 0;
         //내용
         &-content {
           position: absolute;
@@ -1626,6 +1629,7 @@
 
           .content {
             background-color: white;
+            border-radius: 10px;
 
             &-image {
               img {
