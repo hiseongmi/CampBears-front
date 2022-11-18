@@ -4,7 +4,6 @@ export default {
   emits: ["update:value"],
   props: {
     customId: {},
-
   },
   setup() {
     return {};
@@ -21,7 +20,7 @@ export default {
   <div class="custom-input-file-button">
     <label>
       <a>업로드</a>
-      <input type="file" accept="image/*" multiple />
+      <input type="file" accept="image/*" multiple="multiple" />
     </label>
   </div>
 </template>

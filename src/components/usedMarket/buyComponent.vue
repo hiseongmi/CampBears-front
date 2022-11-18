@@ -15,7 +15,7 @@ export default {
     let keyword = "";
 
     const getData = async () => {
-      const data = await apiClient("/product/getProductList", { productType: "buy" });
+      const data = await apiClient("/product/getProductList", { productType: "BUY" });
       if (data) postData.value = data.data;
     };
 

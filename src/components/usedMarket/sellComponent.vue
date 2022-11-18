@@ -15,8 +15,9 @@ export default {
     let keyword = "";
 
     const getData = async () => {
-      const data = await apiClient("/product/getProductList", { productType: "sell" });
+      const data = await apiClient("/product/getProductList", { productType: "SELL", sorted: "RECENT" });
       if (data) postData.value = data.data;
+      console.log(data);
     };
 
     const getImgUrl = file => {
