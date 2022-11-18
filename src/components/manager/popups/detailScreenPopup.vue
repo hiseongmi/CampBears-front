@@ -1,6 +1,6 @@
 <script>
 import store, { POPUP_TYPE, STORE_TYPE } from "../../../store/index.js";
-import { onMounted, onUnmounted, ref } from "vue";
+import { computed, onMounted, onUnmounted, ref } from "vue";
 import postImage from "../../../data/postImage.js";
 import { apiClient } from "../../../utils/axios.js";
 import CustomButton from "../../layout/customButton.vue";
@@ -27,7 +27,6 @@ export default {
     const getData = async () => {
       userData.value = commonUtil.parseJson(commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO));
     };
-
     const goToReport = () => {
       store.commit(STORE_TYPE.popupType, POPUP_TYPE.REPORT);
     }; //신고창열기
@@ -91,8 +90,9 @@ export default {
 
     const detail = async () => {
       const data = await apiClient("/sns/getSnsDetail", detailData.value);
-      console.log(data.data);
       detailData.value = data.data;
+      detailData.value.userProfile = detailData.value.userProfile.filter(v => v.fileType === "USER_PROFILE")[0];
+      //filter로 타입이 user_profile 인것을 [0]로 넣는다
       if (detailData.value) {
         followData.value.targetIdx = detailData.value.userIdx;
       }
@@ -124,7 +124,6 @@ export default {
       const check = confirm("삭제하시겠습니까?");
       if (check === true) {
         const data = await apiClient("/sns/deleteSns", deleteData.value);
-        console.log(data);
         if (data.resultCode === 0) {
           window.alert("삭제되었습니다.");
           closePopup();
@@ -141,13 +140,14 @@ export default {
     const commentList = async () => {
       const data = await apiClient("/comment/getCommentList", getComment.value);
       if (data.resultCode === 0) {
-        console.log("댓글들: ", data.data);
         commentListData.value = data.data;
-        // const date = dayjs(commentListData.value[0].dateReg, "YYYY-MM-DD HH:mm");
-        // console.log(date.format("YYYY-MM-DD HH:mm"));
       } else {
-        ////console.log("댓글 조회에 실패했습니다.");
       }
+    };
+
+    const setDateValue = (date) => {
+      const b = dayjs(date.dateReg, "YYYY-MM-DD HH:mm");
+      return b.format("YYYY-MM-DD HH:mm");
     };
 
     const MySelectedComment = ref("");
@@ -155,12 +155,13 @@ export default {
 
     //댓글 수정 신고 삭제 옵션
     const RerCommentOption = comment => {
-      if (detailData.value.userIdx === userData.userIdx || userData.userIdx === comment.userIdx) {
+      if (detailData.value.userIdx === userData.value.userIdx || userData.value.userIdx === comment.userIdx) {
         MySelectedComment.value = comment.commentIdx; //특정만 나와
-      } else if (detailData.value.userIdx === userData.userIdx) {
+      } else if (detailData.value.userIdx === userData.value.userIdx) {
         selectedComment.value = comment.commentIdx;
       }
     };
+
 
     //댓글 추가 api
     const handleEnterEvent = (e) => {
@@ -217,20 +218,25 @@ export default {
     };
 
     const getImgUrl = (file) => {
-      return commonUtil.getImgUrl(file.fileName);
+      try {
+        if (file) {
+          return commonUtil.getImgUrl(file.fileName);
+        }
+      } catch (e) {
+        return "./assets/image/camping.png";
+      }
     };
-
     onMounted(() => {
-      detail();
       getData();
+      detail();
     });
+
     // delete store boardIdx
     onUnmounted(() => {
       // closePopup();
     });
 
     return {
-      getData,
       userData,
       followType,
       followData,
@@ -248,6 +254,7 @@ export default {
       selectedComment,
       MySelectedComment,
       postImage,
+      getData,
       handleEnterEvent,
       putCommentIdx,
       followManager,
@@ -265,6 +272,7 @@ export default {
       closePopup,
       reportPop,
       getImgUrl,
+      setDateValue,
     };
   },
 };
@@ -296,7 +304,8 @@ export default {
         </div>
         <div class="content-wrap">
           <div class="content-wrap-profile">
-            <img src="/assets/image/IU.png" alt="프사" />
+            <!--            {{ detailData.userProfile.fileName }}-->
+            <img :src="getImgUrl(detailData.userProfile)" alt="프사" />
             <div class="content-wrap-profile-info">
               <div class="follow">
                 <span>{{ detailData.userNickName }}</span>
@@ -347,13 +356,13 @@ export default {
           <div class="state">댓글이 없습니다.</div>
         </div>
         <div class="content-comments" v-for="item in commentListData" v-else>
-          <img src="/assets/image/iugold5.png" alt="" />
+          <img :src="item.file ? getImgUrl(item.file[0]) : '' " alt="프사" />
           <div class="content-comments-wrap">
             <span>{{ item.userNickName }}</span>
             <p>{{ item.commentBody }}</p>
           </div>
           <div class="content-comments-option">
-            <span class="date">{{ item.dateReg }}</span>
+            <span class="date">{{ setDateValue(item) }}</span>
             <span> <i class="fa-regular fa-comment"></i></span>
             <span @click="RerCommentOption(item)"><i class="fa-solid fa-ellipsis-vertical"></i></span>
           </div>
