@@ -269,7 +269,19 @@
         //used Market 글쓰기
         .product {
           &-file {
+            justify-content: center;
             padding: 13px 40px;
+
+            &-wrap {
+              min-width: 500px;
+              min-height: 300px;
+              border: 1px solid $gray;
+            }
+
+            .custom-input-file-button {
+              margin: 10px auto;
+              width: 20%;
+            }
           }
 
           //제목 입력
