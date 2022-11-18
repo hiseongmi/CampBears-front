@@ -2,18 +2,17 @@
 import { onMounted, onUnmounted, ref } from "vue";
 import { apiClient } from "../utils/axios.js";
 import chatUtil from "../utils/chat.util.js";
+import commonUtil from "../utils/common-util.js";
+import { CONSTANTS } from "../constants.js";
 
 export default {
   name: "chat",
   setup() {
     let chatManager = undefined;
-    const shotChat = ref(true);
-    const userList = ref([
-      {
-        userIdx: "30427b11-cb21-43a0-adf9-dd487941f50e",
-        userName: "김성미", userType: "USER"
-      }
-    ]);
+    const loginUser = JSON.parse(commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO));
+    const connetedChatIdx = ref("");
+    const showChat = ref(true);
+    const userList = ref([]);
     const targetUser = ref(undefined);
     const chatInfoList = ref([{ chatType: "ME", chatBody: "내가보낸거", ProfileImg: "", NickName: "나야" }, {
       chatType: "YOU",
@@ -23,23 +22,30 @@ export default {
     }]);
     const msg = ref("");
     const showChatController = () => {
-      shotChat.value = !shotChat.value;
+      showChat.value = !showChat.value;
     };
     const doChatUser = async (user) => {
+      // console.log(user);
       targetUser.value = user;
-      const d = await apiClient("chat/joinChat", { targetIdx: user.userIdx });
-      if (d) {
-        let chatInfo = d.data[0];
-        console.log(chatInfo.chatIdx);
-        chatManager = new chatUtil(chatInfo.chatIdx);
-        chatManager.initChat();
-      }
+      // const d = await apiClient("chat/joinChat", { targetIdx: user.userIdx });
+      // if (d) {
+      //   console.log(d.data);
+      //   // let chatInfo = d.data[0];
+      //   // console.log(chatInfo.chatIdx);
+      //   // connetedChatIdx.value = chatInfo.chatIdx;
+      //   // chatManager = new chatUtil(chatInfo.chatIdx);
+      //   // chatManager.initChat();
+      // }
     };
     const handleInput = (e) => {
       msg.value = e.target.value;
     };
     const sendMsg = () => {
+      console.log(targetUser.value);
       const param = {
+        chatIdx: targetUser.value.chatIdx,
+        userIdx: loginUser.userIdx,
+        targetIdx: targetUser.value.targetIdx,
         chatType: "ME",
         chatBody: msg.value,
         ProfileImg: "",
@@ -47,19 +53,48 @@ export default {
       };
       if (msg) {
         // chatManager.sendMessage(msg);
+        chatInfoList.value.push(param);
         chatManager.sendMessage(param);
       }
     };
+
+    /**
+     * 인풋 내용 받기
+     * @param e
+     * @type HTMLInputElement
+     */
     const receiveHandler = (e) => {
-      // console.log(e);
-      console.log(e.detail);
       if (e.detail) {
+        const c = e.detail;
+        if (loginUser.userIdx === c.userIdx) {
+          c.chatType = "ME";
+        } else {
+          c.chatType = "YOU";
+        }
         chatInfoList.value.push(e.detail);
       }
+    };
 
+    /**
+     * 참여하고 있는 채팅방 조회
+     * @returns {Promise<void>}
+     */
+    const getChatList = async () => {
+      const d = await apiClient("chat/getChatUserList", {});
+      if (d) {
+        userList.value = d.data;
+      }
+    };
+
+
+    const clearTargetUser = () => {
+      targetUser.value = undefined;
     };
 
     onMounted(() => {
+      chatManager = new chatUtil();
+      chatManager.initChat();
+      getChatList();
       addEventListener("RECEIVE_MESSAGE", receiveHandler);
     });
 
@@ -67,14 +102,15 @@ export default {
       removeEventListener("RECEIVE_MESSAGE", receiveHandler);
     });
     return {
-      shotChat,
+      showChat,
       userList,
       targetUser,
       chatInfoList,
       showChatController,
       doChatUser,
       handleInput,
-      sendMsg
+      sendMsg,
+      clearTargetUser
     };
   },
   methods: {}
@@ -82,12 +118,12 @@ export default {
 </script>
 <template>
   <section class="chat">
-    <div v-if="!shotChat" class="floating-icon" @click="showChatController()">챗</div>
+    <div v-if="!showChat" class="floating-icon" @click="showChatController()">챗</div>
     <div v-else class="main-area">
-      <div class="title">CHAT</div>
+      <div class="title" @click="clearTargetUser">CHAT</div>
       <div v-if="!targetUser" class="body">
         <div class="user-list">
-          <div v-for="user in userList" @click="()=>doChatUser(user)">{{ user.userName }}</div>
+          <div v-for="user in userList" @click="()=>doChatUser(user)">{{ user.userNickName }}</div>
         </div>
       </div>
       <div v-else class="chat-screen">

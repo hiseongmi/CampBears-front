@@ -26,7 +26,6 @@ export default {
       if (data) {
         postData.value = data.data;
         for (let n = 0; n < postData.value.length; n++) {
-          console.log(postData.value[n]);
 
           postData.value[n].file.map(v => {
             if (v.fileType === "PRODUCT") {
@@ -71,9 +70,9 @@ export default {
       postData,
       getData,
       modalControl,
-      isModal,
+      isModal
     };
-  },
+  }
 };
 </script>
 
