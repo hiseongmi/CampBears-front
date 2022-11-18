@@ -202,7 +202,7 @@ export default {
   <div class="news-ul">
     <div class="news-ul-li" v-for="item in contentData">
       <div>
-        <profile :name="item.userNickName" :img="item.profileImg"></profile>
+        <profile :name="item.userNickName" :img="item.userProfile"></profile>
       </div>
       <div class="news-ul-li-wrap">
         <div class="news-ul-li-wrap-write" @click="openDetail(item.boardIdx)">
@@ -223,7 +223,7 @@ export default {
               <span><i class="fa-regular fa-bookmark"></i></span>
             </div>
           </div>
-          <div class="contents">
+          <div class="contents" @click="openDetail(item.boardIdx)">
             <span class="contents-writing">{{ item.boardBody }}</span>
             <span><i class="fa-solid fa-chevron-down"></i></span>
           </div>

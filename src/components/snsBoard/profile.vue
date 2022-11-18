@@ -1,6 +1,7 @@
 <script>
-import { computed, ref } from "vue";
+import { computed, ref, watch } from "vue";
 import { apiClient } from "../../utils/axios.js";
+import commonUtil from "../../utils/common-util.js";
 
 export default {
   name: "profile",
@@ -10,16 +11,25 @@ export default {
       required: true,
     },
     img: {
+      type: Array,
       required: true,
     },
   },
   setup(props) {
     const userName = ref(props.name);
-    const userProfileImg = ref(props.img);
+    const userProfileImg = computed(() => {
+      const v = props.img.filter(v => v.fileType === "USER_PROFILE");
+      return v[0];
+    });
+
+    const getImgUrl = (file) => {
+      return commonUtil.getImgUrl(file.fileName);
+    };
 
     return {
       userName,
       userProfileImg,
+      getImgUrl,
     };
   },
 };
@@ -27,7 +37,7 @@ export default {
 <template>
   <div class="profile">
     <div class="profile-wrap">
-      <img :src="userProfileImg" alt="프사" />
+      <img :src="getImgUrl(userProfileImg)" alt="프사" />
       <div class="profile-wrap-data">
         <span>{{ userName }}</span>
         <span class="middle-dot">&#183;</span>
