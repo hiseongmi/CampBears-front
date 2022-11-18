@@ -8,6 +8,8 @@ import CustomInput from "../../layout/customInput.vue";
 import router from "../../../router/index.js";
 import dayjs from "dayjs";
 import reportPopup from "./reportPopup.vue";
+import commonUtil from "../../../utils/common-util.js";
+import { CONSTANTS } from "../../../constants.js";
 
 export default {
   name: "detailScreenPopup",
@@ -21,7 +23,10 @@ export default {
 
   setup() {
     //로컬스토리지에 저장된 유저정보
-    const userData = JSON.parse(localStorage.getItem("userData")) || "";
+    const userData = ref();
+    const getData = async () => {
+      userData.value = commonUtil.parseJson(commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO));
+    };
 
     const goToReport = () => {
       store.commit(STORE_TYPE.popupType, POPUP_TYPE.REPORT);
@@ -83,24 +88,23 @@ export default {
       boardBody: "",
       userNickName: "",
     });
+
     const detail = async () => {
       const data = await apiClient("/sns/getSnsDetail", detailData.value);
       console.log(data.data);
       detailData.value = data.data;
-      ////console.log();
       if (detailData.value) {
         followData.value.targetIdx = detailData.value.userIdx;
       }
       if (detailData.value) {
         heartData.value.targetIdx = detailData.value.userIdx;
       }
-      ////console.log("이 글 내용 : ", detailData.value.boardBody);
       await commentList();
     };
     const MyRerAction = ref(false);
     const RerAction = ref(false);
     const RerOption = () => {
-      if (userData.userIdx === detailData.value.userIdx) {
+      if (userData.value.userIdx === detailData.value.userIdx) {
         MyRerAction.value = !MyRerAction.value;
       } else {
         RerAction.value = !RerAction.value;
@@ -140,15 +144,16 @@ export default {
         console.log("댓글들: ", data.data);
         commentListData.value = data.data;
         // const date = dayjs(commentListData.value[0].dateReg, "YYYY-MM-DD HH:mm");
-        // ////console.log(date.format("YYYY-MM-DD HH:mm"));
+        // console.log(date.format("YYYY-MM-DD HH:mm"));
       } else {
         ////console.log("댓글 조회에 실패했습니다.");
       }
     };
+
     const MySelectedComment = ref("");
     const selectedComment = ref("");
-    //댓글 수정 신고 삭제 옵션
 
+    //댓글 수정 신고 삭제 옵션
     const RerCommentOption = comment => {
       if (detailData.value.userIdx === userData.userIdx || userData.userIdx === comment.userIdx) {
         MySelectedComment.value = comment.commentIdx; //특정만 나와
@@ -211,8 +216,13 @@ export default {
       bookmark.value = !bookmark.value;
     };
 
+    const getImgUrl = (file) => {
+      return commonUtil.getImgUrl(file.fileName);
+    };
+
     onMounted(() => {
       detail();
+      getData();
     });
     // delete store boardIdx
     onUnmounted(() => {
@@ -220,6 +230,7 @@ export default {
     });
 
     return {
+      getData,
       userData,
       followType,
       followData,
@@ -236,9 +247,8 @@ export default {
       reportAction,
       selectedComment,
       MySelectedComment,
-
-      handleEnterEvent,
       postImage,
+      handleEnterEvent,
       putCommentIdx,
       followManager,
       deleteComment,
@@ -254,6 +264,7 @@ export default {
       goToUpdate,
       closePopup,
       reportPop,
+      getImgUrl,
     };
   },
 };
@@ -281,7 +292,7 @@ export default {
       </div>
       <div class="content">
         <div class="content-image">
-          <img :src="detailData.file" alt="게사" />
+          <img v-for="item in detailData.file" :src="getImgUrl(item)" alt="게사" />
         </div>
         <div class="content-wrap">
           <div class="content-wrap-profile">

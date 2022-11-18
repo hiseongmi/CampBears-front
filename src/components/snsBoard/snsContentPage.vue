@@ -8,6 +8,8 @@ import customSelect from "../layout/customSelect.vue";
 import Pagination from "../layout/customPagination.vue";
 import LoginNaver from "../snslogin/loginNaver.vue";
 import customButton from "../layout/customButton.vue";
+import commonUtil from "../../utils/common-util.js";
+import { CONSTANTS } from "../../constants.js";
 
 export default {
   name: "snsContentPage",
@@ -19,6 +21,11 @@ export default {
     customButton,
   },
   setup() {
+    const userData = ref();
+    const getData = async () => {
+      userData.value = commonUtil.parseJson(commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO));
+    };
+
     const showIndex = ref();
     const showType = {
       ALL: "ALL",
@@ -105,11 +112,15 @@ export default {
         contentData.value = data.data;
       }
     };
+    const getImgUrl = (file) => {
+      return commonUtil.getImgUrl(file.fileName);
+    };
 
     onMounted(() => {
       window.addEventListener("SEARCH", handleSearch); //search 이벤트를 찾아서 handel이벤트로 보냄
       window.addEventListener("SEARCH_HASH", handleSearch); //search 이벤트를 찾아서 handel이벤트로 보냄
       getContent();
+      getData();
     });
 
     onUnmounted(() => {
@@ -118,19 +129,21 @@ export default {
     });
 
     return {
-      showChange,
+      userData,
+      contentData,
       showIndex,
       showType,
-      selectedUpdateValue,
       selectSortData,
       selectedValue,
       selectSeasonData,
       selectComfortsData,
+      postImage,
+      selectedUpdateValue,
       openWrite,
       openDetail,
-      postImage,
       getContent,
-      contentData,
+      showChange,
+      getImgUrl,
     };
   },
 };
@@ -193,7 +206,7 @@ export default {
       </div>
       <div class="news-ul-li-wrap">
         <div class="news-ul-li-wrap-write" @click="openDetail(item.boardIdx)">
-          <img src="/assets/image/camping.png" alt="Posts" />
+          <img v-for="i in item.file" :src="getImgUrl(i)" alt="Posts" />
         </div>
         <div class="detail">
           <div class="detail-wrap">
