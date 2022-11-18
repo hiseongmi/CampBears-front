@@ -4,18 +4,18 @@ import customInput from "../components/layout/customInput.vue";
 import { onMounted, ref } from "vue";
 import snsContentPage from "../components/snsBoard/snsContentPage.vue";
 import UpdateProfile from "../components/myPage/updateProfile.vue";
-import MyReview from "../components/myPage/myReview.vue";
-import myFeedBoard from "../components/myPage/myFeedBoard.vue";
 import pagination from "../components/layout/customPagination.vue";
 import { apiClient } from "../utils/axios.js";
 import commonUtil from "../utils/common-util.js";
 import { CONSTANTS } from "../constants.js";
+import myFeedBoard from "../components/myPage/myFeedBoard.vue";
+import myUsedBoard from "../components/myPage/myUsedBoard.vue";
 
 export default {
   name: "myPage",
   components: {
     myFeedBoard,
-    MyReview,
+    myUsedBoard,
     UpdateProfile,
     snsContentPage,
     customButton,
@@ -28,7 +28,6 @@ export default {
       USED: "used",
       RENT: "rent",
       SAVE: "save",
-      REVIEW: "review",
       EDIT: "profileUpdate",
       PROFILE: "profile",
     }; // 컴포넌트 이름
@@ -50,16 +49,10 @@ export default {
         profileInfo.value = data.data;
         if (data.data.file && data.data.file.length > 0) {
           data.data.file.map(v => {
-            if (v.fileType === "USER_PROFILE") {
-              profileInfo.value.profileImg = commonUtil.getImgUrl(v.fileName);
-            }
-            if (v.fileType === "USER_BACKGROUND") {
-              profileInfo.value.backgroundImg = commonUtil.getImgUrl(v.fileName);
-            }
+            if (v.fileType === "USER_PROFILE") profileInfo.value.profileImg = commonUtil.getImgUrl(v.fileName);
+            if (v.fileType === "USER_BACKGROUND") profileInfo.value.backgroundImg = commonUtil.getImgUrl(v.fileName);
           });
         }
-        console.log(data.data);
-
         commonUtil.setLocalStorage(CONSTANTS.KEY_LIST.USER_INFO, data.data);
       }
     };
@@ -73,7 +66,6 @@ export default {
       tabIndex,
       tabType,
       componentChange,
-      page: 1,
     };
   },
 };
@@ -105,32 +97,14 @@ export default {
           :custom-class="tabIndex === tabType.USED ? 'active' : ''"
         />
         <custom-button
-          :placeholder="'대여'"
-          :onClick="() => componentChange(tabType.RENT)"
-          :custom-class="tabIndex === tabType.RENT ? 'active' : ''"
-        />
-        <custom-button
-          :placeholder="'저장'"
-          :onClick="() => componentChange(tabType.SAVE)"
-          :custom-class="tabIndex === tabType.SAVE ? 'active' : ''"
-        />
-        <custom-button
-          :placeholder="'후기'"
-          :onClick="() => componentChange(tabType.REVIEW)"
-          :custom-class="tabIndex === tabType.REVIEW ? 'active' : ''"
-        />
-        <custom-button
           :placeholder="'프로필'"
           :onClick="() => componentChange(tabType.PROFILE)"
           :custom-class="tabIndex === tabType.PROFILE ? 'active' : ''"
         />
       </div>
       <div class="contents-area">
-        <my-feed-board v-if="tabIndex === tabType.FEED" />
-        <my-feed-board v-else-if="tabIndex === tabType.USED" />
-        <my-feed-board v-else-if="tabIndex === tabType.RENT" />
-        <my-feed-board v-else-if="tabIndex === tabType.SAVE" />
-        <my-review v-else-if="tabIndex === tabType.REVIEW" />
+        <my-feed-board v-if="tabIndex === tabType.FEED" :idx="profileInfo.userIdx" />
+        <my-used-board v-else-if="tabIndex === tabType.USED" :idx="profileInfo.userIdx" />
         <update-profile v-else-if="tabIndex === tabType.PROFILE" />
       </div>
     </div>

@@ -44,17 +44,21 @@ export default {
     });
 
     const updateProfile = async () => {
-      if (passwordSet.value.nowPassword || passwordSet.value.newPassword || passwordSet.value.newPasswordCheck) {
+      if (passwordSet.value.nowPassword && passwordSet.value.newPassword && passwordSet.value.newPasswordCheck) {
         if (profileInfo.value.userPassword !== passwordSet.value.nowPassword) {
-          alert("새 비밀번호를 다시 입력해주세요.");
+          alert("현재 비밀번호를 다시 입력해주세요.");
           if (passwordSet.value.newPassword !== passwordSet.value.newPasswordCheck) {
-            alert("현재 비밀번호를 다시 입력해주세요.");
+            alert("새 비밀번호를 다시 입력해주세요.");
           }
         }
       }
 
-      if (profileFormData) await apiClient("user/update", profileFormData);
-      if (backgroundFormData) await apiClient("user/updateBackground", backgroundFormData);
+      if (profileFormData) {
+        await apiClient("user/update", profileFormData);
+      }
+      if (backgroundFormData) {
+        await apiClient("user/updateBackground", backgroundFormData);
+      }
 
       const data = await apiClient("user/update", profileInfo.value);
       if (data) {

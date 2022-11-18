@@ -25,13 +25,21 @@
           color: $text_color;
           font-size: 16px;
         }
-      }
 
-      :hover {
-        background-color: #2f2e2c;
+        &:hover {
+          background-color: #2f2e2c;
 
-        a {
-          color: #ffffff;
+          a {
+            color: #ffffff;
+          }
+        }
+
+        &:first-child {
+          border-radius: 10px 0 0 10px;
+        }
+
+        &:last-child {
+          border-radius: 0 10px 10px 0;
         }
       }
 
@@ -41,14 +49,6 @@
         a {
           color: #ffffff;
         }
-      }
-
-      :first-child {
-        border-radius: 10px 0 0 10px;
-      }
-
-      :last-child {
-        border-radius: 0 10px 10px 0;
       }
     }
   }

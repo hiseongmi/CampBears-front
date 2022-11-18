@@ -1,13 +1,14 @@
 <script>
 import CustomButton from "../components/layout/customButton.vue";
 import { ref } from "vue";
-import UsedContentsComponent from "../components/usedMarket/usedContentsComponent.vue";
+import sellComponent from "../components/usedMarket/sellComponent.vue";
+import buyComponent from "../components/usedMarket/buyComponent.vue";
 import chat from "../components/chat.vue";
 import store, { POPUP_TYPE, STORE_TYPE } from "../store/index.js";
 
 export default {
   name: "usedMarket",
-  components: { UsedContentsComponent, CustomButton, chat },
+  components: { sellComponent, buyComponent, CustomButton, chat },
   setup() {
     const tabType = {
       SELL: "sell",
@@ -17,7 +18,6 @@ export default {
     const tabIndex = ref(tabType.SELL);
 
     const componentChange = v => {
-      //console.log(v);
       tabIndex.value = v;
     };
     const openWrite = () => {
@@ -57,7 +57,8 @@ export default {
       <custom-button :placeholder="'글쓰기'" @click="openWrite" />
     </div>
     <div class="used-contents-area">
-      <used-contents-component />
+      <sell-component v-if="tabIndex === tabType.SELL" />
+      <buy-component v-else-if="tabIndex === tabType.BUY" />
     </div>
   </div>
   <chat />

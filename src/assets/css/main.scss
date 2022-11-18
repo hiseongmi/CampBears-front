@@ -57,10 +57,11 @@
                 color: #2f2e2c;
                 cursor: pointer;
                 padding-left: 5px;
-              }
+                transition: 0.5s;
 
-              a:hover {
-                color: #fa6c1a;
+                &:hover {
+                  color: #fa6c1a;
+                }
               }
             }
           }
@@ -1387,7 +1388,6 @@
           color: $white;
           font-size: 19px;
           padding: 9px;
-
         }
 
         .custom-button {
@@ -1539,9 +1539,7 @@
   }
   @keyframes slide {
     from {
-
       left: -300px;
-
     }
     to {
       left: 800px;
@@ -1556,7 +1554,6 @@
     text-align: center;
 
     h1 {
-
       padding-top: 60px;
       font-size: 34px;
       animation: slide 1s ease-in-out;
@@ -1568,15 +1565,11 @@
       margin: 30px;
       font-size: 16px;
       position: relative;
-
     }
 
     span {
       position: relative;
-
-
     }
-
 
     top: 50%;
 
@@ -2177,6 +2170,4 @@
     left: 50%;
     top: 50%;
   }
-
 }
-
