@@ -19,7 +19,11 @@ export default {
     },
   },
   setup() {
-    const userData = JSON.parse(localStorage.getItem("userData")) || "";
+    const userData = ref();
+    const getData = async () => {
+      userData.value = commonUtil.parseJson(commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO));
+      console.log(userData.value);
+    };
     const publicType = {
       All: "ALL",
       FOLLOW: "FOLLOW",
@@ -121,6 +125,18 @@ export default {
       }
 
     };
+    const getImgUrl = (file) => {
+      try {
+        if (file) {
+          return commonUtil.getImgUrl(file.fileName);
+        }
+      } catch (e) {
+        return "./assets/image/camping.png";
+      }
+    };
+    onMounted(() => {
+      getData();
+    });
 
     return {
       SNSImgPreview,
@@ -133,6 +149,8 @@ export default {
       inputHashTag,
       hashTagList,
       // imgPreview,
+      getImgUrl,
+      getData,
       upFileChange,
       deleteTag,
       checkValue,
@@ -164,30 +182,31 @@ export default {
             </div>
             <custom-input-file-button @change="upFileChange" />
           </div>
-          <div class="content-profile">
-            <div class="content-profile-wrap">
-              <img src="/assets/image/IU.png">
-              <span>{{ userData.userNickName }}</span>
-            </div>
-            <div class="content-profile-public">
-              <custom-button
-                :placeholder="'전체 공개'"
-                :onClick="() => checkValue(publicType.All)"
-                :custom-class="publicIndex === publicType.All ? 'active' : ''"
-              />
-              <custom-button
-                :placeholder="'팔로워 공개'"
-                :onClick="() => checkValue(publicType.FOLLOW)"
-                :custom-class="publicIndex === publicType.FOLLOW ? 'active' : ''"
-              />
-            </div>
-          </div>
+          <!--          <div class="content-profile">-->
+          <!--                        <div class="content-profile-wrap">-->
+          <!--                          <img src="/assets/image/IU.png">-->
+          <!--                          <span>{{ userData.userNickName }}</span>-->
+          <!--                        </div>-->
+
+          <!--          </div>-->
           <div class="content-content">
             <custom-input :custom-class="'content'" :placeholder="'문구 입력...'"
                           @update:value="upLoadData.boardBody = $event" />
             <div class="count">
               (0 / 200)
             </div>
+          </div>
+          <div class="content-profile-public">
+            <custom-button
+              :placeholder="'전체 공개'"
+              :onClick="() => checkValue(publicType.All)"
+              :custom-class="publicIndex === publicType.All ? 'active' : ''"
+            />
+            <custom-button
+              :placeholder="'팔로워 공개'"
+              :onClick="() => checkValue(publicType.FOLLOW)"
+              :custom-class="publicIndex === publicType.FOLLOW ? 'active' : ''"
+            />
           </div>
           <div class="content-position">
             <div class="content-position-wrap">

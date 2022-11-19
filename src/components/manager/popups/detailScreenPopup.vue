@@ -30,7 +30,7 @@ export default {
     const goToReport = () => {
       store.commit(STORE_TYPE.popupType, POPUP_TYPE.REPORT);
     }; //신고창열기
-    const goToUpdate = () => {
+    const goToUpdate = (detailData) => {
       store.commit(STORE_TYPE.popupType, POPUP_TYPE.UPDATE);
     }; //수정팝업열기
 
@@ -287,7 +287,7 @@ export default {
         </div>
         <div class="myPop" v-if="MyRerAction">
           <ul>
-            <li @click="goToUpdate">수정</li>
+            <li @click="goToUpdate(detailData)">수정</li>
             <li @click="deleteContent">삭제</li>
             <li @click="reportPop">신고 <i class="fa-solid fa-circle-exclamation"></i></li>
           </ul>
@@ -299,6 +299,9 @@ export default {
         </div>
       </div>
       <div class="content">
+        <div class="content-close" @click="closePopup">
+          <span>X</span>
+        </div>
         <div class="content-image">
           <img v-for="item in detailData.file" :src="getImgUrl(item)" alt="게사" />
         </div>

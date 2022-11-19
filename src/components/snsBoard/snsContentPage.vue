@@ -154,7 +154,7 @@ export default {
       <customButton
         :placeholder="'전체 게시물'"
         :onClick="() => showChange(showType.ALL)"
-        :customClass="showIndex === showType.ALL ? 'showActive' : ''"
+        :customClass="showIndex === showType.ALL ? 'showActive' : 'customButton'"
       />
       <customButton
         :placeholder="'팔로우 게시물'"
@@ -193,7 +193,7 @@ export default {
       </ul>
     </div>
     <div class="news-menu-button">
-      <button class="write_btn" @click="openWrite">
+      <button class="write_btn" @click="openWrite()">
         <i class="fa-solid fa-pen"></i>
         <span>글쓰기</span>
       </button>

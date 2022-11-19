@@ -1,8 +1,8 @@
 .popup-manager {
   .black {
     position: fixed;
-    width: 100vw;
-    height: 100vh;
+    width: 130vw;
+    height: 130vh;
     top: 0;
     background-color: rgba(0, 0, 0, 0.8);
     color: black;
@@ -284,6 +284,7 @@
               object-fit: cover;
             }
           }
+
           .item-preview-list {
             display: flex;
             flex-direction: row;
@@ -308,6 +309,7 @@
           .custom-input-file-button {
             margin: 10px auto;
             width: 10%;
+
             a {
               padding: 5%;
             }
@@ -635,6 +637,11 @@
         //게시물 내용
         .content {
           background-color: white;
+
+          &-close {
+            display: none;
+          }
+
           //게시물 사진
           &-image {
             img {
@@ -1194,7 +1201,7 @@
         position: fixed;
         width: 200vw;
         height: 200vh;
-        top: -55px;
+        top: -130px;
         left: -290px;
         background-color: rgba(0, 0, 0, 0.8);
         color: black;
@@ -1274,8 +1281,8 @@
   .popup-manager {
     .black {
       position: fixed;
-      width: 100vw;
-      height: 100vh;
+      width: 130vw;
+      height: 130vh;
       top: 0;
       background-color: rgba(0, 0, 0, 0.8);
       color: black;
@@ -1577,6 +1584,8 @@
           overflow: hidden;
           overflow-y: auto;
           -webkit-overflow-scrolling: touch;
+          border-radius: 0;
+
           //게시물 수정 삭제 신고 메뉴
           .container {
             position: fixed;
@@ -1629,7 +1638,12 @@
 
           .content {
             background-color: white;
-            border-radius: 10px;
+
+            &-close {
+              display: block;
+              padding: 5px;
+              position: fixed;
+            }
 
             &-image {
               img {
@@ -1931,8 +1945,6 @@
           position: fixed;
           width: 200vw;
           height: 200vh;
-          top: -55px;
-          left: -290px;
           background-color: rgba(0, 0, 0, 0.8);
           color: black;
           z-index: 2;
@@ -2031,6 +2043,7 @@
     bottom: 0;
     position: absolute;
   }
+
   .modal-inner {
     height: 100%;
     @include pc() {
@@ -2052,11 +2065,13 @@
       display: flex;
       justify-content: space-between;
       padding: 10px;
+
       .custom-button {
         flex: none;
         cursor: pointer;
         display: flex;
         padding: 0;
+
         a {
           font-size: 16px;
         }
@@ -2064,6 +2079,7 @@
         .cancel {
           color: $darkgry;
         }
+
         .upLoad {
           color: $orange;
         }

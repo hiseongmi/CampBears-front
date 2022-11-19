@@ -161,6 +161,7 @@
         top: 11px;
         left: 40px;
         transition: 0.3s;
+        z-index: 1;
 
         ul {
           font-size: 14px;
@@ -502,6 +503,10 @@
               cursor: pointer;
               font-size: 15px;
               width: auto;
+
+              option:hover {
+                background-color: #ec671a;
+              }
             }
           }
         }
@@ -533,14 +538,14 @@
     //게시물이미지 내용
     &-ul {
       display: flex;
-      justify-content: center;
       flex-wrap: wrap;
       list-style: none;
-      max-width: 1000px;
+      max-width: 799px;
       margin: 0 auto;
 
       &-li {
         padding: 12.5px;
+        width: 33.3%;
 
         &-wrap {
           position: relative;
@@ -551,7 +556,7 @@
           //게시판 사진부분
           &-write {
             img {
-              width: 241px;
+              width: 100%;
               height: 241px;
               border-radius: 8px;
               cursor: pointer;
@@ -601,7 +606,6 @@
               height: 40px;
               color: #4c4c4c;
               display: flex;
-              width: 241px;
 
               &-writing {
                 padding: 4px 0;
@@ -665,22 +669,22 @@
       display: flex;
       align-items: center;
       justify-content: space-around;
-      padding: 20px 0;
+      padding: 20px 10px;
 
       &-contents {
         display: flex;
         align-items: baseline;
         flex-direction: column;
         position: relative;
+        width: 300px;
 
         &-title {
-          font-size: 35px;
           font-weight: bold;
           padding-right: 10px;
         }
 
         &-ment {
-          font-size: 15px;
+          font-size: 13px;
         }
       }
 
@@ -702,9 +706,11 @@
           border: 1.5px solid rgba(204, 204, 204, 0.8);
           border-radius: 8px;
           height: 35px;
-          width: 240px;
+          width: 100%;
+          max-width: none;
           box-shadow: 5px 5px 5px #999999;
           color: #000000;
+          font-size: 13px;
         }
 
         input::placeholder {
@@ -713,7 +719,7 @@
 
         button {
           position: absolute;
-          right: 10px;
+          right: 5px;
           top: 7px;
           background: none;
           border: none;
@@ -721,7 +727,7 @@
 
           i {
             color: #000000;
-            font-size: 20px;
+            font-size: 16px;
           }
 
           i:hover {
@@ -735,8 +741,6 @@
       display: flex;
       justify-content: flex-end;
       align-items: center;
-      max-width: 1200px;
-      margin: 0 auto;
       padding: 20px 30px;
 
       &-showBtn {
@@ -749,8 +753,11 @@
           border-radius: 0;
           display: inherit;
           cursor: pointer;
-          width: 60px;
           padding: 0 5px;
+        }
+
+        a {
+          font-size: 13px;
         }
 
         .showActive {
@@ -769,14 +776,14 @@
           padding-inline-start: 0;
 
           li {
-            padding: 0 10px;
+            padding: 0 4px;
 
             select {
               border-color: #2f2e2c;
-              height: 27px;
+              height: 21px;
               border-radius: 4px;
               cursor: pointer;
-              font-size: 13px;
+              font-size: 50%;
               width: auto;
             }
           }
@@ -785,7 +792,7 @@
 
       &-button {
         .write_btn {
-          padding: 5px 13px;
+          padding: 0 13px 2px 16px;
           border-radius: 4px;
           background-color: #ec671a;
           border: none;
@@ -793,12 +800,12 @@
           cursor: pointer;
 
           i {
-            font-size: 13px;
+            font-size: 50%;
             padding-right: 3px;
           }
 
           span {
-            font-size: 13px;
+            display: none;
           }
         }
       }
@@ -816,18 +823,19 @@
 
       &-li {
         padding: 12.5px;
+        width: 50%;
 
         &-wrap {
           position: relative;
           border-radius: 8px;
           box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
-          height: 300px;
+          height: 259px;
 
           //게시판 사진부분
           &-write {
             img {
-              width: 262px;
-              height: 262px;
+              width: 100%;
+              height: 200px;
               border-radius: 8px;
               cursor: pointer;
               object-fit: cover;
@@ -847,6 +855,7 @@
               display: flex;
               border-bottom: 1px solid #cccccc;
               color: #818181;
+              overflow: overlay;
 
               &-icon {
                 padding: 5px 9px;
@@ -876,7 +885,7 @@
               height: 40px;
               color: #4c4c4c;
               display: flex;
-              width: 262px;
+              width: 100%;
               cursor: pointer;
 
               &-writing {
@@ -925,233 +934,6 @@
   }
 }
 
-@media (max-width: 500px) {
-  .news {
-    &-wrap {
-      display: flex;
-      align-items: center;
-      padding: 20px;
-
-      &-contents {
-        display: flex;
-        align-items: baseline;
-        flex-direction: column;
-        flex: 1 0 0;
-
-        &-title {
-          font-weight: bold;
-          padding-right: 10px;
-          font-size: 20px;
-        }
-
-        &-ment {
-          font-size: 12px;
-        }
-      }
-
-      &-search {
-        position: relative;
-
-        .custom-input {
-          border: 1.5px solid rgba(204, 204, 204, 0.8);
-          border-radius: 8px;
-          height: 28px;
-          width: 135px;
-          box-shadow: 5px 5px 5px #999999;
-        }
-
-        input::placeholder {
-          text-align: center;
-          font-size: 10px;
-        }
-
-        button {
-          position: absolute;
-          right: 0;
-          top: 4px;
-          background: none;
-          border: none;
-          cursor: pointer;
-
-          i {
-            color: #000000;
-            font-size: 14px;
-          }
-
-          i:hover {
-            color: #ec671a;
-          }
-        }
-      }
-    }
-
-    &-menu {
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      padding: 10px 20px;
-
-      &-select {
-        .slider {
-          width: 100px;
-        }
-
-        ul {
-          display: flex;
-          list-style: none;
-
-          li {
-            padding: 0 3px;
-
-            select {
-              font-size: 10px;
-              border-color: #2f2e2c;
-              height: 18px;
-              width: 45px;
-              border-radius: 4px;
-              cursor: pointer;
-            }
-          }
-        }
-      }
-
-      &-button {
-        .write_btn {
-          padding: 0 10px;
-          border-radius: 4px;
-          background-color: #ec671a;
-          border: none;
-          color: white;
-          cursor: pointer;
-
-          i {
-            font-size: 10px;
-            padding-bottom: 4px;
-          }
-
-          span {
-            display: none;
-          }
-        }
-      }
-    }
-
-    //프로필
-    &-ul {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      list-style: none;
-
-      &-li {
-        padding: 17.5px;
-        width: 218px;
-
-        &-wrap {
-          position: relative;
-          border-radius: 8px;
-          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
-          height: 228px;
-
-          //게시판 사진부분
-          &-write {
-            img {
-              width: 183px;
-              height: 183px;
-              border-radius: 8px;
-              cursor: pointer;
-              object-fit: cover;
-            }
-          }
-
-          //게시판 상세 부분
-          .detail {
-            background-color: white;
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            border-radius: 0 0 8px 8px;
-
-            //하트 댓글 북마크 들
-            &-wrap {
-              display: flex;
-              border-bottom: 1px solid #cccccc;
-              color: #818181;
-
-              &-icon {
-                padding: 5px 9px;
-
-                span {
-                  i {
-                    font-size: 13px;
-                  }
-                }
-              }
-
-              &-briefcase {
-                padding: 5px 9px;
-                flex: 1 0 0;
-
-                span {
-                  i {
-                    font-size: 13px;
-                  }
-                }
-              }
-            }
-
-            //게시판 내용
-            .contents {
-              padding: 3px;
-              height: 30px;
-              color: #4c4c4c;
-              display: flex;
-              width: 183px;
-
-              &-writing {
-                flex: 1 0 0;
-                font-size: 13px;
-                text-overflow: ellipsis;
-                overflow: hidden;
-                white-space: nowrap;
-              }
-            }
-
-            //댓글 개수
-            .comments {
-              padding: 3px;
-              height: 30px;
-              color: #4c4c4c;
-
-              span {
-                font-size: 10px;
-                padding: 3px;
-              }
-            }
-          }
-
-          //사진위 좋아요
-          .heart {
-            position: absolute;
-            top: 5px;
-            left: 5px;
-
-            span {
-              color: white;
-              font-size: 10px;
-              padding-left: 5px;
-
-              i {
-                font-size: 10px;
-                color: red;
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
 
 //모달창 home
 .modalHome {
@@ -2262,4 +2044,5 @@
         top: 50%;
       }
     }
-  }}
+  }
+}
