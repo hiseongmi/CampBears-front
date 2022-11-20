@@ -8,6 +8,7 @@ export const STORE_TYPE = {
   boardIdx: "boardIdx",
   commentIdx: "commentIdx",
   commentLength: "commentLength",
+  campInfo: "campInfo",
 };
 
 export const POPUP_TYPE = {
@@ -18,6 +19,7 @@ export const POPUP_TYPE = {
   UPDATE: "UPDATE",
   PRODUCT_DETAIL: "PRODUCT_DETAIL",
   PRODUCT_WRITE: "PRODUCT_WRITE",
+  DETAIL_CAMPING: "DETAIL_CAMPING",
 };
 
 const store = createStore({
@@ -28,6 +30,7 @@ const store = createStore({
     boardIdx: "",
     commentIdx: "",
     popupList: [],
+    campInfo: undefined,
   },
   mutations: {
     /**
@@ -66,6 +69,9 @@ const store = createStore({
      */
     commentIdx(state, value) {
       state.commentIdx = value;
+    },
+    campInfo(state, value) {
+      state.campInfo = value;
     },
   },
 });

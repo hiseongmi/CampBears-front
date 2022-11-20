@@ -1,10 +1,13 @@
 <script>
 import { onMounted, ref } from "vue";
 import axios from "axios";
+import store, { POPUP_TYPE, STORE_TYPE } from "../store/index.js";
+import { useStore } from "vuex";
 
 export default {
   name: "campingInfo",
   setup() {
+    const store = useStore();
 
 
     const api = axios.create({
@@ -16,13 +19,6 @@ export default {
     const dataList = ref([]);
     const getCampInfo = async () => {
       const d = await api.get("/basedList?numOfRows=10&pageNo=1&MobileOS=ETC&MobileApp=Bears&serviceKey=%2B73Gk9VQ6LP%2FEICWELVtDo%2FLQDhSaoMt46Iv6JFU%2BWo3iERh%2FojmCv5Z8Deh0O93nC5R1xVDq77PxTkQKP3rKA%3D%3D");
-      // console.log(d);
-      // console.log(d.data);
-      // console.log(d.data.text());
-      // const t_xml = d.data.text();
-      // console.log(t_xml);
-
-
       const xmlParser = new DOMParser();
       const par = xmlParser.parseFromString(d.data, "text/xml");
       const t = par.getElementsByTagName("items");
@@ -48,7 +44,12 @@ export default {
           dataList.value.push(dataSet);
         }
       }
-      console.log(dataList);
+    };
+
+    const showDetail = (index) => {
+      console.log(index);
+      store.commit(STORE_TYPE.campInfo, dataList[index]);
+      store.commit(STORE_TYPE.popupType, POPUP_TYPE.DETAIL_CAMPING);
 
     };
 
@@ -56,7 +57,8 @@ export default {
       getCampInfo();
     });
     return {
-      dataList
+      dataList,
+      showDetail
     };
   }
 };
@@ -65,7 +67,7 @@ export default {
   <section class="camp-info">
     <h1>camp info</h1>
     <div class="info-body" v-if="dataList && dataList.length >0">
-      <div class="info-item" v-for="item in dataList">
+      <div class="info-item" @click="showDetail(index)" v-for="(item,index) in dataList">
         <img :src="item.thumbNailUrl" alt="main">
         <div class="name">{{ item.campingName }}</div>
         <div class="des">{{ item.campingIntro }}</div>

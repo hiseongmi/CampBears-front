@@ -7,6 +7,7 @@ import ReportPopup from "./popups/reportPopup.vue";
 import UpdateBoardPopup from "./popups/updateBoardPopup.vue";
 import ProductDetailPopup from "./popups/productDetailPopup.vue";
 import ProductWritePopup from "./popups/productWritePopup.vue";
+import DetailCampingInfo from "./popups/detailCampingInfo.vue";
 
 export default {
   name: "popupManager",
@@ -17,6 +18,7 @@ export default {
     ReportPopup,
     DetailScreenPopup,
     writeBoardPopup,
+    DetailCampingInfo
   },
   setup() {
     const store = getStore();
@@ -39,9 +41,9 @@ export default {
       isPopup,
       POPUP_TYPE,
       clickClose,
-      goDetail,
+      goDetail
     };
-  },
+  }
 };
 </script>
 <template>
@@ -54,5 +56,6 @@ export default {
                       :go-detail="goDetail"></UpdateBoardPopup>
     <ProductDetailPopup v-if="isPopup === POPUP_TYPE.PRODUCT_DETAIL" :clickClose="clickClose" />
     <ProductWritePopup v-if="isPopup === POPUP_TYPE.PRODUCT_WRITE" :clickClose="clickClose" />
+    <DetailCampingInfo v-if="isPopup === POPUP_TYPE.DETAIL_CAMPING" :clickClose="clickClose"></DetailCampingInfo>
   </div>
 </template>
