@@ -18,7 +18,7 @@ export default {
     Pagination,
     Profile,
     customSelect,
-    customButton,
+    customButton
   },
   setup() {
     const userData = ref();
@@ -30,7 +30,7 @@ export default {
     const showType = {
       ALL: "ALL",
       FOLLOW: "FOLLOW",
-      HASH: "HASH",
+      HASH: "HASH"
     };
     const showChange = v => {
       showIndex.value = v;
@@ -40,7 +40,7 @@ export default {
     const selectedValue = ref();
     const SORT_TYPE = {
       RECENT: "RECENT",
-      LONG: "LONG",
+      LONG: "LONG"
     };
     const selectedUpdateValue = value => {
       selectedValue.value = value;
@@ -54,14 +54,14 @@ export default {
       { key: "댓글순", value: "댓글순" },
       { key: SORT_TYPE.RECENT, value: "최근순" },
       { key: SORT_TYPE.LONG, value: "오래된순" },
-      { key: "가나다순", value: "가나다순" },
+      { key: "가나다순", value: "가나다순" }
     ];
     const selectSeasonData = [
       { key: "season", value: "계절" },
       { key: "spring", value: "봄" },
       { key: "summer", value: "여름" },
       { key: "fall", value: "가을" },
-      { key: "winter", value: "겨울" },
+      { key: "winter", value: "겨울" }
     ];
     const selectComfortsData = [
       { key: "COMFORTS", value: "편의시설" },
@@ -72,7 +72,7 @@ export default {
       { key: "WASHROOM", value: "화장실" },
       { key: "DRINKING", value: "식수대" },
       { key: "SHOWER", value: "샤워장" },
-      { key: "PARKING", value: "주차가능" },
+      { key: "PARKING", value: "주차가능" }
     ];
     const openWrite = () => {
       store.commit(STORE_TYPE.popupType, POPUP_TYPE.WRITE_BOARD);
@@ -108,7 +108,6 @@ export default {
       }
       const data = await apiClient("/sns/getSnsList", param);
       if (data.data) {
-        console.log(data.data);
         contentData.value = data.data;
       }
     };
@@ -143,9 +142,9 @@ export default {
       openDetail,
       getContent,
       showChange,
-      getImgUrl,
+      getImgUrl
     };
-  },
+  }
 };
 </script>
 <template>

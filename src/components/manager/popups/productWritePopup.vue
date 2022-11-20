@@ -16,51 +16,51 @@ export default {
   props: {
     clickClose: {
       type: Function,
-      required: true,
-    },
+      required: true
+    }
   },
   setup() {
     const overall_Type = [
       {
-        name: "텐트/타프",
+        name: "텐트/타프"
       },
       {
-        name: "침낭/매트",
+        name: "침낭/매트"
       },
       {
-        name: "테이블/의자",
+        name: "테이블/의자"
       },
       {
-        name: "조명 기구",
+        name: "조명 기구"
       },
       {
-        name: "주방 용품",
+        name: "주방 용품"
       },
       {
-        name: "화로/버너",
+        name: "화로/버너"
       },
       {
-        name: "안전/위생용품",
+        name: "안전/위생용품"
       },
       {
-        name: "전기/전자제품",
+        name: "전기/전자제품"
       },
       {
-        name: "캠핑카/카라반",
+        name: "캠핑카/카라반"
       },
       {
-        name: "차박 용품",
+        name: "차박 용품"
       },
       {
-        name: "의류/수납",
+        name: "의류/수납"
       },
       {
-        name: "기타 용품",
-      },
+        name: "기타 용품"
+      }
     ];
     const typeType = {
       SELL: "SELL",
-      BUY: "BUY",
+      BUY: "BUY"
     };
     const typeIndex = ref(typeType.SELL);
     const checkValue = v => {
@@ -166,7 +166,6 @@ export default {
     const uploadImg = e => {
       let fileList = e.target.files;
       console.warn(e.target.file);
-      console.log(fileList);
       const k = [];
       if (fileList.length < 1) {
         alert("사진을 한 장 이상 넣어주세요.");
@@ -186,7 +185,7 @@ export default {
       productDes: "",
       stateView: "Y",
       productPrice: 0,
-      productState: "GOOD",
+      productState: "GOOD"
     });
     const uploadPost = async () => {
       if (
@@ -205,10 +204,8 @@ export default {
         formData.append("productType", typeIndex.value);
         formData.append("productState", "GOOD");
 
-        console.log(JSON.stringify(formData.get("file")));
 
         for (let item of formData.entries()) {
-          console.log(item);
         }
         const lut = CommonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO_TOKEN);
 
@@ -217,8 +214,8 @@ export default {
           timeout: 1000 * 60 * 3,
           headers: {
             "Content-Type": "multipart/form-data",
-            Authorization: lut,
-          },
+            Authorization: lut
+          }
         });
 
         // axios.post("http://camp-api.calf.kr/api/product/insertProduct");
@@ -227,7 +224,6 @@ export default {
           .post("product/insertProduct", formData, { headers: { "Content-Type": "multipart/form-data" } })
           .then(res => {
             if (res.data.resultCode === 0) {
-              console.log(res);
             }
           })
           .catch(e => {
@@ -259,9 +255,9 @@ export default {
       tabIndex,
       changeIndex,
       uploadPost,
-      uploadData,
+      uploadData
     };
-  },
+  }
 };
 </script>
 
@@ -309,19 +305,19 @@ export default {
             <div class="product-option-grade">
               <span class="title">상품 컨디션</span>
               <span @mouseover="handleMouseOver(1)" @mouseleave="handleMouseOut(1)"
-                ><i @click="clickHandler(1)" id="stars1" class="fa-solid fa-star"></i
+              ><i @click="clickHandler(1)" id="stars1" class="fa-solid fa-star"></i
               ></span>
               <span @mouseover="handleMouseOver(2)" @mouseleave="handleMouseOut(2)"
-                ><i @click="clickHandler(2)" id="stars2" class="fa-solid fa-star"></i
+              ><i @click="clickHandler(2)" id="stars2" class="fa-solid fa-star"></i
               ></span>
               <span @mouseover="handleMouseOver(3)" @mouseleave="handleMouseOut(3)"
-                ><i @click="clickHandler(3)" id="stars3" class="fa-solid fa-star"></i
+              ><i @click="clickHandler(3)" id="stars3" class="fa-solid fa-star"></i
               ></span>
               <span @mouseover="handleMouseOver(4)" @mouseleave="handleMouseOut(4)"
-                ><i @click="clickHandler(4)" id="stars4" class="fa-solid fa-star"></i
+              ><i @click="clickHandler(4)" id="stars4" class="fa-solid fa-star"></i
               ></span>
               <span @mouseover="handleMouseOver(5)" @mouseleave="handleMouseOut(5)"
-                ><i @click="clickHandler(5)" id="stars5" class="fa-solid fa-star"></i
+              ><i @click="clickHandler(5)" id="stars5" class="fa-solid fa-star"></i
               ></span>
             </div>
           </div>

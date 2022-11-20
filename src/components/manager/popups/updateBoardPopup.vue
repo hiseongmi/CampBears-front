@@ -13,17 +13,17 @@ export default {
   props: {
     clickClose: {
       type: Function,
-      required: true,
+      required: true
     },
     goDetail: {
       type: Function,
-      required: true,
-    },
+      required: true
+    }
   },
   setup() {
     const publicType = {
       All: "ALL",
-      FOLLOW: "FOLLOW",
+      FOLLOW: "FOLLOW"
     };
     const publicIndex = ref();
     const checkValue = v => {
@@ -31,16 +31,14 @@ export default {
     };
     const updateData = ref({
       boardIdx: store.state.boardIdx,
-      boardBody: "",
+      boardBody: ""
     });
     const inputHashTag = ref("");
     const hashTagList = ref([]);
 
     const update = async () => {
       const param = Object.assign({}, updateData.value, { hashTag: hashTagList.value });
-      console.log(param);
       const data = await apiClient("/sns/updateSns", param);
-      console.log(data.data);
       // if (data.resultCode === 0) {
       //   window.alert("수정되었습니다.");
       //   await store.commit(STORE_TYPE.popupType, POPUP_TYPE.DETAIL_SCREEN);
@@ -93,9 +91,9 @@ export default {
       handleInput,
       handleEnterEvent,
       hashTagList,
-      deleteTag,
+      deleteTag
     };
-  },
+  }
 };
 </script>
 <template>

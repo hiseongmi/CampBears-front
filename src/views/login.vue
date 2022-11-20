@@ -2,12 +2,12 @@
 import customInput from "../components/layout/customInput.vue";
 import customButton from "../components/layout/customButton.vue";
 import loginNaver from "../components/snslogin/loginNaver.vue";
-import {onMounted, onUnmounted, ref} from "vue";
-import {apiClient, setHeader} from "../utils/axios.js";
+import { onMounted, onUnmounted, ref } from "vue";
+import { apiClient, setHeader } from "../utils/axios.js";
 import common from "../utils/common-util.js";
-import {CONSTANTS} from "../constants.js";
+import { CONSTANTS } from "../constants.js";
 import router from "../router/index.js";
-import store, {STORE_TYPE} from "../store/index.js";
+import store, { STORE_TYPE } from "../store/index.js";
 import axios from "axios";
 
 export default {
@@ -15,7 +15,7 @@ export default {
   components: {
     customInput,
     customButton,
-    loginNaver,
+    loginNaver
   },
   setup() {
 
@@ -26,12 +26,10 @@ export default {
     //     headers: {"contents-type": "Json"},
     //   });
     //   const d = await axiosInstance.get('https://apis.data.go.kr/B551011/GoCamping/basedList?MobileOS=ETC&MobileApp=bears&serviceKey=IEdTGqhPUIxJy5mLBtkjPw6g%2BaTd90KXgnnc03HRNuD2NUPhtSQ307ZhzYx3n51j%2FpjYn5Hteigqp1cro1Rg6w%3D%3D')
-    //   console.log(d)
     // }
 
     const typeSearch = async () => {
       const data = await apiClient("/common/getTypeList", typeSearchData.value);
-      //console.log(data.data) //태그 장소 검색 글 데이터
       typeData.value = data.data;
       if (typeData.value) {
         joinUserData.value.userType = typeData.value[0].column;
@@ -40,7 +38,7 @@ export default {
       // contentData.value = data.data
       //search 이벤트를 날림
     };
-    const userData = ref({userEmail: "", userPassword: ""});
+    const userData = ref({ userEmail: "", userPassword: "" });
     const loginState = ref(true);
     const ENTER_EVENT = "ENTER_EVENT";
 
@@ -105,21 +103,21 @@ export default {
       doJoin,
       clickJoin,
       goToX,
-      typeSearch,
+      typeSearch
     };
-  },
+  }
 };
 </script>
 <template>
   <section class="login">
     <div class="login-area">
       <div class="logo-area">
-        <img src="/assets/images/login/logo.webp" alt="logo"/>
+        <img src="/assets/images/login/logo.webp" alt="logo" />
         <h1>로그인 해볼까요?</h1>
       </div>
       <div v-if="loginState" class="form">
-        <custom-input :placeholder="`이메일`" @update:value="userData.userEmail = $event"/>
-        <custom-input :placeholder="`비밀번호`" type="password" @update:value="userData.userPassword = $event"/>
+        <custom-input :placeholder="`이메일`" @update:value="userData.userEmail = $event" />
+        <custom-input :placeholder="`비밀번호`" type="password" @update:value="userData.userPassword = $event" />
         <div class="btn-area">
           <custom-button :placeholder="`로그인`" :onClick="doLogin"></custom-button>
           <custom-button :custom-class="`join`" :placeholder="`회원가입`" @Click="goToX('/signup')"></custom-button>
