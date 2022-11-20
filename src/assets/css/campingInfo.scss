@@ -1,0 +1,58 @@
+.camp-info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+
+  .info-body {
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    flex-direction: row;
+    align-items: center;
+    width: calc(100%);
+
+    .info-item {
+      position: relative;
+      width: 25%;
+      background-color: white;
+      margin: 30px;
+
+      img {
+        width: 100%;
+        //height: 300px;
+      }
+
+      .name {
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      .des {
+        color: #5b5b5b;
+        font-size: 14px;
+      }
+
+      .camp-type {
+        position: absolute;
+        top: 0;
+        right: 0;
+        color: white;
+        width: 0;
+        height: 0;
+        border-top: 30px solid #6a0505;
+        border-right: 30px solid #6a0505;
+        border-bottom: 30px solid transparent;
+        border-left: 30px solid transparent;
+        //border: 1px solid black;
+        span {
+          position: absolute;
+          width: 50px;
+          top: -25px;
+          //right: 0;
+        }
+      }
+    }
+  }
+}

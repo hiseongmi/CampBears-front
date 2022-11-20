@@ -9,7 +9,7 @@ import { apiClient } from "../utils/axios.js";
 import { onMounted } from "vue";
 import CustomLoading from "../components/layout/customLoading.vue";
 import UsedContentsComponent from "../components/usedMarket/sellComponent.vue";
-// import {e} from "../../dist/assets/index.a54a7291.js";
+import axios from "axios";
 
 export default {
   name: "mainPage",
