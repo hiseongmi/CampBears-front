@@ -19,12 +19,14 @@ export default {
     const inquiryData = ref({ keyword: "", hashKeyWord: "" });
     const getContent = async () => {
       const data = await apiClient("/sns/getSnsList", inquiryData.value);
-      // //console.log(data.data) //태그 장소 검색 글 데이터
-      // contentData.value = data.data
-
-      dispatchEvent(new CustomEvent("SEARCH", { detail: inquiryData.value.keyword })); //search 이벤트를 날림
-      dispatchEvent(new CustomEvent("SEARCH_HASH", { detail: inquiryData.value.hashKeyWord })); //search 이벤트를 날림
+      //search 이벤트를 날림
+      if (dispatchEvent(new CustomEvent("SEARCH", { detail: inquiryData.value.keyword }))) {
+        inquiryData.value.hashKeyWord = inquiryData.value.keyword;
+      }
+      // dispatchEvent(new CustomEvent("HASHSEARCH", { detail: inquiryData.value.hashKeyWord })); //search 이벤트를 날림
+      console.log(inquiryData.value);
     };
+
 
     return {
       inquiryData,
@@ -42,7 +44,8 @@ export default {
       </div>
       <!--      <hr class="line"/>-->
       <div class="news-wrap-search">
-        <custom-input :placeholder="'태그, 장소 찾아 보기'" @update:value="inquiryData.keyword = $event" />
+        <custom-input :placeholder="'태그, 장소 찾아 보기'"
+                      @update:value="inquiryData.keyword = $event" />
         <button @click="getContent"><i class="fa-solid fa-magnifying-glass" /></button>
       </div>
     </div>

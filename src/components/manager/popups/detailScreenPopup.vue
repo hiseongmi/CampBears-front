@@ -110,6 +110,15 @@ export default {
         RerAction.value = !RerAction.value;
       }
     }; //수정신고삭제 옵션
+    const FollowAction = ref(false);
+    const Follow = () => {
+      if (userData.value.userIdx !== detailData.value.userIdx) {
+        FollowAction.value = true;
+      } else {
+        FollowAction.value;
+      }
+    };
+
 
     const reportAction = ref(false);
     const reportPop = () => {
@@ -254,6 +263,7 @@ export default {
       selectedComment,
       MySelectedComment,
       postImage,
+      Follow,
       getData,
       handleEnterEvent,
       putCommentIdx,
@@ -279,7 +289,6 @@ export default {
 </script>
 <template>
   <div class="modal-detail">
-    <!--    <span @click="clickClose" type="button">X</span>-->
     <div class="modal-detail-content">
       <div>
         <div class="container" @click="RerOption">
@@ -313,6 +322,7 @@ export default {
               <div class="follow">
                 <span>{{ detailData.userNickName }}</span>
                 <custom-button
+                  v-if="userData?.userIdx !== detailData.userIdx"
                   :placeholder="'팔로우'"
                   :custom-class="followType.STATE === 'FOLLOW' ? 'followActive' : 'follow_btn'"
                   @click="followManager"

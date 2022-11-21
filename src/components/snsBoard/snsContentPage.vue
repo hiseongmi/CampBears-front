@@ -18,7 +18,7 @@ export default {
     Pagination,
     Profile,
     customSelect,
-    customButton
+    customButton,
   },
   setup() {
     const userData = ref();
@@ -30,7 +30,7 @@ export default {
     const showType = {
       ALL: "ALL",
       FOLLOW: "FOLLOW",
-      HASH: "HASH"
+      HASH: "HASH",
     };
     const showChange = v => {
       showIndex.value = v;
@@ -40,7 +40,7 @@ export default {
     const selectedValue = ref();
     const SORT_TYPE = {
       RECENT: "RECENT",
-      LONG: "LONG"
+      LONG: "LONG",
     };
     const selectedUpdateValue = value => {
       selectedValue.value = value;
@@ -54,14 +54,14 @@ export default {
       { key: "댓글순", value: "댓글순" },
       { key: SORT_TYPE.RECENT, value: "최근순" },
       { key: SORT_TYPE.LONG, value: "오래된순" },
-      { key: "가나다순", value: "가나다순" }
+      { key: "가나다순", value: "가나다순" },
     ];
     const selectSeasonData = [
       { key: "season", value: "계절" },
       { key: "spring", value: "봄" },
       { key: "summer", value: "여름" },
       { key: "fall", value: "가을" },
-      { key: "winter", value: "겨울" }
+      { key: "winter", value: "겨울" },
     ];
     const selectComfortsData = [
       { key: "COMFORTS", value: "편의시설" },
@@ -72,7 +72,7 @@ export default {
       { key: "WASHROOM", value: "화장실" },
       { key: "DRINKING", value: "식수대" },
       { key: "SHOWER", value: "샤워장" },
-      { key: "PARKING", value: "주차가능" }
+      { key: "PARKING", value: "주차가능" },
     ];
     const openWrite = () => {
       store.commit(STORE_TYPE.popupType, POPUP_TYPE.WRITE_BOARD);
@@ -84,14 +84,13 @@ export default {
     }; //게시물 상세 페이지 팝업 열기
 
     const handleSearch = e => {
+      console.log(e);
       //이벤트를 받음
       if (e.detail !== "") {
         keyword = e.detail;
-        hashKeyWord = e.detail;
         //inquiryData.value = {keyword: e.detail} ///빈값이 아닐때  keyword 로 값을 보냄
       } else {
         keyword = e.detail;
-        hashKeyWord = e.detail;
         //inquiryData.value = ""
       }
       getContent();
@@ -99,9 +98,9 @@ export default {
     //키워드 검색
     const contentData = ref();
     let keyword = "";
-    let hashKeyWord = []; //데이터 가공해서 넣기
+    let hashKeyWord = ""; //데이터 가공해서 넣기
     const getContent = async () => {
-      let param = { keyword: keyword, hashKeyWord: hashKeyWord, sorted: "RECENT", showType: "ALL" };
+      let param = { keyword: keyword, hashKeyWord: keyword, sorted: "RECENT", showType: "ALL" };
       if (selectedValue.value !== null && selectedValue.value !== undefined) {
         param = Object.assign({}, param, { sorted: selectedValue.value }); //ob 내장함수 합침
         param.sorted = selectedValue.value;
@@ -117,14 +116,12 @@ export default {
 
     onMounted(() => {
       window.addEventListener("SEARCH", handleSearch); //search 이벤트를 찾아서 handel이벤트로 보냄
-      window.addEventListener("SEARCH_HASH", handleSearch); //search 이벤트를 찾아서 handel이벤트로 보냄
       getContent();
       getData();
     });
 
     onUnmounted(() => {
       window.removeEventListener("SEARCH", handleSearch);
-      window.removeEventListener("SEARCH_HASH", handleSearch);
     });
 
     return {
@@ -142,9 +139,9 @@ export default {
       openDetail,
       getContent,
       showChange,
-      getImgUrl
+      getImgUrl,
     };
-  }
+  },
 };
 </script>
 <template>
