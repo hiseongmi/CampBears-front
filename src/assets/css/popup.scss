@@ -272,10 +272,12 @@
             padding: 0 100px;
           }
 
-          &-wrap {
-            margin-block: 10px;
+          .product-img-wrap {
             position: relative;
-            padding-bottom: 60%;
+
+            .product-img-upload-after {
+              padding-bottom: 60%;
+            }
 
             img {
               position: absolute;
@@ -309,9 +311,11 @@
           .custom-input-file-button {
             margin: 10px auto;
             width: 10%;
-
-            a {
-              padding: 5%;
+            @include tb() {
+              width: 20%;
+            }
+            @include mb() {
+              width: 30%;
             }
           }
 
@@ -349,22 +353,18 @@
                 cursor: pointer;
 
                 a {
-                  font-weight: 500;
-                  font-size: 15px;
+                  font-weight: normal;
+                  font-size: 14px;
                   color: #cccccc;
                   padding: 0 5px;
                 }
 
                 .active {
-                  a {
-                    color: #818181;
-                  }
-                }
-              }
+                  background-color: #8a8a8a;
 
-              .buy {
-                a {
-                  border-right: 2px solid #cccccc;
+                  a {
+                    color: #ffffff;
+                  }
                 }
               }
             }
@@ -2055,5 +2055,35 @@
   }
 }
 
-.detail-camping {
-}
+//.product-detail-popup {
+//  .modal-detail {
+//    height: 100%;
+//
+//    @include mb() {
+//      max-width: none;
+//      width: 100%;
+//      bottom: 0;
+//      position: absolute;
+//    }
+//    @include pc() {
+//      width: calc(100% - 400px);
+//      height: calc(100% - 200px);
+//    }
+//    @include tb() {
+//      width: calc(100% - 100px);
+//      height: calc(100% - 200px);
+//    }
+//    //@include mb() {
+//    //  bottom: 0;
+//    //  position: absolute;
+//    //  max-width: none;
+//    //  width: 100%;
+//    //}
+//
+//    //.modal-detail-content {
+//    //  @include pc() {
+//    //    width: calc(100% - 100px);
+//    //  }
+//    //}
+//  }
+//}

@@ -17,7 +17,6 @@ export default {
     const getData = async () => {
       const data = await apiClient("/product/getProductList", { productType: "SELL", sorted: "RECENT" });
       if (data) postData.value = data.data;
-      console.log(data);
     };
 
     const getImgUrl = file => {
@@ -72,7 +71,7 @@ export default {
           <div class="used-post-info-title">{{ item.productName }}</div>
           <div class="used-post-info-seller-name">{{ item.userNickName }}</div>
           <div class="used-post-info-contents">{{ item.productDes }}</div>
-          <div class="used-post-info-coast">{{ item.productPrice }}</div>
+          <div class="used-post-info-coast">{{ item.productPrice.toLocaleString() }}</div>
           <div class="used-post-info-footer">
             <div class="used-post-info-footer-date">
               <img src="/assets/image/icon/time.png" alt="" />

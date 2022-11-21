@@ -55,7 +55,6 @@
   .myContents {
     .tabBar {
       display: inline-block;
-      height: auto;
       position: absolute;
       border-radius: 10px;
       margin-block: 10px;
@@ -317,6 +316,125 @@
             position: absolute;
             top: 20px;
             right: 35px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@include tb() {
+  .myPage {
+    .myProfile {
+      .profilePicture {
+        width: 120px;
+        height: auto;
+      }
+    }
+  }
+}
+
+@include mb() {
+  .myPage {
+    .myProfile {
+      width: calc(100% - 20px);
+      height: auto;
+      margin: 0 auto;
+
+      .backgroundPicture {
+        height: 60%;
+      }
+
+      .profilePicture {
+        width: 70px;
+        height: auto;
+        margin: 15% 0 0 5%;
+      }
+
+      .profileIntroduce {
+        padding: 90px 0 10px 100px;
+
+        .userNickName {
+          font-size: 22px;
+        }
+
+        .userDescription {
+          font-size: 14px;
+        }
+      }
+    }
+
+    .myContents {
+      .tabBar {
+        display: flex;
+        position: unset;
+        justify-content: space-between;
+        width: calc(100% - 20px);
+        margin: 10px auto;
+
+        :first-child {
+          border-radius: 10px 0 0 10px;
+        }
+
+        :last-child {
+          border-radius: 0 10px 10px 0;
+        }
+
+        .active {
+          background-color: #2f2e2c;
+
+          a {
+            color: #ffffff;
+          }
+        }
+
+        .custom-button {
+          min-width: 120px;
+        }
+      }
+
+      .contents-area {
+        width: 100%;
+        height: auto;
+        margin: 0 auto;
+        padding: 0 10px;
+
+        .contents-box {
+          .contents-img-wrap {
+            width: 160px;
+            height: 160px;
+          }
+        }
+
+        .updateProfile {
+          width: calc(100% - 20px);
+          margin: auto;
+          padding: 0;
+
+          .input-area {
+            display: grid;
+            margin: 5px auto;
+
+            span {
+              margin: auto;
+              border: none;
+              font-size: 16px;
+              font-weight: bold;
+            }
+
+            .custom-input {
+              font-weight: normal;
+              font-size: 14px;
+            }
+
+            .fixed-info {
+              font-weight: normal;
+              font-size: 14px;
+            }
+          }
+
+          .save {
+            margin: 20px auto;
           }
         }
       }

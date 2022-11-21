@@ -77,6 +77,14 @@
         font-size: 14px;
         font-weight: 500;
       }
+
+      &:hover {
+        background-color: #2f2e2c;
+
+        a {
+          color: white;
+        }
+      }
     }
   }
 }
@@ -91,7 +99,7 @@
 
     .used-post {
       position: relative;
-      width: 200px;
+      width: 180px;
       border: 1px solid #c1c1c1;
       border-radius: 10px;
       padding: 10px 10px 15px;

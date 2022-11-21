@@ -16,51 +16,51 @@ export default {
   props: {
     clickClose: {
       type: Function,
-      required: true
-    }
+      required: true,
+    },
   },
   setup() {
     const overall_Type = [
       {
-        name: "텐트/타프"
+        name: "텐트/타프",
       },
       {
-        name: "침낭/매트"
+        name: "침낭/매트",
       },
       {
-        name: "테이블/의자"
+        name: "테이블/의자",
       },
       {
-        name: "조명 기구"
+        name: "조명 기구",
       },
       {
-        name: "주방 용품"
+        name: "주방 용품",
       },
       {
-        name: "화로/버너"
+        name: "화로/버너",
       },
       {
-        name: "안전/위생용품"
+        name: "안전/위생용품",
       },
       {
-        name: "전기/전자제품"
+        name: "전기/전자제품",
       },
       {
-        name: "캠핑카/카라반"
+        name: "캠핑카/카라반",
       },
       {
-        name: "차박 용품"
+        name: "차박 용품",
       },
       {
-        name: "의류/수납"
+        name: "의류/수납",
       },
       {
-        name: "기타 용품"
-      }
+        name: "기타 용품",
+      },
     ];
     const typeType = {
       SELL: "SELL",
-      BUY: "BUY"
+      BUY: "BUY",
     };
     const typeIndex = ref(typeType.SELL);
     const checkValue = v => {
@@ -165,17 +165,13 @@ export default {
     const formData = new FormData();
     const uploadImg = e => {
       let fileList = e.target.files;
-      console.warn(e.target.file);
-      const k = [];
       if (fileList.length < 1) {
         alert("사진을 한 장 이상 넣어주세요.");
       } else if (fileList.length < 11) {
         for (let i = 0; i < fileList.length; i++) {
           if (fileList[i]) imgPreview.value.push(URL.createObjectURL(fileList[i]));
-          // k.push(fileList[i]);
           formData.append("file", fileList[i]);
         }
-        // formData.append("file", );
       } else alert("사진은 10장으로 제한됩니다.");
     };
 
@@ -185,17 +181,16 @@ export default {
       productDes: "",
       stateView: "Y",
       productPrice: 0,
-      productState: "GOOD"
+      productState: "GOOD",
     });
     const uploadPost = async () => {
       if (
-        // uploadData.value.productName &&
-        // uploadData.value.productType &&
-        // uploadData.value.productDes &&
-        // uploadData.value.stateView &&
-        // uploadData.value.productPrice &&
-        // uploadData.value.productState
-        true
+        uploadData.value.productName &&
+        uploadData.value.productType &&
+        uploadData.value.productDes &&
+        uploadData.value.stateView &&
+        uploadData.value.productPrice &&
+        uploadData.value.productState
       ) {
         formData.append("productName", uploadData.value.productName);
         formData.append("productDes", uploadData.value.productDes);
@@ -204,36 +199,10 @@ export default {
         formData.append("productType", typeIndex.value);
         formData.append("productState", "GOOD");
 
-
-        for (let item of formData.entries()) {
+        if (data) {
+          alert("업로드 완료!");
+          location.reload();
         }
-        const lut = CommonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO_TOKEN);
-
-        const api = axios.create({
-          baseURL: CONSTANTS.API_URL,
-          timeout: 1000 * 60 * 3,
-          headers: {
-            "Content-Type": "multipart/form-data",
-            Authorization: lut
-          }
-        });
-
-        // axios.post("http://camp-api.calf.kr/api/product/insertProduct");
-
-        await api
-          .post("product/insertProduct", formData, { headers: { "Content-Type": "multipart/form-data" } })
-          .then(res => {
-            if (res.data.resultCode === 0) {
-            }
-          })
-          .catch(e => {
-            console.error(e);
-          });
-        //
-        // if (data) {
-        //   alert("업로드 완료!");
-        //   // location.reload();
-        // }
       }
     };
 
@@ -255,9 +224,9 @@ export default {
       tabIndex,
       changeIndex,
       uploadPost,
-      uploadData
+      uploadData,
     };
-  }
+  },
 };
 </script>
 
@@ -270,9 +239,11 @@ export default {
       </div>
       <div class="modal-inner-wrap">
         <div class="product">
-          <div class="product-wrap">
+          <div class="product-img-wrap">
             <div v-if="!imgPreview.length > 0" />
-            <img v-else :src="imgPreview[tabIndex]" alt="" />
+            <div v-else class="product-img-upload-after">
+              <img :src="imgPreview[tabIndex]" alt="" />
+            </div>
           </div>
           <div v-if="imgPreview" class="item-preview-list">
             <div v-for="(item, index) in imgPreview" class="item-preview-list-wrap">
@@ -305,19 +276,19 @@ export default {
             <div class="product-option-grade">
               <span class="title">상품 컨디션</span>
               <span @mouseover="handleMouseOver(1)" @mouseleave="handleMouseOut(1)"
-              ><i @click="clickHandler(1)" id="stars1" class="fa-solid fa-star"></i
+                ><i @click="clickHandler(1)" id="stars1" class="fa-solid fa-star"></i
               ></span>
               <span @mouseover="handleMouseOver(2)" @mouseleave="handleMouseOut(2)"
-              ><i @click="clickHandler(2)" id="stars2" class="fa-solid fa-star"></i
+                ><i @click="clickHandler(2)" id="stars2" class="fa-solid fa-star"></i
               ></span>
               <span @mouseover="handleMouseOver(3)" @mouseleave="handleMouseOut(3)"
-              ><i @click="clickHandler(3)" id="stars3" class="fa-solid fa-star"></i
+                ><i @click="clickHandler(3)" id="stars3" class="fa-solid fa-star"></i
               ></span>
               <span @mouseover="handleMouseOver(4)" @mouseleave="handleMouseOut(4)"
-              ><i @click="clickHandler(4)" id="stars4" class="fa-solid fa-star"></i
+                ><i @click="clickHandler(4)" id="stars4" class="fa-solid fa-star"></i
               ></span>
               <span @mouseover="handleMouseOver(5)" @mouseleave="handleMouseOut(5)"
-              ><i @click="clickHandler(5)" id="stars5" class="fa-solid fa-star"></i
+                ><i @click="clickHandler(5)" id="stars5" class="fa-solid fa-star"></i
               ></span>
             </div>
           </div>
