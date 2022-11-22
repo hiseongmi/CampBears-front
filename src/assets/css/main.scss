@@ -958,7 +958,6 @@
     //게시물이미지 내용
     &-ul {
       display: flex;
-      justify-content: center;
       flex-wrap: wrap;
       list-style: none;
       max-width: 799px;
@@ -1247,7 +1246,6 @@
 
     &-ul {
       display: flex;
-      justify-content: center;
       flex-wrap: wrap;
       list-style: none;
       max-width: 1200px;
@@ -1261,7 +1259,7 @@
           position: relative;
           border-radius: 8px;
           box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
-          height: 259px;
+          height: 240px;
 
           //게시판 사진부분
           &-write {
@@ -1272,6 +1270,9 @@
               cursor: pointer;
               object-fit: cover;
             }
+          }
+
+          &:hover {
           }
 
           //게시판 상세 부분
@@ -1300,14 +1301,7 @@
               }
 
               &-briefcase {
-                padding: 5px 5px;
-                flex: 1 0 0;
-
-                span {
-                  i {
-                    font-size: 14px;
-                  }
-                }
+                display: none;
               }
             }
 
@@ -1328,11 +1322,7 @@
                 white-space: nowrap;
               }
 
-              span {
-                i {
-                  font-size: 12px;
-                }
-              }
+
             }
 
             //댓글 개수
