@@ -17,15 +17,19 @@ export default {
   props: {
     clickClose: {
       type: Function,
-      required: true
-    }
+      required: true,
+    },
   },
 
   setup() {
     //로컬스토리지에 저장된 유저정보
     const userData = ref();
     const getData = async () => {
-      userData.value = commonUtil.parseJson(commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO));
+      try {
+        return userData.value = commonUtil.parseJson(commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO));
+      } catch (e) {
+        return e;
+      }
     };
     const goToReport = () => {
       store.commit(STORE_TYPE.popupType, POPUP_TYPE.REPORT);
@@ -36,12 +40,12 @@ export default {
 
     // 해당 유저를 팔로우 하고 있는지, 아닌지
     const followType = ref({
-      STATE: "UNFOLLOW"
+      STATE: "UNFOLLOW",
     });
     const followData = ref({
       followType: "", // 내가 지금 팔로우 할 건지, 아닌지
       targetIdx: "",
-      targetType: "USER"
+      targetType: "USER",
     });
     const followManager = async () => {
       if (followType.value.STATE === "UNFOLLOW") {
@@ -57,12 +61,12 @@ export default {
     //좋아요
     const heartCount = ref(0);
     const heartState = ref({
-      STATE: "DISLIKE"
+      STATE: "DISLIKE",
     });
     const heartData = ref({
       targetIdx: "",
       likeType: "",
-      targetType: "USER"
+      targetType: "USER",
     });
     const doLike = async () => {
       if (heartState.value.STATE === "DISLIKE") {
@@ -85,7 +89,7 @@ export default {
       dateReg: "",
       hashTag: "",
       boardBody: "",
-      userNickName: ""
+      userNickName: "",
     });
 
     const detail = async () => {
@@ -127,7 +131,7 @@ export default {
 
     //게시물 삭제 api
     const deleteData = ref({
-      boardIdx: store.state.boardIdx
+      boardIdx: store.state.boardIdx,
     });
     const deleteContent = async () => {
       const check = confirm("삭제하시겠습니까?");
@@ -181,7 +185,7 @@ export default {
     };
     const commentData = ref({
       boardIdx: store.state.boardIdx,
-      commentBody: ""
+      commentBody: "",
     });
     const upComment = async () => {
       const data = await apiClient("/comment/insertComment", commentData.value);
@@ -194,7 +198,7 @@ export default {
     };
     //댓글 삭제 api
     const deleteCommentData = ref({
-      commentIdx: ""
+      commentIdx: "",
     });
     const putCommentIdx = commentIdx => {
       deleteCommentData.value.commentIdx = commentIdx;
@@ -281,9 +285,9 @@ export default {
       closePopup,
       reportPop,
       getImgUrl,
-      setDateValue
+      setDateValue,
     };
-  }
+  },
 };
 </script>
 <template>

@@ -15,17 +15,21 @@ export default {
   props: {
     clickClose: {
       type: Function,
-      required: true
-    }
+      required: true,
+    },
   },
   setup() {
     const userData = ref();
     const getData = async () => {
-      userData.value = commonUtil.parseJson(commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO));
+      try {
+        return userData.value = commonUtil.parseJson(commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO));
+      } catch (e) {
+        return e;
+      }
     };
     const publicType = {
       All: "ALL",
-      FOLLOW: "FOLLOW"
+      FOLLOW: "FOLLOW",
     };
     const publicIndex = ref();
     const checkValue = v => {
@@ -37,7 +41,7 @@ export default {
 
     const upLoadData = ref({
       boardBody: "",
-      optionList: ["SHOWER", "PARMERCY", "CAFE", "FITTING", "SUBWAY", "MARKET", "STORE", "DRINK", "PARK", "RESTROOM", "STARBUCKS", "MOVIE", "RESTAURANT", "SHUTTLE"]
+      optionList: ["SHOWER", "PARMERCY", "CAFE", "FITTING", "SUBWAY", "MARKET", "STORE", "DRINK", "PARK", "RESTROOM", "STARBUCKS", "MOVIE", "RESTAURANT", "SHUTTLE"],
     });
     const inputHashTag = ref("");
     const hashTagList = ref([]);
@@ -98,7 +102,7 @@ export default {
       const container = document.getElementById("map");
       const options = {
         center: new window.kakao.maps.LatLng(37.71173, 126.88878),
-        level: 5
+        level: 5,
       };
       const map = new window.kakao.maps.Map(container, options);
       // } else {
@@ -171,10 +175,10 @@ export default {
       position,
       uploadSnsBoard,
       handleInput,
-      handleEnterEvent
+      handleEnterEvent,
 
     };
-  }
+  },
 };
 </script>
 <template>

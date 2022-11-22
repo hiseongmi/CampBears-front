@@ -24,7 +24,11 @@ export default {
   setup() {
     const userData = ref();
     const getData = async () => {
-      userData.value = commonUtil.parseJson(commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO));
+      try {
+        return userData.value = commonUtil.parseJson(commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO));
+      } catch (e) {
+        return e;
+      }
     };
 
     const showIndex = ref();
@@ -146,7 +150,7 @@ export default {
     onMounted(() => {
       window.addEventListener("SEARCH", handleSearch); //search 이벤트를 찾아서 handel이벤트로 보냄
       getContent();
-      // getData();
+      getData();
     });
 
     onUnmounted(() => {
