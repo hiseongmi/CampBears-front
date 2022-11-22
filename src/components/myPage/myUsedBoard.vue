@@ -7,15 +7,15 @@ import { CONSTANTS } from "../../constants.js";
 
 export default {
   name: "myUsedBoard",
-  props: { idx: {} },
   components: { customPagination },
-  setup(props) {
-    const idx = ref(props.idx);
+  setup() {
+    const profileInfo = ref({});
     const contentData = ref({});
     const file = ref("");
 
     const getData = async () => {
-      const data = await apiClient("product/getProductList", { userIdx: idx });
+      profileInfo.value = await commonUtil.parseJson(commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO));
+      const data = await apiClient("product/getProductList", profileInfo.value.userIdx);
       if (data) contentData.value = data.data;
     };
 
@@ -43,5 +43,4 @@ export default {
       <img :src="getImgUrl(item.file[0])" alt="" />
     </div>
   </div>
-  <custom-pagination v-model="page" :length="16" />
 </template>

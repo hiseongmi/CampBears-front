@@ -40,5 +40,4 @@ export default {
       <img :src="getImgUrl(item.file[0])" alt="" />
     </div>
   </div>
-  <custom-pagination v-model="page" :length="16" />
 </template>

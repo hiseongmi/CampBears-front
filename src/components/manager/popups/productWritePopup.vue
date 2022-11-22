@@ -199,6 +199,8 @@ export default {
         formData.append("productType", typeIndex.value);
         formData.append("productState", "GOOD");
 
+        const data = await apiClient("product/insertProduct", formData);
+
         if (data) {
           alert("업로드 완료!");
           location.reload();

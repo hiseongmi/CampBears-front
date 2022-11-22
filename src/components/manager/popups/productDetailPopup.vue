@@ -74,18 +74,18 @@ export default {
               </div>
             </div>
             <div class="product-main-menu">
-              <span class="heart"><i class="fa-regular fa-heart"></i></span>
-              <span class="share"><i class="fa-solid fa-share-nodes"></i></span>
+              <span class="heart"><i class="fa-regular fa-heart" /></span>
+              <span class="share"><i class="fa-solid fa-share-nodes" /></span>
             </div>
           </div>
           <div class="product-price">
             <div class="grade">
               <span class="name">상품 컨디션</span>
-              <span><i class="fa-solid fa-star"></i></span>
-              <span><i class="fa-solid fa-star"></i></span>
-              <span><i class="fa-solid fa-star"></i></span>
-              <span><i class="fa-solid fa-star"></i></span>
-              <span><i class="fa-solid fa-star"></i></span>
+              <span><i class="fa-solid fa-star" /></span>
+              <span><i class="fa-solid fa-star" /></span>
+              <span><i class="fa-solid fa-star" /></span>
+              <span><i class="fa-solid fa-star" /></span>
+              <span><i class="fa-solid fa-star" /></span>
             </div>
             <p>35,000원</p>
           </div>
