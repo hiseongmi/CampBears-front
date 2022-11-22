@@ -18,6 +18,7 @@ export default class chatUtil {
     // this.initChat = this.initChat.bind(this);
     this.receiveHandler = this.receiveHandler.bind(this);
     const d = commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO);
+    console.log(d);
     if (d) this.loginUser = JSON.parse(d);
     console.log("loginUSer : ", this.loginUser);
   }

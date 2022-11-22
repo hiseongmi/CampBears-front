@@ -9,7 +9,9 @@ export default {
   name: "chat",
   setup() {
     let chatManager = undefined;
-    const loginUser = JSON.parse(commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO));
+    // const d= commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO);
+    // if(d)
+    // const loginUser = JSON.parse();
     const connetedChatIdx = ref("");
     const showChat = ref(true);
     const userList = ref([]);

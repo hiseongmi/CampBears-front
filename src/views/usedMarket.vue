@@ -12,7 +12,7 @@ export default {
   setup() {
     const tabType = {
       SELL: "sell",
-      BUY: "buy",
+      BUY: "buy"
     }; // 컴포넌트 이름
 
     const tabIndex = ref(tabType.SELL);
@@ -29,9 +29,9 @@ export default {
       tabType,
       tabIndex,
       componentChange,
-      openWrite,
+      openWrite
     };
-  },
+  }
 };
 </script>
 
@@ -63,5 +63,5 @@ export default {
       <buy-component v-else-if="tabIndex === tabType.BUY" />
     </div>
   </div>
-  <chat></chat>
+  <!--  <chat></chat>-->
 </template>
