@@ -92,10 +92,8 @@
 .used-contents-area {
   .used-contents-area-ul {
     display: inline-flex;
-    position: relative;
     flex-wrap: wrap;
-    margin-inline: auto;
-    justify-content: center;
+    margin: 0 auto;
 
     .used-post {
       position: relative;
@@ -108,9 +106,9 @@
 
       &-img-wrap {
         display: flex;
-        //width: 50%;
-        height: auto;
-        margin-bottom: 5px;
+        width: 100%;
+        height: 50%;
+        margin-bottom: 10px;
 
         img {
           max-width: 100%;
@@ -122,6 +120,8 @@
 
       &-info {
         padding: 5px;
+        width: 100%;
+        height: 50%;
 
         &-title {
           font-size: 18px;
@@ -167,6 +167,41 @@
               margin-left: 3px;
             }
           }
+        }
+      }
+    }
+  }
+}
+
+@include tb() {
+  .used-post {
+    //width: ;
+  }
+}
+
+@include mb() {
+  .used-market {
+    .used-banner {
+      width: 90%;
+      margin: 0 auto;
+    }
+  }
+  .used-contents-area {
+    .used-contents-area-ul {
+      display: flex;
+      width: 90%;
+      margin: 0 auto;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      .used-post {
+        margin: 5px auto;
+        max-width: calc(50% - 10px);
+
+        .used-post-img-wrap {
+        }
+
+        .used-post-info {
         }
       }
     }
