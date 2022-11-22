@@ -23,7 +23,13 @@ export default {
     });
 
     const getImgUrl = (file) => {
-      return commonUtil.getImgUrl(file.fileName);
+      try {
+        if (file) {
+          return commonUtil.getImgUrl(file.fileName);
+        }
+      } catch (e) {
+        return "./assets/image/camping.png";
+      }
     };
 
     return {

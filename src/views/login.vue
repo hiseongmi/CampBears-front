@@ -15,7 +15,7 @@ export default {
   components: {
     customInput,
     customButton,
-    loginNaver
+    loginNaver,
   },
   setup() {
 
@@ -53,7 +53,7 @@ export default {
           common.setLocalStorage(CONSTANTS.KEY_LIST.USER_INFO, data.data);
           common.setLocalStorage(CONSTANTS.KEY_LIST.USER_INFO_TOKEN, data.data.token);
           store.commit(STORE_TYPE.loginUserIdx, data.data.userIdx);
-          localStorage.setItem("userData", JSON.stringify(data.data));
+          // localStorage.setItem("userData", JSON.stringify(data.data));
         }
         await router.push("/");
         location.reload();
@@ -88,7 +88,6 @@ export default {
 
     onMounted(() => {
       window.addEventListener("keydown", handleEnter);
-      test();
     });
 
     onUnmounted(() => {
@@ -103,9 +102,9 @@ export default {
       doJoin,
       clickJoin,
       goToX,
-      typeSearch
+      typeSearch,
     };
-  }
+  },
 };
 </script>
 <template>

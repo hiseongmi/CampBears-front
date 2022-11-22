@@ -15,8 +15,8 @@ export default {
   props: {
     clickClose: {
       type: Function,
-      required: true
-    }
+      required: true,
+    },
   },
   setup() {
     const userData = ref();
@@ -25,7 +25,7 @@ export default {
     };
     const publicType = {
       All: "ALL",
-      FOLLOW: "FOLLOW"
+      FOLLOW: "FOLLOW",
     };
     const publicIndex = ref();
     const checkValue = v => {
@@ -37,7 +37,7 @@ export default {
 
     const upLoadData = ref({
       boardBody: "",
-      optionList: ["SHOWER", "PARMERCY", "CAFE", "FITTING", "SUBWAY", "MARKET", "STORE", "DRINK", "PARK", "RESTROOM", "STARBUCKS", "MOVIE", "RESTAURANT", "SHUTTLE"]
+      optionList: ["SHOWER", "PARMERCY", "CAFE", "FITTING", "SUBWAY", "MARKET", "STORE", "DRINK", "PARK", "RESTROOM", "STARBUCKS", "MOVIE", "RESTAURANT", "SHUTTLE"],
     });
     const inputHashTag = ref("");
     const hashTagList = ref([]);
@@ -60,13 +60,26 @@ export default {
       }
     };
     //이미지 업로드
-    const SNSImgPreview = ref();
+    const SNSImgPreview = ref([]);
     let SNSFormData = new FormData();
     const upFileChange = (e) => {
-      SNSImgPreview.value = URL.createObjectURL(e.target.files[0]); //blob 객체를 가상의 URL을 부여하여 접근할수있게함
-      SNSFormData.append("file", e.target.files[0]);
-      // SNSFormData.append("optionList", upLoadData.value.optionList);
-      // SNSFormData.append("hashTag", hashTagList.value);
+      let SNSFileList = e.target.files;
+      console.log(SNSFileList);
+      if (SNSFileList.length < 1) {
+        window.alert("사진을 한 장 이상 넣어주세요.");
+      } else if (SNSFileList.length < 11) {
+        let i;
+        for (i = 0; i < SNSFileList.length; i++) {
+          SNSImgPreview.value.push(URL.createObjectURL(SNSFileList[i])); //blob 객체를 가상의 URL을 부여하여 접근할수있게함
+          SNSFormData.append("file", SNSFileList[i]);
+        }
+      } else {
+        window.alert("사진은 열 장까지.");
+      }
+    };
+    const tabIndex = ref(0);
+    const changeImg = index => {
+      tabIndex.value = index;
     };
 
     //태그 지우기
@@ -85,7 +98,7 @@ export default {
       const container = document.getElementById("map");
       const options = {
         center: new window.kakao.maps.LatLng(37.71173, 126.88878),
-        level: 5
+        level: 5,
       };
       const map = new window.kakao.maps.Map(container, options);
       // } else {
@@ -146,7 +159,9 @@ export default {
       isPopup,
       inputHashTag,
       hashTagList,
+      tabIndex,
       // imgPreview,
+      changeImg,
       getImgUrl,
       getData,
       upFileChange,
@@ -156,9 +171,10 @@ export default {
       position,
       uploadSnsBoard,
       handleInput,
-      handleEnterEvent
+      handleEnterEvent,
+
     };
-  }
+  },
 };
 </script>
 <template>
@@ -175,18 +191,18 @@ export default {
         <div class="content">
           <div class="content-file">
             <div class="content-file-img">
-              <img class="content-file-img-no" v-if="!SNSImgPreview" :src="upLoadData.file" alt="" />
-              <img class="content-file-img-yes" v-else :src="SNSImgPreview" alt="" />
+              <div v-if="!SNSImgPreview.length > 0" />
+              <div v-else class="content-file-img-wrap">
+                <img :src="SNSImgPreview[tabIndex]" alt="" />
+              </div>
+            </div>
+            <div class="content-file-up" v-if="SNSImgPreview">
+              <div v-for=" (item , index) in SNSImgPreview" class="content-file-up-preview">
+                <img @click="changeImg(index)" :src="item" alt="" />
+              </div>
             </div>
             <custom-input-file-button @change="upFileChange" />
           </div>
-          <!--          <div class="content-profile">-->
-          <!--                        <div class="content-profile-wrap">-->
-          <!--                          <img src="/assets/image/IU.png">-->
-          <!--                          <span>{{ userData.userNickName }}</span>-->
-          <!--                        </div>-->
-
-          <!--          </div>-->
           <div class="content-content">
             <custom-input :custom-class="'content'" :placeholder="'문구 입력...'"
                           @update:value="upLoadData.boardBody = $event" />

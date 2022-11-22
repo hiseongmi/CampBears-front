@@ -290,26 +290,26 @@ export default {
 <template>
   <div class="modal-detail">
     <div class="modal-detail-content">
-      <div>
-        <div class="container" @click="RerOption">
-          <i class="fa-solid fa-ellipsis-vertical"></i>
-        </div>
-        <div class="myPop" v-if="MyRerAction">
-          <ul>
-            <li @click="goToUpdate(detailData)">수정</li>
-            <li @click="deleteContent">삭제</li>
-            <li @click="reportPop">신고 <i class="fa-solid fa-circle-exclamation"></i></li>
-          </ul>
-        </div>
-        <div class="pop" v-if="RerAction">
-          <ul>
-            <li @click="reportPop">신고 <i class="fa-solid fa-circle-exclamation"></i></li>
-          </ul>
-        </div>
-      </div>
       <div class="content">
+        <div>
+          <div class="container" @click="RerOption">
+            <i class="fa-solid fa-ellipsis-vertical"></i>
+          </div>
+          <div class="myPop" v-if="MyRerAction">
+            <ul>
+              <li @click="goToUpdate(detailData)">수정</li>
+              <li @click="deleteContent">삭제</li>
+              <li @click="reportPop">신고 <i class="fa-solid fa-circle-exclamation"></i></li>
+            </ul>
+          </div>
+          <div class="pop" v-if="RerAction">
+            <ul>
+              <li @click="reportPop">신고 <i class="fa-solid fa-circle-exclamation"></i></li>
+            </ul>
+          </div>
+        </div>
         <div class="content-close" @click="closePopup">
-          <span>X</span>
+          <span><i class="fa-solid fa-xmark"></i></span>
         </div>
         <div class="content-image">
           <img v-for="item in detailData.file" :src="getImgUrl(item)" alt="게사" />

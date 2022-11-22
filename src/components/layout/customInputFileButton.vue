@@ -19,7 +19,7 @@ export default {
 <template>
   <div class="custom-input-file-button">
     <label>
-      <a>업로드</a>
+      <a><i class="fa-solid fa-plus"></i></a>
       <input type="file" accept="image/*" multiple="multiple" />
     </label>
   </div>

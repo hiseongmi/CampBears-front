@@ -63,6 +63,19 @@ export default {
       { key: "fall", value: "가을" },
       { key: "winter", value: "겨울" },
     ];
+    const selectNumberData = [
+      { key: "NUM", value: "인원" },
+      { key: "1", value: "1" },
+      { key: "2", value: "2" },
+      { key: "3", value: "4" },
+      { key: "4", value: "5" },
+      { key: "5", value: "5" },
+      { key: "6", value: "6" },
+      { key: "7", value: "7" },
+      { key: "8", value: "8" },
+      { key: "9", value: "9" },
+      { key: "10", value: "10" },
+    ];
     const selectComfortsData = [
       { key: "COMFORTS", value: "편의시설" },
       { key: "MART", value: "편의점" },
@@ -117,7 +130,7 @@ export default {
     onMounted(() => {
       window.addEventListener("SEARCH", handleSearch); //search 이벤트를 찾아서 handel이벤트로 보냄
       getContent();
-      getData();
+      // getData();
     });
 
     onUnmounted(() => {
@@ -134,6 +147,7 @@ export default {
       selectSeasonData,
       selectComfortsData,
       postImage,
+      selectNumberData,
       selectedUpdateValue,
       openWrite,
       openDetail,
@@ -166,19 +180,11 @@ export default {
     <div class="news-menu-select">
       <ul>
         <li>
-          <customSelect @click="getContent" @update:value="selectedUpdateValue" :data="selectSortData"></customSelect>
+          <customSelect :custom-class="'selectBox'" @click="getContent" @update:value="selectedUpdateValue"
+                        :data="selectSortData"></customSelect>
         </li>
         <li>
-          <select name="count" data-title="인원">
-            <option value="0">인원</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="3">4</option>
-            <option value="3">5</option>
-            <option value="3">6</option>
-            <option value="3">7</option>
-          </select>
+          <custom-select @update:value="selectedUpdateValue" :data="selectNumberData"></custom-select>
         </li>
         <li>
           <customSelect @update:value="selectedUpdateValue" :data="selectSeasonData"></customSelect>

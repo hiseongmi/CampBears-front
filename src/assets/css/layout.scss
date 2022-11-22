@@ -97,10 +97,11 @@
       display: flex;
       min-width: 100px;
       min-height: 30px;
-      border: 1px solid #000000;
+      border: 1px solid #ff9b25;
       border-radius: 4px;
 
       a {
+        color: #ff9b25;
         text-align: center;
         margin: auto;
       }
@@ -112,7 +113,7 @@
 
     :hover {
       cursor: pointer;
-      background-color: #2f2e2c;
+      background-color: #ff9b25;
 
       a {
         cursor: pointer;
