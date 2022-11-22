@@ -3,8 +3,8 @@ import CustomLoading from "../components/layout/customLoading.vue";
 import customInput from "../components/layout/customInput.vue";
 import customButton from "../components/layout/customButton.vue";
 // import signupPage from "../components/login/signupPage.vue";
-import {onMounted, ref, watch} from "vue";
-import {apiClient} from "../utils/axios.js";
+import { onMounted, ref, watch } from "vue";
+import { apiClient } from "../utils/axios.js";
 import router from "../router/index.js";
 // import {createRouter, createWebHashHistory} from "vue-router/dist/vue-router.js";
 // import re from "../../dist/assets/infoPage.a89dbcb4";
@@ -14,7 +14,7 @@ export default {
   components: {
     CustomLoading,
     customInput,
-    customButton,
+    customButton
   },
   setup() {
     const joinUserData = ref({
@@ -29,11 +29,11 @@ export default {
       userNickName: "",
       stateTerms: "Y",
       dateTerms: new Date(),
-      stateMarketing: "Y",
+      stateMarketing: "Y"
     });
 
     const typeSearchData = ref({
-      type: "USER_TYPE",
+      type: "USER_TYPE"
     });
     const typeData = ref();
     const typeSearch = async () => {
@@ -88,7 +88,7 @@ export default {
 
         return false;
       } else {
-        isShow.value = !isShow.value
+        isShow.value = !isShow.value;
       }
 
 
@@ -97,15 +97,15 @@ export default {
     };
     const secForm = () => {
 
-      joinUser()
+      joinUser();
       // console.log("회원가입은 확인")
-      goToX('/login')
+      goToX("/login");
       // console.log("회원가입후 로그인페이지 자동이동 확인")
-    }
+    };
     const back = () => {
 
-      isShow.value = !isShow.value
-    }
+      isShow.value = !isShow.value;
+    };
     // 전화번호 자동 하이픈
     // const autoHyphen = () => {
     //   if (joinUserData.value.userPhone === true) {
@@ -122,7 +122,7 @@ export default {
       //console.log(data)
 
       //
-      contentData.value = data.data
+      contentData.value = data.data;
       // search 이벤트를 날림
     };
 
@@ -146,18 +146,18 @@ export default {
       secForm,
       isShow,
       back,
-      goToX,
+      goToX
     };
-  },
+  }
 };
 </script>
 <template>
   <div class="signup">
     <div class="signup-img-fir">
-      <img src="/assets/image/login-camp1.png" alt=""/>
+      <img src="/assets/image/login-camp1.webp" alt="" />
     </div>
     <div class="signup-img-sec">
-      <img src="/assets/image/login-camp2.png" alt=""/>
+      <img src="/assets/image/login-camp2.webp" alt="" />
     </div>
 
     <div v-if="isShow" class="signup-form">

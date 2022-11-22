@@ -54,9 +54,9 @@ export default {
       modalControl,
       isModal,
       file,
-      getImgUrl,
+      getImgUrl
     };
-  },
+  }
 };
 </script>
 
@@ -74,7 +74,7 @@ export default {
           <div class="used-post-info-coast">{{ item.productPrice.toLocaleString() }}</div>
           <div class="used-post-info-footer">
             <div class="used-post-info-footer-date">
-              <img src="/assets/image/icon/time.png" alt="" />
+              <img src="/assets/image/icon/time.webp" alt="" />
               <a>{{ item.dateReg.slice(5, 10) }}</a>
             </div>
           </div>

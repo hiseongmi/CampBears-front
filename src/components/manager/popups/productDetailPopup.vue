@@ -9,7 +9,7 @@ export default {
   components: { CustomButton },
   setup() {
     const detail = ref({
-      productIdx: "",
+      productIdx: ""
     });
     const getDetail = async () => {
       const data = await apiClient("product/getProductDetail", detail.value.productIdx);
@@ -26,9 +26,9 @@ export default {
 
     return {
       detail,
-      getImgUrl,
+      getImgUrl
     };
-  },
+  }
 };
 </script>
 <template>
@@ -37,12 +37,12 @@ export default {
       <div class="modal-detail-content">
         <div class="product">
           <div class="product-image">
-            <img src="/assets/image/mainpageslider3.png" alt="상품 사진" />
+            <img src="/assets/image/mainpageslider3.webp" alt="상품 사진" />
             <div class="product-image-subImg">
               <div class="product-image-subImg-list">
-                <img class="product-image-subImg-list-pick" src="/assets/image/mainpageslider3.png" alt="상품1 사진" />
-                <img src="/assets/image/mainpageslider1.png" alt="상품2 사진" />
-                <img src="/assets/image/mainpageslider2.png" alt="상품3 사진" />
+                <img class="product-image-subImg-list-pick" src="/assets/image/mainpageslider3.webp" alt="상품1 사진" />
+                <img src="/assets/image/mainpageslider1.webp" alt="상품2 사진" />
+                <img src="/assets/image/mainpageslider2.webp" alt="상품3 사진" />
               </div>
             </div>
             <span class="product-image-right">
@@ -54,7 +54,7 @@ export default {
           </div>
           <div class="product-wrap">
             <div class="product-wrap-profile">
-              <img src="/assets/image/IU.png" alt="프사" />
+              <img src="/assets/image/IU.webp" alt="프사" />
               <div class="product-wrap-profile-info">
                 <span>dlwlrma</span>
               </div>

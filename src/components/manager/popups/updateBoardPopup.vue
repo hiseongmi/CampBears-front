@@ -111,7 +111,7 @@ export default {
         </div>
         <div class="content-profile">
           <!--          <div class="content-profile-wrap">-->
-          <!--            <img src="/assets/image/IU.png" />-->
+          <!--            <img src="/assets/image/IU.webp" />-->
           <!--            <span>dlwlrma</span>-->
           <!--          </div>-->
         </div>

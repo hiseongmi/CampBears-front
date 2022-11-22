@@ -8,12 +8,12 @@ export default {
   props: {
     name: {
       type: String,
-      required: true,
+      required: true
     },
     img: {
       type: Array,
-      required: true,
-    },
+      required: true
+    }
   },
   setup(props) {
     const userName = ref(props.name);
@@ -28,16 +28,16 @@ export default {
           return commonUtil.getImgUrl(file.fileName);
         }
       } catch (e) {
-        return "./assets/image/camping.png";
+        return "./assets/image/camping.webp";
       }
     };
 
     return {
       userName,
       userProfileImg,
-      getImgUrl,
+      getImgUrl
     };
-  },
+  }
 };
 </script>
 <template>

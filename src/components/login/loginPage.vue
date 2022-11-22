@@ -62,7 +62,7 @@ export default {
   <!--  <p class="tip"></p>-->
   <div class="cont">
     <form action="" method="post" class="login-main">
-      <!--      <img src="/public/assets/image/login-background.png" alt="">-->
+      <!--      <img src="/public/assets/image/login-background.webp" alt="">-->
       <div class="login-form">
         <div>img</div>
         <h2>Bears</h2>
@@ -85,7 +85,7 @@ export default {
       </div>
       <div class="sns-login">SNS 계정으로 간편 로그인/회원가입</div>
       <div class="sns-img">
-        <a href=""><img src="/assets/image/face.png" alt="페이스북"></a>
+        <a href=""><img src="/assets/image/face.webp" alt="페이스북"></a>
       </div>
     </form>
   </div>

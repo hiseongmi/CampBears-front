@@ -12,7 +12,7 @@ export default {
   components: {
     CustomInputFileButton,
     customButton,
-    customInput,
+    customInput
   },
   setup() {
     const profileInfo = ref({
@@ -22,13 +22,13 @@ export default {
       userNickName: "",
       userDescription: "",
       userPassword: "",
-      userPhone: "",
+      userPhone: ""
     }); // 소개에 띄워줄 내용
 
     const passwordSet = ref({
       nowPassword: "",
       newPassword: "",
-      newPasswordCheck: "",
+      newPasswordCheck: ""
     });
 
     const getData = async () => {
@@ -95,9 +95,9 @@ export default {
       backgroundImgUpload,
       profilePreview,
       backgroundPreview,
-      passwordSet,
+      passwordSet
     };
-  },
+  }
 };
 </script>
 
@@ -164,7 +164,7 @@ export default {
       </div>
     </div>
     <custom-button :class="'save'" :placeholder="'저장'" :onClick="updateProfile">
-      <img src="/assets/image/icon/pen.png" alt="" />
+      <img src="/assets/image/icon/pen.webp" alt="" />
     </custom-button>
   </div>
 </template>

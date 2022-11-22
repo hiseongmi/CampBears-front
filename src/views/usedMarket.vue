@@ -54,7 +54,7 @@ export default {
     </div>
     <div class="used-banner">
       <div class="used-banner-popup" @click="">
-        <img src="/assets/image/icon/dropMenu.png" alt="" />
+        <img src="/assets/image/icon/dropMenu.webp" alt="" />
       </div>
       <custom-button :placeholder="'글쓰기'" @click="openWrite" />
     </div>
