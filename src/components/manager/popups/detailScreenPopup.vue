@@ -165,16 +165,22 @@ export default {
 
     const MySelectedComment = ref("");
     const selectedComment = ref("");
-
     //댓글 수정 신고 삭제 옵션
     const RerCommentOption = comment => {
+      //게시물 주인이거나 댓글 주인
+      //댓글 주인이 아니면
       if (detailData.value.userIdx === userData.value.userIdx || userData.value.userIdx === comment.userIdx) {
         MySelectedComment.value = comment.commentIdx; //특정만 나와
-      } else if (detailData.value.userIdx === userData.value.userIdx) {
+        selectedComment.value = "";
+      } else if (userData.value.userIdx !== comment.userIdx) {
         selectedComment.value = comment.commentIdx;
+        MySelectedComment.value = "";
       }
     };
-
+    const RerCancel = () => {
+      MySelectedComment.value = "";
+      selectedComment.value = "";
+    };
 
     //댓글 추가 api
     const handleEnterEvent = (e) => {
@@ -240,6 +246,7 @@ export default {
       }
     };
     onMounted(() => {
+      getData();
       detail();
     });
 
@@ -266,6 +273,7 @@ export default {
       selectedComment,
       MySelectedComment,
       postImage,
+      RerCancel,
       Follow,
       getData,
       handleEnterEvent,
@@ -387,13 +395,13 @@ export default {
               <ul>
                 <li @click="putCommentIdx(item.commentIdx)">삭제</li>
                 <li @click="reportPop">신고</li>
-                <li>취소</li>
+                <li @click="RerCancel">취소</li>
               </ul>
             </div>
             <div class="commentPop" v-if="item.commentIdx === selectedComment">
               <ul>
                 <li @click="reportPop">신고</li>
-                <li>취소</li>
+                <li @click="RerCancel">취소</li>
               </ul>
             </div>
           </div>

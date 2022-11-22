@@ -247,7 +247,7 @@ export default {
           </div>
           <div class="contents" @click="openDetail(item.boardIdx)">
             <span class="contents-writing">{{ item.boardBody }}</span>
-            <span><i class="fa-solid fa-chevron-down"></i></span>
+
           </div>
           <div class="comments">
             <span>댓글 {{ item.commentCount }}</span>
