@@ -7,60 +7,61 @@ import chat from "../components/chat.vue";
 import store, { POPUP_TYPE, STORE_TYPE } from "../store/index.js";
 
 export default {
-	name: "usedMarket",
-	components: { sellComponent, buyComponent, CustomButton, chat },
-	setup() {
-		const tabType = {
-			SELL: "sell",
-			BUY: "buy",
-		}; // 컴포넌트 이름
+  name: "usedMarket",
+  components: { sellComponent, buyComponent, CustomButton, chat },
+  setup() {
+    const tabType = {
+      SELL: "sell",
+      BUY: "buy",
+    }; // 컴포넌트 이름
 
-		const tabIndex = ref(tabType.SELL);
+    const tabIndex = ref(tabType.SELL);
 
-		const componentChange = v => {
-			tabIndex.value = v;
-		};
-		
-		const openWrite = () => {
-			store.commit(STORE_TYPE.popupType, POPUP_TYPE.PRODUCT_WRITE);
-		}; //글쓰기 팝업열기
+    const componentChange = v => {
+      tabIndex.value = v;
+    };
 
-		return {
-			tabType,
-			tabIndex,
-			componentChange,
-			openWrite,
-		};
-	},
+    const openWrite = () => {
+      store.commit(STORE_TYPE.popupType, POPUP_TYPE.PRODUCT_WRITE);
+    }; //글쓰기 팝업열기
+
+    return {
+      tabType,
+      tabIndex,
+      componentChange,
+      openWrite,
+    };
+  },
 };
 </script>
 
 <template>
-	<div class="used-market">
-		<div class="used-title">
-			<span>USED MARKET</span>
-			<div class="used-component-change">
-				<custom-button
-					:placeholder="'팝니다'"
-					:onClick="() => componentChange(tabType.SELL)"
-					:custom-class="tabIndex === tabType.SELL ? 'active' : ''"
-				/>
-				<custom-button
-					:placeholder="'삽니다'"
-					:onClick="() => componentChange(tabType.BUY)"
-					:custom-class="tabIndex === tabType.BUY ? 'active' : ''"
-				/>
-			</div>
-		</div>
-		<div class="used-banner">
-			<div class="used-banner-popup" @click="">
-				<img src="/assets/image/icon/dropMenu.png" alt="" />
-			</div>
-			<custom-button :placeholder="'글쓰기'" @click="openWrite" />
-		</div>
-		<div class="used-contents-area">
-			<sell-component v-if="tabIndex === tabType.SELL" />
-			<buy-component v-else-if="tabIndex === tabType.BUY" />
-		</div>
-	</div>
+  <div class="used-market">
+    <div class="used-title">
+      <span>USED MARKET</span>
+      <div class="used-component-change">
+        <custom-button
+          :placeholder="'팝니다'"
+          :onClick="() => componentChange(tabType.SELL)"
+          :custom-class="tabIndex === tabType.SELL ? 'active' : ''"
+        />
+        <custom-button
+          :placeholder="'삽니다'"
+          :onClick="() => componentChange(tabType.BUY)"
+          :custom-class="tabIndex === tabType.BUY ? 'active' : ''"
+        />
+      </div>
+    </div>
+    <div class="used-banner">
+      <div class="used-banner-popup" @click="">
+        <img src="/assets/image/icon/dropMenu.png" alt="" />
+      </div>
+      <custom-button :placeholder="'글쓰기'" @click="openWrite" />
+    </div>
+    <div class="used-contents-area">
+      <sell-component v-if="tabIndex === tabType.SELL" />
+      <buy-component v-else-if="tabIndex === tabType.BUY" />
+    </div>
+  </div>
+  <chat></chat>
 </template>
