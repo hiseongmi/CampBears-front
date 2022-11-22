@@ -629,21 +629,13 @@
             padding: 0 10px;
 
             select {
-              border-color: #2f2e2c;
               height: 27px;
               border-radius: 4px;
               cursor: pointer;
               font-size: 15px;
               width: auto;
-            }
-
-            .custom-select {
               color: #ff9c62;
               border-color: #ff9c62;
-
-              option:hover {
-                cursor: pointer;
-              }
             }
           }
         }
@@ -743,6 +735,7 @@
               height: 40px;
               color: #4c4c4c;
               display: flex;
+              width: 100%;
 
               &-writing {
                 padding: 4px 0;
@@ -923,12 +916,13 @@
             padding: 0 10px;
 
             select {
-              border-color: #2f2e2c;
               height: 27px;
               border-radius: 4px;
               cursor: pointer;
               font-size: 15px;
               width: auto;
+              color: #ff9c62;
+              border-color: #ff9c62;
 
               option:hover {
                 background-color: #ec671a;
@@ -1033,7 +1027,7 @@
               height: 40px;
               color: #4c4c4c;
               display: flex;
-              width: 241px;
+              width: 100%;
 
               &-writing {
                 padding: 4px 0;

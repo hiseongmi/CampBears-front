@@ -10,6 +10,7 @@ import LoginNaver from "../snslogin/loginNaver.vue";
 import customButton from "../layout/customButton.vue";
 import commonUtil from "../../utils/common-util.js";
 import { CONSTANTS } from "../../constants.js";
+import router from "../../router/index.js";
 
 export default {
   name: "snsContentPage",
@@ -88,16 +89,25 @@ export default {
       { key: "PARKING", value: "주차가능" },
     ];
     const openWrite = () => {
-      store.commit(STORE_TYPE.popupType, POPUP_TYPE.WRITE_BOARD);
+      if (userData.value) {
+        store.commit(STORE_TYPE.popupType, POPUP_TYPE.WRITE_BOARD);
+      } else {
+        window.alert("로그인 하세요.");
+        router.push("/login");
+      }
     }; //글쓰기 팝업열기
 
     const openDetail = boardIdx => {
-      store.commit(STORE_TYPE.popupType, POPUP_TYPE.DETAIL_SCREEN);
-      store.commit(STORE_TYPE.boardIdx, boardIdx); //<-item.boardIdx 값을 넣었다
+      if (userData.value) {
+        store.commit(STORE_TYPE.popupType, POPUP_TYPE.DETAIL_SCREEN);
+        store.commit(STORE_TYPE.boardIdx, boardIdx); //<-item.boardIdx 값을 넣었다
+      } else {
+        window.alert("로그인 하세요.");
+        router.push("/login");
+      }
     }; //게시물 상세 페이지 팝업 열기
 
     const handleSearch = e => {
-      console.log(e);
       //이벤트를 받음
       if (e.detail !== "") {
         keyword = e.detail;
@@ -124,7 +134,13 @@ export default {
       }
     };
     const getImgUrl = (file) => {
-      return commonUtil.getImgUrl(file.fileName);
+      try {
+        if (file) {
+          return commonUtil.getImgUrl(file.fileName);
+        }
+      } catch (e) {
+        return "./assets/image/camping.png";
+      }
     };
 
     onMounted(() => {
@@ -208,7 +224,7 @@ export default {
       </div>
       <div class="news-ul-li-wrap">
         <div class="news-ul-li-wrap-write" @click="openDetail(item.boardIdx)">
-          <img v-for="i in item.file" :src="getImgUrl(i)" alt="Posts" />
+          <img :src="getImgUrl(item.file[0])" alt="Posts" />
         </div>
         <div class="detail">
           <div class="detail-wrap">

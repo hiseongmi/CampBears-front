@@ -236,7 +236,6 @@ export default {
       }
     };
     onMounted(() => {
-      getData();
       detail();
     });
 

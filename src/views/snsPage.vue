@@ -24,7 +24,7 @@ export default {
         inquiryData.value.hashKeyWord = inquiryData.value.keyword;
       }
       // dispatchEvent(new CustomEvent("HASHSEARCH", { detail: inquiryData.value.hashKeyWord })); //search 이벤트를 날림
-      console.log(inquiryData.value);
+      // console.log(inquiryData.value);
     };
 
 
