@@ -1,7 +1,8 @@
 <script>
-import { computed, ref, watch } from "vue";
+import { computed, ref, toRef, watch } from "vue";
 import { apiClient } from "../../utils/axios.js";
 import commonUtil from "../../utils/common-util.js";
+import router from "../../router/index.js";
 
 export default {
   name: "profile",
@@ -13,6 +14,9 @@ export default {
     img: {
       type: Array,
       required: true
+    },
+    userInfo: {
+      required: false
     }
   },
   setup(props) {
@@ -21,6 +25,9 @@ export default {
       const v = props.img.filter(v => v.fileType === "USER_PROFILE");
       return v[0];
     });
+    const userInfo = ref(
+      props.userInfo
+    );
 
     const getImgUrl = (file) => {
       try {
@@ -32,10 +39,15 @@ export default {
       }
     };
 
+    const goTargetFeed = () => {
+      router.push(`/userFeed/${userInfo.value.userIdx}`);
+    };
+
     return {
       userName,
       userProfileImg,
-      getImgUrl
+      getImgUrl, goTargetFeed
+
     };
   }
 };
@@ -43,7 +55,7 @@ export default {
 <template>
   <div class="profile">
     <div class="profile-wrap">
-      <img :src="getImgUrl(userProfileImg)" alt="프사" />
+      <img :src="getImgUrl(userProfileImg)" alt="프사" @click="goTargetFeed()" />
       <div class="profile-wrap-data">
         <span>{{ userName }}</span>
         <span class="middle-dot">&#183;</span>

@@ -15,7 +15,7 @@ export default {
     FooterPage,
     HeaderPage,
     customLoading,
-    popupManager,
+    popupManager
   },
   setup() {
     const store = getStore();
@@ -39,12 +39,11 @@ export default {
       () => store.state.popupType,
       () => {
         isPopup.value = store.state.popupType;
-      },
+      }
     );
 
     onMounted(() => {
       addEventListener(CONSTANTS.KEY_LIST.EVENT_LIST.LOADING, eventHandler);
-      console.warn("start");
       // getAPI();
     });
 
@@ -55,9 +54,9 @@ export default {
     return {
       isLoading,
       isPopup,
-      POPUP_TYPE,
+      POPUP_TYPE
     };
-  },
+  }
 };
 </script>
 

@@ -52,6 +52,11 @@ const routes = [
     name: "campingInfo",
     component: () => import("../views/campingInfo.vue"),
   },
+  {
+    path: "/userFeed/:userIdx",
+    name: "userFeed",
+    component: () => import("../views/userFeed.vue"),
+  },
 ];
 
 const router = createRouter({
