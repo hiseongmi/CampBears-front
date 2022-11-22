@@ -1,372 +1,198 @@
-@media (min-width: 1311px) {
-  //로그인
 
-  .login {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 64px 0 64px 0;
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 64px 0 64px 0;
 
-    .login-area {
-      margin-bottom: 32px;
-      width: 100%;
-      height: 443px;
-      text-align: center;
-      background-image: url("../assets/images/login/login_bg.webp");
+  .login-area {
+    margin-bottom: 32px;
+    width: 100%;
+    height: 443px;
+    text-align: center;
+    background-size: 100% 100%;
+    background-image: url("../assets/images/login/login_bg.webp");
 
-      .logo-area {
-        padding-top: 56px;
-        margin-bottom: 44px;
+    .logo-area {
+      padding-top: 56px;
+      margin-bottom: 44px;
 
-        img {
-          width: 41px;
-          height: 41px;
-          margin-bottom: 23px;
-        }
-
-        h1 {
-          font-size: 24px;
-          color: $text-color;
-          margin: 0;
-        }
+      img {
+        width: 41px;
+        height: 41px;
+        margin-bottom: 23px;
       }
 
-      .form {
+      h1 {
+        font-size: 24px;
+        color: $text-color;
+        margin: 0;
+      }
+    }
+
+    .form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .custom-input {
+        width: 300px;
+      }
+
+      .btn-area {
         display: flex;
-        flex-direction: column;
-        align-items: center;
+        margin-top: 20px;
 
-        .custom-input {
-          width: 300px;
-        }
+        .join {
+          background-color: $primary-color;
+          border: 2px solid $primary-color;
+          margin-left: 20px;
 
-        .btn-area {
-          display: flex;
-          margin-top: 20px;
-
-          .join {
-            background-color: $primary-color;
-            border: 2px solid $primary-color;
-            margin-left: 20px;
-
-            a {
-              color: white;
-              margin: 0;
-            }
+          a {
+            color: white;
+            margin: 0;
           }
-        }
-      }
-
-      > p {
-        margin-top: 16px;
-        font-size: 12px;
-        color: $gray;
-        background-repeat: round;
-
-        &:hover {
-          cursor: pointer;
         }
       }
     }
 
-    .join-btn {
+    > p {
+      margin-top: 16px;
+      font-size: 12px;
       color: $gray;
+      background-repeat: round;
 
       &:hover {
         cursor: pointer;
       }
-
     }
   }
 
-  //회원가입
+  .join-btn {
+    color: $gray;
 
-  .signup {
-
-    padding: 100px 0 100px 0;
-    text-align: center;
-
-    .signup-img-fir {
-      position: relative;
-      display: inline-block;
-      top: 179px;
-      left: 231px;
-
-      img {
-        position: relative;
-        width: 543px;
-
-      }
+    &:hover {
+      cursor: pointer;
     }
 
-    .signup-img-sec {
-      position: relative;
-      display: inline-block;
-      top: -66px;
-      left: -312px;
-
-      img {
-        position: relative;
-        width: 346px;
-      }
-    }
-
-    .signup-form {
-      display: inline-block;
-      position: relative;
-      left: -136px;
-      top: -27px;
-      background: rgba(238, 238, 238, 0.8);
-      width: 400px;
-      height: 513px;
-      text-align: -webkit-center;
-
-      .custom-button {
-        background-color: $primary-color;
-        border-color: $primary-color;
-        position: relative;
-        top: 148px;
-        max-width: 515px;
-        width: 275px;
-
-        a {
-          color: white;
-        }
-
-      }
-
-      span {
-        font-size: 30px;
-        color: $primary-color;
-        top: 55px;
-        position: relative;
-      }
-
-      .custom-input {
-        display: block;
-        text-align: center;
-        top: 102px;
-        position: relative;
-      }
-    }
-
-    .signup-form-sec {
-      display: inline-block;
-      position: relative;
-      left: -136px;
-      top: -86px;
-      background: rgba(238, 238, 238, 0.8);
-      width: 400px;
-      height: 513px;
-      text-align: -webkit-center;
-
-      .custom-button {
-        background-color: $primary-color;
-        border-color: $primary-color;
-        position: relative;
-        top: 148px;
-        max-width: 515px;
-        width: 275px;
-
-        a {
-          color: white;
-        }
-      }
-
-      span {
-        font-size: 30px;
-        color: $primary-color;
-        top: 55px;
-        position: relative;
-      }
-
-      .custom-input {
-        display: block;
-        text-align: center;
-        top: 102px;
-        position: relative;
-      }
-    }
   }
 }
 
-@media (max-width: 1310px) {
-  .login {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 64px 0 64px 0;
+//회원가입
 
-    .login-area {
-      margin-bottom: 32px;
-      width: 100%;
-      height: 443px;
-      text-align: center;
-      background-image: url("../assets/images/login/login_bg.webp");
+.signup {
 
-      .logo-area {
-        padding-top: 56px;
-        margin-bottom: 44px;
+  padding: 100px 0 100px 0;
+  text-align: center;
 
-        img {
-          width: 41px;
-          height: 41px;
-          margin-bottom: 23px;
-        }
-
-        h1 {
-          font-size: 24px;
-          color: $text-color;
-          margin: 0;
-        }
-      }
-
-      .form {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
-        .custom-input {
-          width: 300px;
-        }
-
-        .btn-area {
-          display: flex;
-          margin-top: 20px;
-
-          .join {
-            background-color: $primary-color;
-            border: 2px solid $primary-color;
-            margin-left: 20px;
-
-            a {
-              color: white;
-              margin: 0;
-            }
-          }
-        }
-      }
-
-      > p {
-        margin-top: 16px;
-        font-size: 12px;
-        color: $gray;
-        background-repeat: round;
-
-        &:hover {
-          cursor: pointer;
-        }
+  .signup-img-fir {
+    position: relative;
+    top: 230px;
+    right: 27%;
+    @include tb() {
+      img {
+        display: none;
       }
     }
 
-    .join-btn {
-      color: $gray;
-
-      &:hover {
-        cursor: pointer;
-      }
+    img {
+      position: absolute;
+      width: 543px;
 
     }
   }
 
-
-  //회원가입
-
-  .signup {
-
-
-    text-align: center;
-
-    .signup-img-fir {
-      position: relative;
-
-      top: 179px;
-      left: 231px;
-      display: none;
-
+  .signup-img-sec {
+    position: relative;
+    right: 27%;
+    @include tb() {
       img {
-        position: relative;
-        width: 543px;
-
+        display: none;
       }
     }
 
-    .signup-img-sec {
+    img {
+      position: absolute;
+      width: 346px;
+    }
+  }
+
+  .signup-form {
+    display: inline-block;
+    position: relative;
+    background: rgba(238, 238, 238, 0.8);
+    width: 400px;
+    height: 513px;
+    text-align: -webkit-center;
+    left: 15%;
+    @include tb() {
+      left: 0px;
+      width: 100%;
+    }
+
+    .custom-button {
+      background-color: $primary-color;
+      border-color: $primary-color;
       position: relative;
+      top: 148px;
+      max-width: 515px;
+      width: 275px;
 
-      top: -66px;
-      left: -312px;
-      display: none;
+      a {
+        color: white;
+      }
 
-      img {
-        position: relative;
-        width: 346px;
+    }
+
+    span {
+      font-size: 30px;
+      color: $primary-color;
+      top: 55px;
+      position: relative;
+    }
+
+    .custom-input {
+      display: block;
+      text-align: center;
+      top: 102px;
+      position: relative;
+    }
+  }
+
+  .signup-form-sec {
+    display: inline-block;
+    position: relative;
+    background: rgba(238, 238, 238, 0.8);
+    width: 400px;
+    height: 513px;
+    text-align: -webkit-center;
+    left: 15%;
+
+    .custom-button {
+      background-color: $primary-color;
+      border-color: $primary-color;
+      position: relative;
+      top: 148px;
+      max-width: 515px;
+      width: 275px;
+
+      a {
+        color: white;
       }
     }
 
-    .signup-form {
-      text-align: -webkit-center;
-      height: 484px;
-
-      .custom-button {
-        background-color: $primary-color;
-        border-color: $primary-color;
-        position: relative;
-        top: 148px;
-        max-width: 515px;
-        width: 275px;
-
-        a {
-          color: white;
-        }
-
-      }
-
-      span {
-        font-size: 30px;
-        color: $primary-color;
-        top: 55px;
-        position: relative;
-      }
-
-      .custom-input {
-        display: block;
-        text-align: center;
-        top: 102px;
-        position: relative;
-      }
+    span {
+      font-size: 30px;
+      color: $primary-color;
+      top: 55px;
+      position: relative;
     }
 
-    .signup-form-sec {
-      text-align: -webkit-center;
-      height: 484px;
-
-      .custom-button {
-        background-color: $primary-color;
-        border-color: $primary-color;
-        position: relative;
-        top: 148px;
-        max-width: 515px;
-        width: 275px;
-
-        a {
-          color: white;
-        }
-      }
-
-      span {
-        font-size: 30px;
-        color: $primary-color;
-        top: 55px;
-        position: relative;
-      }
-
-      .custom-input {
-        display: block;
-        text-align: center;
-        top: 102px;
-        position: relative;
-      }
+    .custom-input {
+      display: block;
+      text-align: center;
+      top: 102px;
+      position: relative;
     }
   }
 }

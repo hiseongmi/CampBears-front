@@ -669,6 +669,7 @@
     //게시물이미지 내용
     &-ul {
       display: flex;
+      justify-content: center;
       flex-wrap: wrap;
       list-style: none;
       max-width: 799px;
@@ -737,6 +738,7 @@
               height: 40px;
               color: #4c4c4c;
               display: flex;
+              width: 241px;
 
               &-writing {
                 padding: 4px 0;
@@ -886,6 +888,7 @@
           cursor: pointer;
           padding: 0 5px;
         }
+
         a {
           font-size: 13px;
         }
@@ -1078,49 +1081,64 @@
   }
 }
 
-///mmmmmmmmmmmmm메인페이지mmmmmmmmmmmmm
-@media (min-width: 768px) {
-  .main-box {
-    text-align: center;
-    width: 69%;
-    position: relative;
-    margin: 0 auto;
-    height: 440px;
+///mmmmmmmmmmmmm메인페이지mmmmmmmmmmmmm///
 
-    .main-fir:hover {
-      transform: scale(1.05);
-      transition: 0.5s;
-      border-radius: 10px;
+.main-box {
+  text-align: center;
+  width: 70%;
+  position: relative;
+  margin: 0 auto;
+  height: 440px;
+
+  @include tb() {
+    width: 100%;
+  }
+  @include mb() {
+    width: 100%;
+    height: 25rem;
+  }
+
+  .main-fir:hover {
+    transform: scale(1.02);
+    transition: 0.5s;
+    border-radius: 10px;
+  }
+
+  .main-fir {
+    background-size: 100% 100%;
+    background-image: url("/assets/image/mainpage2.png");
+    display: inline-block;
+    width: 50%;
+    height: 100%;
+    @include mb() {
+      display: none;
     }
 
-    .main-fir {
-      display: inline-table;
-      background-size: 100% 100%;
-      background-image: url("/assets/image/mainpage2.png");
-      width: 50%;
-      height: 100%;
-      //mainpage2.png"
+
+    //.main-add-r:hover {
+    //  transform: scale(1.05);
+    //  transition: 0.5s;
+    //  border-radius: 10px;
+    //}
+
+    .main-add-r {
+      position: relative;
+      top: 77%;
+      width: 100%;
+
       span {
         color: $white;
         position: relative;
         font-size: 23px;
-        top: 329px;
       }
 
-      //.custom-button:hover {
-      //  transform: scale(1.5);
-      //  transition: 0.5s;
-      //
-      //}
-
       .custom-button {
+        top: 10px;
         border-color: #fa6c1a;
         background-color: #fa6c1a;
         border-radius: 20px;
-        top: 345px;
         max-width: 200px;
         width: 100%;
-        height: 43px;
         margin: 0 auto;
 
         a {
@@ -1129,40 +1147,57 @@
         }
       }
     }
+  }
 
+  .main-sec:hover {
+    transform: scale(1.02);
+    transition: 0.5s;
+    border-radius: 10px;
+  }
+
+  @include mb() {
     .main-sec:hover {
-      transform: scale(1.05);
+      transform: scale(0.97);
       transition: 0.5s;
       border-radius: 10px;
     }
+  }
 
-    .main-sec {
-      display: inline-table;
-      background-size: 100% 100%;
-      background-image: url("/assets/image/mainpage3.png");
-      width: 50%;
+  .main-sec {
+    background-size: 100% 100%;
+    background-image: url("/assets/image/mainpage3.png");
+    display: inline-block;
+    width: 50%;
+    height: 100%;
+    @include mb() {
+      width: 100%;
       height: 100%;
 
-      span {
-        color: white;
-        position: relative;
-        font-size: 23px;
-        top: 329px;
+    }
+
+
+    .main-add-p {
+      position: relative;
+      top: 77%;
+      width: 100%;
+      @include mb() {
+        top: 68%;
+
       }
 
-      //.custom-button:hover {
-      //  transform: scale(1.5);
-      //  transition: 0.5s;
-      //}
+      span {
+        color: $white;
+        position: relative;
+        font-size: 23px;
+      }
 
       .custom-button {
+        top: 10px;
         border-color: #fa6c1a;
         background-color: #fa6c1a;
         border-radius: 20px;
         max-width: 200px;
         width: 100%;
-        top: 345px;
-        height: 43px;
         margin: 0 auto;
 
         a {
@@ -1171,1008 +1206,450 @@
         }
       }
     }
+
+  }
+}
+
+
+.main-icon {
+  text-align: center;
+  padding-top: 47px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  a:hover {
+    transform: scale(1.03);
+    transition: 0.5s;
   }
 
-  .main-icon {
-    text-align: center;
-    padding-top: 47px;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+  a {
+    text-decoration: none;
+    color: #000000;
+    position: relative;
+    padding: 0 2% 0 2%;
+  }
 
+  span {
+    display: flex;
+    inline-size: -webkit-fill-available;
+    justify-content: center;
+  }
+}
+
+//1200
+.icon-name {
+  text-align: center;
+  text-decoration: none;
+
+  span {
+    padding-right: 60px;
+  }
+}
+
+.main-story {
+  display: grid;
+  text-align: center;
+  padding-top: 60px;
+
+  img {
+    place-self: center;
+    border-style: none;
+    display: inline-block;
+  }
+
+  span {
+    display: inline-block;
+    //inline-size: -webkit-fill-available;
+    padding-top: 6px;
+    font-size: 12px;
+    color: $lightgry;
+  }
+}
+
+.main-sns {
+  overflow: hidden;
+
+  .news-wrap {
+    display: none;
+  }
+
+  .news-menu {
+    display: none;
+  }
+
+  .profile-wrap {
+    display: none;
+    bottom: 20px;
+  }
+
+  .news-ul {
+    height: 420px;
+    overflow: auto;
+    display: flex;
+    list-style: none;
+    margin: 0 auto;
+    flex-wrap: nowrap;
+    max-width: 100%;
+    justify-content: flex-start;
+    width: 70%;
+
+    .news-ul-li:hover {
+      margin: auto;
+      transform: scale(1.06);
+      transition: 0.5s;
+      opacity: 100%;
+    }
+
+    .news-ul-li {
+      opacity: 0.5;
+      padding: 12.5px;
+      margin: auto;
+      width: 400px;
+
+    }
+  }
+
+  .pagination {
+    display: none;
+  }
+}
+
+
+.view-all {
+  margin: 0 auto;
+  max-width: 360px;
+  max-height: 35px;
+  padding-top: 30px;
+  padding-bottom: 100px;
+
+  .custom-button {
+    height: 36px;
+    border-radius: 5px;
+    border-color: $darkgry;
+    border-width: 1px;
 
     a {
-      text-decoration: none;
-      color: #000000;
+      color: #3e3e3e;
+      font-size: 13px;
+    }
+  }
+}
+
+
+.add-banner {
+  position: relative;
+  overflow: hidden;
+  margin: 0 auto;
+  @include pc() {
+    width: 100%;
+
+
+  }
+
+
+  background-image: url("/assets/image/mainpage4.png");
+  display: inline-block;
+  background-size: 100% 100%;
+  width: 100%;
+  height: 240px;
+
+  .add-img {
+    position: relative;
+    top: 20%;
+
+
+    .add-ment {
       position: relative;
-      padding: 0 2% 0 2%;
-    }
+      top: 20%;
+      left: 10%;
 
-    span {
-      display: flex;
-      inline-size: -webkit-fill-available;
-      justify-content: center;
+      span {
+        position: relative;
+        display: block;
+        color: $white;
+        font-size: 19px;
+        padding: 9px;
+        @include tb() {
+          font-size: 15px;
+        }
+        @include mb() {
+          font-size: 12px;
+        }
+      }
+
+      .custom-button {
+        background-color: #fa6c1a;
+        border-color: #fa6c1a;
+        height: 30%;
+        position: absolute;
+        min-width: 137px;
+        border-radius: 3px;
+        margin: 0 0 0 9px;
+
+        a {
+          color: $white;
+          font-size: 12px;
+        }
+      }
     }
   }
 
-  //1200
-  .icon-name {
-    text-align: center;
-    text-decoration: none;
+}
 
-    span {
-      padding-right: 60px;
+.main-campsite {
+  padding-top: 88px;
+  padding-bottom: 20px;
+
+  text-align: -webkit-center;
+
+  .custom-button {
+    margin: 0px auto;
+    max-width: none;
+    max-height: none;
+    border: none;
+
+    a:visited {
+      color: black;
+      font-size: 32px;
+      font-weight: bold;
+    }
+
+    a:link {
+      color: black;
+      font-size: 32px;
+      font-weight: bold;
     }
   }
 
-  .main-story {
-    display: grid;
+}
+
+.autocamp-box {
+  position: relative;
+  text-align: center;
+  width: 70%;
+  margin: 0 auto;
+
+  .main-autocamp:hover {
+    transform: scale(1.02);
+    transition: 0.2s;
+    z-index: 1;
+  }
+
+  .main-autocamp {
     text-align: center;
+    display: inline-block;
+    margin-left: 20px;
+    margin-right: 20px;
+    border: 1px solid rgb(204, 204, 204);
+    border-radius: 10px;
+    width: 230px;
+    margin-top: 32px;
+
+    //.autocamp:hover {
+    //  transform: scale(1.5);
+    //  transition: 0.5s;
+    //  z-index: 1;
+    //
+    //}
+
+    .autocamp {
+      border: 1px solid rgba(204, 204, 204, 0.5);
+      background-image: url(" /assets/image/mainutoCamp.png");
+      display: inline-block;
+      background-size: 100% 100%;
+      height: 191px;
+      width: 100%;
+      border-top-right-radius: 10px;
+      border-top-left-radius: 10px;
+
+
+      img {
+        border-style: none;
+        width: 100%;
+      }
+    }
+
+    .autocam-cont {
+      h1 {
+        position: relative;
+        display: inline-block;
+        font-size: 23px;
+        float: left;
+        margin: 2%;
+        left: 7%;
+      }
+
+      span {
+        position: relative;
+        display: inline-block;
+        color: #818181;
+        font-size: 16px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        width: 96%;
+        white-space: nowrap;
+      }
+
+      a {
+        margin-top: 1%;
+        margin-left: 2%;
+        float: left;
+        top: 13px;
+        font-size: 12px;
+        text-decoration: none;
+        text-align: left;
+        position: relative;
+        display: inline-block;
+        color: #0093e7;
+      }
+
+      h2 {
+        color: #ea3323;
+        position: relative;
+        display: inline-block;
+        margin: 4.5%;
+        font-size: 21px;
+      }
+    }
+  }
+}
+
+.used-market-box {
+  max-width: 1100px;
+  margin: 60px auto;
+  overflow: hidden;
+
+  .custom-pagination {
+    display: none;
+  }
+
+  div.usedMarketButton {
+    margin: 20px auto;
+    max-width: none;
+    max-height: none;
+    border: none;
+
+    a {
+      color: #000000;
+      font-size: 32px;
+      font-weight: bold;
+    }
+  }
+
+  .used-contents-area {
+    flex-wrap: nowrap;
+    text-align: start;
+    margin: 0 auto;
+    width: 70%;
+  }
+}
+
+@keyframes slide {
+  from {
+    left: -300px;
+  }
+  to {
+    left: 800px;
+  }
+}
+
+.main-bottom {
+  position: relative;
+  margin-top: 90px;
+  background-image: url("/assets/image/main-bottom.png");
+  background-size: 100% 100%;
+  height: 620px;
+  text-align: center;
+  top: 50%;
+
+  h1 {
     padding-top: 60px;
+    font-size: 34px;
+    animation: slide 1s ease-in-out;
+    position: relative;
+  }
+
+  h2 {
+    animation: slide 2s ease-in-out;
+    margin: 30px;
+    font-size: 16px;
+    position: relative;
+  }
+
+  span {
+    position: relative;
+  }
+
+  .bot-camp {
+    position: relative;
+    display: flex;
+    width: 20%;
 
     img {
-      place-self: center;
-      border-style: none;
-      display: inline-block;
-    }
-
-    span {
-      display: inline-block;
-      //inline-size: -webkit-fill-available;
-      padding-top: 6px;
-      font-size: 12px;
-      color: $lightgry;
-    }
-  }
-
-  .main-sns {
-    overflow: hidden;
-
-    .news-wrap {
-      display: none;
-    }
-
-    .news-menu {
-      display: none;
-    }
-
-    .profile-wrap {
-      display: none;
-      bottom: 20px;
-    }
-
-    .news-ul {
-      height: 420px;
-      overflow: auto;
-      display: flex;
-      list-style: none;
-      margin: 0 auto;
-      flex-wrap: nowrap;
-      max-width: 70%;
-      justify-content: flex-start;
-      margin-top: auto;
-      width: 69%;
-
-      .news-ul-li:hover {
-        margin: auto;
-        transform: scale(1.1);
-        transition: 0.5s;
-        opacity: 100%;
-      }
-
-      .news-ul-li {
-        opacity: 0.5;
-        padding: 12.5px;
-        margin: auto;
-      }
-    }
-
-    .pagination {
-      display: none;
-    }
-  }
-  //1200
-  .view-all {
-    margin: 0 auto;
-    max-width: 360px;
-    max-height: 35px;
-    padding-top: 30px;
-    padding-bottom: 100px;
-
-    .custom-button {
-      height: 36px;
-      border-radius: 5px;
-      border-color: $darkgry;
-      border-width: 1px;
-
-      a {
-        color: #3e3e3e;
-        font-size: 13px;
-      }
-    }
-  }
-
-  .add-banner {
-    position: relative;
-    overflow: hidden;
-    width: 69%;
-    margin: 0 auto;
-
-    .add-img {
-      background-image: url("/assets/image/mainpage4.png");
-      display: inline-block;
-      background-size: 100% 100%;
       width: 100%;
-      height: 240px;
-
-      .add-ment {
-        position: relative;
-        top: 20%;
-        left: 10%;
-
-        span {
-          position: relative;
-          display: block;
-          color: $white;
-          font-size: 19px;
-          padding: 9px;
-        }
-
-        .custom-button {
-          background-color: #fa6c1a;
-          border-color: #fa6c1a;
-          height: 30%;
-          position: absolute;
-          min-width: 137px;
-          border-radius: 3px;
-          margin: 0 0 0 9px;
-
-          a {
-            color: $white;
-            font-size: 12px;
-          }
-        }
-      }
-    }
-  }
-
-  .main-campsite {
-    padding-top: 88px;
-    padding-bottom: 20px;
-
-    text-align: -webkit-center;
-
-    h2 {
-      bottom: 10px;
+      height: 50%;
     }
 
-    .custom-button {
-      margin-top: 20px;
-      width: 11px;
-      height: 34px;
-      position: relative;
-      border: 0.5px solid $lightgry;
-      border-radius: 3px;
+    .bot-camp-info {
+      background-color: $primary-color;
 
-      a {
-        color: $white;
-        font-size: 12px;
-      }
-    }
-  }
-  .autocamp-box {
-    position: relative;
-    text-align: center;
-
-    .main-autocamp:hover {
-      transform: scale(1.05);
-      transition: 0.2s;
-      z-index: 1;
-    }
-
-    .main-autocamp {
-      text-align: center;
-      display: inline-block;
-      margin-left: 20px;
-      margin-right: 20px;
-      border: 1px solid rgb(204, 204, 204);
-      border-radius: 10px;
-      width: 314px;
-      margin-top: 32px;
-
-      //.autocamp:hover {
-      //  transform: scale(1.5);
-      //  transition: 0.5s;
-      //  z-index: 1;
-      //
-      //}
-
-      .autocamp {
-        border: 1px solid rgba(204, 204, 204, 0.5);
-        background-image: url(" /assets/image/mainutoCamp.png");
-        display: inline-block;
-        background-size: 100% 100%;
-        height: 191px;
-        width: 100%;
-        border-top-right-radius: 10px;
-        border-top-left-radius: 10px;
-
-        img {
-          border-style: none;
-          width: 17%;
-        }
-      }
-
-      .autocam-cont {
-        h1 {
-          position: relative;
-          display: inline-block;
-          font-size: 23px;
-          float: left;
-          margin: 2%;
-          margin-top: 1%;
-        }
-
-        span {
-          position: relative;
-          display: inline-block;
-          color: #818181;
-          font-size: 16px;
-        }
-
-        a {
-          margin-top: 1%;
-          margin-left: 2%;
-          float: left;
-          text-align: left;
-          position: relative;
-          display: inline-block;
-          color: #0093e7;
-        }
-
-        h2 {
-          color: #ea3323;
-          position: relative;
-          display: inline-block;
-          margin-right: 27%;
-          margin-top: 5%;
-          margin-bottom: 2%;
-        }
-      }
-    }
-  }
-
-  .used-market-box {
-    max-width: 1100px;
-    margin: 60px auto;
-    overflow: hidden;
-
-    div.usedMarketButton {
-      margin: 20px auto;
-      max-width: none;
-      max-height: none;
-      border: none;
-
-      a {
-        color: #000000;
-        font-size: 32px;
-        font-weight: bold;
-      }
-    }
-
-    .used-contents-area {
-      flex-wrap: nowrap;
-      text-align: start;
-    }
-  }
-  @keyframes slide {
-    from {
-      left: -300px;
-    }
-    to {
-      left: 800px;
-    }
-  }
-  .main-bottom {
-    position: relative;
-    margin-top: 90px;
-    background-image: url("/assets/image/main-bottom.png");
-    background-size: 100% 100%;
-    height: 620px;
-    text-align: center;
-
-    h1 {
-      padding-top: 60px;
-      font-size: 34px;
-      animation: slide 1s ease-in-out;
-      position: relative;
-    }
-
-    h2 {
-      animation: slide 2s ease-in-out;
-      margin: 30px;
-      font-size: 16px;
-      position: relative;
-    }
-
-    span {
-      position: relative;
-    }
-
-    top: 50%;
-
-    .main-recomend {
-      position: relative;
-      top: -4px;
-
-      .bottom-fir:hover {
-        transform: scale(1.05);
-        transition: 0.5s;
-        z-index: 1;
-        position: relative;
-      }
-
-      .bottom-fir {
-        box-shadow: 5px 5px 5px grey;
-        display: inline-block;
-        background-size: 100% 100%;
-        width: 280px;
-        height: 250px;
-        background-image: url("/assets/image/mainpageslider1.png");
-
-        .camping-jang {
-          color: #ffffff;
-          background: #ec671a;
-          position: relative;
-          top: 100%;
-          height: 60%;
-          box-shadow: 5px 5px 5px grey;
-
-          .recomend-text {
-            width: 90%;
-            position: relative;
-            top: 11px;
-            left: 5%;
-            word-spacing: 5px;
-            line-height: 25px;
-          }
-
-          .recomend-navi {
-            position: relative;
-
-            .recomend {
-              margin-left: 30px;
-              top: 16px;
-              position: relative;
-              border: 1px solid $white;
-              border-radius: 20px;
-              width: 84px;
-
-              span {
-                padding: 5px;
-                top: 0;
-                color: $white;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-              }
-            }
-
-            .recomend-arow {
-              left: -11px;
-              top: -8px;
-              position: relative;
-            }
-          }
-
-          p {
-            position: relative;
-            left: -55px;
-            top: 19px;
-          }
-        }
-      }
-
-      .bottom-sec:hover {
-        transform: scale(1.1);
-        transition: 0.5s;
-        z-index: 1;
-        position: relative;
-        box-shadow: 5px 5px 5px gray;
-      }
-
-      .bottom-sec {
-        .camping-jang {
-          color: $white;
-
-          span {
-            top: 4px;
-            right: -82px;
-          }
-
-          s {
-            position: relative;
-            top: 10px;
-            left: -67px;
-
-            img {
-              height: 11px;
-              width: 11px;
-              margin-inline: 1px;
-            }
-          }
-
-          p {
-            position: relative;
-            left: -55px;
-            top: 19px;
-          }
-
-          .camping-name {
-          }
-
-          top: 178px;
-          height: 72px;
-          background: rgba(0, 0, 0, 0.6);
-          position: relative;
-        }
-
-        display: inline-block;
-        background-size: 100% 100%;
-        width: 280px;
-        height: 250px;
-        background-image: url("/assets/image/mainpageslider2.png");
-      }
-
-      .bottom-thi:hover {
-        transform: scale(1.1);
-        transition: 0.5s;
-        z-index: 1;
-        position: relative;
-        box-shadow: 5px 5px 5px gray;
-      }
-
-      .bottom-thi {
-        .camping-jang {
-          color: $white;
-
-          span {
-            top: 4px;
-            right: -82px;
-          }
-
-          s {
-            position: relative;
-            top: 10px;
-            left: -67px;
-
-            img {
-              height: 11px;
-              width: 11px;
-              margin-inline: 1px;
-            }
-          }
-
-          p {
-            position: relative;
-            left: -55px;
-            top: 19px;
-          }
-
-          top: 178px;
-          height: 72px;
-          background: rgba(0, 0, 0, 0.6);
-          position: relative;
-        }
-
-        display: inline-block;
-        background-size: 100% 100%;
-        width: 280px;
-        height: 250px;
-        background-image: url("/assets/image/mainpageslider3.png");
-      }
-
-      .bottom-for:hover {
-        transform: scale(1.1);
-        transition: 0.5s;
-        z-index: 1;
-        position: relative;
-        box-shadow: 5px 5px 5px gray;
-      }
-
-      .bottom-for {
-        //position: relative;
-
-        .camping-jang {
-          color: $white;
-
-          span {
-            top: 4px;
-            right: -82px;
-          }
-
-          s {
-            position: relative;
-            top: 10px;
-            left: -67px;
-
-            img {
-              height: 11px;
-              width: 11px;
-              margin-inline: 1px;
-            }
-          }
-
-          p {
-            position: relative;
-            left: -55px;
-            top: 19px;
-          }
-
-          .camping-name {
-          }
-
-          top: 178px;
-          height: 72px;
-          background: rgba(0, 0, 0, 0.6);
-          position: relative;
-        }
-
-        display: inline-block;
-        background-size: 100% 100%;
-        width: 280px;
-        height: 250px;
-        background-image: url("/assets/image/mainpageslider4.png");
-      }
-    }
-  }
-}
-
-//반응형 메인
-//767px
-@include mb() {
-  .main-box {
-    text-align: center;
-
-    .main-fir {
-      position: relative;
-      display: inline-block;
-      background-size: 100% 100%;
-      background-image: url("/assets/image/mainpage2.png");
-
-      width: 100%;
-      height: 300px;
-      object-fit: cover;
-
-
-      .black {
-        @include center-width();
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.6);
-      }
 
       span {
-        @include center-width();
-        top: 55%;
-        color: $white;
-        font-size: 20px;
-      }
 
-      .custom-button {
-        border-color: #fa6c1a;
-        background-color: #fa6c1a;
-        border-radius: 20px;
-        top: 75%;
-        width: 50%;
-        min-width: 150px;
-        max-width: 250px;
-        height: 43px;
-        margin: 0 auto;
-
-        a {
-          font-size: 15px;
-          color: $white;
-        }
-      }
-    }
-
-    .main-sec {
-      display: none;
-      background-size: 100% 100%;
-      background-image: url("/assets/image/mainpage3.png");
-      width: 100%;
-      height: 500px;
-
-      span {
-        color: $white;
-        position: relative;
-        font-size: 20px;
-        top: 70%;
-      }
-
-      .custom-button {
-        border-color: #fa6c1a;
-        background-color: #fa6c1a;
-        border-radius: 20px;
-        top: 75%;
-        width: 50%;
-        height: 43px;
-        margin: 0 auto;
-
-        a {
-          font-size: 15px;
-          color: $white;
-        }
       }
     }
   }
 
-  .main-icon {
-    text-align: center;
-    padding-top: 47px;
+  .bot-camps {
+    position: relative;
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-
-    a {
-      width: 33%;
-      margin-bottom: 20px;
-      text-decoration: none;
-      color: #000000;
-      position: relative;
-      //padding: 0 25px 25px 0;
-    }
-
-    span {
-      width: -54px;
-      position: relative;
-      display: block;
-    }
-  }
-
-  .icon-name {
-    text-align: center;
-    text-decoration: none;
-
-    span {
-      padding-right: 60px;
-    }
-  }
-
-  .main-story {
-    text-align: center;
-    padding-top: 60px;
-
-    span {
-      display: inline-block;
-      inline-size: -webkit-fill-available;
-      padding-top: 6px;
-      font-size: 12px;
-      color: $lightgry;
-    }
-  }
-
-  .main-sns {
-    overflow: hidden;
-    position: relative;
-    left: -15%;
-
-    .news-wrap {
-      display: none;
-    }
-
-    .news-menu {
-      display: none;
-    }
-
-    .profile-wrap {
-      display: none;
-    }
-
-    .news-ul {
-      overflow: scroll;
-      flex-wrap: nowrap;
-      transform: translateX(calc(33vh / 2 - 20px));
-      transition: 0.5s;
-      animation-timing-function: ease-in-out;
-      justify-content: flex-start;
-      //width: 100%;
-
-      &-li {
-        width: 33vh;
-
-        &-wrap {
-          width: 30vh;
-
-          &-write {
-
-            img {
-              width: 100%;
-              //height: 100%;
-              object-fit: cover;
-            }
-
-            .news-ul-li:hover {
-              margin: auto;
-              transform: scale(1.1);
-              transition: 0.5s;
-              opacity: 100%;
-            }
 
 
-          }
+    .bot-camp-info {
+      position: absolute;
+      background-size: 100% 100%;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex: 1;
 
-        }
-
-        .pagination {
-          display: none;
-        }
-      }
-
-      .view-all {
-        margin: 0 auto;
-        max-width: 360px;
-        max-height: 35px;
-        padding-top: 30px;
-        padding-bottom: 100px;
-
-        .custom-button {
-          height: 36px;
-          border-radius: 5px;
-          border-color: $darkgry;
-          border-width: 1px;
-
-          a {
-            color: #3e3e3e;
-            font-size: 13px;
-          }
-        }
-      }
-
-      .add-banner {
-        position: relative;
-        overflow: hidden;
-
-        .add-img {
-          background-image: url("/assets/image/mainpage4.png");
-          display: inline-block;
-          //object-fit: contain;
-          background-size: 100% 100%;
-          width: 100%;
-          height: 160px;
-
-          span {
-            position: relative;
-            display: block;
-            color: $white;
-            font-size: 14px;
-            padding: 5px;
-            left: 36px;
-            top: 15px;
-          }
-
-          .custom-button {
-            background-color: #fa6c1a;
-            border-color: #fa6c1a;
-            width: 30%;
-            min-width: 100px;
-            max-width: 250px;
-            height: 30px;
-            position: absolute;
-            //min-width: 92px;
-            border-radius: 3px;
-            left: 50px;
-            bottom: 20px;
-            //top: 80%;
-
-            a {
-              color: $white;
-              font-size: 10px;
-            }
-          }
-        }
-      }
-
-      .main-campsite {
-        padding-top: 55px;
-        padding-bottom: 20px;
-
-        text-align: -webkit-center;
-
-        h2 {
-          bottom: 10px;
-        }
-
-        .custom-button {
-          margin-top: 20px;
-          width: 11px;
-          height: 34px;
-          position: relative;
-          border: 0.5px solid $lightgry;
-          border-radius: 3px;
-
-          a {
-            color: $white;
-            font-size: 12px;
-          }
-        }
-      }
-
-      .autocamp-box {
-        position: relative;
-        text-align: center;
-        display: inline-flex;
-        overflow: auto;
-        white-space: nowrap;
+      img {
         width: 100%;
-        height: 401px;
-        flex-wrap: nowrap;
-        justify-content: flex-start;
-
-        .boxing {
-          position: relative;
-
-          img {
-
-          }
-
-          h1 {
-
-          }
-
-          a {
-
-          }
-
-          p {
-
-          }
-
-          span {
-            img {
-
-            }
-          }
-        }
-
-        .main-autocamp:hover {
-          transform: scale(1.05);
-          transition: 0.2s;
-          z-index: 1;
-        }
-
-        .main-autocamp {
-          text-align: center;
-          display: inline-block;
-          margin-left: 20px;
-          margin-right: 20px;
-          border: 1px solid rgb(204, 204, 204);
-          border-radius: 10px;
-          width: 314px;
-          margin-top: 32px;
-
-          //.autocamp:hover {
-          //  transform: scale(1.5);
-          //  transition: 0.5s;
-          //  z-index: 1;
-          //
-          //}
-
-          .autocamp {
-            border: 1px solid rgba(204, 204, 204, 0.5);
-            background-image: url(" /assets/image/mainutoCamp.png");
-            display: inline-block;
-            background-size: 100% 100%;
-            height: 191px;
-            width: 100%;
-            border-top-right-radius: 10px;
-            border-top-left-radius: 10px;
-
-            img {
-              border-style: none;
-              width: 17%;
-            }
-          }
-
-          .autocam-cont {
-            position: relative;
-            height: 100px;
-
-            h1 {
-              position: relative;
-              display: inline-block;
-              font-size: 23px;
-              float: left;
-              margin: 2%;
-              margin-top: 1%;
-            }
-
-            span {
-              position: relative;
-              display: flex;
-              color: #818181;
-              font-size: 16px;
-              justify-content: flex-end;
-              align-items: baseline;
-            }
-
-            a {
-              margin-top: 1%;
-              margin-left: 2%;
-              float: left;
-              text-align: left;
-              position: relative;
-              display: inline-block;
-              color: #0093e7;
-            }
-
-            h2 {
-              font-size: 20px;
-              color: #ea3323;
-              position: relative;
-              display: inline-block;
-              margin-right: 27%;
-              margin-top: 5%;
-              margin-bottom: 2%;
-            }
-          }
-        }
+        height: 50%;
       }
 
-      .used-market-box {
-        max-width: 1100px;
-        margin: 60px auto;
-        overflow: hidden;
+    }
 
-        div.usedMarketButton {
-          margin: 20px auto;
-          max-width: none;
-          max-height: none;
-          border: none;
+    .bot-camp-info-f {
+      position: absolute;
+      background-image: url("/assets/image/mainpageslider2.png");
+      background-size: 100% 100%;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex: 1;
+    }
 
-          a {
-            color: #000000;
-            font-size: 32px;
-            font-weight: bold;
-          }
-        }
+    .bot-camp-info-s {
+      position: absolute;
+      background-image: url("/assets/image/mainpageslider3.png");
+      background-size: 100% 100%;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex: 1;
+    }
 
-        .used-contents-area {
-          flex-wrap: nowrap;
-          text-align: start;
-        }
-      }
-
-      .main-bottom {
-        margin-top: 90px;
-
-        span {
-          position: relative;
-          top: 70px;
-
-          h1 {
-            padding-top: 60px;
-            font-size: 34px;
-            top: -64px;
-            position: relative;
-          }
-
-          h2 {
-            margin: 30px;
-            font-size: 16px;
-            position: relative;
-            top: -65px;
-          }
-        }
-
-        background-image: url("/assets/image/main-bottom.png");
-        background-size: 100% 100%;
-        height: 620px;
-        text-align: center;
-        left: 50%;
-        top: 50%;
-      }
+    .bot-camp-info-f {
+      position: absolute;
+      background-image: url("/assets/image/mainpageslider4.png");
+      background-size: 100% 100%;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex: 1;
     }
   }
 }
+

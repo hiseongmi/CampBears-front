@@ -322,7 +322,7 @@
 
   }
 
-  
+
   .main-market-for {
     opacity: 0.5;
     position: relative;
@@ -442,6 +442,16 @@
 // ㅡㅡㅡㅡㅡ캠핑장정보
 .info-main {
   text-align: -webkit-center;
+
+  .info-sidebar {
+    position: absolute;
+    top: 19%;
+
+    a {
+      position: relative;
+      float: left;
+    }
+  }
 
   .map-box {
     position: relative;
@@ -748,6 +758,12 @@
     border-radius: 0 10px 10px 0;
     z-index: 1;
 
+    span {
+      position: absolute;
+      font-size: 30px;
+      margin: 0 auto;
+    }
+
     .info-navi {
       border-top: 2px solid;
       border-bottom: 2px solid;
@@ -890,21 +906,33 @@
     position: relative;
     margin-right: 1.2%;
     border-radius: 5px;
-    left: -269px;
+    FONT-SIZE: 17PX;
+    RIGHT: 23%;
+    BACKGROUND-COLOR: wheat;
   }
 }
 
 .info-camp {
   position: relative;
-  width: 953px;
-  height: 1200px;
-  top: -76px;
+  width: 70%;
   margin: 0 auto;
   color: #CCCCCC;
   border-top: solid 2px;
 
   .info-content {
+    .camp-info {
+      h1 {
+        padding: 2%;
+      }
 
+      .info-body {
+        justify-content: space-between;
+
+        .info-item {
+          width: 40%;
+        }
+      }
+    }
   }
 
 }

@@ -1,11 +1,13 @@
 <script>
-import { onMounted, ref } from "vue";
+import {onMounted, ref} from "vue";
 import axios from "axios";
-import store, { POPUP_TYPE, STORE_TYPE } from "../store/index.js";
-import { useStore } from "vuex";
+import store, {POPUP_TYPE, STORE_TYPE} from "../store/index.js";
+import {useStore} from "vuex";
 
 export default {
   name: "campingInfo",
+  components: {},
+
   setup() {
     const store = useStore();
 
@@ -13,12 +15,13 @@ export default {
     const api = axios.create({
       baseURL: "http://apis.data.go.kr/B551011/GoCamping",
       timeout: 1000 * 60 * 3,
-      headers: { "content-type": "Json" }
+      headers: {"content-type": "Json"}
     });
+
 
     const dataList = ref([]);
     const getCampInfo = async () => {
-      const d = await api.get("/basedList?numOfRows=10&pageNo=1&MobileOS=ETC&MobileApp=Bears&serviceKey=%2B73Gk9VQ6LP%2FEICWELVtDo%2FLQDhSaoMt46Iv6JFU%2BWo3iERh%2FojmCv5Z8Deh0O93nC5R1xVDq77PxTkQKP3rKA%3D%3D");
+      const d = await api.get("/basedList?numOfRows=10&pageNo=1&MobileOS=ECT&MobileApp=bears&serviceKey=IEdTGqhPUIxJy5mLBtkjPw6g%2BaTd90KXgnnc03HRNuD2NUPhtSQ307ZhzYx3n51j%2FpjYn5Hteigqp1cro1Rg6w%3D%3D");
       const xmlParser = new DOMParser();
       const par = xmlParser.parseFromString(d.data, "text/xml");
       const t = par.getElementsByTagName("items");
@@ -40,6 +43,7 @@ export default {
             campOuterOption: i.getElementsByTagName("sbrsCl")[0].innerHTML,
             getInAnimal: i.getElementsByTagName("animalCmgCl")[0].innerHTML,
             createdDate: i.getElementsByTagName("modifiedtime")[0].innerHTML
+
           };
           dataList.value.push(dataSet);
         }
@@ -47,18 +51,20 @@ export default {
     };
 
     const showDetail = (index) => {
-      console.log(index);
+      // console.log(dataSet);
       store.commit(STORE_TYPE.campInfo, dataList[index]);
       store.commit(STORE_TYPE.popupType, POPUP_TYPE.DETAIL_CAMPING);
 
     };
+
 
     onMounted(() => {
       getCampInfo();
     });
     return {
       dataList,
-      showDetail
+      showDetail,
+      // goLink,
     };
   }
 };
@@ -76,14 +82,17 @@ export default {
           {{ item.campingManageMode }}
         </span>
         </div>
-        <div>캠핑 타입 :{{ item.campingTypes }}</div>
-        <div>주소 : {{ item.address }}</div>
-        <div>전화번호 : {{ item.tel }}</div>
-        <div>생성일 : {{ item.createdDate }}</div>
+        <div class="info-type">캠핑 타입 :{{ item.campingTypes }}</div>
+        <div class="info-ad">주소 : {{ item.address }}</div>
+        <div class="info-ph">전화번호 : {{ item.tel }}</div>
+        <div class="bi">생성일 : {{ item.createdDate }}</div>
+        <a :href="item.homePageUrl"> {{ item.homePageUrl }}</a>
+        <div> {{ item.campInnerOption }} {{ item.campOuterOption }} {{ item.getInAnimal }}</div>
       </div>
+      <a href=""></a>
     </div>
     <div v-else>
-      데이터 오는중..
+      데이터 오는중...
     </div>
 
 

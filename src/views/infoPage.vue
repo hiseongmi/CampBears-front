@@ -12,6 +12,7 @@ import HeaderPage from "../components/headerPage.vue";
 import customSelect from "../components/layout/customSelect.vue";
 import CustomDatePicker from "../components/layout/customDatePicker.vue";
 import customPagination from "../components/layout/customPagination.vue";
+import campingInfo from "./campingInfo.vue";
 
 export default {
   name: "mainPage",
@@ -25,6 +26,7 @@ export default {
     myPage,
     HeaderPage,
     customPagination,
+    campingInfo,
   },
 
   setup() {
@@ -369,10 +371,10 @@ export default {
   <!--  <div id="map" style="width:500px;height:400px;"></div>-->
   <div class="info-main">
     <header-page></header-page>
-    <div v-if="isShow">
-      <a @click="back"><img src="/assets/image/noschool.png"></a>
+    <div class="info-sidebar" v-if="isShow">
+      <a @click="back">>>></a>
 
-      <custom-button placeholder="열려라" @click="back"></custom-button>
+      <!--      <custom-button placeholder="열려라" @click="back"></custom-button>-->
     </div>
     <div v-else class="info-side">
       <!--      <div class="info-name">-->
@@ -386,7 +388,7 @@ export default {
       <!--      </div>-->
       <!--      <div class="info-navi"></div>-->
 
-      <a @click="back">숨기자숨기자숨기자</a>
+      <span @click="back">X</span>
       <div class="info" href="#">
         <a href="#">캠핑장 정보</a>
       </div>
@@ -450,7 +452,7 @@ export default {
 
   <div class="info-select">
     <select name="count" data-title="인기순">
-      <option value="0">인기순 ▼</option>
+      <option value="0">인기순</option>
       <option value="1">시간순</option>
       <option value="2">가나다순</option>
       <option value="3">리뷰순</option>
@@ -462,20 +464,22 @@ export default {
       <option value="3">`</option>
     </select>
     <select name="count" data-title="필터">
-      <option value="0">가격 ▼</option>
+      <option value="0">가격</option>
       <option value="1">`</option>
       <option value="2">`</option>
       <option value="3">`</option>
     </select>
     <select name="count" data-title="필터">
-      <option value="0">구비시설 ▼</option>
+      <option value="0">구비시설</option>
       <option value="1">1</option>
       <option value="2">2</option>
       <option value="3">2</option>
     </select>
   </div>
   <div class="info-camp">
-    <div class="info-content"></div>
+    <div class="info-content">
+      <campingInfo></campingInfo>
+    </div>
   </div>
   <div class="info-pagination">
     <custom-pagination></custom-pagination>
