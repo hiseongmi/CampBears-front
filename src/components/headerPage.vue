@@ -3,10 +3,14 @@ import router from "../router/index.js";
 import { computed, ref, watch } from "vue";
 import { CONSTANTS } from "../constants.js";
 import commonUtil from "../utils/common-util.js";
-import store from "../store/index.js";
+import store, { STORE_TYPE } from "../store/index.js";
+import sideBar from "../components/sideBar.vue";
 
 export default {
   name: "headerPage",
+  components: {
+    sideBar
+  },
   setup() {
     const loginUser = ref(commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO));
     //상단 헤더 리스트
@@ -52,7 +56,7 @@ export default {
     };
     const containerAction = ref(false);
     const mainContainer = () => {
-      containerAction.value = !containerAction.value;
+      store.commit(STORE_TYPE.sideBar, true);
     }; //전체 메뉴
 
     // gotoX로 통합
@@ -84,7 +88,9 @@ export default {
       goToX,
       logOut,
       mainContainer,
-      containerAction
+      containerAction,
+      store
+
     };
   }
 };
@@ -147,5 +153,6 @@ export default {
         </div>
       </div>
     </header>
+    <sideBar v-if="store.state.sideBar" />
   </div>
 </template>

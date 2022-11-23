@@ -9,6 +9,7 @@ export const STORE_TYPE = {
   commentIdx: "commentIdx",
   commentLength: "commentLength",
   campInfo: "campInfo",
+  sideBar: "sideBar",
 };
 
 export const POPUP_TYPE = {
@@ -31,6 +32,7 @@ const store = createStore({
     commentIdx: "",
     popupList: [],
     campInfo: undefined,
+    sideBar: false,
   },
   mutations: {
     /**
@@ -72,6 +74,9 @@ const store = createStore({
     },
     campInfo(state, value) {
       state.campInfo = value;
+    },
+    sideBar(state, value) {
+      state.sideBar = value;
     },
   },
 });
