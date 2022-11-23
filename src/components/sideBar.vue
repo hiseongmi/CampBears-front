@@ -10,7 +10,7 @@ export default {
   setup() {
     const flag = ref(false);
     const userData = ref();
-    const profileImg = ref();
+    const profileImg = ref("assets/image/IU.webp");
     const isActive = ref(false);
 
     const menuList = [
