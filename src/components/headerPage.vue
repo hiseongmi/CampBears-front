@@ -14,28 +14,28 @@ export default {
       {
         name: "커뮤니티",
         key: "SNS",
-        target: "/snsPage",
+        target: "/snsPage"
       },
       {
         name: "중고거래",
         key: "MARKET",
-        target: "/usedMarket",
+        target: "/usedMarket"
       },
       {
         name: "쇼핑",
         key: "SHOP",
-        target: "/",
+        target: "/"
       },
       {
         name: "캠핑장",
         key: "BOARD",
-        target: "/infoPage",
+        target: "/infoPage"
       },
       {
         name: "채팅",
         key: "CATTING",
-        target: "/",
-      },
+        target: "/"
+      }
     ];
     //router 이동
     const goToX = v => {
@@ -75,7 +75,7 @@ export default {
       () => store.state.loginUserIdx,
       () => {
         loginUser.value = commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO);
-      },
+      }
     );
 
     return {
@@ -84,9 +84,9 @@ export default {
       goToX,
       logOut,
       mainContainer,
-      containerAction,
+      containerAction
     };
-  },
+  }
 };
 </script>
 <template>
@@ -97,21 +97,6 @@ export default {
           <label class="mainContainer-label">
             <i class="fa-solid fa-bars"></i>
           </label>
-        </div>
-
-        <div class="containerPop" v-if="containerAction">
-          <ul>
-            <li v-if="!loginUser">
-              <a @click="goToX('/login')">로그인</a>
-              <a @click="goToX('/signup')">회원가입</a>
-            </li>
-            <li v-else>
-              <a @click="goToX('/myPage')">마이페이지</a>
-              <a @click="logOut()">로그아웃</a>
-              <a @click="goToX('/snsPage')">SNS</a>
-              <a @click="goToX('/usedMarket')">플리마켓</a>
-            </li>
-          </ul>
         </div>
         <div class="header-bar-logo" @click="goToX('/')">
           <div>
@@ -126,7 +111,7 @@ export default {
                 fill="white" />
             </svg>
           </div>
-          <span>CAMP BEARS</span>
+          <span class="mb-hide">CAMP BEARS</span>
         </div>
         <div class="header-bar-moSearch">
           <i class="fa-solid fa-magnifying-glass"></i>

@@ -136,3 +136,9 @@ width, height, padding, margin set
   }
 }
 
+.mb-hide {
+  display: block;
+  @include mb() {
+    display: none;
+  }
+}
