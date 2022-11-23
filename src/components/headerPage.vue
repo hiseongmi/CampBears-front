@@ -9,7 +9,7 @@ import sideBar from "../components/sideBar.vue";
 export default {
   name: "headerPage",
   components: {
-    sideBar
+    sideBar,
   },
   setup() {
     const loginUser = ref(commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO));
@@ -18,28 +18,28 @@ export default {
       {
         name: "커뮤니티",
         key: "SNS",
-        target: "/snsPage"
+        target: "/snsPage",
       },
       {
         name: "중고거래",
         key: "MARKET",
-        target: "/usedMarket"
+        target: "/usedMarket",
       },
       {
         name: "쇼핑",
         key: "SHOP",
-        target: "/"
+        target: "/",
       },
       {
         name: "캠핑장",
         key: "BOARD",
-        target: "/infoPage"
+        target: "/infoPage",
       },
       {
         name: "채팅",
         key: "CATTING",
-        target: "/"
-      }
+        target: "/",
+      },
     ];
     //router 이동
     const goToX = v => {
@@ -54,8 +54,8 @@ export default {
         location.reload();
       }
     };
-    const containerAction = ref(false);
-    const mainContainer = () => {
+    const headerContainerAction = ref(false);
+    const HeaderContainer = () => {
       store.commit(STORE_TYPE.sideBar, true);
     }; //전체 메뉴
 
@@ -79,7 +79,7 @@ export default {
       () => store.state.loginUserIdx,
       () => {
         loginUser.value = commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO);
-      }
+      },
     );
 
     return {
@@ -87,19 +87,19 @@ export default {
       loginUser,
       goToX,
       logOut,
-      mainContainer,
-      containerAction,
-      store
+      headerContainerAction,
+      HeaderContainer,
+      store,
 
     };
-  }
+  },
 };
 </script>
 <template>
   <div>
     <header class="header">
       <div class="header-bar">
-        <div class="mainContainer" @click="mainContainer">
+        <div class="mainContainer" @click="HeaderContainer">
           <label class="mainContainer-label">
             <i class="fa-solid fa-bars"></i>
           </label>

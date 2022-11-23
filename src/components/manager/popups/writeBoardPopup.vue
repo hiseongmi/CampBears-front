@@ -68,7 +68,6 @@ export default {
     let SNSFormData = new FormData();
     const upFileChange = (e) => {
       let SNSFileList = e.target.files;
-      console.log(SNSFileList);
       if (SNSFileList.length < 1) {
         window.alert("사진을 한 장 이상 넣어주세요.");
       } else if (SNSFileList.length < 11) {
