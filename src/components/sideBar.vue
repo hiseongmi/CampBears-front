@@ -26,10 +26,7 @@ export default {
     };
 
     const closePopup = () => {
-      isActive.value = false;
-      setTimeout(() => {
-        store.commit(STORE_TYPE.sideBar, false);
-      }, 500);
+      store.commit(STORE_TYPE.sideBar, false);
     };
 
     onMounted(() => {
