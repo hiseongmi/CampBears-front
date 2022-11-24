@@ -16,15 +16,16 @@ export default {
     customInput,
   },
   setup() {
-    const inquiryData = ref({ keyword: "", hashKeyWord: "" });
+    const inquiryData = ref({ showType: "ALL", keyword: "", hashKeyWord: "" });
     const getContent = async () => {
       const data = await apiClient("/sns/getSnsList", inquiryData.value);
-      //search 이벤트를 날림
       if (dispatchEvent(new CustomEvent("SEARCH", { detail: inquiryData.value.keyword }))) {
-        inquiryData.value.hashKeyWord = inquiryData.value.keyword;
+        if (inquiryData.value.keyword[0] === "#") {
+          inquiryData.value.hashKeyWord = inquiryData.value.keyword.replace("#", "");
+          inquiryData.value.keyword = "";
+        }
+        inquiryData.value.hashKeyWord = "";
       }
-      // dispatchEvent(new CustomEvent("HASHSEARCH", { detail: inquiryData.value.hashKeyWord })); //search 이벤트를 날림
-      // console.log(inquiryData.value);
     };
 
 

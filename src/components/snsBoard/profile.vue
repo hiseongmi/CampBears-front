@@ -74,8 +74,8 @@ export default {
         <span v-if="userData?.userIdx !== userInfo?.userIdx">
           <span class="middle-dot">&#183;</span>
           <button class="follow">팔로우</button>
-        </span>
-        <p><i class="fa-solid fa-location-dot"></i></p>
+        </span><br />
+        <a class="profile-wrap-data-place"><i class="fa-solid fa-location-dot"></i></a>
       </div>
     </div>
   </div>

@@ -6,7 +6,9 @@
       padding: 5px;
       align-items: center;
 
+
       img {
+        cursor: pointer;
         border-radius: 50%;
         width: 40px;
         height: 40px;
@@ -19,6 +21,7 @@
         width: 190px;
 
         span {
+          cursor: context-menu;
           margin-right: 5px;
           font-size: 14px;
         }
@@ -39,11 +42,7 @@
           font-weight: 700;
         }
 
-        p {
-          i {
-            font-size: 11px;
-          }
-
+        &-place {
           color: #636363;
           background-color: rgba(204, 204, 204, 0.3);
           font-size: 10px;
@@ -52,6 +51,10 @@
           overflow: hidden;
           text-overflow: ellipsis;
           white-space: nowrap;
+
+          i {
+            font-size: 11px;
+          }
         }
       }
     }
@@ -65,11 +68,13 @@
       display: flex;
       padding: 5px;
       align-items: center;
+
       @include mb() {
-        padding: 1px;
+        padding: 3px 1px;
       }
 
       img {
+        cursor: pointer;
         border-radius: 50%;
         width: 40px;
         height: 40px;
@@ -121,7 +126,7 @@
           }
         }
 
-        p {
+        &-place {
           i {
             font-size: 11px;
           }
@@ -130,7 +135,7 @@
           color: #636363;
           background-color: rgba(204, 204, 204, 0.3);
           font-size: 10px;
-          padding: 3.25px;
+          padding: 0 3.25px;
           border-radius: 4px;
           overflow: hidden;
           text-overflow: ellipsis;

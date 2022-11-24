@@ -31,25 +31,22 @@ export default {
       }
     };
 
-    const showIndex = ref();
-    const showType = {
-      ALL: "ALL",
-      FOLLOW: "FOLLOW",
-      HASH: "HASH",
-    };
-    const showChange = v => {
-      showIndex.value = v;
-      //console.log(showIndex.value);
-    };
-
-    const selectedValue = ref();
+    const sortValue = ref();
     const SORT_TYPE = {
       RECENT: "RECENT",
       LONG: "LONG",
     };
-    const selectedUpdateValue = value => {
-      selectedValue.value = value;
-      //console.log(selectedValue.value);
+    const showValue = ref();
+    const SHOW_TYPE = {
+      ALL: "ALL",
+      FOLLOW: "FOLLOW",
+      HASH: "HASH",
+    };
+    const sortUpdateValue = value => {
+      sortValue.value = value;
+    };
+    const showUpdateValue = value => {
+      showValue.value = value;
     };
 
     const selectSortData = [
@@ -92,6 +89,11 @@ export default {
       { key: "SHOWER", value: "샤워장" },
       { key: "PARKING", value: "주차가능" },
     ];
+    const selectPublicData = [
+      { key: SHOW_TYPE.ALL, value: "전체 게시물" },
+      { key: SHOW_TYPE.FOLLOW, value: "팔로워 게시물" },
+      { key: SHOW_TYPE.HASH, value: "해시태그 게시물" },
+    ];
     const openWrite = () => {
       if (userData.value) {
         store.commit(STORE_TYPE.popupType, POPUP_TYPE.WRITE_BOARD);
@@ -113,29 +115,35 @@ export default {
 
     const handleSearch = e => {
       //이벤트를 받음
-      if (e.detail !== "") {
-        keyword = e.detail;
-        //inquiryData.value = {keyword: e.detail} ///빈값이 아닐때  keyword 로 값을 보냄
+      if (e.detail !== "" && e.detail[0] === "#") {
+        hashKeyWord = e.detail.replace("#", "");
+        keyword = "";
       } else {
         keyword = e.detail;
-        //inquiryData.value = ""
+        hashKeyWord = "";
       }
       getContent();
     };
-    //키워드 검색
+
     const contentData = ref();
     let keyword = "";
-    let hashKeyWord = ""; //데이터 가공해서 넣기
+    let hashKeyWord = "";
     const getContent = async () => {
-      let param = { keyword: keyword, hashKeyWord: keyword, sorted: "RECENT", showType: "ALL" };
-      if (selectedValue.value !== null && selectedValue.value !== undefined) {
-        param = Object.assign({}, param, { sorted: selectedValue.value }); //ob 내장함수 합침
-        param.sorted = selectedValue.value;
+      let param = { keyword: keyword, hashKeyWord: hashKeyWord, sorted: "RECENT", showType: "ALL" };
+      if (sortValue.value !== null && sortValue.value !== undefined) {
+        param = Object.assign({}, param, { sorted: sortValue.value }); //ob 내장함수 합침
+        param.sorted = sortValue.value;
       }
+      if (showValue.value !== null && showValue.value !== undefined) {
+        param = Object.assign({}, param, { showType: showValue.value }); //ob 내장함수 합침
+        param.showType = showValue.value;
+      }
+
+
       const data = await apiClient("/sns/getSnsList", param);
+      console.log(param);
       if (data.data) {
         contentData.value = data.data;
-        console.log(contentData.value);
       }
     };
     const getImgUrl = (file) => {
@@ -161,19 +169,19 @@ export default {
     return {
       userData,
       contentData,
-      showIndex,
-      showType,
       selectSortData,
-      selectedValue,
+      sortValue,
+      showValue,
       selectSeasonData,
       selectComfortsData,
       postImage,
       selectNumberData,
-      selectedUpdateValue,
+      selectPublicData,
+      sortUpdateValue,
+      showUpdateValue,
       openWrite,
       openDetail,
       getContent,
-      showChange,
       getImgUrl,
     };
   },
@@ -182,36 +190,34 @@ export default {
 <template>
   <div class="news-menu">
     <div class="news-menu-showBtn">
-      <customButton
-        :placeholder="'전체 게시물'"
-        :onClick="() => showChange(showType.ALL)"
-        :customClass="showIndex === showType.ALL ? 'showActive' : 'customButton'"
-      />
-      <customButton
-        :placeholder="'팔로우 게시물'"
-        :onClick="() => showChange(showType.FOLLOW)"
-        :customClass="showIndex === showType.FOLLOW ? 'showActive' : ''"
-      />
-      <customButton
-        :placeholder="'태그 게시물'"
-        :onClick="() => showChange(showType.HASH)"
-        :customClass="showIndex === showType.HASH ? 'showActive' : ''"
-      />
+      <!--      <customButton-->
+      <!--        :placeholder="'전체 게시물'"-->
+      <!--      />-->
+      <!--      <customButton-->
+      <!--        :placeholder="'팔로우 게시물'"-->
+      <!--      />-->
+      <!--      <customButton-->
+      <!--        :placeholder="'태그 게시물'"-->
+      <!--      />-->
     </div>
     <div class="news-menu-select">
       <ul>
         <li>
-          <customSelect :custom-class="'selectBox'" @click="getContent" @update:value="selectedUpdateValue"
+          <customSelect @click="getContent" @update:value="showUpdateValue"
+                        :data="selectPublicData"></customSelect>
+        </li>
+        <li>
+          <customSelect @click="getContent" @update:value="sortUpdateValue"
                         :data="selectSortData"></customSelect>
         </li>
         <li>
-          <custom-select @update:value="selectedUpdateValue" :data="selectNumberData"></custom-select>
+          <custom-select @update:value="sortUpdateValue" :data="selectNumberData"></custom-select>
         </li>
         <li>
-          <customSelect @update:value="selectedUpdateValue" :data="selectSeasonData"></customSelect>
+          <customSelect @update:value="sortUpdateValue" :data="selectSeasonData"></customSelect>
         </li>
         <li>
-          <customSelect @update:value="selectedUpdateValue" :data="selectComfortsData"></customSelect>
+          <customSelect @update:value="sortUpdateValue" :data="selectComfortsData"></customSelect>
         </li>
       </ul>
     </div>
@@ -235,20 +241,17 @@ export default {
           <div class="detail-wrap">
             <div class="detail-wrap-icon">
               <span><i class="fa-regular fa-heart"></i></span>
-            </div>
-            <div class="detail-wrap-icon">
               <span><i class="fa-regular fa-comment"></i></span>
             </div>
-            <div class="detail-wrap-briefcase">
-              <span><i class="fa-solid fa-briefcase"></i></span>
-            </div>
-            <div class="detail-wrap-icon">
-              <span><i class="fa-regular fa-bookmark"></i></span>
-            </div>
+            <!--            <div class="detail-wrap-briefcase">-->
+            <!--              <span><i class="fa-solid fa-briefcase"></i></span>-->
+            <!--            </div>-->
+            <!--            <div class="detail-wrap-icon">-->
+            <!--              <span><i class="fa-regular fa-bookmark"></i></span>-->
+            <!--            </div>-->
           </div>
           <div class="contents" @click="openDetail(item.boardIdx)">
             <span class="contents-writing">{{ item.boardBody }}</span>
-
           </div>
           <div class="comments">
             <span>댓글 {{ item.commentCount }}</span>

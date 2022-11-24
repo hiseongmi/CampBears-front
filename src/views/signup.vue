@@ -14,7 +14,7 @@ export default {
   components: {
     CustomLoading,
     customInput,
-    customButton
+    customButton,
   },
   setup() {
     const joinUserData = ref({
@@ -29,23 +29,19 @@ export default {
       userNickName: "",
       stateTerms: "Y",
       dateTerms: new Date(),
-      stateMarketing: "Y"
+      stateMarketing: "Y",
     });
 
     const typeSearchData = ref({
-      type: "USER_TYPE"
+      type: "USER_TYPE",
     });
     const typeData = ref();
     const typeSearch = async () => {
       const data = await apiClient("/common/getTypeList", typeSearchData.value);
-      //console.log(data.data) //태그 장소 검색 글 데이터
       typeData.value = data.data;
       if (typeData.value) {
         joinUserData.value.userType = typeData.value[0].column;
-        //console.log(joinUserData.value)
       }
-      // contentData.value = data.data
-      //search 이벤트를 날림
     };
 
 
@@ -146,9 +142,9 @@ export default {
       secForm,
       isShow,
       back,
-      goToX
+      goToX,
     };
-  }
+  },
 };
 </script>
 <template>

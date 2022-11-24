@@ -14,10 +14,10 @@ export default {
     const isActive = ref(false);
 
     const menuList = [
-      { name: "SNS", url: "/snsPage" },
+      { name: "커뮤니티", url: "/snsPage" },
       { name: "중고마켓", url: "/usedMarket" },
       { name: "캠핑장", url: "/campingInfo" },
-      { name: "로그아웃", url: "" }
+      { name: "로그아웃", url: "" },
     ];
 
     const goToX = target => {
@@ -35,7 +35,7 @@ export default {
       if (ud) {
         userData.value = commonUtil.parseJson(ud);
         profileImg.value = commonUtil.getImgUrl(
-          userData.value.file.filter(v => v.fileType === "USER_PROFILE")[0].fileName
+          userData.value.file.filter(v => v.fileType === "USER_PROFILE")[0].fileName,
         );
       }
       setTimeout(() => {
@@ -52,7 +52,7 @@ export default {
       () => {
         console.log(flag.value);
         flag.value = store.state.sideBar;
-      }
+      },
     );
 
     return {
@@ -62,9 +62,9 @@ export default {
       menuList,
       isActive,
       goToX,
-      closePopup
+      closePopup,
     };
-  }
+  },
 };
 </script>
 <template>
