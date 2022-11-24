@@ -1,15 +1,18 @@
 <script>
 import CustomButton from "../components/layout/customButton.vue";
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import sellComponent from "../components/usedMarket/sellComponent.vue";
 import buyComponent from "../components/usedMarket/buyComponent.vue";
 import chat from "../components/chat.vue";
 import store, { POPUP_TYPE, STORE_TYPE } from "../store/index.js";
+import commonUtil from "../utils/common-util.js";
+import { CONSTANTS } from "../constants.js";
 
 export default {
   name: "usedMarket",
   components: { sellComponent, buyComponent, CustomButton, chat },
   setup() {
+    const loginUser = ref(undefined);
     const tabType = {
       SELL: "sell",
       BUY: "buy"
@@ -25,7 +28,15 @@ export default {
       store.commit(STORE_TYPE.popupType, POPUP_TYPE.PRODUCT_WRITE);
     }; //글쓰기 팝업열기
 
+    onMounted(() => {
+      const d = commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO);
+      if (d)
+        loginUser.value = JSON.parse(d);
+
+    });
+
     return {
+      loginUser,
       tabType,
       tabIndex,
       componentChange,
@@ -63,5 +74,5 @@ export default {
       <buy-component v-else-if="tabIndex === tabType.BUY" />
     </div>
   </div>
-  <!--  <chat></chat>-->
+  <chat v-if="loginUser"></chat>
 </template>

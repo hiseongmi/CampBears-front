@@ -10,21 +10,16 @@ const CHAT_TYPE = {
 };
 
 export default class chatUtil {
-  #chatIdx;
   socket;
   loginUser;
 
   constructor() {
-    // this.initChat = this.initChat.bind(this);
     this.receiveHandler = this.receiveHandler.bind(this);
     const d = commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO);
-    console.log(d);
     if (d) this.loginUser = JSON.parse(d);
-    console.log("loginUSer : ", this.loginUser);
   }
 
   initChat() {
-    console.log("init chat");
     this.socket = io(CONSTANTS.CHAT_SERVER, {
       transports: ["websocket", "polling"],
       reconnection: true,
@@ -39,26 +34,21 @@ export default class chatUtil {
 
   destroyChat() {
     console.log("destroy chat util");
-    this.socket.disabled();
+    this.socket.off(CHAT_TYPE.RECEIVE);
   }
 
   sendMessage(v) {
-    console.log("보낸 메세지 : ");
-    console.log(v);
     this.socket.emit(CHAT_TYPE.SEND, v);
   }
 
   onSubscribe() {
     this.socket.on(CHAT_TYPE.CONNECT, () => {
-      console.log("connect!!!");
+      console.log("connect chat util");
     });
-    console.log("received");
     this.socket.on(CHAT_TYPE.RECEIVE, this.receiveHandler);
   }
 
   receiveHandler(e) {
-    console.warn("데이터가 왔어요");
-    console.warn(e.data);
     if (e.data.targetIdx === this.loginUser.userIdx) {
       dispatchEvent(new CustomEvent("RECEIVE_MESSAGE", { detail: e.data }));
     }

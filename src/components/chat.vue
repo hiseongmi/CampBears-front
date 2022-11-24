@@ -1,5 +1,5 @@
 <script>
-import { onMounted, onUnmounted, ref } from "vue";
+import { onMounted, onUnmounted, ref, watch } from "vue";
 import { apiClient } from "../utils/axios.js";
 import chatUtil from "../utils/chat.util.js";
 import commonUtil from "../utils/common-util.js";
@@ -8,45 +8,34 @@ import { CONSTANTS } from "../constants.js";
 export default {
   name: "chat",
   setup() {
+    const loginUser = ref(undefined);
     let chatManager = undefined;
-    // const d= commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO);
-    // if(d)
-    // const loginUser = JSON.parse();
-    const connetedChatIdx = ref("");
-    const showChat = ref(true);
-    const userList = ref([]);
+    const showChat = ref(false);
+    const userList = ref([]); // 채팅방 안에 들어오 유저 리스트
     const targetUser = ref(undefined);
-    const chatInfoList = ref([{ chatType: "ME", chatBody: "내가보낸거", ProfileImg: "", NickName: "나야" }, {
-      chatType: "YOU",
-      chatBody: "상태가 보낸거",
-      ProfileImg: "",
-      NickName: "너야"
-    }]);
+    const chatInfoList = ref([]);
     const msg = ref("");
     const showChatController = () => {
       showChat.value = !showChat.value;
     };
     const doChatUser = async (user) => {
-      // console.log(user);
       targetUser.value = user;
-      // const d = await apiClient("chat/joinChat", { targetIdx: user.userIdx });
-      // if (d) {
-      //   console.log(d.data);
-      //   // let chatInfo = d.data[0];
-      //   // console.log(chatInfo.chatIdx);
-      //   // connetedChatIdx.value = chatInfo.chatIdx;
-      //   // chatManager = new chatUtil(chatInfo.chatIdx);
-      //   // chatManager.initChat();
-      // }
+      if (chatInfoList.value.length > 0) {
+        chatInfoList.value = [];
+      }
+      await getChatRoomInfo(targetUser.value.chatIdx);
+      // showLastIndex();
+
     };
+
     const handleInput = (e) => {
       msg.value = e.target.value;
     };
+
     const sendMsg = () => {
-      console.log(targetUser.value);
       const param = {
         chatIdx: targetUser.value.chatIdx,
-        userIdx: loginUser.userIdx,
+        userIdx: loginUser.value.userIdx,
         targetIdx: targetUser.value.targetIdx,
         chatType: "ME",
         chatBody: msg.value,
@@ -57,6 +46,11 @@ export default {
         // chatManager.sendMessage(msg);
         chatInfoList.value.push(param);
         chatManager.sendMessage(param);
+        const i = document.getElementById("chat-output");
+        i.value = "";
+        setTimeout(() => {
+          showLastIndex();
+        }, 100);
       }
     };
 
@@ -74,6 +68,9 @@ export default {
           c.chatType = "YOU";
         }
         chatInfoList.value.push(e.detail);
+        setTimeout(() => {
+          showLastIndex();
+        }, 100);
       }
     };
 
@@ -88,31 +85,91 @@ export default {
       }
     };
 
+    /**
+     * 채팅방 데이터 조회
+     * @param chatIdx
+     * @returns {Promise<void>}
+     */
+    const getChatRoomInfo = async (chatIdx) => {
+      const d = await apiClient("chat/getChatInfoList", { chatIdx: chatIdx });
+      if (d.data) {
+        d.data.map(v => {
+          if (v.userIdx === loginUser.value.userIdx) {
+            v["chatType"] = "ME";
+          } else {
+            v["chatType"] = "YOU";
+          }
+          chatInfoList.value.push(v);
+        });
+      }
+      setTimeout(() => {
+        showLastIndex();
+      }, 100);
 
+    };
+
+    /**
+     * 타겟 제거
+     */
     const clearTargetUser = () => {
       targetUser.value = undefined;
     };
 
+    const getImgUrl = (f) => {
+      if (f) {
+        return commonUtil.getImgUrl(f);
+      } else {
+        return "/assets/image/IU.webp";
+      }
+    };
+
+    /**
+     * 가장 마지막 채팅 보기
+     */
+    const showLastIndex = () => {
+      const c = document.getElementsByClassName("chat-info");
+      if (c.length > 0) {
+        const lastIndex = c.length - 1;
+        c[lastIndex].scrollIntoView({ behavior: "smooth" });
+      }
+    };
+
+    watch(() => showChat.value,
+      () => {
+        if (!showChat.value) targetUser.value = undefined;
+      });
+
     onMounted(() => {
-      chatManager = new chatUtil();
-      chatManager.initChat();
-      getChatList();
-      addEventListener("RECEIVE_MESSAGE", receiveHandler);
+      chatInfoList.value = []; // 초기화
+      const u = commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO);
+      if (u) {
+        loginUser.value = JSON.parse(u);
+        chatManager = new chatUtil();
+        chatManager.initChat();
+        getChatList();
+        addEventListener("RECEIVE_MESSAGE", receiveHandler);
+      } else {
+        console.log("no one here");
+      }
     });
 
     onUnmounted(() => {
+      chatManager.destroyChat();
       removeEventListener("RECEIVE_MESSAGE", receiveHandler);
     });
+
     return {
       showChat,
       userList,
       targetUser,
       chatInfoList,
+      showLastIndex,
       showChatController,
       doChatUser,
       handleInput,
       sendMsg,
-      clearTargetUser
+      clearTargetUser,
+      getImgUrl
     };
   },
   methods: {}
@@ -122,20 +179,32 @@ export default {
   <section class="chat">
     <div v-if="!showChat" class="floating-icon" @click="showChatController()">챗</div>
     <div v-else class="main-area">
-      <div class="title" @click="clearTargetUser">CHAT</div>
+      <div class="title">
+        <i v-if="targetUser" @click="clearTargetUser" class="fa-solid fa-angle-left"></i>
+        CHAT
+        <i class="fa-solid fa-x close" @click="showChatController()"></i>
+      </div>
       <div v-if="!targetUser" class="body">
         <div class="user-list">
-          <div v-for="user in userList" @click="()=>doChatUser(user)">{{ user.userNickName }}</div>
+          <div v-for="user in userList" @click="()=>doChatUser(user)">
+            <div class="user">
+              <img :src="getImgUrl(user.userProfile[0]?.fileName)" alt="">
+              {{ user.userNickName }}
+            </div>
+          </div>
         </div>
       </div>
       <div v-else class="chat-screen">
         <div v-for="chat in chatInfoList">
           <div class="chat-body" :class="chat.chatType">
-            {{ chat.chatBody }}
+            <img v-if="chat.chatType === 'YOU'" :src="getImgUrl(targetUser.userProfile[0]?.fileName)" alt="">
+            <div class="chat-info" :class="chat.chatType">
+              {{ chat.chatBody }}
+            </div>
           </div>
         </div>
         <div class="chat-util">
-          <input type="text" @input="handleInput">
+          <input id="chat-output" type="text" @input="handleInput">
           <button @click="sendMsg">전송</button>
         </div>
 
@@ -145,95 +214,3 @@ export default {
 
   </section>
 </template>
-
-<style lang="scss">
-.chat {
-  position: fixed;
-  right: 10%;
-  bottom: 10%;
-
-  .floating-icon {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background-color: #274fc5;
-    display: flex;
-    align-content: center;
-    justify-content: center;
-    align-items: center;
-    font-size: 30px;
-    color: white;
-    transition: 1s all;
-
-    &:hover {
-      cursor: pointer;
-      width: 70px;
-      height: 70px;
-      background-color: #0f43d9;
-    }
-  }
-
-  .main-area {
-    width: 300px;
-    height: 500px;
-    background-color: white;
-    border-radius: 20px;
-    border: 1px solid black;
-    padding: 20px;
-
-    .title {
-      text-align: center;
-      font-size: 20px;
-      margin-bottom: 20px;
-    }
-
-    .body {
-      .user-list {
-        div {
-          height: 30px;
-          width: 100%;
-          border-bottom: 1px solid grey;
-
-          &:hover {
-            background-color: #cccccc;
-            cursor: pointer;
-          }
-        }
-      }
-    }
-
-    .chat-screen {
-      display: flex;
-      flex-direction: column;
-
-      .chat-body {
-        width: auto;
-        height: 20px;
-        background-color: #EEEEEE;
-        margin-bottom: 10px;
-
-        &.ME {
-          color: red;
-          text-align: right;
-        }
-
-        &.YOU {
-          color: blue;
-          text-align: left;
-        }
-      }
-
-      .chat-util {
-        display: flex;
-        position: absolute;
-        bottom: 20px;
-        width: calc(100% - 40px);
-
-        > input {
-          margin-right: 20px;
-        }
-      }
-    }
-  }
-}
-</style>
