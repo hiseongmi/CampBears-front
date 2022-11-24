@@ -27,6 +27,7 @@ export default class chatUtil {
       reconnectionDelayMax: 3000,
       reconnectionAttempts: 100, // returns it if no parameters are passed
     });
+    // console.log(this.socket);
     if (this.socket) {
       this.onSubscribe();
     }

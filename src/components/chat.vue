@@ -145,6 +145,7 @@ export default {
       if (u) {
         loginUser.value = JSON.parse(u);
         chatManager = new chatUtil();
+        // console.log("chat : ", chatManager);
         chatManager.initChat();
         getChatList();
         addEventListener("RECEIVE_MESSAGE", receiveHandler);
