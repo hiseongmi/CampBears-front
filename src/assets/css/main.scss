@@ -1154,9 +1154,40 @@
         overflow: scroll;
         margin: unset;
 
+        &::-webkit-scrollbar {
+          //width: 100px;
+          height: 3px;
+          border-radius: 2px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background-color: #ccc
+        }
+
+        &::-webkit-scrollbar-track {
+          background-color: white;
+        }
+
 
         .news-ul-li {
           width: 30%;
+          min-width: 200px;
+        }
+
+        @include tb() {
+          max-width: 769px;
+          width: auto;
+          .news-ul-li {
+            width: 30%;
+          }
+        }
+        @include mb() {
+          max-width: 376px;
+          width: auto;
+          .news-ul-li {
+            width: 40%;
+            min-width: 250px;
+          }
         }
 
       }
