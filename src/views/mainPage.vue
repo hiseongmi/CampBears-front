@@ -6,10 +6,12 @@ import snsPage from "./snsPage.vue";
 import myPage from "./myPage.vue";
 import infoPage from "./infoPage.vue";
 import { apiClient } from "../utils/axios.js";
-import { onMounted } from "vue";
+import { nextTick, onMounted, ref } from "vue";
 import CustomLoading from "../components/layout/customLoading.vue";
 import UsedContentsComponent from "../components/usedMarket/sellComponent.vue";
-import axios from "axios";
+import Buss from "../components/busBooreng.vue";
+import TWEEN, { Tween } from "@tweenjs/tween.js";
+
 
 export default {
   name: "mainPage",
@@ -20,23 +22,60 @@ export default {
     customButton,
     snsPage,
     myPage,
-    infoPage
+    infoPage,
+    Buss
   },
-
   setup() {
+    let coor = { y: 0 };
+    const intro = ref(undefined);
+    let introAni = undefined;
+
+    const startAnimation = (v) => {
+      console.log("startAni");
+      introAni = new Tween(coor).to({ y: 100 }, 1000)
+        .easing(TWEEN.Easing.Cubic.InOut)
+        .onUpdate(() => {
+          intro.value.style.setProperty("transform", `translateY(-${coor.y}%)`);
+          intro.value.style.setProperty("opacity", `${100 / coor.y - 1}`);
+        }).onComplete(() => {
+          console.log("complete");
+          if (v) router.push(v);
+        }).start();
+
+      const animation = (time) => {
+        requestAnimationFrame(animation);
+        TWEEN.update(time);
+      };
+
+      requestAnimationFrame(animation);
+    };
 
     const goToX = v => {
       v ? router.push(v) : window.alert("준비중입니다.");
     };
 
+    const introPush = v => {
+      startAnimation(v);
+    };
+
+    onMounted(() => {
+      intro.value = document.getElementById("intro");
+      nextTick(() => {
+
+      });
+    });
+
 
     return {
-      goToX
+      goToX,
+      introPush
     };
   }
 };
 </script>
 <template>
+  <!--  <Buss />-->
+
   <div class="main-box">
 
     <div class="main-fir">
@@ -113,74 +152,74 @@ export default {
       </div>
     </div>
   </div>
-  <div class="main-campsite">
-    <custom-button :customClass="'main-info-btn'" :placeholder="`HAND OVER A CAMPSITE >`"
-                   @click="goToX('/infoPage')" />
+  <!--  <div class="main-campsite">-->
+  <!--    <custom-button :customClass="'main-info-btn'" :placeholder="`HAND OVER A CAMPSITE >`"-->
+  <!--                   @click="goToX('/infoPage')" />-->
 
-  </div>
+  <!--  </div>-->
 
-  <div class="autocamp-box">
-    <div class="main-autocamp">
-      <div class="autocamp">
-        <!--      <img src="/assets/image/mainutoCamp.webp" alt="">-->
-      </div>
-      <div class="autocam-cont">
-        <h1>피아골 오토 캠핑장</h1>
-        <span>테크 13번 9/27~9/29 양도합니다. 테크 4*4...</span>
-        <a href="">
-          <img src="/assets/image/icon/locationBlue.webp" alt="" />
-          전라남도 구례군
-        </a>
-        <div>
-          <h2>845.000원</h2>
-          <span>
-            <img src="/assets/image/icon/time.webp" alt="" />
-            1시간 전
-          </span>
-        </div>
-      </div>
-    </div>
-    <div class="main-autocamp">
-      <div class="autocamp">
-        <!--      <img src="/assets/image/mainutoCamp.webp" alt="">-->
-      </div>
-      <div class="autocam-cont">
-        <h1>피아골 성미 캠핑장</h1>
-        <span>테크 13번 9/27~9/29 양도합니다. 테크 4*4...</span>
-        <a href="">
-          <img src="/assets/image/icon/locationBlue.webp" alt="" />
-          경기도 어디였더라
-        </a>
-        <div>
-          <h2>450.000원</h2>
-          <span>
-            <img src="/assets/image/icon/time.webp" alt="" />
-            1시간 전
-          </span>
-        </div>
-      </div>
-    </div>
-    <div class="main-autocamp">
-      <div class="autocamp">
-        <!--      <img src="/assets/image/mainutoCamp.webp" alt="">-->
-      </div>
-      <div class="autocam-cont">
-        <h1>피아골 정운 캠핑장</h1>
-        <span>테크 13번 9/27~9/29 양도합니다. 테크 4*4...</span>
-        <a href="">
-          <img src="/assets/image/icon/locationBlue.webp" alt="" />
-          경기도 고양시
-        </a>
-        <div>
-          <h2>995.000원</h2>
-          <span>
-            <img src="/assets/image/icon/time.webp" alt="" />
-            1시간 전
-          </span>
-        </div>
-      </div>
-    </div>
-  </div>
+  <!--  <div class="autocamp-box">-->
+  <!--    <div class="main-autocamp">-->
+  <!--      <div class="autocamp">-->
+  <!--        &lt;!&ndash;      <img src="/assets/image/mainutoCamp.webp" alt="">&ndash;&gt;-->
+  <!--      </div>-->
+  <!--      <div class="autocam-cont">-->
+  <!--        <h1>피아골 오토 캠핑장</h1>-->
+  <!--        <span>테크 13번 9/27~9/29 양도합니다. 테크 4*4...</span>-->
+  <!--        <a href="">-->
+  <!--          <img src="/assets/image/icon/locationBlue.webp" alt="" />-->
+  <!--          전라남도 구례군-->
+  <!--        </a>-->
+  <!--        <div>-->
+  <!--          <h2>845.000원</h2>-->
+  <!--          <span>-->
+  <!--            <img src="/assets/image/icon/time.webp" alt="" />-->
+  <!--            1시간 전-->
+  <!--          </span>-->
+  <!--        </div>-->
+  <!--      </div>-->
+  <!--    </div>-->
+  <!--    <div class="main-autocamp">-->
+  <!--      <div class="autocamp">-->
+  <!--        &lt;!&ndash;      <img src="/assets/image/mainutoCamp.webp" alt="">&ndash;&gt;-->
+  <!--      </div>-->
+  <!--      <div class="autocam-cont">-->
+  <!--        <h1>피아골 성미 캠핑장</h1>-->
+  <!--        <span>테크 13번 9/27~9/29 양도합니다. 테크 4*4...</span>-->
+  <!--        <a href="">-->
+  <!--          <img src="/assets/image/icon/locationBlue.webp" alt="" />-->
+  <!--          경기도 어디였더라-->
+  <!--        </a>-->
+  <!--        <div>-->
+  <!--          <h2>450.000원</h2>-->
+  <!--          <span>-->
+  <!--            <img src="/assets/image/icon/time.webp" alt="" />-->
+  <!--            1시간 전-->
+  <!--          </span>-->
+  <!--        </div>-->
+  <!--      </div>-->
+  <!--    </div>-->
+  <!--    <div class="main-autocamp">-->
+  <!--      <div class="autocamp">-->
+  <!--        &lt;!&ndash;      <img src="/assets/image/mainutoCamp.webp" alt="">&ndash;&gt;-->
+  <!--      </div>-->
+  <!--      <div class="autocam-cont">-->
+  <!--        <h1>피아골 정운 캠핑장</h1>-->
+  <!--        <span>테크 13번 9/27~9/29 양도합니다. 테크 4*4...</span>-->
+  <!--        <a href="">-->
+  <!--          <img src="/assets/image/icon/locationBlue.webp" alt="" />-->
+  <!--          경기도 고양시-->
+  <!--        </a>-->
+  <!--        <div>-->
+  <!--          <h2>995.000원</h2>-->
+  <!--          <span>-->
+  <!--            <img src="/assets/image/icon/time.webp" alt="" />-->
+  <!--            1시간 전-->
+  <!--          </span>-->
+  <!--        </div>-->
+  <!--      </div>-->
+  <!--    </div>-->
+  <!--  </div>-->
   <div class="used-market-box">
     <custom-button :customClass="'usedMarketButton'" :placeholder="`USED MARKET >`" @click="goToX('/usedMarket')" />
     <used-contents-component />
@@ -215,6 +254,19 @@ export default {
     </div>
 
   </div>
-
+  <div id="intro">
+    <img src="/assets/image/bus.jpg" alt="intro">
+    <div class="shadow"></div>
+    <div class="content">
+      <img src="/assets/image/logo.png" alt="logo">
+      <div>CAMP BEARS</div>
+      <div class="title">캠핑의 모든것, Camp Bears에서</div>
+      <button @click="introPush()">START HERE</button>
+      <div class="footer-area">
+        <div @click="introPush('/login')">로그인</div>
+        <div @click="introPush('/signup')">회원가입</div>
+      </div>
+    </div>
+  </div>
 
 </template>
