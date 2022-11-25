@@ -1,5 +1,5 @@
 $primary-color: #FA6C1A;
-$second-color: #B9B9B9;
+$second-color: #2F2E2C;
 $third-color: green;
 $gray: #999999;
 $disable: #cccccc;
@@ -119,7 +119,7 @@ width, height, padding, margin set
 1200 ~      : pc;
  */
 @mixin mb {
-  @media (max-width: 768px) {
+  @media (max-width: 769px) {
     @content;
   }
 }

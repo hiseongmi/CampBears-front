@@ -1,0 +1,290 @@
+.news {
+  width: 100%;
+
+  &-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 40px;
+    max-width: 855px;
+    margin: 0 auto;
+
+    &-contents {
+      display: flex;
+      align-items: baseline;
+      position: relative;
+      //소식
+      &-title {
+        font-size: 48px;
+        font-weight: bold;
+        padding-right: 10px;
+      }
+
+      //다르캠퍼의~
+      &-ment {
+        font-size: 16px;
+      }
+    }
+
+    .line {
+      position: absolute;
+      width: 537px;
+      height: 18px;
+      left: 0;
+      top: 158px;
+      background: #ececec;
+      border: none;
+      z-index: 4;
+    }
+
+    //태그장소 찾아보기
+    &-search {
+      position: relative;
+
+      .custom-input {
+        border: 1.5px solid rgba(204, 204, 204, 0.8);
+        border-radius: 8px;
+        height: 42px;
+        width: 279px;
+        box-shadow: 5px 5px 5px #999999;
+        color: #000000;
+      }
+
+      input::placeholder {
+        text-align: center;
+      }
+
+      button {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        background: none;
+        border: none;
+        cursor: pointer;
+
+        i {
+          color: #000000;
+        }
+
+        i:hover {
+          color: #ec671a;
+        }
+      }
+    }
+  }
+
+  &-menu {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    max-width: 855px;
+    margin: 0 auto;
+    padding: 20px 40px;
+    //게시문 공개
+    &-showBtn {
+      display: flex;
+
+      .custom-button {
+        position: relative;
+        min-width: 0;
+        height: 20px;
+        border: none;
+        border-radius: 0;
+        display: inherit;
+        cursor: pointer;
+        width: 120px;
+        padding: 0 5px;
+      }
+
+      a {
+        color: #999999;
+        font-size: 14px;
+        font-weight: bold;
+      }
+
+      .showActive {
+        color: $text-color;
+      }
+    }
+
+    //셀렉박스
+    &-select {
+      .slider {
+        width: 100px;
+      }
+
+      ul {
+        display: flex;
+        list-style: none;
+        padding-inline-start: 10px;
+        margin: 0;
+
+        li {
+          padding: 0 10px;
+
+          select {
+            height: 27px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 15px;
+            width: auto;
+            color: #ff9c62;
+            border-color: #ff9c62;
+          }
+        }
+      }
+    }
+
+    //글쓰기 버튼
+    &-button {
+      &-write_btn {
+        padding: 4.3px 13px;
+        border-radius: 4px;
+        background-color: #ec671a;
+        border: none;
+        color: white;
+        cursor: pointer;
+        width: 100px;
+
+        i {
+          font-size: 15px;
+          padding-right: 3px;
+        }
+
+        span {
+          font-size: 15px;
+        }
+      }
+
+      &-none {
+        display: none;
+
+        .write_btn {
+          display: none;
+        }
+      }
+    }
+
+    .none {
+      display: none;
+    }
+  }
+
+  //게시물이미지 내용
+  &-ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    max-width: 799px;
+    margin: 0 auto;
+
+    &-li {
+      padding: 12.5px;
+      width: 33.3%;
+
+      &-wrap {
+        position: relative;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+        height: 279px;
+
+        //게시판 사진부분
+        &-write {
+          img {
+            width: 100%;
+            height: 241px;
+            border-radius: 8px;
+            cursor: pointer;
+            object-fit: cover;
+          }
+        }
+
+        //게시판 상세 부분
+        .detail {
+          background-color: white;
+          position: absolute;
+          bottom: 0;
+          width: 100%;
+          border-radius: 0 0 8px 8px;
+
+          //하트 댓글 북마크 들
+          &-wrap {
+            display: flex;
+            border-bottom: 1px solid #cccccc;
+            color: #818181;
+
+            &-icon {
+              padding: 5px 0;
+
+              span {
+                margin: 10px;
+
+                i {
+                  font-size: 20px;
+                }
+              }
+            }
+          }
+
+          //게시판 내용
+          .contents {
+            padding: 3px;
+            height: 40px;
+            color: #4c4c4c;
+            display: flex;
+            width: 100%;
+
+            &-writing {
+              padding: 4px 0;
+              flex: 1 0 0;
+              text-overflow: ellipsis;
+              overflow: hidden;
+              white-space: nowrap;
+              font-size: 14px;
+            }
+
+            span {
+              i {
+                font-size: 14px;
+              }
+            }
+          }
+
+          //댓글 개수
+          .comments {
+            padding: 3px;
+            height: 30px;
+            color: #4c4c4c;
+
+            span {
+              font-size: 11px;
+              padding: 3px;
+
+              i {
+                font-size: 11px;
+              }
+            }
+          }
+        }
+
+        //사진위 좋아요
+        .heart {
+          position: absolute;
+          top: 5px;
+          left: 5px;
+
+          span {
+            color: white;
+            font-size: 11px;
+            padding-left: 5px;
+
+            i {
+              font-size: 11px;
+              color: red;
+            }
+          }
+        }
+      }
+    }
+  }
+}

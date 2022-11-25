@@ -13,7 +13,7 @@ export default {
     snsContentPage,
     PopupManager,
     profile,
-    customInput,
+    customInput
   },
   setup() {
     const inquiryData = ref({ showType: "ALL", keyword: "", hashKeyWord: "" });
@@ -31,9 +31,9 @@ export default {
 
     return {
       inquiryData,
-      getContent,
+      getContent
     };
-  },
+  }
 };
 </script>
 <template>
