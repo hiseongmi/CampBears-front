@@ -1,6 +1,7 @@
 export const KEY_LIST = {
   USER_INFO: "UI",
   USER_INFO_TOKEN: "UIT",
+  SHOW_INTRO: "SI",
   EVENT_LIST: {
     LOADING: "LOADING",
   },

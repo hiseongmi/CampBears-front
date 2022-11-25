@@ -11,6 +11,8 @@ import CustomLoading from "../components/layout/customLoading.vue";
 import UsedContentsComponent from "../components/usedMarket/sellComponent.vue";
 import Buss from "../components/busBooreng.vue";
 import TWEEN, { Tween } from "@tweenjs/tween.js";
+import commonUtil from "../utils/common-util.js";
+import { CONSTANTS } from "../constants.js";
 
 
 export default {
@@ -29,6 +31,14 @@ export default {
     let coor = { y: 0 };
     const intro = ref(undefined);
     let introAni = undefined;
+    const showIntro = ref(true);
+
+
+    const notToday = () => {
+      const t = new Date().getTime();
+      commonUtil.setLocalStorage(CONSTANTS.KEY_LIST.SHOW_INTRO, t.toString());
+      introPush();
+    };
 
     const startAnimation = (v) => {
       console.log("startAni");
@@ -58,17 +68,33 @@ export default {
       startAnimation(v);
     };
 
+    const checkTime = () => {
+      const k = commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.SHOW_INTRO);
+      if (k) {
+        showIntro.value = false;
+        const now = new Date().getTime();
+        const time = now - k;
+        if (Number(time) >= 86400000) {
+          showIntro.value = true;
+        } else {
+          showIntro.value = false;
+        }
+      } else {
+        showIntro.value = true;
+      }
+    };
+
     onMounted(() => {
       intro.value = document.getElementById("intro");
-      nextTick(() => {
-
-      });
+      checkTime();
     });
 
 
     return {
       goToX,
-      introPush
+      introPush,
+      notToday,
+      showIntro
     };
   }
 };
@@ -254,7 +280,7 @@ export default {
     </div>
 
   </div>
-  <div id="intro">
+  <div id="intro" v-if="showIntro">
     <img src="/assets/image/bus.jpg" alt="intro">
     <div class="shadow"></div>
     <div class="content">
@@ -266,6 +292,7 @@ export default {
         <div @click="introPush('/login')">로그인</div>
         <div @click="introPush('/signup')">회원가입</div>
       </div>
+      <div class="off" @click="notToday">오늘 하루 안보기</div>
     </div>
   </div>
 
