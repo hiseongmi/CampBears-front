@@ -2,7 +2,7 @@
 import Profile from "./profile.vue";
 import postImage from "../../data/postImage.js";
 import store, { POPUP_TYPE, STORE_TYPE } from "../../store/index.js";
-import { onMounted, onUnmounted, ref } from "vue";
+import { computed, onMounted, onUnmounted, ref } from "vue";
 import { apiClient } from "../../utils/axios.js";
 import customSelect from "../layout/customSelect.vue";
 import Pagination from "../layout/customPagination.vue";
@@ -19,7 +19,7 @@ export default {
     Pagination,
     Profile,
     customSelect,
-    customButton
+    customButton,
   },
   setup() {
     const userData = ref();
@@ -34,13 +34,13 @@ export default {
     const sortValue = ref();
     const SORT_TYPE = {
       RECENT: "RECENT",
-      LONG: "LONG"
+      LONG: "LONG",
     };
     const showValue = ref();
     const SHOW_TYPE = {
       ALL: "ALL",
       FOLLOW: "FOLLOW",
-      HASH: "HASH"
+      HASH: "HASH",
     };
     const sortUpdateValue = value => {
       sortValue.value = value;
@@ -56,14 +56,14 @@ export default {
       { key: "댓글순", value: "댓글순" },
       { key: SORT_TYPE.RECENT, value: "최근순" },
       { key: SORT_TYPE.LONG, value: "오래된순" },
-      { key: "가나다순", value: "가나다순" }
+      { key: "가나다순", value: "가나다순" },
     ];
     const selectSeasonData = [
       { key: "season", value: "계절" },
       { key: "spring", value: "봄" },
       { key: "summer", value: "여름" },
       { key: "fall", value: "가을" },
-      { key: "winter", value: "겨울" }
+      { key: "winter", value: "겨울" },
     ];
     const selectNumberData = [
       { key: "NUM", value: "인원" },
@@ -76,7 +76,7 @@ export default {
       { key: "7", value: "7" },
       { key: "8", value: "8" },
       { key: "9", value: "9" },
-      { key: "10", value: "10" }
+      { key: "10", value: "10" },
     ];
     const selectComfortsData = [
       { key: "COMFORTS", value: "편의시설" },
@@ -87,13 +87,14 @@ export default {
       { key: "WASHROOM", value: "화장실" },
       { key: "DRINKING", value: "식수대" },
       { key: "SHOWER", value: "샤워장" },
-      { key: "PARKING", value: "주차가능" }
+      { key: "PARKING", value: "주차가능" },
     ];
     const selectPublicData = [
       { key: SHOW_TYPE.ALL, value: "전체 게시물" },
       { key: SHOW_TYPE.FOLLOW, value: "팔로워 게시물" },
-      { key: SHOW_TYPE.HASH, value: "해시태그 게시물" }
+      { key: SHOW_TYPE.HASH, value: "해시태그 게시물" },
     ];
+
     const openWrite = () => {
       if (userData.value) {
         store.commit(STORE_TYPE.popupType, POPUP_TYPE.WRITE_BOARD);
@@ -138,13 +139,12 @@ export default {
         param = Object.assign({}, param, { showType: showValue.value }); //ob 내장함수 합침
         param.showType = showValue.value;
       }
-
-
       const data = await apiClient("/sns/getSnsList", param);
       if (data.data) {
         contentData.value = data.data;
       }
     };
+
     const getImgUrl = (file) => {
       try {
         if (file) {
@@ -153,6 +153,10 @@ export default {
       } catch (e) {
         return "./assets/image/camping.png";
       }
+    };
+
+    const goTargetFeed = () => {
+      router.push(`/userFeed/${contentData.value.userIdx}`);
     };
 
     onMounted(() => {
@@ -176,29 +180,19 @@ export default {
       postImage,
       selectNumberData,
       selectPublicData,
+      goTargetFeed,
       sortUpdateValue,
       showUpdateValue,
       openWrite,
       openDetail,
       getContent,
-      getImgUrl
+      getImgUrl,
     };
-  }
+  },
 };
 </script>
 <template>
   <div class="news-menu">
-    <!--    <div class="news-menu-showBtn">-->
-    <!--      &lt;!&ndash;      <customButton&ndash;&gt;-->
-    <!--      &lt;!&ndash;        :placeholder="'전체 게시물'"&ndash;&gt;-->
-    <!--      &lt;!&ndash;      />&ndash;&gt;-->
-    <!--      &lt;!&ndash;      <customButton&ndash;&gt;-->
-    <!--      &lt;!&ndash;        :placeholder="'팔로우 게시물'"&ndash;&gt;-->
-    <!--      &lt;!&ndash;      />&ndash;&gt;-->
-    <!--      &lt;!&ndash;      <customButton&ndash;&gt;-->
-    <!--      &lt;!&ndash;        :placeholder="'태그 게시물'"&ndash;&gt;-->
-    <!--      &lt;!&ndash;      />&ndash;&gt;-->
-    <!--    </div>-->
     <div class="news-menu-select">
       <ul>
         <li>
@@ -230,7 +224,21 @@ export default {
   <div class="news-ul">
     <div class="news-ul-li" v-for="item in contentData">
       <div>
-        <profile :name="item.userNickName" :img="item.userProfile" :userInfo="item"></profile>
+        <div class="profile">
+          <div class="profile-wrap">
+            <img :src="getImgUrl(item.userProfile.filter(v=>v.fileType === 'USER_PROFILE')[0])"
+                 alt="프사" @click="goTargetFeed()" />
+            <div class="profile-wrap-data">
+              <span>{{ item.userNickName }}</span>
+              <span v-if="userData?.userIdx !== item?.userIdx">
+          <span class="middle-dot">&#183;</span>
+          <button class="follow">팔로우</button>
+        </span><br />
+              <a class="profile-wrap-data-place"><i class="fa-solid fa-location-dot"></i></a>
+            </div>
+          </div>
+        </div>
+        <!--        <profile :img="item.userProfile" :userInfo="item"></profile>-->
       </div>
       <div class="news-ul-li-wrap">
         <div class="news-ul-li-wrap-write" @click="openDetail(item.boardIdx)">

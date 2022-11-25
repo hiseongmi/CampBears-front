@@ -95,7 +95,6 @@ export default {
     const detail = async () => {
       const data = await apiClient("/sns/getSnsDetail", detailData.value);
       detailData.value = data.data;
-      console.log(detailData.value.file);
       detailData.value.userProfile = detailData.value.userProfile.filter(v => v.fileType === "USER_PROFILE")[0];
       //filter로 타입이 user_profile 인것을 [0]로 넣는다
       if (detailData.value) {

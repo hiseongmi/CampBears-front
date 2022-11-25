@@ -8,10 +8,6 @@ import { CONSTANTS } from "../../constants.js";
 export default {
   name: "profile",
   props: {
-    name: {
-      type: String,
-      required: true,
-    },
     img: {
       type: Array,
       required: true,
@@ -29,7 +25,6 @@ export default {
         return e;
       }
     };
-    const userName = ref(props.name);
     const userProfileImg = computed(() => {
       const v = props.img.filter(v => v.fileType === "USER_PROFILE");
       return v[0];
@@ -56,8 +51,8 @@ export default {
     });
 
     return {
+      userInfo,
       userData,
-      userName,
       userProfileImg,
       getImgUrl, goTargetFeed,
 
@@ -70,7 +65,7 @@ export default {
     <div class="profile-wrap">
       <img :src="getImgUrl(userProfileImg)" alt="프사" @click="goTargetFeed()" />
       <div class="profile-wrap-data">
-        <span>{{ userName }}</span>
+        <span>{{ userInfo.userNickName }}</span>
         <span v-if="userData?.userIdx !== userInfo?.userIdx">
           <span class="middle-dot">&#183;</span>
           <button class="follow">팔로우</button>
