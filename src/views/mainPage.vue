@@ -89,7 +89,15 @@ export default {
       intro.value = document.getElementById("intro");
       checkTime();
     });
+    $(document).on("scroll", function () {
+      var pixels = $(document).scrollTop();
+      var pageHeight = $(document).height() - $(window).height();
+      var progress = (100 * pixels) / pageHeight;
+      var toFixed = progress.toFixed(0);
 
+      $("div.progress").css("width", progress + "%");
+      $("div.progressText").html(toFixed + "%");
+    });
     return {
       goToX,
       introPush,
