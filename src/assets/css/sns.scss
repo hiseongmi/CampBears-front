@@ -624,7 +624,7 @@
             //게시판 내용
             .contents {
               padding: 3px;
-              height: 40px;
+              height: 46px;
               color: #4c4c4c;
               display: flex;
               width: 100%;
@@ -638,8 +638,10 @@
                 flex: 1 0 0;
                 text-overflow: ellipsis;
                 overflow: hidden;
-                white-space: nowrap;
                 font-size: 14px;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
                 @include mb() {
                   font-size: 13px;
                 }
