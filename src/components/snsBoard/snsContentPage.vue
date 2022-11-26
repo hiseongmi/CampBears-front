@@ -235,11 +235,11 @@ export default {
                  alt="프사" @click="goTargetFeed(item)" />
             <div class="profile-wrap-data">
               <span>{{ item.userNickName }}</span>
-              <span v-if="userData?.userIdx !== item?.userIdx">
-          <span class="middle-dot">&#183;</span>
-          <button class="follow">팔로우</button>
-        </span><br />
-              <a class="profile-wrap-data-place"><i class="fa-solid fa-location-dot"></i></a>
+              <!--              <span v-if="userData?.userIdx !== item?.userIdx">-->
+              <!--          <span class="middle-dot">&#183;</span>-->
+              <!--          <button class="follow">팔로우</button>-->
+              <!--        </span><br />-->
+              <!--              <a class="profile-wrap-data-place"><i class="fa-solid fa-location-dot"></i></a>-->
             </div>
           </div>
         </div>
@@ -250,31 +250,30 @@ export default {
           <img :src="getImgUrl(item.file[0])" alt="Posts" />
         </div>
         <div class="detail">
-          <div class="detail-wrap">
-            <div class="detail-wrap-icon">
-              <span><i class="fa-regular fa-heart"></i></span>
-              <span><i class="fa-regular fa-comment"></i></span>
+          <!--          <div class="detail-wrap">-->
+          <!--            <div class="detail-wrap-icon">-->
+          <!--              <span><i class="fa-regular fa-heart"></i></span>-->
+          <!--              <span><i class="fa-regular fa-comment"></i></span>-->
+          <!--            </div>-->
+          <!--          </div>-->
+          <div class="detail-mbIcon">
+            <div class="comments">
+              <span><i class="fa-regular fa-heart"></i> 0</span>
+              <span><i class="fa-regular fa-comment"></i> {{ item.commentCount }}</span>
             </div>
-            <!--            <div class="detail-wrap-briefcase">-->
-            <!--              <span><i class="fa-solid fa-briefcase"></i></span>-->
-            <!--            </div>-->
-            <!--            <div class="detail-wrap-icon">-->
-            <!--              <span><i class="fa-regular fa-bookmark"></i></span>-->
-            <!--            </div>-->
+            <div class="share">
+              <span><i class="fa-solid fa-share-nodes"></i></span>
+            </div>
           </div>
           <div class="contents" @click="openDetail(item.boardIdx)">
             <span class="contents-writing">{{ item.boardBody }}</span>
           </div>
-          <div class="comments">
-            <span>댓글 {{ item.commentCount }}</span>
-            <span><i class="fa-solid fa-chevron-down"></i></span>
-          </div>
         </div>
-        <div class="heart">
-          <span><i class="fa-regular fa-heart"></i></span>
-          <!--          <i class="fa-solid fa-circle-heart"></i> 이 아이콘은 안보임-->
-          <span>0</span>
-        </div>
+        <!--        <div class="heart">-->
+        <!--          <span><i class="fa-regular fa-heart"></i></span>-->
+        <!--          &lt;!&ndash;          <i class="fa-solid fa-circle-heart"></i> 이 아이콘은 안보임&ndash;&gt;-->
+        <!--          <span>0</span>-->
+        <!--        </div>-->
       </div>
     </div>
   </div>

@@ -93,11 +93,9 @@ export default {
       //filter로 타입이 user_profile 인것을 [0]로 넣는다
       if (detailData.value) {
         followData.value.targetIdx = detailData.value.userIdx;
+        heartData.value.targetIdx = detailData.value.boardIdx;
       }
-      if (detailData.value) {
-        heartData.value.targetIdx = detailData.value.userIdx;
-      }
-      await commentList();
+      commentList();
     };
 
     const goToReport = () => {
@@ -172,8 +170,6 @@ export default {
     const selectedComment = ref("");
     //댓글 수정 신고 삭제 옵션
     const RerCommentOption = comment => {
-      //게시물 주인이거나 댓글 주인
-      //댓글 주인이 아니면
       if (detailData.value.userIdx === userData.value.userIdx || userData.value.userIdx === comment.userIdx) {
         MySelectedComment.value = comment.commentIdx; //특정만 나와
         selectedComment.value = "";
@@ -202,7 +198,7 @@ export default {
       const data = await apiClient("/comment/insertComment", commentData.value);
       if (data.resultCode === 0) {
         commentData.value.commentBody = "";
-        await commentList();
+        commentList();
       } else {
         window.alert("댓글을 입력해주세요");
       }

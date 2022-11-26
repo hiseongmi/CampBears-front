@@ -15,12 +15,12 @@ export default {
   props: {
     clickClose: {
       type: Function,
-      required: true
+      required: true,
     },
     goDetail: {
       type: Function,
-      required: true
-    }
+      required: true,
+    },
   },
   setup() {
     const userData = ref(undefined);
@@ -33,7 +33,7 @@ export default {
 
     const publicType = {
       All: "ALL",
-      FOLLOW: "FOLLOW"
+      FOLLOW: "FOLLOW",
     };
     const publicIndex = ref();
     const checkValue = v => {
@@ -45,7 +45,7 @@ export default {
     //게시물 업로드
     const upLoadData = ref({
       boardBody: "",
-      optionList: ["SHOWER", "PARMERCY", "CAFE", "FITTING", "SUBWAY", "MARKET", "STORE", "DRINK", "PARK", "RESTROOM", "STARBUCKS", "MOVIE", "RESTAURANT", "SHUTTLE"]
+      optionList: ["SHOWER", "PARMERCY", "CAFE", "FITTING", "SUBWAY", "MARKET", "STORE", "DRINK", "PARK", "RESTROOM", "STARBUCKS", "MOVIE", "RESTAURANT", "SHUTTLE"],
     });
     const inputHashTag = ref("");
     const hashTagList = ref([]);
@@ -68,7 +68,7 @@ export default {
     //수정 업로드
     const updateData = ref({
       boardIdx: store.state.boardIdx,
-      boardBody: store.state.detailData.boardBody
+      boardBody: store.state.detailData.boardBody,
     });
     const updateBoard = async () => {
       SNSFormData.append("boardIdx", updateData.value.boardIdx);
@@ -78,14 +78,14 @@ export default {
       } else {
         hashTagList.value = " ";
       }
-      if (SNSFormData.has(file) === false) {
+      if (SNSFormData.has("file") === false) {
         window.alert("사진을 넣어주세요.");
       }
       const data = await apiClient("/sns/updateSns", SNSFormData);
       if (data.resultCode === 0) {
         console.log(data.data);
         window.alert("수정되었습니다.");
-        await store.commit(STORE_TYPE.popupType, POPUP_TYPE.DETAIL_SCREEN);
+        store.commit(STORE_TYPE.popupType, POPUP_TYPE.DETAIL_SCREEN);
       } else {
         window.alert("다시 시도해주세요.");
       }
@@ -139,7 +139,7 @@ export default {
       const container = document.getElementById("map");
       const options = {
         center: new window.kakao.maps.LatLng(37.71173, 126.88878),
-        level: 5
+        level: 5,
       };
       const map = new window.kakao.maps.Map(container, options);
       // } else {
@@ -222,10 +222,10 @@ export default {
       position,
       uploadSnsBoard,
       handleInput,
-      handleEnterEvent
+      handleEnterEvent,
 
     };
-  }
+  },
 };
 </script>
 <template>
