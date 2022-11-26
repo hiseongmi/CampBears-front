@@ -71,11 +71,11 @@ export default {
 <template>
   <header class="header">
     <div class="header-bar">
-      <!--        <div class="mainContainer" @click="HeaderContainer">-->
-      <!--          <label class="mainContainer-label">-->
-      <!--            <i class="fa-solid fa-bars"></i>-->
-      <!--          </label>-->
-      <!--        </div>-->
+      <div class="mainContainer" @click="HeaderContainer">
+        <label class="mainContainer-label">
+          <i class="fa-solid fa-bars"></i>
+        </label>
+      </div>
       <div class="header-bar-logo" @click="goToX('/')">
         <div>
           <svg width="41" height="42" viewBox="0 0 55 56" fill="none" xmlns="http://www.w3.org/2000/svg">

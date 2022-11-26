@@ -422,7 +422,7 @@
       margin: 0 auto;
       padding: 20px 40px;
       @include mb() {
-        padding: 10px 5px;
+        padding: 10px;
       }
 
       //게시문 공개
@@ -624,17 +624,17 @@
             //게시판 내용
             .contents {
               padding: 3px;
-              height: 46px;
+              height: 50px;
               color: #4c4c4c;
               display: flex;
               width: 100%;
               cursor: pointer;
               @include mb() {
-                height: 35px;
+                height: 40px;
               }
 
               &-writing {
-                padding: 4px 0;
+                padding: 4px;
                 flex: 1 0 0;
                 text-overflow: ellipsis;
                 overflow: hidden;
@@ -643,7 +643,7 @@
                 -webkit-line-clamp: 2;
                 -webkit-box-orient: vertical;
                 @include mb() {
-                  font-size: 13px;
+                  font-size: 11px;
                 }
               }
 
@@ -657,6 +657,9 @@
             //좋아요 댓글 공유 개수
             &-mbIcon {
               display: flex;
+              @include mb() {
+                height: 20px;
+              }
 
               .comments {
                 padding: 3px;
@@ -665,11 +668,17 @@
                 flex: 1 0 0;
 
                 span {
-                  font-size: 11px;
-                  padding: 3px;
+                  font-size: 16px;
+                  padding: 0 6px;
+                  @include mb() {
+                    font-size: 11px;
+                  }
 
                   i {
-                    font-size: 11px;
+                    font-size: 16px;
+                    @include mb() {
+                      font-size: 11px;
+                    }
                   }
                 }
               }
@@ -678,11 +687,17 @@
                 padding: 3px;
 
                 span {
-                  font-size: 11px;
-                  padding: 3px;
+                  font-size: 16px;
+                  padding: 0 6px;
+                  @include mb() {
+                    font-size: 11px;
+                  }
 
                   i {
-                    font-size: 11px;
+                    font-size: 16px;
+                    @include mb() {
+                      font-size: 11px;
+                    }
                   }
                 }
               }
