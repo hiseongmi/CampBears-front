@@ -216,7 +216,7 @@
             border-bottom: 1px solid #696969;
             padding: 7px 15px;
 
-            .custom-input {
+            input {
               border: none;
               border-radius: 0px;
               padding: 0 20px;
@@ -233,10 +233,11 @@
             //글자수
             .count {
               position: absolute;
-              bottom: 0;
-              right: 0;
+              bottom: 16px;
+              right: 16px;
               @include mb() {
                 font-size: 14px;
+                bottom: 10px;
               }
             }
           }

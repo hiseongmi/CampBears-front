@@ -41,13 +41,14 @@
     &-search {
       position: relative;
 
-      .custom-input {
+      input {
         border: 1.5px solid rgba(204, 204, 204, 0.8);
         border-radius: 8px;
         height: 42px;
         width: 279px;
         box-shadow: 5px 5px 5px #999999;
         color: #000000;
+        padding: 2px 19px;
       }
 
       input::placeholder {
@@ -288,6 +289,7 @@
     }
   }
 }
+
 @include tb() {
   .news {
     &-wrap {
@@ -343,13 +345,14 @@
       &-search {
         position: relative;
 
-        .custom-input {
+        input {
           border: 1.5px solid rgba(204, 204, 204, 0.8);
           border-radius: 8px;
           height: 42px;
           width: 279px;
           box-shadow: 5px 5px 5px #999999;
           color: #000000;
+          padding: 2px 19px;
           @include mb() {
             height: 35px;
             width: 100%;

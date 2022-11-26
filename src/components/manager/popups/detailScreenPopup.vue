@@ -31,12 +31,6 @@ export default {
         return e;
       }
     };
-    const goToReport = () => {
-      store.commit(STORE_TYPE.popupType, POPUP_TYPE.REPORT);
-    }; //신고창열기
-    const goToUpdate = (detailData) => {
-      store.commit(STORE_TYPE.popupType, POPUP_TYPE.UPDATE);
-    }; //수정팝업열기
 
     // 해당 유저를 팔로우 하고 있는지, 아닌지
     const followType = ref({
@@ -105,6 +99,17 @@ export default {
       }
       await commentList();
     };
+
+    const goToReport = () => {
+      store.commit(STORE_TYPE.popupType, POPUP_TYPE.REPORT);
+    }; //신고창열기
+    const goToUpdate = (detailData) => {
+      if (detailData) {
+        store.commit(STORE_TYPE.popupType, POPUP_TYPE.WRITE_BOARD);
+        store.commit(STORE_TYPE.detailData, detailData);
+      }
+    }; //수정팝업열기
+
     const MyRerAction = ref(false);
     const RerAction = ref(false);
     const RerOption = () => {

@@ -3,7 +3,7 @@ import { onMounted, ref } from "vue";
 import { apiClient } from "../../../utils/axios.js";
 import CustomButton from "../../layout/customButton.vue";
 import CustomInput from "../../layout/customInput.vue";
-import { getStore, POPUP_TYPE, STORE_TYPE } from "../../../store/index.js";
+import store, { getStore, POPUP_TYPE, STORE_TYPE } from "../../../store/index.js";
 import router from "../../../router/index.js";
 import commonUtil from "../../../utils/common-util.js";
 import { CONSTANTS } from "../../../constants.js";
@@ -17,6 +17,10 @@ export default {
       type: Function,
       required: true,
     },
+    goDetail: {
+      type: Function,
+      required: true,
+    },
   },
   setup() {
     const userData = ref();
@@ -27,6 +31,8 @@ export default {
         return e;
       }
     };
+    const editState = ref(true);
+
     const publicType = {
       All: "ALL",
       FOLLOW: "FOLLOW",
@@ -45,10 +51,8 @@ export default {
     });
     const inputHashTag = ref("");
     const hashTagList = ref([]);
-    // const headers = { "Content-Type": "multipart/form-data" };
     const uploadSnsBoard = async () => {
-      // const param = Object.assign({}, upLoadData.value, { hashTag: hashTagList.value });
-      // console.log(param);
+      console.log(upLoadData.value.boardBody);
       SNSFormData.append("boardBody", upLoadData.value.boardBody);
       if (hashTagList.value) {
         SNSFormData.append("hashTag", hashTagList.value);
@@ -62,6 +66,28 @@ export default {
       } else {
         window.alert("다시 시도해주세요.");
       }
+    };
+    const updateBoardData = ref();
+    const updateData = ref({
+      boardIdx: store.state.boardIdx,
+      boardBody: store.state.detailData.boardBody,
+      hashTag: store.state.detailData.hashTag,
+    });
+    let hashTag = "";
+    const updateBoard = async () => {
+      hashTag = store.state.detailData.hashTag.split(",");
+      const param = Object.assign({}, updateData.value, { hashTag: hashTag });
+      const data = await apiClient("/sns/updateSns", param);
+      updateBoardData.value = data.data;
+      console.log(updateBoardData.value);
+
+      // if (data.resultCode === 0) {
+      //   window.alert("수정되었습니다.");
+      //   await store.commit(STORE_TYPE.popupType, POPUP_TYPE.DETAIL_SCREEN);
+      // } else {
+      //   window.alert("다시 시도해주세요.");
+      // }
+
     };
     //이미지 업로드
     const SNSImgPreview = ref([]);
@@ -137,8 +163,8 @@ export default {
           inputHashTag.value = "";
         }
       }
-
     };
+
     const getImgUrl = (file) => {
       try {
         if (file) {
@@ -150,6 +176,12 @@ export default {
     };
     onMounted(() => {
       getData();
+      if (store.state.detailData === "") {
+        editState.value = true;
+      } else {
+        console.log(store.state.detailData);
+        editState.value = false;
+      }
     });
 
     return {
@@ -164,6 +196,10 @@ export default {
       hashTagList,
       tabIndex,
       // imgPreview,
+      updateBoardData,
+      updateData,
+      editState,
+      updateBoard,
       changeImg,
       getImgUrl,
       getData,
@@ -182,11 +218,17 @@ export default {
 </script>
 <template>
   <div class="modal-inner">
-    <div class="save-btn">
+    <div class="save-btn" v-if="editState">
       <custom-button :customClass="'cancel'" :placeholder="'취소'" :onClick="clickClose" />
       <div class="save-btn-wrap">
         <custom-button :customClass="'save'" :placeholder="'저장'" :onClick="clickClose" />
         <custom-button :customClass="'upLoad'" :placeholder="'올리기'" :onClick="uploadSnsBoard" />
+      </div>
+    </div>
+    <div class="save-btn" v-else>
+      <custom-button :customClass="'cancel'" :placeholder="'취소'" :onClick="goDetail" />
+      <div class="save-btn-wrap">
+        <custom-button :customClass="'upLoad'" :placeholder="'수정'" :onClick="updateBoard" />
       </div>
     </div>
     <div class="modal-inner-wrap">
@@ -206,11 +248,16 @@ export default {
             </div>
             <custom-input-file-button @change="upFileChange" />
           </div>
-          <div class="content-content">
-            <custom-input :custom-class="'content'" :placeholder="'문구 입력...'"
-                          @update:value="upLoadData.boardBody = $event" />
+          <div class="content-content" v-if="editState">
+            <input placeholder="문구 입력..." v-model="upLoadData.boardBody" />
             <div class="count">
-              (0 / 200)
+              ({{ upLoadData.boardBody.length }} / 200 )
+            </div>
+          </div>
+          <div class="content-content" v-else>
+            <input placeholder="문구 입력..." v-model="updateData.boardBody" />
+            <div class="count">
+              ({{ updateData.boardBody.length }} / 200 )
             </div>
           </div>
           <div class="content-profile-public">
@@ -245,7 +292,7 @@ export default {
               </div>
             </div>
           </div>
-          <div class="content-tag">
+          <div class="content-tag" v-if="editState">
             <div class="content-tag-div">
               태그 설정
             </div>
@@ -259,10 +306,24 @@ export default {
                      @input="handleInput">
             </div>
           </div>
-          <!--        <div class="comment">-->
-          <!--          <div id="map">-->
-          <!--          </div>-->
-          <!--        </div>-->
+          <div class="content-tag" v-else>
+            <div class="content-tag-div">
+              태그 설정
+            </div>
+            <div class="content-tag-main" v-if="hashTagList.length > 0 ">
+              <div class="content-tag-main-content" v-for="(item,index) in updateBoardData.hashTag"
+                   :key="index">
+                #{{ item }}
+                <span class="deleteTag" @click="deleteTag(index)">x</span>
+              </div>
+            </div>
+            <div class="content-tag-wrap">
+              <input type="text" placeholder="# 태그입력...(최대 30개)"
+                     v-model="inputHashTag"
+                     @keydown="handleEnterEvent"
+                     @input="handleInput">
+            </div>
+          </div>
         </div>
       </form>
     </div>

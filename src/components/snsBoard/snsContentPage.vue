@@ -97,6 +97,7 @@ export default {
 
     const openWrite = () => {
       if (userData.value) {
+        store.state.detailData = "";
         store.commit(STORE_TYPE.popupType, POPUP_TYPE.WRITE_BOARD);
       } else {
         window.alert("로그인 하세요.");

@@ -13,7 +13,7 @@ export default {
     snsContentPage,
     PopupManager,
     profile,
-    customInput
+    customInput,
   },
   setup() {
     const inquiryData = ref({ showType: "ALL", keyword: "", hashKeyWord: "" });
@@ -22,18 +22,29 @@ export default {
       if (dispatchEvent(new CustomEvent("SEARCH", { detail: inquiryData.value.keyword }))) {
         if (inquiryData.value.keyword[0] === "#") {
           inquiryData.value.hashKeyWord = inquiryData.value.keyword.replace("#", "");
-          inquiryData.value.keyword = "";
         }
         inquiryData.value.hashKeyWord = "";
+      }
+    };
+    const handleEnterEvent = (e) => {
+      if (e.key === "Enter") {
+        getContent();
+      }
+    };
+    const handleMouseEvent = (e) => {
+      if (e.type === "mousedown") {
+        inquiryData.value.keyword = "";
       }
     };
 
 
     return {
       inquiryData,
-      getContent
+      handleMouseEvent,
+      handleEnterEvent,
+      getContent,
     };
-  }
+  },
 };
 </script>
 <template>
@@ -45,8 +56,8 @@ export default {
       </div>
       <!--      <hr class="line"/>-->
       <div class="news-wrap-search">
-        <custom-input :placeholder="'태그, 장소 찾아 보기'"
-                      @update:value="inquiryData.keyword = $event" />
+        <input placeholder="태그, 장소 찾아보기" v-model="inquiryData.keyword" @mousedown="handleMouseEvent"
+               @keydown="handleEnterEvent">
         <button @click="getContent"><i class="fa-solid fa-magnifying-glass" /></button>
       </div>
     </div>

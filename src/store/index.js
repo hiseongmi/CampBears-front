@@ -7,9 +7,9 @@ export const STORE_TYPE = {
   loginUserIdx: "loginUserIdx",
   boardIdx: "boardIdx",
   commentIdx: "commentIdx",
-  commentLength: "commentLength",
   campInfo: "campInfo",
   sideBar: "sideBar",
+  detailData: "detailData",
 };
 
 export const POPUP_TYPE = {
@@ -33,6 +33,7 @@ const store = createStore({
     popupList: [],
     campInfo: undefined,
     sideBar: false,
+    detailData: [],
   },
   mutations: {
     /**
@@ -77,6 +78,9 @@ const store = createStore({
     },
     sideBar(state, value) {
       state.sideBar = value;
+    },
+    detailData(state, value) {
+      state.detailData = value;
     },
   },
 });
