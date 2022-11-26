@@ -28,7 +28,7 @@ export default {
       const d = commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO);
       if (d) userData.value = commonUtil.parseJson(d);
     };
-    
+
     const editState = ref(true);
 
     const publicType = {
@@ -78,10 +78,10 @@ export default {
       } else {
         hashTagList.value = " ";
       }
-      const data = await apiClient("/sns/updateSns", SNSFormData);
       if (SNSFormData.has(file) === false) {
         window.alert("사진을 넣어주세요.");
       }
+      const data = await apiClient("/sns/updateSns", SNSFormData);
       if (data.resultCode === 0) {
         console.log(data.data);
         window.alert("수정되었습니다.");
