@@ -15,7 +15,7 @@ export default {
     let keyword = "";
 
     const getData = async () => {
-      const data = await apiClient("/product/getProductList", { productType: "SELL", sorted: "RECENT" });
+      const data = await apiClient("product/getProductList", { productType: "SELL", sorted: "RECENT" });
       if (data) postData.value = data.data;
     };
 
@@ -29,17 +29,13 @@ export default {
       getData();
     };
 
-    const openDetail = () => {
+    const openDetail = productIdx => {
       store.commit(STORE_TYPE.popupType, POPUP_TYPE.PRODUCT_DETAIL);
+      store.commit(STORE_TYPE.detailData, productIdx);
     }; //게시물 상세 페이지 팝업 열기
 
     onMounted(() => {
-      window.addEventListener("SEARCH", handleSearch); //search 이벤트를 찾아서 handel이벤트로 보냄
       getData();
-    });
-
-    onUnmounted(() => {
-      window.removeEventListener("SEARCH", handleSearch);
     });
 
     const isModal = ref(false);
@@ -54,16 +50,16 @@ export default {
       modalControl,
       isModal,
       file,
-      getImgUrl
+      getImgUrl,
     };
-  }
+  },
 };
 </script>
 
 <template>
   <div class="used-contents-area">
     <div class="used-contents-area-ul">
-      <div class="used-post" v-for="item in postData" @click="openDetail()">
+      <div class="used-post" v-for="item in postData" @click="openDetail(item.productIdx)">
         <div class="used-post-img-wrap">
           <img :src="getImgUrl(item.file[0])" alt="Posts" />
         </div>

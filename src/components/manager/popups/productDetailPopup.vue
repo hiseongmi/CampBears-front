@@ -3,32 +3,49 @@ import CustomButton from "../../layout/customButton.vue";
 import { onMounted, ref } from "vue";
 import { apiClient } from "../../../utils/axios.js";
 import commonUtil from "../../../utils/common-util.js";
+import store from "../../../store/index.js";
 
 export default {
   name: "productDetailPopup",
   components: { CustomButton },
   setup() {
-    const detail = ref({
-      productIdx: ""
-    });
+    const detailData = ref({});
     const getDetail = async () => {
-      const data = await apiClient("product/getProductDetail", detail.value.productIdx);
-      if (data) detail.value = data.data;
+      // Product Detail Info 받아오기
+      detailData.value.productIdx = store.state.detailData;
+      const data = await apiClient("product/getProductDetail", detailData.value);
+      if (data) {
+        detailData.value = data.data[0];
+        detailData.value.dateReg = detailData.value.dateReg.slice(2, 10);
+        detailData.value.productPrice = detailData.value.productPrice.toLocaleString();
+      }
+
+      // User 프로필 이미지 가져오기
+      for (let i in detailData.value.userProfile) {
+        if (detailData.value.userProfile[i].fileType === "USER_PROFILE") {
+          userProfile.value = commonUtil.getImgUrl(detailData.value.userProfile[i].fileName);
+        }
+      }
     };
 
     onMounted(() => {
       getDetail();
     });
 
+    const imgIndex = ref();
+    const userProfile = ref();
     const getImgUrl = file => {
+      if (file.fileType === "PRODUCT") imgIndex.value = commonUtil.getImgUrl(file.fileName);
       return commonUtil.getImgUrl(file.fileName);
     };
 
     return {
-      detail,
-      getImgUrl
+      detailData,
+      getImgUrl,
+      imgIndex,
+      userProfile,
     };
-  }
+  },
 };
 </script>
 <template>
@@ -37,12 +54,10 @@ export default {
       <div class="modal-detail-content">
         <div class="product">
           <div class="product-image">
-            <img src="/assets/image/mainpageslider3.webp" alt="상품 사진" />
+            <img :src="imgIndex" alt="상품 사진" />
             <div class="product-image-subImg">
               <div class="product-image-subImg-list">
-                <img class="product-image-subImg-list-pick" src="/assets/image/mainpageslider3.webp" alt="상품1 사진" />
-                <img src="/assets/image/mainpageslider1.webp" alt="상품2 사진" />
-                <img src="/assets/image/mainpageslider2.webp" alt="상품3 사진" />
+                <img v-for="item in detailData.file" :src="getImgUrl(item)" alt="" />
               </div>
             </div>
             <span class="product-image-right">
@@ -54,9 +69,9 @@ export default {
           </div>
           <div class="product-wrap">
             <div class="product-wrap-profile">
-              <img src="/assets/image/IU.webp" alt="프사" />
+              <img :src="userProfile" alt="프사" />
               <div class="product-wrap-profile-info">
-                <span>dlwlrma</span>
+                <span>{{ detailData.userNickName }}</span>
               </div>
             </div>
             <div class="product-wrap-chat">
@@ -66,11 +81,14 @@ export default {
           <div class="product-main">
             <div class="product-main-wrap">
               <div class="product-main-wrap-title">
-                <div class="pomsom">팝니다</div>
-                <h4>엄청 편하고 간지나는 의자</h4>
+                <div class="pomsom">{{ detailData.productType }}</div>
+                <h4>{{ detailData.productDes }}</h4>
               </div>
               <div class="product-main-wrap-rest">
-                <span><i class="fa-regular fa-clock" />2시간 전</span>
+                <span>
+                  <i class="fa-regular fa-clock" />
+                  {{ detailData.dateReg }}
+                </span>
               </div>
             </div>
             <div class="product-main-menu">
@@ -87,16 +105,14 @@ export default {
               <span><i class="fa-solid fa-star" /></span>
               <span><i class="fa-solid fa-star" /></span>
             </div>
-            <p>35,000원</p>
+            <p>{{ detailData.productPrice }}</p>
           </div>
           <div class="product-content">
             <div class="product-content-wrap">
-              한번밖에 안쓴 캠핑 의자 팝니다~<br />
-              상태 양호하고 얼룩 없스니다.
+              {{ detailData.productDes }}
             </div>
             <div class="product-content-deal">
-              <span>택배거래</span>
-              <span>직거래</span>
+              <span>{{ detailData.deliveryInfo }}</span>
             </div>
           </div>
         </div>
