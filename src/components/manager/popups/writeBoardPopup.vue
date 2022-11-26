@@ -15,27 +15,25 @@ export default {
   props: {
     clickClose: {
       type: Function,
-      required: true,
+      required: true
     },
     goDetail: {
       type: Function,
-      required: true,
-    },
+      required: true
+    }
   },
   setup() {
-    const userData = ref();
+    const userData = ref(undefined);
     const getData = async () => {
-      try {
-        return userData.value = commonUtil.parseJson(commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO));
-      } catch (e) {
-        return e;
-      }
+      const d = commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO);
+      if (d) userData.value = commonUtil.parseJson(d);
     };
+    
     const editState = ref(true);
 
     const publicType = {
       All: "ALL",
-      FOLLOW: "FOLLOW",
+      FOLLOW: "FOLLOW"
     };
     const publicIndex = ref();
     const checkValue = v => {
@@ -47,7 +45,7 @@ export default {
     //게시물 업로드
     const upLoadData = ref({
       boardBody: "",
-      optionList: ["SHOWER", "PARMERCY", "CAFE", "FITTING", "SUBWAY", "MARKET", "STORE", "DRINK", "PARK", "RESTROOM", "STARBUCKS", "MOVIE", "RESTAURANT", "SHUTTLE"],
+      optionList: ["SHOWER", "PARMERCY", "CAFE", "FITTING", "SUBWAY", "MARKET", "STORE", "DRINK", "PARK", "RESTROOM", "STARBUCKS", "MOVIE", "RESTAURANT", "SHUTTLE"]
     });
     const inputHashTag = ref("");
     const hashTagList = ref([]);
@@ -70,7 +68,7 @@ export default {
     //수정 업로드
     const updateData = ref({
       boardIdx: store.state.boardIdx,
-      boardBody: store.state.detailData.boardBody,
+      boardBody: store.state.detailData.boardBody
     });
     const updateBoard = async () => {
       SNSFormData.append("boardIdx", updateData.value.boardIdx);
@@ -141,7 +139,7 @@ export default {
       const container = document.getElementById("map");
       const options = {
         center: new window.kakao.maps.LatLng(37.71173, 126.88878),
-        level: 5,
+        level: 5
       };
       const map = new window.kakao.maps.Map(container, options);
       // } else {
@@ -224,10 +222,10 @@ export default {
       position,
       uploadSnsBoard,
       handleInput,
-      handleEnterEvent,
+      handleEnterEvent
 
     };
-  },
+  }
 };
 </script>
 <template>
