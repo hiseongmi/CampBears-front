@@ -19,6 +19,9 @@
           border-right: 1px solid white;
           cursor: pointer;
         }
+        a{
+          padding: 0 10px;
+        }
       }
     }
 
@@ -64,6 +67,10 @@
           &-menu {
             padding: 0 10px;
             border-right: 1px solid white;
+          }
+          a {
+            font-size: 12px;
+            padding: 0 10px;
           }
         }
       }
