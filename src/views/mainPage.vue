@@ -100,6 +100,7 @@ export default {
 };
 </script>
 <template>
+  <div class="progress"></div>
   <section class="main">
     <!--  <Buss />-->
     <div class="main-box">
@@ -122,7 +123,7 @@ export default {
     </div>
 
     <div class="main-icon">
-      <a href="#">
+      <a href="">
         <img src="/assets/image/icon/categoryTent.webp" alt="" />
         <span>텐트</span>
       </a>

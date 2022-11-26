@@ -124,7 +124,6 @@
               }
             }
 
-
             &-up {
               display: flex;
               flex-direction: row;
@@ -209,7 +208,6 @@
                   @include mb() {
                     font-size: 12px;
                   }
-
                 }
               }
 
@@ -334,7 +332,6 @@
                   font-size: 14px;
                 }
 
-
                 span {
                   display: none;
                 }
@@ -366,7 +363,6 @@
                 @include mb() {
                   font-size: 14px;
                 }
-
               }
             }
           }
@@ -389,7 +385,7 @@
             padding: 0 50px;
           }
           @include mb() {
-            padding: 0 10px
+            padding: 0 10px;
           }
 
           .product-img-wrap {
@@ -707,7 +703,7 @@
             transition: 0.3s;
             @include mb() {
               width: 60px;
-              height: 80px
+              height: 80px;
             }
 
             ul {
@@ -1714,7 +1710,6 @@
                   color: #b70000;
                 }
               }
-
             }
 
             //댓글 없습니다.

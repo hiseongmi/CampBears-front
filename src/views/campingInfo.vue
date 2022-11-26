@@ -1,8 +1,8 @@
 <script>
-import {onMounted, ref} from "vue";
+import { onMounted, ref } from "vue";
 import axios from "axios";
-import store, {POPUP_TYPE, STORE_TYPE} from "../store/index.js";
-import {useStore} from "vuex";
+import store, { POPUP_TYPE, STORE_TYPE } from "../store/index.js";
+import { useStore } from "vuex";
 
 export default {
   name: "campingInfo",
@@ -11,17 +11,17 @@ export default {
   setup() {
     const store = useStore();
 
-
     const api = axios.create({
       baseURL: "http://apis.data.go.kr/B551011/GoCamping",
       timeout: 1000 * 60 * 3,
-      headers: {"content-type": "Json"}
+      headers: { "content-type": "Json" },
     });
-
 
     const dataList = ref([]);
     const getCampInfo = async () => {
-      const d = await api.get("/basedList?numOfRows=10&pageNo=1&MobileOS=ECT&MobileApp=bears&serviceKey=IEdTGqhPUIxJy5mLBtkjPw6g%2BaTd90KXgnnc03HRNuD2NUPhtSQ307ZhzYx3n51j%2FpjYn5Hteigqp1cro1Rg6w%3D%3D");
+      const d = await api.get(
+        "/basedList?numOfRows=10&pageNo=1&MobileOS=ECT&MobileApp=bears&serviceKey=IEdTGqhPUIxJy5mLBtkjPw6g%2BaTd90KXgnnc03HRNuD2NUPhtSQ307ZhzYx3n51j%2FpjYn5Hteigqp1cro1Rg6w%3D%3D",
+      );
       const xmlParser = new DOMParser();
       const par = xmlParser.parseFromString(d.data, "text/xml");
       const t = par.getElementsByTagName("items");
@@ -42,60 +42,53 @@ export default {
             campInnerOption: i.getElementsByTagName("glampInnerFclty")[0].innerHTML,
             campOuterOption: i.getElementsByTagName("sbrsCl")[0].innerHTML,
             getInAnimal: i.getElementsByTagName("animalCmgCl")[0].innerHTML,
-            createdDate: i.getElementsByTagName("modifiedtime")[0].innerHTML
-
+            createdDate: i.getElementsByTagName("modifiedtime")[0].innerHTML,
           };
           dataList.value.push(dataSet);
         }
       }
     };
 
-    const showDetail = (index) => {
+    const showDetail = index => {
       // console.log(dataSet);
       store.commit(STORE_TYPE.campInfo, dataList[index]);
       store.commit(STORE_TYPE.popupType, POPUP_TYPE.DETAIL_CAMPING);
-
     };
-
 
     onMounted(() => {
       getCampInfo();
+      // getCampInfo();
     });
     return {
       dataList,
       showDetail,
       // goLink,
     };
-  }
+  },
 };
 </script>
 <template>
   <section class="camp-info">
     <h1>camp info</h1>
-    <div class="info-body" v-if="dataList && dataList.length >0">
-      <div class="info-item" @click="showDetail(index)" v-for="(item,index) in dataList">
-        <img :src="item.thumbNailUrl" alt="main">
+    <div class="info-body" v-if="dataList && dataList.length > 0">
+      <div class="info-item" @click="showDetail(index)" v-for="(item, index) in dataList">
+        <img :src="item.thumbNailUrl" alt="main" />
         <div class="name">{{ item.campingName }}</div>
         <div class="des">{{ item.campingIntro }}</div>
         <div class="camp-type">
           <span>
-          {{ item.campingManageMode }}
-        </span>
+            {{ item.campingManageMode }}
+          </span>
         </div>
         <div class="info-type">캠핑 타입 :{{ item.campingTypes }}</div>
         <div class="info-ad">주소 : {{ item.address }}</div>
         <div class="info-ph">전화번호 : {{ item.tel }}</div>
         <div class="bi">생성일 : {{ item.createdDate }}</div>
         <a :href="item.homePageUrl"> {{ item.homePageUrl }}</a>
-        <div> {{ item.campInnerOption }} {{ item.campOuterOption }} {{ item.getInAnimal }}</div>
+        <div>{{ item.campInnerOption }} {{ item.campOuterOption }} {{ item.getInAnimal }}</div>
       </div>
       <a href=""></a>
     </div>
-    <div v-else>
-      데이터 오는중...
-    </div>
-
-
+    <div v-else>데이터 오는중...</div>
   </section>
-
 </template>

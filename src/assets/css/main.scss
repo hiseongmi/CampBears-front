@@ -1,5 +1,14 @@
 //헤더바
-
+.progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 10px;
+  background-color: purple;
+  transition: all linear 0.1s;
+  min-width: 0%;
+  z-index: 3;
+}
 .main {
   display: flex;
   flex-direction: column;
@@ -1116,6 +1125,14 @@
         .news-ul-li {
           width: 30%;
           min-width: 200px;
+          .news-ul-li-wrap {
+            //.news-ul-li-wrap-write {
+            //  img:hover {
+            //    transform: scale(1.03);
+            //    transition: 0.5s;
+            //  }
+            //}
+          }
         }
 
         @include tb() {
