@@ -44,7 +44,7 @@ export default {
 
     const store = getStore();
     const isPopup = ref(store.state.popupType);
-
+    //게시물 업로드
     const upLoadData = ref({
       boardBody: "",
       optionList: ["SHOWER", "PARMERCY", "CAFE", "FITTING", "SUBWAY", "MARKET", "STORE", "DRINK", "PARK", "RESTROOM", "STARBUCKS", "MOVIE", "RESTAURANT", "SHUTTLE"],
@@ -52,7 +52,6 @@ export default {
     const inputHashTag = ref("");
     const hashTagList = ref([]);
     const uploadSnsBoard = async () => {
-      console.log(upLoadData.value.boardBody);
       SNSFormData.append("boardBody", upLoadData.value.boardBody);
       if (hashTagList.value) {
         SNSFormData.append("hashTag", hashTagList.value);
@@ -67,28 +66,33 @@ export default {
         window.alert("다시 시도해주세요.");
       }
     };
-    const updateBoardData = ref();
+
+    //수정 업로드
     const updateData = ref({
       boardIdx: store.state.boardIdx,
       boardBody: store.state.detailData.boardBody,
-      hashTag: store.state.detailData.hashTag,
     });
-    let hashTag = "";
     const updateBoard = async () => {
-      hashTag = store.state.detailData.hashTag.split(",");
-      const param = Object.assign({}, updateData.value, { hashTag: hashTag });
-      const data = await apiClient("/sns/updateSns", param);
-      updateBoardData.value = data.data;
-      console.log(updateBoardData.value);
-
-      // if (data.resultCode === 0) {
-      //   window.alert("수정되었습니다.");
-      //   await store.commit(STORE_TYPE.popupType, POPUP_TYPE.DETAIL_SCREEN);
-      // } else {
-      //   window.alert("다시 시도해주세요.");
-      // }
-
+      SNSFormData.append("boardIdx", updateData.value.boardIdx);
+      SNSFormData.append("boardBody", updateData.value.boardBody);
+      if (hashTagList.value) {
+        SNSFormData.append("hashTag", hashTagList.value);
+      } else {
+        hashTagList.value = " ";
+      }
+      const data = await apiClient("/sns/updateSns", SNSFormData);
+      if (SNSFormData.has(file) === false) {
+        window.alert("사진을 넣어주세요.");
+      }
+      if (data.resultCode === 0) {
+        console.log(data.data);
+        window.alert("수정되었습니다.");
+        await store.commit(STORE_TYPE.popupType, POPUP_TYPE.DETAIL_SCREEN);
+      } else {
+        window.alert("다시 시도해주세요.");
+      }
     };
+
     //이미지 업로드
     const SNSImgPreview = ref([]);
     let SNSFormData = new FormData();
@@ -101,6 +105,9 @@ export default {
         for (i = 0; i < SNSFileList.length; i++) {
           SNSImgPreview.value.push(URL.createObjectURL(SNSFileList[i])); //blob 객체를 가상의 URL을 부여하여 접근할수있게함
           SNSFormData.append("file", SNSFileList[i]);
+        }
+        for (let key of SNSFormData.entries()) {
+          console.log(key);
         }
       } else {
         window.alert("사진은 열 장까지.");
@@ -116,6 +123,13 @@ export default {
       hashTagList.value.index = index;
       hashTagList.value.splice(hashTagList.value.index, 1);
     };
+    //이미지 지우기
+    const deleteImg = (index) => {
+      SNSImgPreview.value.index = index;
+      SNSImgPreview.value.splice(SNSImgPreview.value.index, 1);
+      SNSFormData.delete(file);
+    };
+
 
     const pAction = ref(false);
     const position = () => {
@@ -179,8 +193,8 @@ export default {
       if (store.state.detailData === "") {
         editState.value = true;
       } else {
-        console.log(store.state.detailData);
         editState.value = false;
+        hashTagList.value = store.state.detailData.hashTag.split(",");
       }
     });
 
@@ -196,9 +210,9 @@ export default {
       hashTagList,
       tabIndex,
       // imgPreview,
-      updateBoardData,
       updateData,
       editState,
+      deleteImg,
       updateBoard,
       changeImg,
       getImgUrl,
@@ -244,6 +258,7 @@ export default {
             <div class="content-file-up" v-if="SNSImgPreview">
               <div v-for=" (item , index) in SNSImgPreview" class="content-file-up-preview">
                 <img @click="changeImg(index)" :src="item" alt="" />
+                <span class="deleteImg" @click="deleteImg(index)">x</span>
               </div>
             </div>
             <custom-input-file-button @change="upFileChange" />
@@ -311,14 +326,14 @@ export default {
               태그 설정
             </div>
             <div class="content-tag-main" v-if="hashTagList.length > 0 ">
-              <div class="content-tag-main-content" v-for="(item,index) in updateBoardData.hashTag"
+              <div class="content-tag-main-content" v-for="(item,index) in hashTagList"
                    :key="index">
                 #{{ item }}
                 <span class="deleteTag" @click="deleteTag(index)">x</span>
               </div>
             </div>
             <div class="content-tag-wrap">
-              <input type="text" placeholder="# 태그입력...(최대 30개)"
+              <input type="text" placeholder="# 태그입력...(최대 30개) #으로 구분"
                      v-model="inputHashTag"
                      @keydown="handleEnterEvent"
                      @input="handleInput">

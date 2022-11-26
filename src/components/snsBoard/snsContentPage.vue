@@ -156,8 +156,12 @@ export default {
       }
     };
 
-    const goTargetFeed = () => {
-      router.push(`/userFeed/${contentData.value.userIdx}`);
+    const goTargetFeed = (item) => {
+      if (userData.value.userIdx === item.userIdx) {
+        router.push("/myPage");
+      } else {
+        router.push(`/userFeed/${item.userIdx}`);
+      }
     };
 
     onMounted(() => {
@@ -228,7 +232,7 @@ export default {
         <div class="profile">
           <div class="profile-wrap">
             <img :src="getImgUrl(item.userProfile.filter(v=>v.fileType === 'USER_PROFILE')[0])"
-                 alt="프사" @click="goTargetFeed()" />
+                 alt="프사" @click="goTargetFeed(item)" />
             <div class="profile-wrap-data">
               <span>{{ item.userNickName }}</span>
               <span v-if="userData?.userIdx !== item?.userIdx">

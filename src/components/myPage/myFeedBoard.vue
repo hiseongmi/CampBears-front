@@ -16,8 +16,14 @@ export default {
       if (data) contentData.value = data.data;
     };
 
-    const getImgUrl = file => {
-      return commonUtil.getImgUrl(file.fileName);
+    const getImgUrl = (file) => {
+      try {
+        if (file) {
+          return commonUtil.getImgUrl(file.fileName);
+        }
+      } catch (e) {
+        return "./assets/image/camping.png";
+      }
     };
 
     onMounted(() => {
