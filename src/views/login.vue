@@ -2,13 +2,15 @@
 import customInput from "../components/layout/customInput.vue";
 import customButton from "../components/layout/customButton.vue";
 import loginNaver from "../components/snslogin/loginNaver.vue";
-import { onMounted, onUnmounted, ref } from "vue";
+import { onMounted, onUnmounted, ref, watch } from "vue";
 import { apiClient, setHeader } from "../utils/axios.js";
 import common from "../utils/common-util.js";
 import { CONSTANTS } from "../constants.js";
 import router from "../router/index.js";
 import store, { STORE_TYPE } from "../store/index.js";
 import axios from "axios";
+import commonUtil from "../utils/common-util.js";
+import mainPage from "./mainPage.vue";
 
 export default {
   name: "login",
@@ -16,10 +18,9 @@ export default {
     customInput,
     customButton,
     loginNaver,
+    mainPage,
   },
   setup() {
-
-
     // const test = async () => {
     //   const axiosInstance = axios.create({
     //     timeout: 1000 * 60 * 3,
@@ -27,16 +28,9 @@ export default {
     //   });
     //   const d = await axiosInstance.get('https://apis.data.go.kr/B551011/GoCamping/basedList?MobileOS=ETC&MobileApp=bears&serviceKey=IEdTGqhPUIxJy5mLBtkjPw6g%2BaTd90KXgnnc03HRNuD2NUPhtSQ307ZhzYx3n51j%2FpjYn5Hteigqp1cro1Rg6w%3D%3D')
     // }
-
+    const loginUser = ref(commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO));
     const typeSearch = async () => {
       const data = await apiClient("/common/getTypeList", typeSearchData.value);
-      typeData.value = data.data;
-      if (typeData.value) {
-        joinUserData.value.userType = typeData.value[0].column;
-        //console.log(joinUserData.value)
-      }
-      // contentData.value = data.data
-      //search 이벤트를 날림
     };
     const userData = ref({ userEmail: "", userPassword: "" });
     const loginState = ref(true);
@@ -93,7 +87,12 @@ export default {
     onUnmounted(() => {
       window.removeEventListener("keydown", handleEnter);
     });
-
+    watch(
+      () => store.state.loginUserIdx,
+      () => {
+        loginUser.value = commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO);
+      },
+    );
     return {
       userData,
       loginState,
@@ -103,12 +102,13 @@ export default {
       clickJoin,
       goToX,
       typeSearch,
+      loginUser,
     };
   },
 };
 </script>
 <template>
-  <section class="login">
+  <section v-if="!loginUser" class="login">
     <div class="login-area">
       <div class="logo-area">
         <img src="/assets/images/login/logo.webp" alt="logo" />
@@ -116,7 +116,7 @@ export default {
       </div>
       <div v-if="loginState" class="form">
         <custom-input :placeholder="`이메일`" @update:value="userData.userEmail = $event" />
-        <custom-input :placeholder="`비밀번호`" type="password" @update:value="userData.userPassword = $event" />
+        <custom-input :placeholder="`비밀번호`" @update:value="userData.userPassword = $event" />
         <div class="btn-area">
           <custom-button :placeholder="`로그인`" :onClick="doLogin"></custom-button>
           <custom-button :custom-class="`join`" :placeholder="`회원가입`" @Click="goToX('/signup')"></custom-button>
@@ -137,4 +137,7 @@ export default {
       <!--      <loginNaver></loginNaver>-->
     </div>
   </section>
+  <div v-else>
+    <main-page></main-page>
+  </div>
 </template>

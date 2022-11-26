@@ -14,7 +14,6 @@ import TWEEN, { Tween } from "@tweenjs/tween.js";
 import commonUtil from "../utils/common-util.js";
 import { CONSTANTS } from "../constants.js";
 
-
 export default {
   name: "mainPage",
   components: {
@@ -25,7 +24,7 @@ export default {
     snsPage,
     myPage,
     infoPage,
-    Buss
+    Buss,
   },
   setup() {
     let coor = { y: 0 };
@@ -33,26 +32,28 @@ export default {
     let introAni = undefined;
     const showIntro = ref(true);
 
-
     const notToday = () => {
       const t = new Date().getTime();
       commonUtil.setLocalStorage(CONSTANTS.KEY_LIST.SHOW_INTRO, t.toString());
       introPush();
     };
 
-    const startAnimation = (v) => {
+    const startAnimation = v => {
       console.log("startAni");
-      introAni = new Tween(coor).to({ y: 100 }, 1000)
+      introAni = new Tween(coor)
+        .to({ y: 100 }, 1000)
         .easing(TWEEN.Easing.Cubic.InOut)
         .onUpdate(() => {
           intro.value.style.setProperty("transform", `translateY(-${coor.y}%)`);
           intro.value.style.setProperty("opacity", `${100 / coor.y - 1}`);
-        }).onComplete(() => {
+        })
+        .onComplete(() => {
           console.log("complete");
           if (v) router.push(v);
-        }).start();
+        })
+        .start();
 
-      const animation = (time) => {
+      const animation = time => {
         requestAnimationFrame(animation);
         TWEEN.update(time);
       };
@@ -89,35 +90,33 @@ export default {
       checkTime();
     });
 
-
     return {
       goToX,
       introPush,
       notToday,
-      showIntro
+      showIntro,
     };
-  }
+  },
 };
 </script>
 <template>
   <section class="main">
     <!--  <Buss />-->
     <div class="main-box">
-
       <div class="main-fir mb-hide">
-        <img src="/assets/image/mainpage2.webp" alt="">
+        <img src="/assets/image/mainpage2.webp" alt="" />
         <div class="black"></div>
         <div class="main-add">
           <div>감성있는 캠핑장을 찾고있나요?</div>
-          <button>캠핑장 양도 받기/찾기</button>
+          <button @click="goToX('/infoPage')">캠핑장 양도 받기/찾기</button>
         </div>
       </div>
       <div class="main-fir full">
-        <img src="/assets/image/mainpage3.webp" alt="">
+        <img src="/assets/image/mainpage3.webp" alt="" />
         <div class="black"></div>
         <div class="main-add">
           <div>저렴한 캠핑용품이 필요하신가요?</div>
-          <button>캠핑용품 중고거래</button>
+          <button @click="goToX('/usedMarket')">캠핑용품 중고거래</button>
         </div>
       </div>
     </div>
@@ -169,7 +168,7 @@ export default {
     <button class="view-all" @click="goToX('/snsPage')">더보기</button>
 
     <div class="add-banner">
-      <img src="/assets/image/mainpage4.webp" alt="">
+      <img src="/assets/image/mainpage4.webp" alt="" />
       <div class="add-ment">
         <div>#입술 끝에 맺혀있는 말</div>
         <div>#너만 보면 하고 싶은 말</div>
@@ -184,29 +183,15 @@ export default {
     <div class="main-bottom">
       <h1>파도소리 들리는 감성 캠핑</h1>
       <h2>한번쯤은 꼭 가볼만한 캠핑장! 추천해요~</h2>
-      <div class="bot-camp">
-        <img src="/assets/image/mainpageslider1.webp" alt="" />
-
+      <div class="bot">
+        <info-page></info-page>
       </div>
-
-      <div class="bot-camps">
-        <div class="bot-camp-info-f">
-          <span></span>
-        </div>
-        <div class="bot-camp-infos-s">
-          <span></span>
-        </div>
-      </div>
-      <div class="bot-camp-info=t">
-        <span></span>
-      </div>
-
     </div>
     <div id="intro" v-if="showIntro">
-      <img src="/assets/image/bus.jpg" alt="intro">
+      <img src="/assets/image/bus.jpg" alt="intro" />
       <div class="shadow"></div>
       <div class="content">
-        <img src="/assets/image/logo.png" alt="logo">
+        <img src="/assets/image/logo.png" alt="logo" />
         <div>CAMP BEARS</div>
         <div class="title">캠핑의 모든것, Camp Bears에서</div>
         <button @click="introPush()">START HERE</button>
@@ -218,5 +203,4 @@ export default {
       </div>
     </div>
   </section>
-
 </template>

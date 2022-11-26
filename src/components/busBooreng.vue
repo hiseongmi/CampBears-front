@@ -11,8 +11,7 @@ export default {
     const busBg = ref(undefined);
     const busBg2 = ref(undefined);
 
-
-    const animation = (time) => {
+    const animation = time => {
       requestAnimationFrame(animation);
       TWEEN.update(time);
     };
@@ -44,22 +43,20 @@ export default {
           })
           .start();
 
-
         requestAnimationFrame(animation);
-
       });
     });
     return {
-      ani
+      ani,
     };
-  }
+  },
 };
 </script>
 <template>
   <section class="bus-booreng">
-    <img id="buss-bg2" src="assets/image/buss_bg.png" alt="버스배경2">
-    <img id="buss-bg" src="assets/image/buss_bg.png" alt="버스배경">
-    <img id="buss" src="assets/image/buss.png" alt="버스">
+    <img id="buss-bg2" src="/assets/image/buss_bg.png" alt="버스배경2" />
+    <img id="buss-bg" src="/assets/image/buss_bg.png" alt="버스배경" />
+    <img id="buss" src="/assets/image/buss.png" alt="버스" />
   </section>
 </template>
 
@@ -76,7 +73,6 @@ export default {
     right: 0px;
     transform: translateX(0%);
     transition: all 5s linear;
-
   }
 
   #buss-bg2 {
@@ -85,7 +81,6 @@ export default {
     right: 0px;
     transform: translateX(0%);
     transition: all 5s linear;
-
   }
 
   .active {
@@ -99,6 +94,5 @@ export default {
     //transform: translateX(-50%);
     bottom: 50px;
   }
-
 }
 </style>

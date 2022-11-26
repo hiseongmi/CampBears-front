@@ -43,9 +43,7 @@ export default {
       }, 10);
     });
 
-    onUnmounted(() => {
-
-    });
+    onUnmounted(() => {});
 
     watch(
       () => store.state.sideBar,
@@ -68,26 +66,26 @@ export default {
 };
 </script>
 <template>
-  <!--  <Transition>-->
-  <div class="side-bar" @click="closePopup">
-    <div class="body" :class="{active:isActive}" @click.prevent.stop="">
-      <i @click="closePopup" class="fa-solid fa-xmark"></i>
-      <div class="profile-area">
-        <img :src="profileImg" alt="profileImg" />
-        <div>{{ userData ? userData.userNickName : "손님" }}</div>
-        <i @click="goToX('/myPage')" class="fa-solid fa-pen"></i>
-      </div>
-      <hr />
-      <div class="menu-area">
-        <div @click="goToX(item.url)" class="menu" v-for="item in menuList">
-          {{ item.name }}
+  <Transition>
+    <div class="side-bar" @click="closePopup">
+      <div class="body" :class="{ active: isActive }" @click.prevent.stop="">
+        <i @click="closePopup" class="fa-solid fa-xmark"></i>
+        <div class="profile-area">
+          <img :src="profileImg" alt="profileImg" />
+          <div>{{ userData ? userData.userNickName : "손님" }}</div>
+          <i @click="goToX('/myPage')" class="fa-solid fa-pen"></i>
+        </div>
+        <hr />
+        <div class="menu-area">
+          <div @click="goToX(item.url)" class="menu" v-for="item in menuList">
+            {{ item.name }}
+          </div>
+        </div>
+        <div class="footer">
+          <span> 약관 </span>
+          <span> 개인정보처리방침 </span>
         </div>
       </div>
-      <div class="footer">
-        <span> 약관 </span>
-        <span> 개인정보처리방침 </span>
-      </div>
     </div>
-  </div>
-  <!--  </Transition>-->
+  </Transition>
 </template>

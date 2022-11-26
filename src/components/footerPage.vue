@@ -1,43 +1,48 @@
 <script>
+import router from "../router/index.js";
+
 export default {
   name: "footerPage",
   setup() {
     const footerMenu = [
       {
         name: "회사소개",
-        key: "INTRO"
+        key: "INTRO",
       },
       {
         name: "인재채용",
-        key: "TAKE"
+        key: "TAKE",
       },
       {
         name: "제휴제안",
-        key: "PROPOSAL"
+        key: "PROPOSAL",
       },
       {
         name: "이용약관",
-        key: "TERMS"
+        key: "TERMS",
       },
       {
         name: "개인정보처리방침",
-        key: "PERSONAL"
+        key: "PERSONAL",
       },
       {
         name: "청소년보호정책",
-        key: "POLICY"
+        key: "POLICY",
       },
       {
         name: "베어스 고객센터",
         key: "SERVICE",
-        style: { borderRight: "none" }
-      }
+        style: { borderRight: "none" },
+      },
     ];
-
-    return {
-      footerMenu
+    const terms = v => {
+      window.alert("준비중입니다.");
     };
-  }
+    return {
+      footerMenu,
+      terms,
+    };
+  },
 };
 </script>
 <template>
@@ -45,7 +50,7 @@ export default {
     <div class="footer-bar">
       <div class="footer-bar-wrap">
         <nav class="footer-bar-wrap-nav">
-          <span class="footer-bar-wrap-nav-menu" v-for="item in footerMenu">{{ item.name }}</span>
+          <span class="footer-bar-wrap-nav-menu" @click="terms" v-for="item in footerMenu">{{ item.name }}</span>
         </nav>
       </div>
       <div class="footer-bar-info">
@@ -53,12 +58,14 @@ export default {
           <svg width="55" height="56" viewBox="0 0 55 56" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M37.2414 22.0327L26.069 37.1803L22.3448 29.836L16.8145 40.7606C15.4924 39.5855 14.3379 38.2452 13.4441 36.7212C12.0103 34.2976 11.1724 31.4701 11.1724 28.459C11.1724 25.4478 12.0103 22.6203 13.4255 20.1967C16.3303 15.2576 21.7303 11.9344 27.931 11.9344C34.1317 11.9344 39.5317 15.2576 42.4366 20.1967H54.5959C51.0207 9.01502 40.4441 0.917969 27.931 0.917969C15.4179 0.917969 4.84138 9.01502 1.28483 20.1967C0.446897 22.8039 0 25.5763 0 28.459C0 31.3416 0.446897 34.114 1.28483 36.7212C4.84138 47.9029 15.4179 55.9999 27.931 55.9999C40.4441 55.9999 51.0207 47.9029 54.5772 36.7212H48.8234L37.2414 22.0327Z"
-              fill="white" />
+              fill="white"
+            />
           </svg>
           <svg width="51" height="54" viewBox="0 0 51 54" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M51 17.3875V13.7705C51 6.16918 44.7434 0 37.0345 0H0.724121V25.7049V27.541V53.2459H8.91723L23.3855 15.3679C23.3296 15.3128 23.2738 15.2761 23.2365 15.221C23.2365 15.221 23.2365 15.221 23.2179 15.2026L19.4938 9.69443C19.2145 9.27213 19.3262 8.70295 19.7545 8.42754C20.1827 8.15213 20.76 8.2623 21.0393 8.68459L24 13.0361L26.9421 8.66623C27.2214 8.24393 27.8172 8.13377 28.2269 8.40918C28.6552 8.68459 28.7669 9.25377 28.4876 9.67607L24.7634 15.1843C24.7634 15.1843 24.7634 15.1843 24.7448 15.2026C24.7076 15.2577 24.6517 15.3128 24.5958 15.3495L39.0083 53.0807C45.7862 52.1443 51 46.4157 51 39.4754V35.8584C51 31.7456 48.5234 28.2203 44.9669 26.623C48.5234 25.0256 51 21.5003 51 17.3875Z"
-              fill="white" />
+              fill="white"
+            />
           </svg>
 
           <span>CAMP BEARS</span>
