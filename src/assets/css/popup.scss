@@ -1,4 +1,6 @@
 .popup-manager {
+  position: fixed;
+
   .black {
     position: fixed;
     width: 130vw;
@@ -10,7 +12,7 @@
   }
 
   .modal {
-    position: absolute;
+    position: fixed;
     @include mb() {
       z-index: 1;
     }
@@ -124,12 +126,11 @@
               }
             }
 
-
             &-up {
               display: flex;
               flex-direction: row;
               background-color: #7e7e7e82;
-              overflow: overlay;
+              //overflow: overlay;
               position: absolute;
               bottom: 30px;
               width: 100%;
@@ -143,14 +144,18 @@
                   width: 50px;
                   height: 50px;
                 }
+
                 img:hover {
                   border: 1px solid white;
                 }
+
                 span {
                   display: none;
                 }
+
                 &:hover {
                   cursor: pointer;
+
                   span {
                     display: block;
                     position: absolute;
@@ -209,7 +214,6 @@
                   @include mb() {
                     font-size: 12px;
                   }
-
                 }
               }
 
@@ -334,7 +338,6 @@
                   font-size: 14px;
                 }
 
-
                 span {
                   display: none;
                 }
@@ -366,7 +369,6 @@
                 @include mb() {
                   font-size: 14px;
                 }
-
               }
             }
           }
@@ -389,7 +391,7 @@
             padding: 0 50px;
           }
           @include mb() {
-            padding: 0 10px
+            padding: 0 10px;
           }
 
           .product-img-wrap {
@@ -707,7 +709,7 @@
             transition: 0.3s;
             @include mb() {
               width: 60px;
-              height: 80px
+              height: 80px;
             }
 
             ul {
@@ -1714,7 +1716,6 @@
                   color: #b70000;
                 }
               }
-
             }
 
             //댓글 없습니다.
@@ -1875,7 +1876,6 @@
     .save-btn {
       display: flex;
       justify-content: space-between;
-      padding: 10px;
 
       .custom-button {
         flex: none;
