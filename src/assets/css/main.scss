@@ -732,7 +732,8 @@
       }
 
       @include tb() {
-        transform: translateX(calc(-50% + 50px));
+        transform: translateX(calc(-50% + -50px));
+        width: 70%;
         div {
           font-size: 16px;
         }
