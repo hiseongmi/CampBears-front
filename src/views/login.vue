@@ -111,7 +111,7 @@ export default {
   <section v-if="!loginUser" class="login">
     <div class="login-area">
       <div class="logo-area">
-        <img src="/assets/images/login/logo.webp" alt="logo" />
+        <img src="/assets/images/login/loginLogo.png" alt="logo" />
         <h1>로그인 해볼까요?</h1>
       </div>
       <div v-if="loginState" class="form">

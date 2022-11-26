@@ -1,4 +1,3 @@
-
 .login {
   display: flex;
   flex-direction: column;
@@ -8,7 +7,7 @@
   .login-area {
     margin-bottom: 32px;
     width: 100%;
-    height: 443px;
+    height: 487px;
     text-align: center;
     background-size: 100% 100%;
     background-image: url("../assets/images/login/login_bg.webp");
@@ -18,8 +17,8 @@
       margin-bottom: 44px;
 
       img {
-        width: 41px;
-        height: 41px;
+        width: 100px;
+        height: 65px;
         margin-bottom: 23px;
       }
 
@@ -74,14 +73,12 @@
     &:hover {
       cursor: pointer;
     }
-
   }
 }
 
 //회원가입
 
 .signup {
-
   padding: 100px 0 100px 0;
   text-align: center;
 
@@ -98,7 +95,6 @@
     img {
       position: absolute;
       width: 543px;
-
     }
   }
 
@@ -141,7 +137,6 @@
       a {
         color: white;
       }
-
     }
 
     span {
