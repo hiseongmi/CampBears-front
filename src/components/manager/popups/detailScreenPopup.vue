@@ -71,6 +71,7 @@ export default {
     const deleteCommentData = ref({
       commentIdx: "",
     });
+    const indexImg = ref();
     //유저데이터
     const getData = async () => {
       try {
@@ -238,6 +239,7 @@ export default {
     const getImgUrl = (file) => {
       try {
         if (file) {
+          if (file.fileType === "SNS") indexImg.value = commonUtil.getImgUrl(file.fileName);
           return commonUtil.getImgUrl(file.fileName);
         }
       } catch (e) {
@@ -271,6 +273,7 @@ export default {
       reportAction,
       selectedComment,
       MySelectedComment,
+      indexImg,
       nextOverImg,
       postImage,
       RerCancel,
@@ -302,28 +305,31 @@ export default {
   <div class="modal-detail">
     <div class="modal-detail-content">
       <div class="content">
-        <!--        <div>-->
-        <div class="container" @click="RerOption">
-          <i class="fa-solid fa-ellipsis-vertical"></i>
-        </div>
-        <div class="myPop" v-if="MyRerAction">
-          <ul>
-            <li @click="goToUpdate(detailData)">수정</li>
-            <li @click="deleteContent">삭제</li>
-            <li @click="reportPop">신고 <i class="fa-solid fa-circle-exclamation"></i></li>
-          </ul>
-        </div>
-        <div class="pop" v-if="RerAction">
-          <ul>
-            <li @click="reportPop">신고 <i class="fa-solid fa-circle-exclamation"></i></li>
-          </ul>
-        </div>
-        <!--        </div>-->
-        <div class="content-close" @click="closePopup">
-          <span><i class="fa-solid fa-xmark"></i></span>
-        </div>
         <div class="content-image">
-          <img v-for="item in detailData.file" :src="getImgUrl(item)" alt="게사" />
+          <div class="container" @click="RerOption">
+            <i class="fa-solid fa-ellipsis-vertical"></i>
+          </div>
+          <div class="myPop" v-if="MyRerAction">
+            <ul>
+              <li @click="goToUpdate(detailData)">수정</li>
+              <li @click="deleteContent">삭제</li>
+              <li @click="reportPop">신고 <i class="fa-solid fa-circle-exclamation"></i></li>
+            </ul>
+          </div>
+          <div class="pop" v-if="RerAction">
+            <ul>
+              <li @click="reportPop">신고 <i class="fa-solid fa-circle-exclamation"></i></li>
+            </ul>
+          </div>
+          <div class="content-image-close" @click="closePopup">
+            <span><i class="fa-solid fa-xmark"></i></span>
+          </div>
+          <img :src="indexImg" alt="" />
+          <div class="content-image-preview">
+            <div class="content-image-preview-list" v-for="item in detailData.file">
+              <img class="previewImg" :src="getImgUrl(item)" alt="게사" />
+            </div>
+          </div>
           <span @click="nextOverImg" class="right">
       <i class="fa-solid fa-circle-chevron-right"></i>
     </span>

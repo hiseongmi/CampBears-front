@@ -681,145 +681,171 @@
         .content {
           position: relative;
           background-color: white;
-          //신고 수정 삭제 리스트 버튼
-          .container {
-            position: absolute;
-            right: 10px;
-            top: 7px;
-
-            i {
-              cursor: pointer;
-              font-size: 28px;
-              color: #a5a5a5;
-              @include mb() {
-                font-size: 20px;
-              }
-            }
-          }
-
-          //신고 수정 삭제 리스트
-          .myPop {
-            width: 80px;
-            height: 100px;
-            background-color: rgba(255, 255, 255, 0.51);
-            border-radius: 8px;
-            position: absolute;
-            top: 5px;
-            right: 20px;
-            transition: 0.3s;
-            @include mb() {
-              width: 60px;
-              height: 80px;
-            }
-
-            ul {
-              height: 100px;
-              list-style: none;
-              padding: 0;
-              display: grid;
-              align-items: center;
-              justify-items: center;
-              margin: 0;
-              @include mb() {
-                height: 80px;
-              }
-
-              li {
-                width: 100%;
-                text-align: center;
-                cursor: pointer;
-                height: 100%;
-                padding: 5px;
-                font-size: 14px;
-                @include mb() {
-                  font-size: 12px;
-                }
-
-                i {
-                  color: $red;
-                  @include mb() {
-                    font-size: 12px;
-                  }
-                }
-
-                &:hover {
-                  border-radius: 8px;
-                  background-color: #dedede;
-                }
-              }
-            }
-          }
-
-          .pop {
-            width: 80px;
-            height: 30px;
-            background-color: rgba(255, 255, 255, 0.51);
-            border-radius: 8px;
-            position: absolute;
-            top: 7px;
-            right: 20px;
-            transition: 0.3s;
-            @include mb() {
-              width: 65px;
-              height: 27px;
-            }
-
-            ul {
-              margin: 0;
-              height: 100%;
-              list-style: none;
-              padding: 0;
-              display: grid;
-              align-items: center;
-              justify-items: center;
-
-              li {
-                width: 100%;
-                text-align: center;
-                cursor: pointer;
-                height: 100%;
-                padding: 7px;
-                font-size: 14px;
-                @include mb() {
-                  font-size: 12px;
-                }
-
-                i {
-                  color: $red;
-                  @include mb() {
-                    font-size: 12px;
-                  }
-                }
-
-                &:hover {
-                  border-radius: 8px;
-                  background-color: #dedede;
-                }
-              }
-            }
-          }
-
-          &-close {
-            display: none;
-            @include mb() {
-              display: block;
-              padding: 5px;
-              position: absolute;
-
-              span {
-                cursor: pointer;
-
-                i:hover {
-                  color: white;
-                }
-              }
-            }
-          }
 
           //게시물 사진
           &-image {
+            position: relative;
+            //신고 수정 삭제 리스트 버튼
+            .container {
+              position: absolute;
+              right: 10px;
+              top: 7px;
+
+              i {
+                cursor: pointer;
+                font-size: 28px;
+                color: #a5a5a5;
+                @include mb() {
+                  font-size: 20px;
+                }
+              }
+            }
+
+            //신고 수정 삭제 리스트
+            .myPop {
+              width: 80px;
+              height: 100px;
+              background-color: rgba(255, 255, 255, 0.51);
+              border-radius: 8px;
+              position: absolute;
+              top: 5px;
+              right: 20px;
+              transition: 0.3s;
+              @include mb() {
+                width: 60px;
+                height: 80px;
+              }
+
+              ul {
+                height: 100px;
+                list-style: none;
+                padding: 0;
+                display: grid;
+                align-items: center;
+                justify-items: center;
+                margin: 0;
+                @include mb() {
+                  height: 80px;
+                }
+
+                li {
+                  width: 100%;
+                  text-align: center;
+                  cursor: pointer;
+                  height: 100%;
+                  padding: 5px;
+                  font-size: 14px;
+                  @include mb() {
+                    font-size: 12px;
+                  }
+
+                  i {
+                    color: $red;
+                    @include mb() {
+                      font-size: 12px;
+                    }
+                  }
+
+                  &:hover {
+                    border-radius: 8px;
+                    background-color: #dedede;
+                  }
+                }
+              }
+            }
+
+            .pop {
+              width: 80px;
+              height: 30px;
+              background-color: rgba(255, 255, 255, 0.51);
+              border-radius: 8px;
+              position: absolute;
+              top: 7px;
+              right: 20px;
+              transition: 0.3s;
+              @include mb() {
+                width: 65px;
+                height: 27px;
+              }
+
+              ul {
+                margin: 0;
+                height: 100%;
+                list-style: none;
+                padding: 0;
+                display: grid;
+                align-items: center;
+                justify-items: center;
+
+                li {
+                  width: 100%;
+                  text-align: center;
+                  cursor: pointer;
+                  height: 100%;
+                  padding: 7px;
+                  font-size: 14px;
+                  @include mb() {
+                    font-size: 12px;
+                  }
+
+                  i {
+                    color: $red;
+                    @include mb() {
+                      font-size: 12px;
+                    }
+                  }
+
+                  &:hover {
+                    border-radius: 8px;
+                    background-color: #dedede;
+                  }
+                }
+              }
+            }
+
+            &-close {
+              display: none;
+              @include mb() {
+                display: block;
+                padding: 5px;
+                position: absolute;
+
+                span {
+                  cursor: pointer;
+
+                  i:hover {
+                    color: white;
+                  }
+                }
+              }
+            }
+
             img {
               width: 100%;
+            }
+
+            &-preview {
+              position: absolute;
+              display: flex;
+              align-items: center;
+              padding: 0 5px;
+              bottom: 0;
+              width: 100%;
+              height: 65px;
+              background: rgba(0, 0, 0, 0.5);
+              box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
+
+              &-list {
+                display: flex;
+                margin: 5px;
+                position: relative;
+
+                .previewImg {
+                  border: 1px solid black;
+                  width: 50px;
+                  height: 50px;
+                }
+              }
             }
 
             .right {
@@ -1506,9 +1532,12 @@
             background-color: white;
 
             &-image {
+              position: relative;
+
               img {
                 width: 100%;
               }
+
             }
 
             &-wrap {
