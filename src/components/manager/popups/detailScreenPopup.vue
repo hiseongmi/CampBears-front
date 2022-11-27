@@ -24,14 +24,6 @@ export default {
   setup() {
     //로컬스토리지에 저장된 유저정보
     const userData = ref();
-    const getData = async () => {
-      try {
-        return userData.value = commonUtil.parseJson(commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO));
-      } catch (e) {
-        return e;
-      }
-    };
-
     // 해당 유저를 팔로우 하고 있는지, 아닌지
     const followType = ref({
       STATE: "UNFOLLOW",
@@ -41,6 +33,53 @@ export default {
       targetIdx: "",
       targetType: "USER",
     });
+    const heartCount = ref(0);
+    const heartState = ref({
+      STATE: "DISLIKE",
+    });
+    const heartData = ref({
+      targetIdx: "",
+      likeType: "",
+      targetType: "USER",
+    });
+    const bookmark = ref(false);
+    const detailData = ref({
+      boardIdx: store.state.boardIdx,
+      followIdx: "",
+      userIdx: "",
+      targetType: "",
+      dateReg: "",
+      hashTag: "",
+      boardBody: "",
+      userNickName: "",
+    });
+    const MyRerAction = ref(false);
+    const RerAction = ref(false);
+    const FollowBtnAction = ref(false);
+    const reportAction = ref(false);
+    const deleteData = ref({
+      boardIdx: store.state.boardIdx,
+    });
+    const getComment = ref({ boardIdx: store.state.boardIdx });
+    const commentListData = ref({ commentIdx: "" });
+    const MySelectedComment = ref("");
+    const selectedComment = ref("");
+    const commentData = ref({
+      boardIdx: store.state.boardIdx,
+      commentBody: "",
+    });
+    const deleteCommentData = ref({
+      commentIdx: "",
+    });
+    //유저데이터
+    const getData = async () => {
+      try {
+        return userData.value = commonUtil.parseJson(commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO));
+      } catch (e) {
+        return e;
+      }
+    };
+    //팔로우
     const followManager = async () => {
       if (followType.value.STATE === "UNFOLLOW") {
         //안하고있으니까
@@ -53,15 +92,6 @@ export default {
       const data = await apiClient("/common/doFollow", followData.value);
     };
     //좋아요
-    const heartCount = ref(0);
-    const heartState = ref({
-      STATE: "DISLIKE",
-    });
-    const heartData = ref({
-      targetIdx: "",
-      likeType: "",
-      targetType: "USER",
-    });
     const doLike = async () => {
       if (heartState.value.STATE === "DISLIKE") {
         heartData.value.likeType = "LIKE";
@@ -75,17 +105,6 @@ export default {
       const data = await apiClient("/common/doLike", heartData.value);
     };
     //상세 게시물 조회 api
-    const detailData = ref({
-      boardIdx: store.state.boardIdx,
-      followIdx: "",
-      userIdx: "",
-      targetType: "",
-      dateReg: "",
-      hashTag: "",
-      boardBody: "",
-      userNickName: "",
-    });
-
     const detail = async () => {
       const data = await apiClient("/sns/getSnsDetail", detailData.value);
       detailData.value = data.data;
@@ -97,7 +116,6 @@ export default {
       }
       commentList();
     };
-
     const goToReport = () => {
       store.commit(STORE_TYPE.popupType, POPUP_TYPE.REPORT);
     }; //신고창열기
@@ -107,9 +125,6 @@ export default {
         store.commit(STORE_TYPE.detailData, detailData);
       }
     }; //수정팝업열기
-
-    const MyRerAction = ref(false);
-    const RerAction = ref(false);
     const RerOption = () => {
       if (userData.value.userIdx === detailData.value.userIdx) {
         MyRerAction.value = !MyRerAction.value;
@@ -117,25 +132,20 @@ export default {
         RerAction.value = !RerAction.value;
       }
     }; //수정신고삭제 옵션
-    const FollowAction = ref(false);
-    const Follow = () => {
+    //난 팔로우버튼 안보이기
+    const FollowBtn = () => {
       if (userData.value.userIdx !== detailData.value.userIdx) {
-        FollowAction.value = true;
+        FollowBtnAction.value = true;
       } else {
-        FollowAction.value;
+        FollowBtnAction.value;
       }
     };
 
-
-    const reportAction = ref(false);
+    //신고팝업
     const reportPop = () => {
       reportAction.value = !reportAction.value;
     };
-
     //게시물 삭제 api
-    const deleteData = ref({
-      boardIdx: store.state.boardIdx,
-    });
     const deleteContent = async () => {
       const check = confirm("삭제하시겠습니까?");
       if (check === true) {
@@ -149,10 +159,7 @@ export default {
         }
       }
     };
-
     //댓글 조회 api
-    const getComment = ref({ boardIdx: store.state.boardIdx });
-    const commentListData = ref({ commentIdx: "" });
     const commentList = async () => {
       const data = await apiClient("/comment/getCommentList", getComment.value);
       if (data.resultCode === 0) {
@@ -160,14 +167,11 @@ export default {
       } else {
       }
     };
-
+    //댓글 날짜
     const setDateValue = (date) => {
       const b = dayjs(date.dateReg, "YYYY-MM-DD HH:mm");
       return b.format("YYYY-MM-DD HH:mm");
     };
-
-    const MySelectedComment = ref("");
-    const selectedComment = ref("");
     //댓글 수정 신고 삭제 옵션
     const RerCommentOption = comment => {
       if (detailData.value.userIdx === userData.value.userIdx || userData.value.userIdx === comment.userIdx) {
@@ -182,7 +186,6 @@ export default {
       MySelectedComment.value = "";
       selectedComment.value = "";
     };
-
     //댓글 추가 api
     const handleEnterEvent = (e) => {
       if (e.key === "Enter") {
@@ -190,10 +193,6 @@ export default {
         commentData.value.commentBody = "";
       }
     };
-    const commentData = ref({
-      boardIdx: store.state.boardIdx,
-      commentBody: "",
-    });
     const upComment = async () => {
       const data = await apiClient("/comment/insertComment", commentData.value);
       if (data.resultCode === 0) {
@@ -204,9 +203,6 @@ export default {
       }
     };
     //댓글 삭제 api
-    const deleteCommentData = ref({
-      commentIdx: "",
-    });
     const putCommentIdx = commentIdx => {
       deleteCommentData.value.commentIdx = commentIdx;
       deleteComment();
@@ -223,18 +219,20 @@ export default {
         }
       }
     };
-
     //팝업 닫기
     const closePopup = () => {
       //popup close
       store.commit(STORE_TYPE.popupType, POPUP_TYPE.NONE);
       store.commit(STORE_TYPE.boardIdx, "");
     };
-
     //북마크
-    const bookmark = ref(false);
     const bookmarkActive = () => {
       bookmark.value = !bookmark.value;
+    };
+
+    const nextOverImg = (e) => {
+      console.log(detailData.value.file);
+      console.log(e);
     };
 
     const getImgUrl = (file) => {
@@ -273,9 +271,10 @@ export default {
       reportAction,
       selectedComment,
       MySelectedComment,
+      nextOverImg,
       postImage,
       RerCancel,
-      Follow,
+      FollowBtn,
       getData,
       handleEnterEvent,
       putCommentIdx,
@@ -303,28 +302,34 @@ export default {
   <div class="modal-detail">
     <div class="modal-detail-content">
       <div class="content">
-        <div>
-          <div class="container" @click="RerOption">
-            <i class="fa-solid fa-ellipsis-vertical"></i>
-          </div>
-          <div class="myPop" v-if="MyRerAction">
-            <ul>
-              <li @click="goToUpdate(detailData)">수정</li>
-              <li @click="deleteContent">삭제</li>
-              <li @click="reportPop">신고 <i class="fa-solid fa-circle-exclamation"></i></li>
-            </ul>
-          </div>
-          <div class="pop" v-if="RerAction">
-            <ul>
-              <li @click="reportPop">신고 <i class="fa-solid fa-circle-exclamation"></i></li>
-            </ul>
-          </div>
+        <!--        <div>-->
+        <div class="container" @click="RerOption">
+          <i class="fa-solid fa-ellipsis-vertical"></i>
         </div>
+        <div class="myPop" v-if="MyRerAction">
+          <ul>
+            <li @click="goToUpdate(detailData)">수정</li>
+            <li @click="deleteContent">삭제</li>
+            <li @click="reportPop">신고 <i class="fa-solid fa-circle-exclamation"></i></li>
+          </ul>
+        </div>
+        <div class="pop" v-if="RerAction">
+          <ul>
+            <li @click="reportPop">신고 <i class="fa-solid fa-circle-exclamation"></i></li>
+          </ul>
+        </div>
+        <!--        </div>-->
         <div class="content-close" @click="closePopup">
           <span><i class="fa-solid fa-xmark"></i></span>
         </div>
         <div class="content-image">
           <img v-for="item in detailData.file" :src="getImgUrl(item)" alt="게사" />
+          <span @click="nextOverImg" class="right">
+      <i class="fa-solid fa-circle-chevron-right"></i>
+    </span>
+          <span class="left">
+      <i class="fa-solid fa-circle-chevron-left"></i>
+    </span>
         </div>
         <div class="content-wrap">
           <div class="content-wrap-profile">
@@ -409,12 +414,6 @@ export default {
         </div>
       </div>
     </div>
-    <span class="right">
-      <i class="fa-solid fa-circle-chevron-right"></i>
-    </span>
-    <span class="left">
-      <i class="fa-solid fa-circle-chevron-left"></i>
-    </span>
     <div v-if="reportAction" class="detailBlack">
       <report-popup :reportPop="reportPop"></report-popup>
     </div>

@@ -24,35 +24,48 @@ export default {
   },
   setup() {
     const userData = ref(undefined);
-    const getData = async () => {
-      const d = commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO);
-      if (d) userData.value = commonUtil.parseJson(d);
-    };
-
     const editState = ref(true);
-
+    const store = getStore();
+    const isPopup = ref(store.state.popupType);
     const publicType = {
       All: "ALL",
       FOLLOW: "FOLLOW",
     };
     const publicIndex = ref();
-    const checkValue = v => {
-      publicIndex.value = v;
-    };
-
-    const store = getStore();
-    const isPopup = ref(store.state.popupType);
-    //게시물 업로드
     const upLoadData = ref({
       boardBody: "",
       optionList: ["SHOWER", "PARMERCY", "CAFE", "FITTING", "SUBWAY", "MARKET", "STORE", "DRINK", "PARK", "RESTROOM", "STARBUCKS", "MOVIE", "RESTAURANT", "SHUTTLE"],
     });
     const inputHashTag = ref("");
-    const hashTagList = ref([]);
+    const hashTagList = ref([]); //해시태그 리스트
+    const updateData = ref({
+      boardIdx: store.state.boardIdx,
+      boardBody: store.state.detailData.boardBody,
+    });
+    const SNSImgPreview = ref([]);
+    let SNSFormData = new FormData();
+    const tabIndex = ref(0);
+    const pAction = ref(false);
+
+    //유저데이터
+    const getData = async () => {
+      const d = commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO);
+      if (d) userData.value = commonUtil.parseJson(d);
+    };
+    //공개여부
+    const checkValue = v => {
+      publicIndex.value = v;
+    };
+    //게시물 업로드
     const uploadSnsBoard = async () => {
       SNSFormData.append("boardBody", upLoadData.value.boardBody);
       if (hashTagList.value) {
+        // for (let i = 0; i < hashTagList.value.length; i++) {
         SNSFormData.append("hashTag", hashTagList.value);
+        // }
+        // for (let key of SNSFormData.entries()) {
+        //   console.log(key);
+        // }
       } else {
         hashTagList.value = " ";
       }
@@ -64,12 +77,7 @@ export default {
         window.alert("다시 시도해주세요.");
       }
     };
-
     //수정 업로드
-    const updateData = ref({
-      boardIdx: store.state.boardIdx,
-      boardBody: store.state.detailData.boardBody,
-    });
     const updateBoard = async () => {
       SNSFormData.append("boardIdx", updateData.value.boardIdx);
       SNSFormData.append("boardBody", updateData.value.boardBody);
@@ -78,22 +86,19 @@ export default {
       } else {
         hashTagList.value = " ";
       }
-      if (SNSFormData.has("file") === false) {
-        window.alert("사진을 넣어주세요.");
-      }
+      // if (SNSFormData.has("file") === false) {
+      //   window.alert("사진을 넣어주세요.");
+      // } else {
       const data = await apiClient("/sns/updateSns", SNSFormData);
       if (data.resultCode === 0) {
-        console.log(data.data);
         window.alert("수정되었습니다.");
         store.commit(STORE_TYPE.popupType, POPUP_TYPE.DETAIL_SCREEN);
       } else {
         window.alert("다시 시도해주세요.");
       }
+      // }
     };
-
     //이미지 업로드
-    const SNSImgPreview = ref([]);
-    let SNSFormData = new FormData();
     const upFileChange = (e) => {
       let SNSFileList = e.target.files;
       if (SNSFileList.length < 1) {
@@ -104,18 +109,17 @@ export default {
           SNSImgPreview.value.push(URL.createObjectURL(SNSFileList[i])); //blob 객체를 가상의 URL을 부여하여 접근할수있게함
           SNSFormData.append("file", SNSFileList[i]);
         }
-        for (let key of SNSFormData.entries()) {
-          console.log(key);
-        }
+        // for (let key of SNSFormData.entries()) {
+        //   console.log(key);
+        // }
       } else {
         window.alert("사진은 열 장까지.");
       }
     };
-    const tabIndex = ref(0);
+    //이미지프리뷰 바꾸기
     const changeImg = index => {
       tabIndex.value = index;
     };
-
     //태그 지우기
     const deleteTag = (index) => {
       hashTagList.value.index = index;
@@ -127,9 +131,7 @@ export default {
       SNSImgPreview.value.splice(SNSImgPreview.value.index, 1);
       SNSFormData.delete(file);
     };
-
-
-    const pAction = ref(false);
+    //위치태그
     const position = () => {
       pAction.value = !pAction.value;
     };
@@ -146,7 +148,7 @@ export default {
       //   addScript();
       // }
     };
-
+    //태그 이벤트
     const handleInput = (e) => {
       let target = e.target.value;
       target = target.trim();
@@ -165,7 +167,7 @@ export default {
         // inputHashTag.value = "#" + inputHashTag.value;
       }
     };
-
+    //태그 엔터 이벤트
     const handleEnterEvent = (e) => {
       // inputHashTag.value = inputHashTag.value.trim();
       if (e.key === "Enter") {
@@ -176,7 +178,7 @@ export default {
         }
       }
     };
-
+    //이미지 url
     const getImgUrl = (file) => {
       try {
         if (file) {
