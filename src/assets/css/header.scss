@@ -101,11 +101,13 @@
             cursor: pointer;
             padding: 7px 20px;
             font-weight: 700;
+            border-radius: 3px;
           }
 
           a:hover {
             background-color: #2f2e2c;
             color: #ffffff;
+            transition: 0.2s;
           }
         }
 
