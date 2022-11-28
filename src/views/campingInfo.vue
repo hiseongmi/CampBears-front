@@ -1,8 +1,8 @@
 <script>
-import { onMounted, ref } from "vue";
+import {onMounted, ref} from "vue";
 import axios from "axios";
-import store, { POPUP_TYPE, STORE_TYPE } from "../store/index.js";
-import { useStore } from "vuex";
+import store, {POPUP_TYPE, STORE_TYPE} from "../store/index.js";
+import {useStore} from "vuex";
 
 export default {
   name: "campingInfo",
@@ -14,13 +14,13 @@ export default {
     const api = axios.create({
       baseURL: "http://apis.data.go.kr/B551011/GoCamping",
       timeout: 1000 * 60 * 3,
-      headers: { "content-type": "Json" },
+      headers: {"content-type": "Json"},
     });
 
     const dataList = ref([]);
     const getCampInfo = async () => {
       const d = await api.get(
-        "/basedList?numOfRows=10&pageNo=1&MobileOS=ECT&MobileApp=bears&serviceKey=IEdTGqhPUIxJy5mLBtkjPw6g%2BaTd90KXgnnc03HRNuD2NUPhtSQ307ZhzYx3n51j%2FpjYn5Hteigqp1cro1Rg6w%3D%3D",
+          "/basedList?numOfRows=10&pageNo=1&MobileOS=ECT&MobileApp=bears&serviceKey=IEdTGqhPUIxJy5mLBtkjPw6g%2BaTd90KXgnnc03HRNuD2NUPhtSQ307ZhzYx3n51j%2FpjYn5Hteigqp1cro1Rg6w%3D%3D",
       );
       const xmlParser = new DOMParser();
       const par = xmlParser.parseFromString(d.data, "text/xml");
@@ -69,10 +69,10 @@ export default {
 </script>
 <template>
   <section class="camp-info">
-    <h1>camp info</h1>
+    <h1>캠핑장</h1>
     <div class="info-body" v-if="dataList && dataList.length > 0">
       <div class="info-item" @click="showDetail(index)" v-for="(item, index) in dataList">
-        <img :src="item.thumbNailUrl" alt="main" />
+        <a :href="item.homePageUrl"> <img :src="item.thumbNailUrl" alt="main"/></a>
         <div class="name">{{ item.campingName }}</div>
         <div class="des">{{ item.campingIntro }}</div>
         <div class="camp-type">
@@ -84,11 +84,11 @@ export default {
         <div class="info-ad">주소 : {{ item.address }}</div>
         <div class="info-ph">전화번호 : {{ item.tel }}</div>
         <div class="bi">생성일 : {{ item.createdDate }}</div>
-        <a :href="item.homePageUrl"> {{ item.homePageUrl }}</a>
+
         <div>{{ item.campInnerOption }} {{ item.campOuterOption }} {{ item.getInAnimal }}</div>
       </div>
       <a href=""></a>
     </div>
-    <div v-else>데이터 오는중...</div>
+    <div v-else>Wait...</div>
   </section>
 </template>
