@@ -104,14 +104,10 @@ export default {
       if (SNSFileList.length < 1) {
         window.alert("사진을 한 장 이상 넣어주세요.");
       } else if (SNSFileList.length < 11) {
-        let i;
-        for (i = 0; i < SNSFileList.length; i++) {
+        for (let i = 0; i < SNSFileList.length; i++) {
           SNSImgPreview.value.push(URL.createObjectURL(SNSFileList[i])); //blob 객체를 가상의 URL을 부여하여 접근할수있게함
           SNSFormData.append("file", SNSFileList[i]);
         }
-        // for (let key of SNSFormData.entries()) {
-        //   console.log(key);
-        // }
       } else {
         window.alert("사진은 열 장까지.");
       }

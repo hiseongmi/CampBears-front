@@ -208,12 +208,12 @@ export default {
           <customSelect @click="getContent" @update:value="sortUpdateValue"
                         :data="selectSortData"></customSelect>
         </li>
-        <li>
-          <custom-select @update:value="sortUpdateValue" :data="selectNumberData"></custom-select>
-        </li>
-        <li>
-          <customSelect @update:value="sortUpdateValue" :data="selectSeasonData"></customSelect>
-        </li>
+        <!--        <li>-->
+        <!--          <custom-select @update:value="sortUpdateValue" :data="selectNumberData"></custom-select>-->
+        <!--        </li>-->
+        <!--        <li>-->
+        <!--          <customSelect @update:value="sortUpdateValue" :data="selectSeasonData"></customSelect>-->
+        <!--        </li>-->
         <li>
           <customSelect @update:value="sortUpdateValue" :data="selectComfortsData"></customSelect>
         </li>

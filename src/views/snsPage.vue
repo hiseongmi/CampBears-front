@@ -6,6 +6,7 @@ import profile from "../components/snsBoard/profile.vue";
 import snsContentPage from "../components/snsBoard/snsContentPage.vue";
 import { apiClient } from "../utils/axios.js";
 import customInput from "../components/layout/customInput.vue";
+import router from "../router/index.js";
 
 export default {
   name: "snsPage",
@@ -36,10 +37,14 @@ export default {
         inquiryData.value.keyword = "";
       }
     };
+    const reload = () => {
+      window.location.reload(true);
+    };
 
 
     return {
       inquiryData,
+      reload,
       handleMouseEvent,
       handleEnterEvent,
       getContent,
@@ -51,7 +56,7 @@ export default {
   <div class="news">
     <div class="news-wrap">
       <div class="news-wrap-contents">
-        <h1 class="news-wrap-contents-title">소식</h1>
+        <h1 class="news-wrap-contents-title" @click="reload">소식</h1>
         <h5 class="news-wrap-contents-ment">다른 캠퍼의 소식을 들어 보아요!</h5>
       </div>
       <!--      <hr class="line"/>-->

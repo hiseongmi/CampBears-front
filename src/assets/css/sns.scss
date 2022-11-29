@@ -15,6 +15,7 @@
       position: relative;
       //소식
       &-title {
+        cursor: pointer;
         font-size: 48px;
         font-weight: bold;
         padding-right: 10px;

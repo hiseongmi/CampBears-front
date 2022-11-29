@@ -52,6 +52,7 @@ export default {
       hashTag: "",
       boardBody: "",
       userNickName: "",
+      file: [],
     });
     const MyRerAction = ref(false);
     const RerAction = ref(false);
@@ -71,7 +72,7 @@ export default {
     const deleteCommentData = ref({
       commentIdx: "",
     });
-    const indexImg = ref();
+    const tabIndex = ref(0);
     //유저데이터
     const getData = async () => {
       try {
@@ -231,15 +232,23 @@ export default {
       bookmark.value = !bookmark.value;
     };
 
-    const nextOverImg = (e) => {
-      console.log(detailData.value.file);
-      console.log(e);
+    const nextOverImg = () => {
+      if (tabIndex.value < detailData.value.file.length - 1) {
+        tabIndex.value++;
+      }
+    };
+    const beforeOverImg = () => {
+      if (tabIndex.value > 0) {
+        tabIndex.value--;
+      }
+    };
+    const changeImg = index => {
+      tabIndex.value = index;
     };
 
     const getImgUrl = (file) => {
       try {
         if (file) {
-          if (file.fileType === "SNS") indexImg.value = commonUtil.getImgUrl(file.fileName);
           return commonUtil.getImgUrl(file.fileName);
         }
       } catch (e) {
@@ -273,9 +282,11 @@ export default {
       reportAction,
       selectedComment,
       MySelectedComment,
-      indexImg,
       nextOverImg,
+      beforeOverImg,
+      tabIndex,
       postImage,
+      changeImg,
       RerCancel,
       FollowBtn,
       getData,
@@ -324,16 +335,16 @@ export default {
           <div class="content-image-close" @click="closePopup">
             <span><i class="fa-solid fa-xmark"></i></span>
           </div>
-          <img :src="indexImg" alt="" />
+          <img :src="getImgUrl(detailData.file[tabIndex])" alt="" />
           <div class="content-image-preview">
-            <div class="content-image-preview-list" v-for="item in detailData.file">
-              <img class="previewImg" :src="getImgUrl(item)" alt="게사" />
+            <div class="content-image-preview-list" v-for="(item, index) in detailData.file">
+              <img class="previewImg" @click="changeImg(index)" :src="getImgUrl(item)" alt="게사" />
             </div>
           </div>
           <span @click="nextOverImg" class="right">
       <i class="fa-solid fa-circle-chevron-right"></i>
     </span>
-          <span class="left">
+          <span @click="beforeOverImg" class="left">
       <i class="fa-solid fa-circle-chevron-left"></i>
     </span>
         </div>
@@ -362,10 +373,10 @@ export default {
               <span v-else @click="doLike"><i class="fa-solid fa-heart"></i></span>
               <span>{{ heartCount }}</span>
             </div>
-            <div class="content-wrap-emotion-book">
-              <span v-if="bookmark < 1" @click="bookmarkActive"><i class="fa-regular fa-bookmark"></i></span>
-              <span v-else @click="bookmarkActive"><i class="fa-solid fa-bookmark"></i></span>
-            </div>
+            <!--            <div class="content-wrap-emotion-book">-->
+            <!--              <span v-if="bookmark < 1" @click="bookmarkActive"><i class="fa-regular fa-bookmark"></i></span>-->
+            <!--              <span v-else @click="bookmarkActive"><i class="fa-solid fa-bookmark"></i></span>-->
+            <!--            </div>-->
             <div class="content-wrap-emotion-book">
               <span><i class="fa-solid fa-share-nodes"></i></span>
             </div>
@@ -375,7 +386,7 @@ export default {
         <div class="content-line">
           <div class="content-line-wrap">
             <span>댓글{{ commentListData.length }}</span>
-            <span>조회수 없음</span>
+            <!--            <span>조회수 없음</span>-->
           </div>
         </div>
         <div class="content-enterComment">
