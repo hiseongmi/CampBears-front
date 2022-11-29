@@ -25,7 +25,7 @@ export default {
     const userData = ref();
     const getData = async () => {
       try {
-        return userData.value = commonUtil.parseJson(commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO));
+        return (userData.value = commonUtil.parseJson(commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO)));
       } catch (e) {
         return e;
       }
@@ -47,6 +47,7 @@ export default {
     };
     const showUpdateValue = value => {
       showValue.value = value;
+      getContent();
     };
 
     const selectSortData = [
@@ -146,7 +147,7 @@ export default {
       }
     };
 
-    const getImgUrl = (file) => {
+    const getImgUrl = file => {
       try {
         if (file) {
           return commonUtil.getImgUrl(file.fileName);
@@ -156,7 +157,7 @@ export default {
       }
     };
 
-    const goTargetFeed = (item) => {
+    const goTargetFeed = item => {
       if (userData.value?.userIdx === item.userIdx) {
         router.push("/myPage");
       } else {
@@ -201,12 +202,10 @@ export default {
     <div class="news-menu-select">
       <ul>
         <li>
-          <customSelect @click="getContent" @update:value="showUpdateValue"
-                        :data="selectPublicData"></customSelect>
+          <customSelect @update:value="showUpdateValue" :data="selectPublicData"></customSelect>
         </li>
         <li>
-          <customSelect @click="getContent" @update:value="sortUpdateValue"
-                        :data="selectSortData"></customSelect>
+          <customSelect @click="getContent" @update:value="sortUpdateValue" :data="selectSortData"></customSelect>
         </li>
         <!--        <li>-->
         <!--          <custom-select @update:value="sortUpdateValue" :data="selectNumberData"></custom-select>-->
@@ -219,7 +218,7 @@ export default {
         </li>
       </ul>
     </div>
-    <div :class="userData ? 'news-menu-button': 'none'">
+    <div :class="userData ? 'news-menu-button' : 'none'">
       <button class="news-menu-button-write_btn" @click="openWrite()">
         <i class="fa-solid fa-pen"></i>
         <span>글쓰기</span>
@@ -231,8 +230,11 @@ export default {
       <div>
         <div class="profile">
           <div class="profile-wrap">
-            <img :src="getImgUrl(item.userProfile.filter(v=>v.fileType === 'USER_PROFILE')[0])"
-                 alt="프사" @click="goTargetFeed(item)" />
+            <img
+              :src="getImgUrl(item.userProfile.filter(v => v.fileType === 'USER_PROFILE')[0])"
+              alt="프사"
+              @click="goTargetFeed(item)"
+            />
             <div class="profile-wrap-data">
               <span>{{ item.userNickName }}</span>
               <!--              <span v-if="userData?.userIdx !== item?.userIdx">-->

@@ -11,8 +11,6 @@ export default {
   components: { customModal, customPagination },
   setup() {
     const postData = ref({});
-    const file = ref("");
-    let keyword = "";
 
     const getData = async () => {
       const data = await apiClient("product/getProductList", { productType: "SELL", sorted: "RECENT" });
@@ -23,25 +21,15 @@ export default {
       return commonUtil.getImgUrl(file.fileName);
     };
 
-    const handleSearch = e => {
-      if (e.detail !== "") keyword = e.detail;
-      else keyword = e.detail;
-      getData();
-    };
-
     const openDetail = productIdx => {
       store.commit(STORE_TYPE.popupType, POPUP_TYPE.PRODUCT_DETAIL);
       store.commit(STORE_TYPE.detailData, productIdx);
     }; //게시물 상세 페이지 팝업 열기
 
-    onMounted(() => {
-      getData();
-    });
+    onMounted(() => getData());
 
     const isModal = ref(false);
-    const modalControl = state => {
-      isModal.value = state;
-    };
+    const modalControl = state => (isModal.value = state);
 
     return {
       openDetail,
@@ -49,7 +37,6 @@ export default {
       getData,
       modalControl,
       isModal,
-      file,
       getImgUrl,
     };
   },

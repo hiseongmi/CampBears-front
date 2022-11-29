@@ -834,9 +834,6 @@
               height: 65px;
               background: rgba(0, 0, 0, 0.5);
               box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
-              @include mb() {
-                height: 40px;
-              }
 
               &-list {
                 display: flex;
@@ -848,10 +845,6 @@
                   width: 50px;
                   height: 50px;
                   cursor: pointer;
-                  @include mb() {
-                    width: 30px;
-                    height: 30px;
-                  }
                 }
               }
             }
@@ -1433,12 +1426,11 @@
 
       .detailBlack {
         position: fixed;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        border-radius: 10px;
-        background-color: rgba(0, 0, 0, 0.7);
+        width: 200vw;
+        height: 200vh;
+        top: -130px;
+        left: -290px;
+        background-color: rgba(0, 0, 0, 0.8);
         color: black;
         z-index: 2;
       }
@@ -1793,6 +1785,16 @@
 
         &-content::-webkit-scrollbar {
           display: none;
+        }
+
+
+        .detailBlack {
+          position: fixed;
+          width: 200vw;
+          height: 200vh;
+          background-color: rgba(0, 0, 0, 0.8);
+          color: black;
+          z-index: 2;
         }
       }
 

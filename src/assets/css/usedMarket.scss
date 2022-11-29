@@ -1,6 +1,7 @@
 .used-market {
   margin: 0 auto;
-  max-width: 900px;
+  width: 90%;
+  max-width: 1200px;
 
   .used-title {
     display: grid;
@@ -90,20 +91,23 @@
 }
 
 .used-contents-area {
+  min-height: 1200px;
+
   .used-contents-area-ul {
     display: inline-flex;
     flex-wrap: wrap;
     margin: 0 auto;
+    justify-content: flex-start;
 
     .used-post {
       position: relative;
-      width: 200px;
       border: 1px solid #c1c1c1;
       border-radius: 10px;
-      padding: 10px 10px 0;
+      padding: 10px;
       margin: 10px;
       cursor: pointer;
-      //min-height: 300px;
+      height: 320px;
+      width: 180px;
 
       &-img-wrap {
         display: flex;
@@ -176,30 +180,7 @@
 }
 
 @include tb() {
-  .used-post {
-    //width: ;
-  }
-}
-
-@include mb() {
-  .used-market {
-    .used-banner {
-      width: 90%;
-      margin: 0 auto;
-    }
-  }
-  .used-contents-area {
-    .used-contents-area-ul {
-      display: flex;
-      width: 90%;
-      margin: 0 auto;
-      flex-wrap: wrap;
-      justify-content: space-between;
-
-      .used-post {
-        margin: 5px auto;
-        max-width: calc(50% - 10px);
-      }
-    }
+  .used-contents-area .used-contents-area-ul .used-post {
+    margin: 5px;
   }
 }

@@ -4,6 +4,7 @@ import { apiClient } from "../../utils/axios.js";
 import customPagination from "../layout/customPagination.vue";
 import commonUtil from "../../utils/common-util.js";
 import { CONSTANTS } from "../../constants.js";
+import store, { POPUP_TYPE, STORE_TYPE } from "../../store/index.js";
 
 export default {
   name: "myUsedBoard",
@@ -17,11 +18,17 @@ export default {
       profileInfo.value = await commonUtil.parseJson(commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO));
       const data = await apiClient("product/getProductList", profileInfo.value.userIdx);
       if (data) contentData.value = data.data;
+      console.log(contentData.value);
     };
 
     const getImgUrl = file => {
       return commonUtil.getImgUrl(file.fileName);
     };
+
+    const openDetail = productIdx => {
+      store.commit(STORE_TYPE.popupType, POPUP_TYPE.PRODUCT_DETAIL);
+      store.commit(STORE_TYPE.detailData, productIdx);
+    }; //게시물 상세 페이지 팝업 열기
 
     onMounted(() => {
       getData();
@@ -32,6 +39,7 @@ export default {
       page: 1,
       file,
       getImgUrl,
+      openDetail,
     };
   },
 };
@@ -39,7 +47,7 @@ export default {
 
 <template>
   <div class="contents-box" v-for="item in contentData">
-    <div class="contents-img-wrap">
+    <div class="contents-img-wrap" @click="openDetail(item.productIdx)">
       <img :src="getImgUrl(item.file[0])" alt="" />
     </div>
   </div>

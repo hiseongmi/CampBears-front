@@ -3,6 +3,7 @@ import { onMounted, ref } from "vue";
 import { apiClient } from "../../utils/axios.js";
 import customPagination from "../layout/customPagination.vue";
 import commonUtil from "../../utils/common-util.js";
+import store, { POPUP_TYPE, STORE_TYPE } from "../../store/index.js";
 
 export default {
   name: "myFeedBoard",
@@ -16,7 +17,7 @@ export default {
       if (data) contentData.value = data.data;
     };
 
-    const getImgUrl = (file) => {
+    const getImgUrl = file => {
       try {
         if (file) {
           return commonUtil.getImgUrl(file.fileName);
@@ -25,6 +26,11 @@ export default {
         return "./assets/image/camping.png";
       }
     };
+
+    const openDetail = boardIdx => {
+      store.commit(STORE_TYPE.popupType, POPUP_TYPE.DETAIL_SCREEN);
+      store.commit(STORE_TYPE.boardIdx, boardIdx);
+    }; //게시물 상세 페이지 팝업 열기
 
     onMounted(() => {
       getData();
@@ -35,6 +41,7 @@ export default {
       page: 1,
       file,
       getImgUrl,
+      openDetail,
     };
   },
 };
@@ -42,7 +49,7 @@ export default {
 
 <template>
   <div class="contents-box" v-for="item in contentData">
-    <div class="contents-img-wrap">
+    <div class="contents-img-wrap" @click="openDetail(item.boardIdx)">
       <img :src="getImgUrl(item.file[0])" alt="" />
     </div>
   </div>
