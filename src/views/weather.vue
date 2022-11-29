@@ -72,14 +72,12 @@ export default {
         }
       });
 
-      console.log(result);
       dataList.value = result;
 
       let total = 0;
       result.map(v => {
         total += Number(v.temp);
       });
-      console.log(total);
 
       avgTemp.value = Math.floor(total / 24);
 
@@ -93,6 +91,14 @@ export default {
 
     onMounted(() => {
       getCampInfo();
+
+      const k = ["영덕아", "기상청은", "개", "씨", "같아..."];
+
+      k.map((value) => {
+        console.log(value);
+      });
+
+
       // getCampInfo();
     });
     return {
