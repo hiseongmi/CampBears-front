@@ -35,11 +35,11 @@ export default {
     const tagList = [
       {
         name: "#목포",
-        link: "http://localhost:3001/#/snsPage",
+        // link: "http://localhost:3001/#/snsPage",
       },
       {
         name: "#애견",
-        link: "http://localhost:3001/#/login",
+        // link: "http://localhost:3001/#/login",
       },
       {
         name: "#파주",
@@ -57,6 +57,7 @@ export default {
       isShow.value = !isShow.value;
     };
 
+
     const goToX = v => {
       v ? router.push(v) : window.alert("준비중입니다.");
     };
@@ -72,27 +73,8 @@ export default {
     //   initMap();
     // }
     const initMap = () => {
-      // if (window.kakao && window.kakao.maps) {
-      // const container = document.getElementById("map");
-      // const options = {
-      //   center: new window.kakao.maps.LatLng(37.71173, 126.88878),
-      //   level: 5,
-      //   keyboardShortcuts: true,
-      // };
-      // const map = new window.kakao.maps.Map(container, options);
-      // console.log(map);
-      // const zoomControl = new kakao.maps.ZoomControl();
-      // // 지도의 우측에 확대 축소 컨트롤을 추가한다
-      // map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
-      //
-      //
-      // kakao.maps.event.addListener(map, 'click', function (mouseEvent) {
-      //   console.log('지도에서 클릭한 위치의 좌표는 ' + mouseEvent.latLng.toString() + ' 입니다.');
-      // });
-      // 마커에 클릭 이벤트를 등록한다 (우클릭 : rightclick)
-      // kakao.maps.event.addListener(marker, 'click', function () {
-      //   alert('마커를 클릭했습니다!');
-      // });
+
+
       // 마커를 담을 배열입니다
       var markers = [];
 
@@ -115,7 +97,13 @@ export default {
       // 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
       var infowindow = new kakao.maps.InfoWindow({zIndex: 1});
 
-      // 키워드로 장소를 검색합니다
+      // 첫화면에 미리 캠핑장이 검색되게
+      function first() {
+        document.getElementById("keyword").value = "캠핑장";
+        searchPlaces()
+      }
+
+      first()
 
       const searchForm = document.getElementById("submit-btn");
       searchForm?.addEventListener("click", function (e) {
@@ -129,21 +117,15 @@ export default {
         document.getElementById("keyword").value = "";
       }
 
-      const first = () => {
-        const keyword = (document.getElementById("keyword").value = "캠핑장");
-        // console.log(keyword);
 
-        if (!keyword.replace(/^\s+|\s+$/g, "")) {
-          alert("키워드를 입력해주세요!");
-          return false;
-        }
+      // const first = () => {
+      //   const keyword = (document.getElementById("keyword").value = "캠핑장");
+      //
+      //   // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
+      //   ps.keywordSearch(keyword, placesSearchCB);
+      //   test();
+      // };
 
-        // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
-        ps.keywordSearch(keyword, placesSearchCB);
-        test();
-      };
-
-      first();
 
       // 키워드 검색을 요청하는 함수입니다
 
@@ -298,8 +280,8 @@ export default {
       }
 
       // 검색결과 목록 하단에 페이지번호를 표시는 함수입니다
-      function displayPagination(pagination) {
-        var paginationEl = document.getElementById("pagination"),
+      const displayPagination = (pagination) => {
+        var paginationEl = document.getElementById('pagination'),
             fragment = document.createDocumentFragment(),
             i;
 
@@ -309,17 +291,17 @@ export default {
         }
 
         for (i = 1; i <= pagination.last; i++) {
-          var el = document.createElement("a");
-          el.href = "#";
+          var el = document.createElement('a');
+          //el.href = "#";
           el.innerHTML = i;
 
           if (i === pagination.current) {
-            el.className = "on";
+            el.className = 'on';
           } else {
             el.onclick = (function (i) {
               return function () {
                 pagination.gotoPage(i);
-              };
+              }
             })(i);
           }
 
@@ -344,6 +326,7 @@ export default {
         }
       }
     };
+
     onMounted(initMap);
 
     return {
@@ -395,11 +378,14 @@ export default {
       </div>
     </div>
     <!--    지도-->
+
     <div class="map-box">
       <div class="map_wrap">
-        <div id="map" style="width: 100%; height: 100%; position: relative; overflow: hidden"></div>
+        <div id="map"
+             style="width: 100%; border-radius: 15px; height: 100%; position: relative; overflow: hidden"></div>
 
         <div id="menu_wrap" class="bg_white">
+
           <div class="option">
             <div>
               <form onsubmit="searchPlaces(); return false;">

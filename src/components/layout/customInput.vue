@@ -1,5 +1,5 @@
 <script>
-import { computed, ref } from "vue";
+import {computed, ref} from "vue";
 
 export default {
   name: "customInput",
@@ -25,6 +25,6 @@ export default {
 };
 </script>
 <template>
-  <input class="custom-input" :class="customClass" type="text" :placeholder="placeholder" @input="handleInput">
+  <input class="custom-input" :class="customClass" :type="'text'" :placeholder="placeholder" @input="handleInput">
   <slot name="element"></slot>
 </template>

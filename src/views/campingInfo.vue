@@ -43,6 +43,7 @@ export default {
             campOuterOption: i.getElementsByTagName("sbrsCl")[0].innerHTML,
             getInAnimal: i.getElementsByTagName("animalCmgCl")[0].innerHTML,
             createdDate: i.getElementsByTagName("modifiedtime")[0].innerHTML,
+            // lineIntro: i.getElementsByTagName("lineIntro")[0].innerHTML,
           };
           dataList.value.push(dataSet);
         }
@@ -80,12 +81,14 @@ export default {
             {{ item.campingManageMode }}
           </span>
         </div>
-        <div class="info-type">캠핑 타입 :{{ item.campingTypes }}</div>
-        <div class="info-ad">주소 : {{ item.address }}</div>
-        <div class="info-ph">전화번호 : {{ item.tel }}</div>
-        <div class="bi">생성일 : {{ item.createdDate }}</div>
 
-        <div>{{ item.campInnerOption }} {{ item.campOuterOption }} {{ item.getInAnimal }}</div>
+        <div class="info-inner">
+          <div class="info-add">
+            <span class="info-type">캠핑 타입 :{{ item.campingTypes }}</span>
+            <span class="info-ad">주소 : {{ item.address }}</span>
+          </div>
+          <span class="info-ph">전화번호 : {{ item.tel }}</span>
+        </div>
       </div>
       <a href=""></a>
     </div>

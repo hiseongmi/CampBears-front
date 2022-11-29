@@ -1,66 +1,60 @@
 <script>
 import router from "../router/index.js";
 import {onMounted, ref} from "vue";
+import axios from "axios";
+import store, {POPUP_TYPE, STORE_TYPE} from "../store/index.js";
+import {useStore} from "vuex";
 
 export default {
   name: "weather",
   components: {},
 
   setup() {
-// ///연결에 필요
-//     const isShow = ref(true);
-//     const back = () => {
-//       isShow.value = !isShow.value;
-//     };
-//     const goToX = v => {
-//       v ? router.push(v) : window.alert("준비중입니다.");
-//     };
-// /// 날씨 api
-//     const getJson = function (url, callback) {
-//       const xhr = new XMLHttpRequest();
-//       xhr.open('get', url, true);
-//       xhr.responseType = 'json';
-//       xhr.onload = function () {
-//         //접속이 성공적이면 널값 반환, 그외에는 status값 반환
-//         const status = xhr.status;
-//         if (status === 200) {
-//           callback(null, xhr.response);
-//         } else {
-//           callback(status, xhr.response);
-//         }
-//       };
-//       xhr.send('');
-//     };
-//     getJson('http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst')
+    const store = useStore();
 
-    var xhr = new XMLHttpRequest();
-    var url = 'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst'; /*URL*/
-    var queryParams = '?' + encodeURIComponent('serviceKey') + '=' + 'IEdTGqhPUIxJy5mLBtkjPw6g%2BaTd90KXgnnc03HRNuD2NUPhtSQ307ZhzYx3n51j%2FpjYn5Hteigqp1cro1Rg6w%3D%3D'; /*Service Key*/
-    queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); /**/
-    queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('1000'); /**/
-    queryParams += '&' + encodeURIComponent('dataType') + '=' + encodeURIComponent('XML'); /**/
-    queryParams += '&' + encodeURIComponent('base_date') + '=' + encodeURIComponent('20210628'); /**/
-    queryParams += '&' + encodeURIComponent('base_time') + '=' + encodeURIComponent('0500'); /**/
-    queryParams += '&' + encodeURIComponent('nx') + '=' + encodeURIComponent('55'); /**/
-    queryParams += '&' + encodeURIComponent('ny') + '=' + encodeURIComponent('127'); /**/
-    xhr.open('GET', url + queryParams);
-    xhr.onreadystatechange = function () {
-      if (this.readyState == 4) {
-        alert('Status: ' + this.status + 'nHeaders: ' + JSON.stringify(this.getAllResponseHeaders()) + 'nBody: ' + this.responseText);
+    const api = axios.create({
+      baseURL: "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0",
+      timeout: 1000 * 60 * 3,
+      headers: {"content-type": "Json"},
+    });
+
+    const dataList = ref([]);
+    const getCampInfo = async () => {
+      const d = await api.get(
+          "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst",
+      );
+      const xmlParser = new DOMParser();
+      const par = xmlParser.parseFromString(d.data, "text/xml");
+      const t = par.getElementsByTagName("items");
+      for (const item of t) {
+        for (const i of item.children) {
+          const dataSet = {
+            contentId: i.getElementsByTagName("contentId")[0].innerHTML,
+          };
+          dataList.value.push(dataSet);
+        }
       }
-      console.log(this.responseText)
     };
 
-    xhr.send('');
-    return {
-      // back,
-      // goToX,
+    const showDetail = index => {
+      // console.log(dataSet);
+      store.commit(STORE_TYPE.campInfo, dataList[index]);
+      store.commit(STORE_TYPE.popupType, POPUP_TYPE.DETAIL_CAMPING);
+    };
 
+    onMounted(() => {
+      getCampInfo();
+      // getCampInfo();
+    });
+    return {
+      dataList,
+      showDetail,
+      // goLink,
     };
   },
 };
 </script>
 
 <template>
-  <div> {{ this.responseText }}</div>
+  <!--  <div> {{ this.responseText }}</div>-->
 </template>

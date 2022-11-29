@@ -404,10 +404,17 @@
 }
 
 // ㅡㅡㅡㅡㅡ캠핑장정보
+
 .info-main {
+  @include mb() {
+    top: -84px;
+  }
+
   text-align: -webkit-center;
+
   .side {
   }
+
   .info-sidebar {
     position: absolute;
     top: 19%;
@@ -680,6 +687,7 @@
         margin: 0;
         padding-right: 0;
       }
+
       .calendar-btn {
         @include mb() {
           width: 150px;
@@ -897,24 +905,71 @@
   color: #cccccc;
   border-top: solid 2px;
 
-  .info-content {
-    .camp-info {
-      h1 {
-        padding: 2%;
-      }
 
-      .info-body {
-        justify-content: space-between;
+  .camp-info {
+    h1 {
+      color: #818181;
+      padding: 2%;
+    }
 
-        .info-item {
-          width: 40%;
-          @include mb() {
-            width: 100%;
+    .info-body {
+      justify-content: space-between;
+
+      .info-item {
+        position: relative;
+
+        .name {
+          color: black;
+          font-size: 28px;
+          padding: 2%;
+        }
+
+        .des {
+          padding: 1%;
+          font-size: 17px;
+          text-align: center;
+          color: #fa6c1a;
+        }
+
+        .info-inner {
+          position: relative;
+          width: 100%;
+          height: 100%;
+
+          .info-add {
+            position: relative;
+
+            .info-type {
+              position: relative;
+            }
+
+            .info-ad {
+              position: relative;
+            }
           }
+
+          .info-ph {
+
+          }
+        }
+
+        .camp-type {
+          span {
+            font-size: 13px;
+            left: -9px;
+          }
+
+
+        }
+
+        width: 40%;
+        @include mb() {
+          width: 100%;
         }
       }
     }
   }
+
 }
 
 .info-pagination {
