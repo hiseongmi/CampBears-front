@@ -157,7 +157,7 @@ export default {
     };
 
     const goTargetFeed = (item) => {
-      if (userData.value.userIdx === item.userIdx) {
+      if (userData.value?.userIdx === item.userIdx) {
         router.push("/myPage");
       } else {
         router.push(`/userFeed/${item.userIdx}`);

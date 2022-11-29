@@ -283,26 +283,26 @@ export default {
               :custom-class="publicIndex === publicType.FOLLOW ? 'active' : ''"
             />
           </div>
-          <div class="content-position">
-            <div class="content-position-wrap">
-              <span class="title">위치태그</span>
-              <span @click="position"><i class="fa-solid fa-chevron-right"></i></span>
-            </div>
-          </div>
-          <div class="content-position">
-            <div class="content-position-wrap">
-              <span class="title">장소</span>
-              <span><i class="fa-solid fa-chevron-right"></i></span>
-            </div>
-          </div>
-          <div class="content-person">
-            <div class="content-person-wrap">
-              <span>인원</span>
-              <div>
-                range slider
-              </div>
-            </div>
-          </div>
+          <!--          <div class="content-position">-->
+          <!--            <div class="content-position-wrap">-->
+          <!--              <span class="title">위치태그</span>-->
+          <!--              <span @click="position"><i class="fa-solid fa-chevron-right"></i></span>-->
+          <!--            </div>-->
+          <!--          </div>-->
+          <!--          <div class="content-position">-->
+          <!--            <div class="content-position-wrap">-->
+          <!--              <span class="title">장소</span>-->
+          <!--              <span><i class="fa-solid fa-chevron-right"></i></span>-->
+          <!--            </div>-->
+          <!--          </div>-->
+          <!--          <div class="content-person">-->
+          <!--            <div class="content-person-wrap">-->
+          <!--              <span>인원</span>-->
+          <!--              <div>-->
+          <!--                range slider-->
+          <!--              </div>-->
+          <!--            </div>-->
+          <!--          </div>-->
           <div class="content-tag" v-if="editState">
             <div class="content-tag-div">
               태그 설정

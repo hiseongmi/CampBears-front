@@ -6,7 +6,6 @@ import profile from "../components/snsBoard/profile.vue";
 import snsContentPage from "../components/snsBoard/snsContentPage.vue";
 import { apiClient } from "../utils/axios.js";
 import customInput from "../components/layout/customInput.vue";
-import router from "../router/index.js";
 
 export default {
   name: "snsPage",
