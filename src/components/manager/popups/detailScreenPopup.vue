@@ -24,6 +24,7 @@ export default {
   setup() {
     //로컬스토리지에 저장된 유저정보
     const userData = ref();
+    const contentData = ref(store.state.contentData);
     // 해당 유저를 팔로우 하고 있는지, 아닌지
     const followType = ref({
       STATE: "UNFOLLOW",
@@ -44,7 +45,7 @@ export default {
     });
     const bookmark = ref(false);
     const detailData = ref({
-      boardIdx: store.state.boardIdx,
+      boardIdx: store.state.contentData.boardIdx,
       followIdx: "",
       userIdx: "",
       targetType: "",
@@ -59,14 +60,14 @@ export default {
     const FollowBtnAction = ref(false);
     const reportAction = ref(false);
     const deleteData = ref({
-      boardIdx: store.state.boardIdx,
+      boardIdx: store.state.contentData.boardIdx,
     });
-    const getComment = ref({ boardIdx: store.state.boardIdx });
+    const getComment = ref({ boardIdx: store.state.contentData.boardIdx });
     const commentListData = ref({ commentIdx: "" });
     const MySelectedComment = ref("");
     const selectedComment = ref("");
     const commentData = ref({
-      boardIdx: store.state.boardIdx,
+      boardIdx: store.state.contentData.boardIdx,
       commentBody: "",
     });
     const deleteCommentData = ref({
@@ -118,15 +119,17 @@ export default {
       }
       commentList();
     };
+    //신고창열기
     const goToReport = () => {
       store.commit(STORE_TYPE.popupType, POPUP_TYPE.REPORT);
-    }; //신고창열기
+    };
+    //수정팝업열기
     const goToUpdate = (detailData) => {
       if (detailData) {
         store.commit(STORE_TYPE.popupType, POPUP_TYPE.WRITE_BOARD);
         store.commit(STORE_TYPE.detailData, detailData);
       }
-    }; //수정팝업열기
+    };
     const RerOption = () => {
       if (userData.value.userIdx === detailData.value.userIdx) {
         MyRerAction.value = !MyRerAction.value;
@@ -155,7 +158,7 @@ export default {
         if (data.resultCode === 0) {
           window.alert("삭제되었습니다.");
           closePopup();
-          router.go(); //새로고침
+          window.location.reload(); //새로고침
         } else {
           window.alert("다시시도해주세요");
         }
@@ -225,7 +228,7 @@ export default {
     const closePopup = () => {
       //popup close
       store.commit(STORE_TYPE.popupType, POPUP_TYPE.NONE);
-      store.commit(STORE_TYPE.boardIdx, "");
+      store.commit(STORE_TYPE.contentData, "");
     };
     //북마크
     const bookmarkActive = () => {
@@ -282,6 +285,7 @@ export default {
       reportAction,
       selectedComment,
       MySelectedComment,
+      contentData,
       nextOverImg,
       beforeOverImg,
       tabIndex,
@@ -338,7 +342,7 @@ export default {
           <img :src="getImgUrl(detailData.file[tabIndex])" alt="" />
           <div class="content-image-preview">
             <div class="content-image-preview-list" v-for="(item, index) in detailData.file">
-              <img class="previewImg" @click="changeImg(index)" :src="getImgUrl(item)" alt="게사" />
+              <img :tabindex=tabIndex class="previewImg" @click="changeImg(index)" :src="getImgUrl(item)" alt="게사" />
             </div>
           </div>
           <span @click="nextOverImg" class="right">

@@ -42,22 +42,15 @@ export default {
       FOLLOW: "FOLLOW",
       HASH: "HASH",
     };
-    const sortUpdateValue = value => {
-      sortValue.value = value;
-    };
-    const showUpdateValue = value => {
-      showValue.value = value;
-      getContent();
-    };
 
     const selectSortData = [
       { key: "정렬", value: "정렬" },
-      { key: "좋아요순", value: "좋아요순" },
-      { key: "조회수순", value: "조회수순" },
-      { key: "댓글순", value: "댓글순" },
+      // { key: "좋아요순", value: "좋아요순" },
+      // { key: "조회수순", value: "조회수순" },
+      // { key: "댓글순", value: "댓글순" },
       { key: SORT_TYPE.RECENT, value: "최근순" },
       { key: SORT_TYPE.LONG, value: "오래된순" },
-      { key: "가나다순", value: "가나다순" },
+      // { key: "가나다순", value: "가나다순" },
     ];
     const selectSeasonData = [
       { key: "season", value: "계절" },
@@ -95,7 +88,18 @@ export default {
       { key: SHOW_TYPE.FOLLOW, value: "팔로워 게시물" },
       { key: SHOW_TYPE.HASH, value: "해시태그 게시물" },
     ];
-
+    const sortUpdateValue = value => {
+      sortValue.value = value;
+      if (userData.value) {
+        getContent();
+      }
+    };
+    const showUpdateValue = value => {
+      showValue.value = value;
+      if (userData.value) {
+        getContent();
+      }
+    };
     const openWrite = () => {
       if (userData.value) {
         store.state.detailData = "";
@@ -106,10 +110,10 @@ export default {
       }
     }; //글쓰기 팝업열기
 
-    const openDetail = boardIdx => {
+    const openDetail = item => {
       if (userData.value) {
         store.commit(STORE_TYPE.popupType, POPUP_TYPE.DETAIL_SCREEN);
-        store.commit(STORE_TYPE.boardIdx, boardIdx); //<-item.boardIdx 값을 넣었다
+        store.commit(STORE_TYPE.contentData, item); //<-item.boardIdx 값을 넣었다
       } else {
         window.alert("로그인 하세요.");
         router.push("/login");
@@ -205,7 +209,7 @@ export default {
           <customSelect @update:value="showUpdateValue" :data="selectPublicData"></customSelect>
         </li>
         <li>
-          <customSelect @click="getContent" @update:value="sortUpdateValue" :data="selectSortData"></customSelect>
+          <customSelect @update:value="sortUpdateValue" :data="selectSortData"></customSelect>
         </li>
         <!--        <li>-->
         <!--          <custom-select @update:value="sortUpdateValue" :data="selectNumberData"></custom-select>-->
@@ -248,7 +252,7 @@ export default {
         <!--        <profile :img="item.userProfile" :userInfo="item"></profile>-->
       </div>
       <div class="news-ul-li-wrap">
-        <div class="news-ul-li-wrap-write" @click="openDetail(item.boardIdx)">
+        <div class="news-ul-li-wrap-write" @click="openDetail(item)">
           <img :src="getImgUrl(item.file[0])" alt="Posts" />
         </div>
         <div class="detail">

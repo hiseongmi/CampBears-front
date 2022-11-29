@@ -37,7 +37,7 @@ export default {
       }
     };
     const reload = () => {
-      window.location.reload(true);
+      window.location.reload();
     };
 
 

@@ -66,6 +66,7 @@
 
         &:hover {
           color: $primary-color;
+          cursor: pointer;
         }
       }
     }
@@ -81,12 +82,14 @@
         //background-color: #1b1b1b;
         border-bottom: 1px solid #1b1b1b;
         margin-bottom: 20px;
+        cursor: pointer;
       }
     }
 
     .footer {
       position: absolute;
       bottom: 50px;
+      cursor: pointer;
     }
   }
 }

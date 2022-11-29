@@ -39,10 +39,11 @@ export default {
     const inputHashTag = ref("");
     const hashTagList = ref([]); //해시태그 리스트
     const updateData = ref({
-      boardIdx: store.state.boardIdx,
+      boardIdx: store.state.contentData.boardIdx,
       boardBody: store.state.detailData.boardBody,
     });
     const SNSImgPreview = ref([]);
+    const SNSFileList = ref([]);
     let SNSFormData = new FormData();
     const tabIndex = ref(0);
     const pAction = ref(false);
@@ -58,23 +59,34 @@ export default {
     };
     //게시물 업로드
     const uploadSnsBoard = async () => {
-      SNSFormData.append("boardBody", upLoadData.value.boardBody);
-      if (hashTagList.value) {
-        // for (let i = 0; i < hashTagList.value.length; i++) {
-        SNSFormData.append("hashTag", hashTagList.value);
-        // }
-        // for (let key of SNSFormData.entries()) {
-        //   console.log(key);
-        // }
+      if (SNSFileList.value.length < 1) {
+        window.alert("사진을 한 장 이상 넣어주세요.");
+      } else if (SNSFileList.value.length < 11) {
+        for (let i = 0; i < SNSFileList.value.length; i++) {
+          SNSFormData.append("file", SNSFileList.value[i]);
+        }
+        if (upLoadData.value.boardBody !== "") {
+          SNSFormData.append("boardBody", upLoadData.value.boardBody);
+        } else {
+          window.alert("내용을 입력해주세요.");
+        }
+        if (hashTagList.value) {
+          // for (let i = 0; i < hashTagList.value.length; i++) {
+          SNSFormData.append("hashTag", hashTagList.value);
+          // }
+          // for (let key of SNSFormData.entries()) {
+          //   console.log(key);
+          // }
+        } else {
+          hashTagList.value = "";
+        }
+        const data = await apiClient("/sns/insert", SNSFormData);
+        if (data.resultCode === 0) {
+          window.location.reload();
+          store.commit(STORE_TYPE.popupType, POPUP_TYPE.NONE); //팝업 닫기
+        }
       } else {
-        hashTagList.value = " ";
-      }
-      const data = await apiClient("/sns/insert", SNSFormData);
-      if (data.resultCode === 0) {
-        router.go();
-        store.commit(STORE_TYPE.popupType, POPUP_TYPE.NONE); //팝업 닫기
-      } else {
-        window.alert("다시 시도해주세요.");
+        window.alert("사진은 열 장까지.");
       }
     };
     //수정 업로드
@@ -89,31 +101,31 @@ export default {
       // if (SNSFormData.has("file") === false) {
       //   window.alert("사진을 넣어주세요.");
       // } else {
-      const data = await apiClient("/sns/updateSns", SNSFormData);
-      if (data.resultCode === 0) {
-        window.alert("수정되었습니다.");
-        store.commit(STORE_TYPE.popupType, POPUP_TYPE.DETAIL_SCREEN);
-      } else {
-        window.alert("다시 시도해주세요.");
-      }
+      // const data = await apiClient("/sns/updateSns", SNSFormData);
+      // if (data.resultCode === 0) {
+      //   window.alert("수정되었습니다.");
+      //   store.commit(STORE_TYPE.popupType, POPUP_TYPE.DETAIL_SCREEN);
+      // } else {
+      //   window.alert("다시 시도해주세요.");
+      // }
       // }
     };
     //이미지 업로드
     const upFileChange = (e) => {
-      let SNSFileList = e.target.files;
-      if (SNSFileList.length < 1) {
+      let SNSFile = e.target.files;
+      if (SNSFile.length < 1) {
         window.alert("사진을 한 장 이상 넣어주세요.");
-      } else if (SNSFileList.length < 11) {
-        for (let i = 0; i < SNSFileList.length; i++) {
-          SNSImgPreview.value.push(URL.createObjectURL(SNSFileList[i])); //blob 객체를 가상의 URL을 부여하여 접근할수있게함
-          SNSFormData.append("file", SNSFileList[i]);
+      } else if (SNSFile.length < 11) {
+        for (let i = 0; i < SNSFile.length; i++) {
+          SNSImgPreview.value.push(URL.createObjectURL(SNSFile[i])); //blob 객체를 가상의 URL을 부여하여 접근할수있게함
+          SNSFileList.value.push(SNSFile[i]);
         }
       } else {
         window.alert("사진은 열 장까지.");
       }
     };
     //이미지프리뷰 바꾸기
-    const changeImg = index => {
+    const changeImg = (index) => {
       tabIndex.value = index;
     };
     //태그 지우기
@@ -124,8 +136,12 @@ export default {
     //이미지 지우기
     const deleteImg = (index) => {
       SNSImgPreview.value.index = index;
+      SNSFileList.value.index = index;
       SNSImgPreview.value.splice(SNSImgPreview.value.index, 1);
-      SNSFormData.delete(file);
+      SNSFileList.value.splice(SNSImgPreview.value.index, 1);
+      if (tabIndex.value >= SNSImgPreview.value.length) {
+        tabIndex.value = SNSImgPreview.value.length - 1;
+      }
     };
     //위치태그
     const position = () => {
@@ -253,7 +269,7 @@ export default {
             </div>
             <div class="content-file-up" v-if="SNSImgPreview">
               <div v-for=" (item , index) in SNSImgPreview" class="content-file-up-preview">
-                <img @click="changeImg(index)" :src="item" alt="" />
+                <img :tabindex="tabIndex" @click="changeImg(index)" :src="item" alt="" />
                 <span class="deleteImg" @click="deleteImg(index)">x</span>
               </div>
             </div>

@@ -43,7 +43,8 @@ export default {
       }, 10);
     });
 
-    onUnmounted(() => {});
+    onUnmounted(() => {
+    });
 
     watch(
       () => store.state.sideBar,

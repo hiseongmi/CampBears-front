@@ -5,7 +5,7 @@ export const STORE_TYPE = {
   isLoading: "isLoading",
   popupType: "popupType",
   loginUserIdx: "loginUserIdx",
-  boardIdx: "boardIdx",
+  contentData: "contentData",
   commentIdx: "commentIdx",
   campInfo: "campInfo",
   sideBar: "sideBar",
@@ -28,7 +28,7 @@ const store = createStore({
     isLoading: false,
     popupType: POPUP_TYPE.NONE,
     loginUserIdx: "",
-    boardIdx: "",
+    contentData: [],
     commentIdx: "",
     popupList: [],
     campInfo: undefined,
@@ -62,8 +62,8 @@ const store = createStore({
      * @param {store} state
      * @param {string} value
      */
-    boardIdx(state, value) {
-      state.boardIdx = value;
+    contentData(state, value) {
+      state.contentData = value;
     },
     /**
      *
