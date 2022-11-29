@@ -518,7 +518,6 @@
     flex-wrap: wrap;
     @include mb() {
       justify-content: center;
-
     }
     //a:hover {
     //  transform: scale(1.03);
@@ -532,7 +531,6 @@
       padding: 0 2% 0 2%;
       @include mb() {
         padding: 3%;
-
       }
     }
 
@@ -563,6 +561,7 @@
       place-self: center;
       border-style: none;
       display: inline-block;
+      cursor: pointer;
     }
 
     span {
