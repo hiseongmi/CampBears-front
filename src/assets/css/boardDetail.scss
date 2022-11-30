@@ -1,6 +1,6 @@
 .board-detail {
-  z-index: 3;
-  max-width: 80%;
+  max-width: 40%;
+  margin: 0 auto;
 
   @include mb() {
     top: unset;
@@ -10,18 +10,10 @@
     height: 80%;
     -webkit-transform: unset;
     bottom: 0;
+    margin-top: 20px;
   }
 
   &-content {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    overflow: hidden;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    border-radius: 10px;
     @include mb() {
       border-radius: 0;
     }
@@ -34,17 +26,41 @@
       //게시물 사진
       &-image {
         position: relative;
+
         //신고 수정 삭제 리스트 버튼
         .container {
           position: absolute;
           right: 10px;
           top: 7px;
+          @include mb() {
+            display: none;
+          }
 
           i {
             cursor: pointer;
             font-size: 28px;
             color: #a5a5a5;
             @include mb() {
+              display: none;
+            }
+          }
+        }
+
+        .mbContainer {
+          display: none;
+          @include mb() {
+            display: block;
+            position: relative;
+            float: right;
+            right: 0;
+            top: 0;
+            margin-right: 5px;
+          }
+
+          i {
+            @include mb() {
+              cursor: pointer;
+              color: #a5a5a5;
               font-size: 20px;
             }
           }
@@ -152,25 +168,23 @@
           }
         }
 
-        &-close {
+        &-goBack {
           display: none;
           @include mb() {
             display: block;
-            padding: 5px;
-            position: absolute;
-
-            span {
+            margin: 5px;
+            i {
               cursor: pointer;
-
-              i:hover {
-                color: white;
-              }
             }
           }
         }
 
         img {
           width: 100%;
+          border-radius: 10px;
+          @include mb() {
+            border-radius: 0;
+          }
         }
 
         &-preview {
@@ -178,11 +192,14 @@
           display: flex;
           align-items: center;
           padding: 0 5px;
-          bottom: 0;
+          bottom: 3px;
           width: 100%;
           height: 65px;
+          border-radius: 0 0 10px 10px;
           background: rgba(0, 0, 0, 0.5);
-          box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
+          @include mb() {
+            border-radius: 0;
+          }
 
           &-list {
             display: flex;
@@ -203,23 +220,29 @@
         }
 
         .right {
-          mix-blend-mode: difference;
           cursor: pointer;
-          color: white;
           position: absolute;
           font-size: 20px;
           top: 50%;
-          right: 0;
+          right: -33px;
+          @include mb() {
+            mix-blend-mode: difference;
+            color: white;
+            right: 0;
+          }
         }
 
         .left {
-          mix-blend-mode: difference;
           cursor: pointer;
-          color: white;
           position: absolute;
           font-size: 20px;
           top: 50%;
-          left: 0;
+          left: -33px;
+          @include mb() {
+            mix-blend-mode: difference;
+            color: white;
+            left: 0;
+          }
         }
       }
 
@@ -246,7 +269,6 @@
               align-items: center;
 
               span {
-                font-size: 20px;
                 font-weight: bold;
                 padding-right: 10px;
               }
@@ -301,7 +323,7 @@
 
             //해시 태그
             &-tag {
-              margin: 9px 0 0 0;
+              margin: 0;
               font-size: 12px;
               color: #0093e7;
             }

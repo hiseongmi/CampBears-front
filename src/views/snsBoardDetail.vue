@@ -8,6 +8,7 @@ import dayjs from "dayjs";
 import { useStore } from "vuex";
 import { useRoute } from "vue-router";
 import { apiClient } from "../utils/axios.js";
+import router from "../router/index.js";
 
 
 export default {
@@ -26,21 +27,21 @@ export default {
     const contentData = ref(undefined);
     // 해당 유저를 팔로우 하고 있는지, 아닌지
     const followType = ref({
-      STATE: "UNFOLLOW"
+      STATE: "UNFOLLOW",
     });
     const followData = ref({
       followType: "", // 내가 지금 팔로우 할 건지, 아닌지
       targetIdx: "",
-      targetType: "USER"
+      targetType: "USER",
     });
     const heartCount = ref(0);
     const heartState = ref({
-      STATE: "DISLIKE"
+      STATE: "DISLIKE",
     });
     const heartData = ref({
       targetIdx: "",
       likeType: "",
-      targetType: "USER"
+      targetType: "USER",
     });
     const bookmark = ref(false);
     const detailData = ref({
@@ -53,14 +54,14 @@ export default {
       boardBody: "",
       userNickName: "",
       userProfile: [],
-      file: []
+      file: [],
     });
     const MyRerAction = ref(false);
     const RerAction = ref(false);
     const FollowBtnAction = ref(false);
     const reportAction = ref(false);
     const deleteData = ref({
-      boardIdx: ""
+      boardIdx: "",
     });
     const getComment = ref({ boardIdx: "" });
     const commentListData = ref({ commentIdx: "" });
@@ -68,10 +69,10 @@ export default {
     const selectedComment = ref("");
     const commentData = ref({
       boardIdx: "",
-      commentBody: ""
+      commentBody: "",
     });
     const deleteCommentData = ref({
-      commentIdx: ""
+      commentIdx: "",
     });
     const tabIndex = ref(0);
     //유저데이터
@@ -231,7 +232,8 @@ export default {
       }
     };
     //팝업 닫기
-    const closePopup = () => {
+    const goBack = () => {
+      router.go(-1);
       //popup close
       // store.commit(STORE_TYPE.popupType, POPUP_TYPE.NONE);
       // store.commit(STORE_TYPE.contentData, "");
@@ -293,6 +295,7 @@ export default {
       selectedComment,
       MySelectedComment,
       contentData,
+      goBack,
       nextOverImg,
       beforeOverImg,
       tabIndex,
@@ -314,21 +317,23 @@ export default {
       RerCommentOption,
       goToReport,
       goToUpdate,
-      closePopup,
       reportPop,
       getImgUrl,
-      setDateValue
+      setDateValue,
     };
-  }
+  },
 };
 </script>
 <template>
   <div class="board-detail">
-    <div class="modal-detail-content">
+    <div class="board-detail-content">
       <div class="content">
         <div class="content-image">
           <div class="container" @click="RerOption">
             <i class="fa-solid fa-ellipsis-vertical"></i>
+          </div>
+          <div class="mbContainer" @click="RerOption">
+            <i class="fa-solid fa-ellipsis"></i>
           </div>
           <div class="myPop" v-if="MyRerAction">
             <ul>
@@ -342,8 +347,8 @@ export default {
               <li @click="reportPop">신고 <i class="fa-solid fa-circle-exclamation"></i></li>
             </ul>
           </div>
-          <div class="content-image-close" @click="closePopup">
-            <span><i class="fa-solid fa-xmark"></i></span>
+          <div class="content-image-goBack" @click="goBack">
+            <i class="fa-solid fa-chevron-left"></i>
           </div>
           <img :src="getImgUrl(detailData.file[tabIndex])" alt="" />
           <div v-if="detailData.file.length > 1" class="content-image-preview">
@@ -358,10 +363,10 @@ export default {
             </div>
           </div>
           <span v-if="detailData.file.length > 1" @click="nextOverImg" class="right">
-            <i class="fa-solid fa-circle-chevron-right"></i>
+            <i class="fa-solid fa-chevron-right"></i>
           </span>
           <span v-if="detailData.file.length > 1" @click="beforeOverImg" class="left">
-            <i class="fa-solid fa-circle-chevron-left"></i>
+            <i class="fa-solid fa-chevron-left"></i>
           </span>
         </div>
         <div class="content-wrap">
