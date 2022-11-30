@@ -209,7 +209,6 @@ export default {
       const data = await apiClient("/comment/insertComment", commentData.value);
       if (data.resultCode === 0) {
         commentData.value.commentBody = "";
-        commentList();
       } else {
         window.alert("댓글을 입력해주세요");
       }
@@ -225,7 +224,7 @@ export default {
         const data = await apiClient("/comment/deleteComment", deleteCommentData.value);
         if (data.resultCode === 0) {
           window.alert("삭제되었습니다.");
-          await detail();
+          await getBoardDetail();
         } else {
           window.alert("다시 시도해주세요");
         }
@@ -255,6 +254,14 @@ export default {
     };
     const changeImg = index => {
       tabIndex.value = index;
+    };
+    const copyUrl = () => {
+      let url = "";
+      const urlInput = document.getElementById("urlInput");
+      urlInput.value = window.document.location.href;
+      urlInput.select();
+      document.execCommand("copy");
+      window.alert("복사되었습니다.");
     };
 
     const getImgUrl = file => {
@@ -295,6 +302,7 @@ export default {
       selectedComment,
       MySelectedComment,
       contentData,
+      copyUrl,
       goBack,
       nextOverImg,
       beforeOverImg,
@@ -399,7 +407,8 @@ export default {
             <!--              <span v-else @click="bookmarkActive"><i class="fa-solid fa-bookmark"></i></span>-->
             <!--            </div>-->
             <div class="content-wrap-emotion-book">
-              <span><i class="fa-solid fa-share-nodes"></i></span>
+              <input id="urlInput" />
+              <button @click="copyUrl"><i class="fa-solid fa-share-nodes"></i></button>
             </div>
           </div>
         </div>

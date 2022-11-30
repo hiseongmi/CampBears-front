@@ -148,6 +148,11 @@
           font-weight: 300;
           padding-block: 15px;
           word-break: break-all;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          overflow: hidden;
+          -webkit-box-orient: vertical;
+          height: 49px;
         }
 
         &-coast {
