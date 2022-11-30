@@ -15,7 +15,7 @@ export default {
     const loginUser = ref(undefined);
     const tabType = {
       SELL: "sell",
-      BUY: "buy"
+      BUY: "buy",
     }; // 컴포넌트 이름
 
     const tabIndex = ref(tabType.SELL);
@@ -40,9 +40,9 @@ export default {
       tabType,
       tabIndex,
       componentChange,
-      openWrite
+      openWrite,
     };
-  }
+  },
 };
 </script>
 
@@ -67,7 +67,7 @@ export default {
       <div class="used-banner-popup" @click="">
         <img src="/assets/image/icon/dropMenu.webp" alt="" />
       </div>
-      <custom-button :placeholder="'글쓰기'" @click="openWrite" />
+      <custom-button :placeholder="'글쓰기'" @click="openWrite()" />
     </div>
     <div class="used-contents-area">
       <sell-component v-if="tabIndex === tabType.SELL" />

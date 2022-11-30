@@ -151,7 +151,6 @@ export default {
       const data = await apiClient("/sns/getSnsList", param);
       if (data.data) {
         contentData.value = data.data;
-        console.log(contentData.value);
       }
     };
 

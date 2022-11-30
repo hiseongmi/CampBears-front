@@ -26,7 +26,7 @@ export default {
 
     const openDetail = productIdx => {
       store.commit(STORE_TYPE.popupType, POPUP_TYPE.PRODUCT_DETAIL);
-      store.commit(STORE_TYPE.detailData, productIdx);
+      store.commit(STORE_TYPE.boardIdx, productIdx);
     }; //게시물 상세 페이지 팝업 열기
 
     onMounted(() => {
@@ -38,9 +38,9 @@ export default {
       page: 1,
       file,
       getImgUrl,
-      openDetail
+      openDetail,
     };
-  }
+  },
 };
 </script>
 

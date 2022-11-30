@@ -4,6 +4,7 @@ import { apiClient } from "../../utils/axios.js";
 import customPagination from "../layout/customPagination.vue";
 import commonUtil from "../../utils/common-util.js";
 import store, { POPUP_TYPE, STORE_TYPE } from "../../store/index.js";
+import router from "../../router/index.js";
 
 export default {
   name: "myFeedBoard",
@@ -25,9 +26,8 @@ export default {
       }
     };
 
-    const openDetail = boardIdx => {
-      store.commit(STORE_TYPE.popupType, POPUP_TYPE.DETAIL_SCREEN);
-      store.commit(STORE_TYPE.detailData, boardIdx);
+    const openDetail = item => {
+      router.push(`/snsPage/detail/${item.boardIdx}`);
     }; //게시물 상세 페이지 팝업 열기
 
     onMounted(() => {
@@ -48,7 +48,7 @@ export default {
 <template>
   <div class="contents-area-li">
     <div class="contents-box" v-for="item in contentData">
-      <div class="contents-img-wrap" @click="openDetail(item.boardIdx)">
+      <div class="contents-img-wrap" @click="openDetail(item)">
         <img :src="getImgUrl(item.file[0])" alt="" />
       </div>
     </div>

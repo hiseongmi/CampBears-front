@@ -19,7 +19,7 @@ export default {
     });
     const getDetail = async () => {
       // Product Detail Info 받아오기
-      detailData.value.productIdx = store.state.detailData;
+      detailData.value.productIdx = store.state.boardIdx;
       const data = await apiClient("product/getProductDetail", detailData.value);
       if (data) {
         detailData.value = data.data[0];
@@ -99,7 +99,7 @@ export default {
             <div class="product-main-wrap">
               <div class="product-main-wrap-title">
                 <div class="pomsom">{{ detailData.productType }}</div>
-                <h4>{{ detailData.productDes }}</h4>
+                <h4>{{ detailData.productName }}</h4>
               </div>
               <div class="product-main-wrap-rest">
                 <span>
