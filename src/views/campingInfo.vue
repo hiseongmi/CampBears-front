@@ -1,8 +1,8 @@
 <script>
-import {onMounted, ref} from "vue";
+import { onMounted, ref } from "vue";
 import axios from "axios";
-import store, {POPUP_TYPE, STORE_TYPE} from "../store/index.js";
-import {useStore} from "vuex";
+import store, { POPUP_TYPE, STORE_TYPE } from "../store/index.js";
+import { useStore } from "vuex";
 
 export default {
   name: "campingInfo",
@@ -14,13 +14,13 @@ export default {
     const api = axios.create({
       baseURL: "http://apis.data.go.kr/B551011/GoCamping",
       timeout: 1000 * 60 * 3,
-      headers: {"content-type": "Json"},
+      headers: { "content-type": "Json" },
     });
 
     const dataList = ref([]);
     const getCampInfo = async () => {
       const d = await api.get(
-          "/basedList?numOfRows=10&pageNo=1&MobileOS=ECT&MobileApp=bears&serviceKey=IEdTGqhPUIxJy5mLBtkjPw6g%2BaTd90KXgnnc03HRNuD2NUPhtSQ307ZhzYx3n51j%2FpjYn5Hteigqp1cro1Rg6w%3D%3D",
+        "/basedList?numOfRows=10&pageNo=1&MobileOS=ECT&MobileApp=bears&serviceKey=IEdTGqhPUIxJy5mLBtkjPw6g%2BaTd90KXgnnc03HRNuD2NUPhtSQ307ZhzYx3n51j%2FpjYn5Hteigqp1cro1Rg6w%3D%3D",
       );
       const xmlParser = new DOMParser();
       const par = xmlParser.parseFromString(d.data, "text/xml");
@@ -73,27 +73,33 @@ export default {
     <h1>캠핑장</h1>
     <div class="info-body" v-if="dataList && dataList.length > 0">
       <div class="info-item" @click="showDetail(index)" v-for="(item, index) in dataList">
-
         <a :href="item.homePageUrl" class="item-front">
           <div class="camp-type">
-          <span>
-            {{ item.campingManageMode }}
-          </span>
+            <span>
+              {{ item.campingManageMode }}
+            </span>
           </div>
-          <img :src="item.thumbNailUrl" alt="main"/></a>
-
+          <img :src="item.thumbNailUrl" alt="main"
+        /></a>
 
         <div class="camp-list">
           <div class="name">{{ item.campingName }}</div>
-          <div class="des"><span>{{ item.campingIntro }}</span></div>
+          <div class="des">
+            <span>{{ item.campingIntro }}</span>
+          </div>
 
           <div class="info-inner">
-            <div class="info-add"><span class="info-type">캠핑 타입 :{{ item.campingTypes }}</span></div>
-            <div class="info-ad"><span>주소 : {{ item.address }}</span></div>
-            <div class="info-ph"><span>전화번호 : {{ item.tel }}</span></div>
+            <div class="info-add">
+              <span class="info-type">캠핑 타입 :{{ item.campingTypes }}</span>
+            </div>
+            <div class="info-ad">
+              <span>주소 : {{ item.address }}</span>
+            </div>
+            <div class="info-ph">
+              <span>전화번호 : {{ item.tel }}</span>
+            </div>
           </div>
         </div>
-
       </div>
       <a href=""></a>
     </div>
