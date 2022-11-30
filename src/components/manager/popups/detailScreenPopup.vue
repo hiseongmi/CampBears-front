@@ -1,11 +1,10 @@
 <script>
 import store, { POPUP_TYPE, STORE_TYPE } from "../../../store/index.js";
-import { computed, onMounted, onUnmounted, ref } from "vue";
+import { onMounted, onUnmounted, ref } from "vue";
 import postImage from "../../../data/postImage.js";
 import { apiClient } from "../../../utils/axios.js";
 import CustomButton from "../../layout/customButton.vue";
 import CustomInput from "../../layout/customInput.vue";
-import router from "../../../router/index.js";
 import dayjs from "dayjs";
 import reportPopup from "./reportPopup.vue";
 import commonUtil from "../../../utils/common-util.js";
@@ -78,7 +77,7 @@ export default {
     //유저데이터
     const getData = async () => {
       try {
-        return userData.value = commonUtil.parseJson(commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO));
+        return (userData.value = commonUtil.parseJson(commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO)));
       } catch (e) {
         return e;
       }
@@ -127,7 +126,7 @@ export default {
       store.commit(STORE_TYPE.popupType, POPUP_TYPE.REPORT);
     };
     //수정팝업열기
-    const goToUpdate = (detailData) => {
+    const goToUpdate = detailData => {
       if (detailData) {
         store.commit(STORE_TYPE.popupType, POPUP_TYPE.WRITE_BOARD);
         store.commit(STORE_TYPE.detailData, detailData);
@@ -176,7 +175,7 @@ export default {
       }
     };
     //댓글 날짜
-    const setDateValue = (date) => {
+    const setDateValue = date => {
       const b = dayjs(date.dateReg, "YYYY-MM-DD HH:mm");
       return b.format("YYYY-MM-DD HH:mm");
     };
@@ -195,7 +194,7 @@ export default {
       selectedComment.value = "";
     };
     //댓글 추가 api
-    const handleEnterEvent = (e) => {
+    const handleEnterEvent = e => {
       if (e.key === "Enter") {
         upComment();
         commentData.value.commentBody = "";
@@ -252,7 +251,7 @@ export default {
       tabIndex.value = index;
     };
 
-    const getImgUrl = (file) => {
+    const getImgUrl = file => {
       try {
         if (file) {
           return commonUtil.getImgUrl(file.fileName);
@@ -345,15 +344,21 @@ export default {
           <img :src="getImgUrl(detailData.file[tabIndex])" alt="" />
           <div v-if="detailData.file.length > 1" class="content-image-preview">
             <div class="content-image-preview-list" v-for="(item, index) in detailData.file">
-              <img :tabindex=tabIndex class="previewImg" @click="changeImg(index)" :src="getImgUrl(item)" alt="게사" />
+              <img
+                :tabindex="tabIndex"
+                class="previewImg"
+                @click="changeImg(index)"
+                :src="getImgUrl(item)"
+                alt="게사"
+              />
             </div>
           </div>
           <span v-if="detailData.file.length > 1" @click="nextOverImg" class="right">
-      <i class="fa-solid fa-circle-chevron-right"></i>
-    </span>
+            <i class="fa-solid fa-circle-chevron-right"></i>
+          </span>
           <span v-if="detailData.file.length > 1" @click="beforeOverImg" class="left">
-      <i class="fa-solid fa-circle-chevron-left"></i>
-    </span>
+            <i class="fa-solid fa-circle-chevron-left"></i>
+          </span>
         </div>
         <div class="content-wrap">
           <div class="content-wrap-profile">
@@ -410,7 +415,7 @@ export default {
           <div class="state">댓글이 없습니다.</div>
         </div>
         <div class="content-comments" v-for="item in commentListData" v-else>
-          <img :src="item.file ? getImgUrl(item.file[0]) : '' " alt="프사" />
+          <img :src="item.file ? getImgUrl(item.file[0]) : ''" alt="프사" />
           <div class="content-comments-wrap">
             <span>{{ item.userNickName }}</span>
             <p>{{ item.commentBody }}</p>

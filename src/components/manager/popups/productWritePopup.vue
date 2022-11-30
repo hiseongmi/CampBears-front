@@ -9,6 +9,7 @@ import { apiClient } from "../../../utils/axios.js";
 import axios from "axios";
 import { CONSTANTS } from "../../../constants.js";
 import CommonUtil from "../../../utils/common-util.js";
+import { d } from "../../../../dist/assets/index.cec0d1f7.js";
 
 export default {
   name: "productWritePopup",
@@ -200,6 +201,7 @@ export default {
         formData.append("productState", "GOOD");
 
         const data = await apiClient("product/insertProduct", formData);
+        console.log(data.data);
 
         if (data) {
           alert("업로드 완료!");
@@ -260,7 +262,6 @@ export default {
                 :placeholder="'팝니다'"
                 :onClick="() => checkValue(typeType.SELL)"
                 :custom-class="typeIndex === typeType.SELL ? 'active' : ''"
-                :customClass="'buy'"
               />
               <custom-button
                 :placeholder="'삽니다'"
@@ -272,39 +273,37 @@ export default {
           <div class="product-option">
             <div class="product-option-price">
               <custom-input :placeholder="'가격(원)'" @update:value="uploadData.productPrice = $event" />
-              <button><i class="fa-solid fa-circle"></i></button>
-              <span>흥정 가능</span>
             </div>
-            <div class="product-option-grade">
-              <span class="title">상품 컨디션</span>
-              <span @mouseover="handleMouseOver(1)" @mouseleave="handleMouseOut(1)"
-                ><i @click="clickHandler(1)" id="stars1" class="fa-solid fa-star"></i
-              ></span>
-              <span @mouseover="handleMouseOver(2)" @mouseleave="handleMouseOut(2)"
-                ><i @click="clickHandler(2)" id="stars2" class="fa-solid fa-star"></i
-              ></span>
-              <span @mouseover="handleMouseOver(3)" @mouseleave="handleMouseOut(3)"
-                ><i @click="clickHandler(3)" id="stars3" class="fa-solid fa-star"></i
-              ></span>
-              <span @mouseover="handleMouseOver(4)" @mouseleave="handleMouseOut(4)"
-                ><i @click="clickHandler(4)" id="stars4" class="fa-solid fa-star"></i
-              ></span>
-              <span @mouseover="handleMouseOver(5)" @mouseleave="handleMouseOut(5)"
-                ><i @click="clickHandler(5)" id="stars5" class="fa-solid fa-star"></i
-              ></span>
-            </div>
+            <!--            <div class="product-option-grade">-->
+            <!--              <span class="title">상품 컨디션</span>-->
+            <!--              <span @mouseover="handleMouseOver(1)" @mouseleave="handleMouseOut(1)"-->
+            <!--                ><i @click="clickHandler(1)" id="stars1" class="fa-solid fa-star"></i-->
+            <!--              ></span>-->
+            <!--              <span @mouseover="handleMouseOver(2)" @mouseleave="handleMouseOut(2)"-->
+            <!--                ><i @click="clickHandler(2)" id="stars2" class="fa-solid fa-star"></i-->
+            <!--              ></span>-->
+            <!--              <span @mouseover="handleMouseOver(3)" @mouseleave="handleMouseOut(3)"-->
+            <!--                ><i @click="clickHandler(3)" id="stars3" class="fa-solid fa-star"></i-->
+            <!--              ></span>-->
+            <!--              <span @mouseover="handleMouseOver(4)" @mouseleave="handleMouseOut(4)"-->
+            <!--                ><i @click="clickHandler(4)" id="stars4" class="fa-solid fa-star"></i-->
+            <!--              ></span>-->
+            <!--              <span @mouseover="handleMouseOver(5)" @mouseleave="handleMouseOut(5)"-->
+            <!--                ><i @click="clickHandler(5)" id="stars5" class="fa-solid fa-star"></i-->
+            <!--              ></span>-->
+            <!--            </div>-->
           </div>
-          <div class="product-sort">
-            <div class="product-sort-info">
-              <span>구분</span>
-              <span class="import"> *</span>
-            </div>
-            <div class="product-sort-deal">
-              <div class="product-sort-deal-type">
-                <span v-for="item in overall_Type">{{ item.name }}</span>
-              </div>
-            </div>
-          </div>
+          <!--          <div class="product-sort">-->
+          <!--            <div class="product-sort-info">-->
+          <!--              <span>구분</span>-->
+          <!--              <span class="import"> *</span>-->
+          <!--            </div>-->
+          <!--            <div class="product-sort-deal">-->
+          <!--              <div class="product-sort-deal-type">-->
+          <!--                <span v-for="item in overall_Type">{{ item.name }}</span>-->
+          <!--              </div>-->
+          <!--            </div>-->
+          <!--          </div>-->
           <div class="product-content">
             <custom-input
               :placeholder="'게시글 내용을 작성해주세요. 허위 내용 작성시 게시가 제한될 수 있어요.'"

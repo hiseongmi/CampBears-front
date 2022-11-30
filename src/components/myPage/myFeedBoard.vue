@@ -19,9 +19,7 @@ export default {
 
     const getImgUrl = file => {
       try {
-        if (file) {
-          return commonUtil.getImgUrl(file.fileName);
-        }
+        if (file) return commonUtil.getImgUrl(file.fileName);
       } catch (e) {
         return "./assets/image/camping.png";
       }
@@ -29,7 +27,7 @@ export default {
 
     const openDetail = boardIdx => {
       store.commit(STORE_TYPE.popupType, POPUP_TYPE.DETAIL_SCREEN);
-      store.commit(STORE_TYPE.boardIdx, boardIdx);
+      store.commit(STORE_TYPE.detailData, boardIdx);
     }; //게시물 상세 페이지 팝업 열기
 
     onMounted(() => {
@@ -48,9 +46,13 @@ export default {
 </script>
 
 <template>
-  <div class="contents-box" v-for="item in contentData">
-    <div class="contents-img-wrap" @click="openDetail(item.boardIdx)">
-      <img :src="getImgUrl(item.file[0])" alt="" />
+  <div class="contents-area-li">
+    <div class="contents-box" v-for="item in contentData">
+      <div class="contents-img-wrap" @click="openDetail(item.boardIdx)">
+        <img :src="getImgUrl(item.file[0])" alt="" />
+      </div>
     </div>
+    <div class="empty-box" />
+    <div class="empty-box" />
   </div>
 </template>

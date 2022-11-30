@@ -45,9 +45,13 @@ export default {
 </script>
 
 <template>
-  <div class="contents-box" v-for="item in contentData">
-    <div class="contents-img-wrap" @click="openDetail(item.productIdx)">
-      <img :src="getImgUrl(item.file[0])" alt="" />
+  <div class="contents-area-li">
+    <div class="contents-box" v-for="item in contentData">
+      <div class="contents-img-wrap" @click="openDetail(item.productIdx)">
+        <img :src="getImgUrl(item.file[0])" alt="" />
+      </div>
     </div>
+    <div class="empty-box" />
+    <div class="empty-box" />
   </div>
 </template>

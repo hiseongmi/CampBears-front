@@ -390,16 +390,6 @@
 
         //used Market 글쓰기
         .product {
-          @include pc() {
-            padding: 0 100px;
-          }
-          @include tb() {
-            padding: 0 50px;
-          }
-          @include mb() {
-            padding: 0 10px;
-          }
-
           .product-img-wrap {
             position: relative;
 
@@ -424,44 +414,45 @@
             &-wrap {
               margin: 5px;
 
+              &:focus {
+                border: 1px solid white;
+              }
+
               img {
                 border: 1px solid black;
                 width: 50px;
                 height: 50px;
-
-                &:hover {
-                  cursor: pointer;
-                }
+                cursor: pointer;
               }
             }
           }
 
           .custom-input-file-button {
             margin: 10px auto;
-            width: 10%;
-            @include tb() {
-              width: 20%;
-            }
-            @include mb() {
-              width: 30%;
+            width: 20%;
+
+            label {
+              min-width: auto;
             }
           }
 
           //제목 입력
           &-title {
             display: flex;
+            align-items: center;
+
             justify-content: space-between;
-            padding: 13px 40px;
-            margin: 0 10px;
+            margin: 10px 20px;
+            padding: 5px;
             border-bottom: 1px solid rgba(204, 204, 204, 0.7);
 
             .custom-input {
               border: none;
               border-radius: 0;
-              padding: 0;
               max-width: 300px;
-              min-width: 100px;
-              height: 20px;
+              min-width: 200px;
+              padding: 10px;
+              height: 40px;
               color: $text-color;
               font-size: 15px;
               font-weight: 500;
@@ -470,24 +461,34 @@
 
             &-type {
               display: flex;
+              align-items: center;
 
               .custom-button {
-                position: relative;
+                //position: relative;
                 min-width: 0;
                 height: 20px;
                 border: none;
-                border-radius: 0;
-                display: block;
+                border-radius: 10px;
                 cursor: pointer;
+                align-items: center;
 
                 a {
                   font-weight: normal;
                   font-size: 14px;
                   color: #cccccc;
                   padding: 0 5px;
+                  height: 100%;
                 }
 
                 .active {
+                  background-color: #8a8a8a;
+
+                  a {
+                    color: #ffffff;
+                  }
+                }
+
+                &:hover {
                   background-color: #8a8a8a;
 
                   a {
@@ -503,24 +504,23 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 9px 40px;
-            margin: 0 10px;
+            margin: 10px 20px;
+            padding: 5px;
             border-bottom: 1px solid rgba(204, 204, 204, 0.7);
             //가격입력
             &-price {
               display: flex;
               align-items: center;
               height: 40px;
-              border-right: 1px solid rgba(204, 204, 204, 0.7);
 
               .custom-input {
                 border: none;
                 border-radius: 0;
-                padding: 0;
-                width: 170px;
+                padding: 10px;
+                width: 100%;
                 max-width: 300px;
-                min-width: 100px;
-                height: 20px;
+                min-width: 200px;
+                height: 100%;
                 color: $text-color;
                 font-size: 15px;
                 font-weight: 500;
@@ -1196,6 +1196,10 @@
                   margin: 0 3px;
                   height: 52px;
                   width: 50px;
+
+                  &:focus {
+                    border: 1px solid white;
+                  }
                 }
               }
             }
@@ -1549,7 +1553,6 @@
               img {
                 width: 100%;
               }
-
             }
 
             &-wrap {
@@ -1796,7 +1799,6 @@
           display: none;
         }
 
-
         .detailBlack {
           position: fixed;
           width: 200vw;
@@ -1898,23 +1900,20 @@
     width: 100%;
     height: 100%;
     bottom: 0;
-    position: absolute;
   }
 
   .modal-inner {
-    height: 100%;
-    @include pc() {
-      width: calc(100% - 400px);
-      height: calc(100% - 200px);
-    }
+    width: 40%;
+    height: 80%;
+    max-width: none;
+
     @include tb() {
-      width: calc(100% - 100px);
-      height: calc(100% - 200px);
+      width: 60%;
+      height: 80%;
     }
     @include mb() {
-      position: absolute;
-      max-width: none;
       width: 100%;
+      height: 90%;
     }
 
     .save-btn {
@@ -1943,35 +1942,18 @@
   }
 }
 
-//.product-detail-popup {
-//  .modal-detail {
-//    height: 100%;
-//
-//    @include mb() {
-//      max-width: none;
-//      width: 100%;
-//      bottom: 0;
-//      position: absolute;
-//    }
-//    @include pc() {
-//      width: calc(100% - 400px);
-//      height: calc(100% - 200px);
-//    }
-//    @include tb() {
-//      width: calc(100% - 100px);
-//      height: calc(100% - 200px);
-//    }
-//    //@include mb() {
-//    //  bottom: 0;
-//    //  position: absolute;
-//    //  max-width: none;
-//    //  width: 100%;
-//    //}
-//
-//    //.modal-detail-content {
-//    //  @include pc() {
-//    //    width: calc(100% - 100px);
-//    //  }
-//    //}
-//  }
-//}
+.product-detail-popup {
+  .modal-detail {
+    width: 40%;
+    height: 90%;
+
+    @include tb() {
+      width: 80%;
+    }
+
+    @include mb() {
+      width: 100%;
+      bottom: 0;
+    }
+  }
+}

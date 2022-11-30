@@ -9,7 +9,14 @@ export default {
   name: "productDetailPopup",
   components: { CustomButton },
   setup() {
-    const detailData = ref({});
+    const detailData = ref({
+      productIdx: "",
+      userIdx: "",
+      productType: "",
+      userNickName: "",
+      productDes: "",
+      file: [],
+    });
     const getDetail = async () => {
       // Product Detail Info 받아오기
       detailData.value.productIdx = store.state.detailData;
@@ -32,18 +39,28 @@ export default {
       getDetail();
     });
 
-    const imgIndex = ref();
+    const tabIndex = ref(0);
     const userProfile = ref();
     const getImgUrl = file => {
-      if (file.fileType === "PRODUCT") imgIndex.value = commonUtil.getImgUrl(file.fileName);
-      return commonUtil.getImgUrl(file.fileName);
+      try {
+        if (file) {
+          return commonUtil.getImgUrl(file.fileName);
+        }
+      } catch (e) {
+        return "./assets/image/camping.webp";
+      }
+    };
+
+    const changeImg = index => {
+      tabIndex.value = index;
     };
 
     return {
       detailData,
       getImgUrl,
-      imgIndex,
+      tabIndex,
       userProfile,
+      changeImg,
     };
   },
 };
@@ -54,10 +71,10 @@ export default {
       <div class="modal-detail-content">
         <div class="product">
           <div class="product-image">
-            <img :src="imgIndex" alt="상품 사진" />
+            <img :src="getImgUrl(detailData.file[tabIndex])" alt="상품 사진" />
             <div class="product-image-subImg">
-              <div class="product-image-subImg-list">
-                <img v-for="item in detailData.file" :src="getImgUrl(item)" alt="" />
+              <div class="product-image-subImg-list" v-for="(item, index) in detailData.file">
+                <img @click="changeImg(index)" :src="getImgUrl(item)" :tabindex="tabIndex" alt="" />
               </div>
             </div>
             <span class="product-image-right">
@@ -111,9 +128,9 @@ export default {
             <div class="product-content-wrap">
               {{ detailData.productDes }}
             </div>
-            <div class="product-content-deal">
-              <span>{{ detailData.deliveryInfo }}</span>
-            </div>
+            <!--            <div class="product-content-deal">-->
+            <!--              <span>{{ detailData.deliveryInfo }}</span>-->
+            <!--            </div>-->
           </div>
         </div>
       </div>
