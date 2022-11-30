@@ -113,8 +113,10 @@ export default {
 
     const openDetail = item => {
       if (userData.value) {
-        store.commit(STORE_TYPE.popupType, POPUP_TYPE.DETAIL_SCREEN);
-        store.commit(STORE_TYPE.contentData, item); //<-item.boardIdx 값을 넣었다
+        // store.commit(STORE_TYPE.popupType, POPUP_TYPE.DETAIL_SCREEN);
+        // store.commit(STORE_TYPE.contentData, item); //<-item.boardIdx 값을 넣었다
+        router.push(`/snsPage/detail/${item.boardIdx}`);
+        // console.log(item);
       } else {
         window.alert("로그인 하세요.");
         router.push("/login");

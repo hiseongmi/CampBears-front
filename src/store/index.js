@@ -94,7 +94,7 @@ export default store;
 // 	mutations: {
 // 		isLoading(value) {
 // 			//value : boolean;
-// 			state.boardDetail = value;
+// 			state.boardDetail.scss = value;
 // 		},
 // 	},
 // });

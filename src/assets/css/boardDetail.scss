@@ -1,0 +1,793 @@
+.board-detail {
+  z-index: 3;
+  max-width: 80%;
+
+  @include mb() {
+    top: unset;
+    left: unset;
+    width: 100%;
+    max-width: unset;
+    height: 80%;
+    -webkit-transform: unset;
+    bottom: 0;
+  }
+
+  &-content {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 10px;
+    @include mb() {
+      border-radius: 0;
+    }
+    //sns
+    //게시물 내용
+    .content {
+      position: relative;
+      background-color: white;
+
+      //게시물 사진
+      &-image {
+        position: relative;
+        //신고 수정 삭제 리스트 버튼
+        .container {
+          position: absolute;
+          right: 10px;
+          top: 7px;
+
+          i {
+            cursor: pointer;
+            font-size: 28px;
+            color: #a5a5a5;
+            @include mb() {
+              font-size: 20px;
+            }
+          }
+        }
+
+        //신고 수정 삭제 리스트
+        .myPop {
+          width: 80px;
+          height: 100px;
+          background-color: rgba(255, 255, 255, 0.51);
+          border-radius: 8px;
+          position: absolute;
+          top: 5px;
+          right: 20px;
+          transition: 0.3s;
+          @include mb() {
+            width: 60px;
+            height: 80px;
+          }
+
+          ul {
+            height: 100px;
+            list-style: none;
+            padding: 0;
+            display: grid;
+            align-items: center;
+            justify-items: center;
+            margin: 0;
+            @include mb() {
+              height: 80px;
+            }
+
+            li {
+              width: 100%;
+              text-align: center;
+              cursor: pointer;
+              height: 100%;
+              padding: 5px;
+              font-size: 14px;
+              @include mb() {
+                font-size: 12px;
+              }
+
+              i {
+                color: $red;
+                @include mb() {
+                  font-size: 12px;
+                }
+              }
+
+              &:hover {
+                border-radius: 8px;
+                background-color: #dedede;
+              }
+            }
+          }
+        }
+
+        .pop {
+          width: 80px;
+          height: 30px;
+          background-color: rgba(255, 255, 255, 0.51);
+          border-radius: 8px;
+          position: absolute;
+          top: 7px;
+          right: 20px;
+          transition: 0.3s;
+          @include mb() {
+            width: 65px;
+            height: 27px;
+          }
+
+          ul {
+            margin: 0;
+            height: 100%;
+            list-style: none;
+            padding: 0;
+            display: grid;
+            align-items: center;
+            justify-items: center;
+
+            li {
+              width: 100%;
+              text-align: center;
+              cursor: pointer;
+              height: 100%;
+              padding: 7px;
+              font-size: 14px;
+              @include mb() {
+                font-size: 12px;
+              }
+
+              i {
+                color: $red;
+                @include mb() {
+                  font-size: 12px;
+                }
+              }
+
+              &:hover {
+                border-radius: 8px;
+                background-color: #dedede;
+              }
+            }
+          }
+        }
+
+        &-close {
+          display: none;
+          @include mb() {
+            display: block;
+            padding: 5px;
+            position: absolute;
+
+            span {
+              cursor: pointer;
+
+              i:hover {
+                color: white;
+              }
+            }
+          }
+        }
+
+        img {
+          width: 100%;
+        }
+
+        &-preview {
+          position: absolute;
+          display: flex;
+          align-items: center;
+          padding: 0 5px;
+          bottom: 0;
+          width: 100%;
+          height: 65px;
+          background: rgba(0, 0, 0, 0.5);
+          box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
+
+          &-list {
+            display: flex;
+            margin: 5px;
+            position: relative;
+
+            .previewImg {
+              border: 1px solid black;
+              width: 50px;
+              height: 50px;
+              cursor: pointer;
+            }
+
+            .previewImg:focus {
+              border: 1px solid white;
+            }
+          }
+        }
+
+        .right {
+          mix-blend-mode: difference;
+          cursor: pointer;
+          color: white;
+          position: absolute;
+          font-size: 20px;
+          top: 50%;
+          right: 0;
+        }
+
+        .left {
+          mix-blend-mode: difference;
+          cursor: pointer;
+          color: white;
+          position: absolute;
+          font-size: 20px;
+          top: 50%;
+          left: 0;
+        }
+      }
+
+      &-wrap {
+        display: flex;
+
+        //프로필
+        &-profile {
+          display: flex;
+          flex: 1 0 0;
+          padding: 10px;
+          align-items: center;
+          //프사
+          img {
+            @include profile();
+          }
+
+          //이름,팔로우 버튼,내용,해시태그
+          &-info {
+            padding: 0 10px;
+            //이름 팔로우 버튼
+            .follow {
+              display: flex;
+              align-items: center;
+
+              span {
+                font-size: 20px;
+                font-weight: bold;
+                padding-right: 10px;
+              }
+
+              .custom-button {
+                min-width: 0;
+                height: 0;
+                border: none;
+                border-radius: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+                background-color: white;
+
+                .none {
+                  display: none;
+                }
+
+                .follow_btn {
+                  margin: 0;
+                  padding: 2px 12px;
+                  background-color: white;
+                  border: 1px solid #fa6c1a;
+                  font-size: 10px;
+                  font-weight: bold;
+                  border-radius: 15px;
+                  cursor: pointer;
+                  color: #000000;
+                }
+
+                .followActive {
+                  margin: 0;
+                  padding: 2px 12px;
+                  background-color: #fa6c1a;
+                  border: 1px solid #fa6c1a;
+                  font-size: 10px;
+                  font-weight: bold;
+                  border-radius: 15px;
+                  cursor: pointer;
+                  color: white;
+                }
+              }
+            }
+
+            //글내용
+            &-intro {
+              padding: 7px 0;
+              font-size: 14px;
+              margin: 0;
+            }
+
+            //해시 태그
+            &-tag {
+              margin: 9px 0 0 0;
+              font-size: 12px;
+              color: #0093e7;
+            }
+          }
+        }
+
+        //좋아요 북마크
+        &-emotion {
+          display: flex;
+          margin: 6px;
+          align-items: flex-start;
+          //좋아요
+          &-like {
+            display: grid;
+            justify-items: center;
+            padding: 3px 7px 0 0;
+
+            span {
+              i {
+                font-size: 21px;
+                color: #f32626;
+                cursor: pointer;
+              }
+
+              font-size: 12px;
+              font-weight: bold;
+            }
+          }
+
+          //북마크
+          &-book {
+            i {
+              cursor: pointer;
+              font-size: 21px;
+              padding: 7px;
+              color: #4a5568;
+            }
+          }
+        }
+      }
+
+      //선
+      &-line {
+        display: flex;
+        margin: 0 14px;
+        border-bottom: 1px solid #cccccc;
+        justify-content: flex-end;
+        //댓글수 조회수
+        &-wrap {
+          color: #818181;
+
+          span {
+            font-size: 13px;
+            padding-left: 17px;
+          }
+        }
+      }
+
+      //댓글 입력해주세요
+      &-enterComment {
+        margin: 20px 0;
+        padding: 15px 15px;
+        background-color: #eeeeee;
+        display: flex;
+
+        &-wrap {
+          position: relative;
+          flex: 1 0 0;
+          border-bottom: 1px solid #818181;
+
+          input {
+            width: 100%;
+            padding: 0 10px;
+            background-color: #eeeeee;
+            border: none;
+            height: 37px;
+          }
+        }
+
+        //댓글 올리기버튼
+        button {
+          margin-left: 20px;
+          border: none;
+          cursor: pointer;
+
+          i {
+            font-size: 25px;
+            color: #818181;
+          }
+        }
+      }
+
+      &-null {
+        .state {
+          height: 160px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: #818181;
+        }
+      }
+
+      //댓글들
+      &-comments {
+        position: relative;
+        display: flex;
+        align-items: center;
+        padding: 10px 0;
+        margin: 0 11px;
+        border-bottom: 1px solid #eeeeee;
+        //댓글프로필이미지
+        img {
+          width: 65px;
+          height: 65px;
+          object-fit: cover;
+          border-radius: 70%;
+        }
+
+        &-wrap {
+          display: grid;
+          align-content: space-around;
+          flex: 1 0 0;
+          margin-left: 20px;
+          height: 56px;
+
+          span {
+            font-weight: 700;
+          }
+
+          //유저 이름 멘트
+          &-user {
+            display: flex;
+          }
+
+          .cocoment {
+            padding: 0 10px;
+            font-size: 12px;
+            color: #818181;
+            bottom: -6px;
+            position: relative;
+          }
+        }
+
+        //남긴시간 대댓글, 신고 버튼
+        &-option {
+          display: flex;
+          align-items: center;
+
+          span {
+            color: #818181;
+            margin: 0 10px;
+
+            i {
+              cursor: pointer;
+              font-size: 20px;
+            }
+          }
+
+          .date {
+            font-size: 12px;
+          }
+
+          .report {
+            color: #b70000;
+          }
+        }
+
+        .commentPop {
+          width: 35px;
+          height: auto;
+          background-color: rgba(151, 151, 151, 0.76);
+          border-radius: 8px;
+          position: absolute;
+          top: 11px;
+          right: -4px;
+
+          ul {
+            list-style: none;
+            padding-inline-start: 0;
+            display: grid;
+            margin: 8px 0;
+
+            li {
+              width: 100%;
+              text-align: center;
+              cursor: pointer;
+              font-size: 12px;
+
+              &:hover {
+                background-color: #dedede;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    //sns끝
+
+    //used Market
+    .product {
+      background-color: white;
+      //상품 이미지
+      &-image {
+        position: relative;
+
+        img {
+          width: 100%;
+        }
+
+        &-subImg {
+          position: absolute;
+          display: flex;
+          align-items: center;
+          padding: 0 15px;
+          bottom: 0;
+          width: 100%;
+          height: 68px;
+          background: rgba(0, 0, 0, 0.7);
+          box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
+
+          &-list {
+            display: flex;
+
+            &-pick {
+              border: 2px solid #ffffff;
+              border-radius: 5px;
+              margin: 0 3px;
+              height: 52px;
+              width: 50px;
+            }
+
+            img {
+              border-radius: 5px;
+              margin: 0 3px;
+              height: 52px;
+              width: 50px;
+
+              &:focus {
+                border: 1px solid white;
+              }
+            }
+          }
+        }
+
+        &-right {
+          position: absolute;
+          right: 10px;
+          top: 50%;
+          color: white;
+        }
+
+        &-left {
+          color: white;
+          position: absolute;
+          left: 10px;
+          top: 50%;
+        }
+      }
+
+      //유저프로필
+      &-wrap {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 25px;
+        margin: 0 11px;
+        border-bottom: 1px solid rgba(204, 204, 204, 0.7);
+
+        &-profile {
+          display: flex;
+          align-items: center;
+
+          img {
+            border-radius: 70%;
+            width: 39.7px;
+            height: 39px;
+            box-shadow: none;
+            object-fit: cover;
+          }
+
+          &-info {
+            display: grid;
+            align-items: center;
+            margin-left: 10px;
+
+            span {
+              font-weight: 700;
+              font-size: 15px;
+              color: #1b1b1b;
+            }
+
+            p {
+              color: #818181;
+              font-size: 13px;
+
+              i {
+                padding-left: 2px;
+                font-size: 13px;
+                color: #fa6c1a;
+              }
+            }
+          }
+        }
+
+        &-chat {
+          .custom-button {
+            position: relative;
+            min-width: 0;
+            width: 90px;
+            height: 33px;
+            border: none;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            background-color: #fa6c1a;
+
+            a {
+              font-size: 15px;
+              color: white;
+            }
+          }
+        }
+      }
+
+      //상세정보
+      &-main {
+        display: flex;
+        justify-content: space-between;
+        padding: 25px 35px;
+
+        &-wrap {
+          &-title {
+            display: flex;
+            align-items: center;
+
+            .pomsom {
+              display: flex;
+              background: #ea3323;
+              border-radius: 5px;
+              color: white;
+              padding: 4px 8px;
+              font-size: 13px;
+              align-items: center;
+            }
+
+            span {
+              font-size: 13px;
+            }
+
+            h4 {
+              font-size: 20px;
+              margin-left: 15px;
+            }
+          }
+
+          &-rest {
+            span {
+              color: #818181;
+              font-size: 13px;
+              padding-right: 17px;
+
+              i {
+                font-size: 13px;
+                padding-right: 3px;
+              }
+            }
+          }
+        }
+
+        //좋아요 공유
+        &-menu {
+          display: flex;
+
+          span {
+            padding: 7px 9px;
+
+            i {
+              font-size: 20px;
+            }
+          }
+
+          .heart {
+            i {
+              color: #f32626;
+            }
+          }
+
+          .share {
+            i {
+              color: #818181;
+            }
+          }
+        }
+      }
+
+      //상품 평점, 가격
+      &-price {
+        display: flex;
+        justify-content: space-between;
+        padding: 0 35px;
+        margin-bottom: 50px;
+
+        .grade {
+          .name {
+            font-size: 13px;
+            padding-right: 8px;
+            color: #818181;
+          }
+
+          span {
+            i {
+              padding-right: 2px;
+              font-size: 16px;
+              color: #fa6c1a;
+            }
+          }
+        }
+
+        p {
+          color: #ea3323;
+          font-size: 20px;
+          font-weight: 700;
+        }
+      }
+
+      //글 내용
+      &-content {
+        height: 210px;
+
+        &-wrap {
+          padding: 0 35px;
+          font-size: 17px;
+          color: #818181;
+        }
+
+        &-deal {
+          margin-top: 20px;
+          display: flex;
+          padding: 0 35px;
+
+          span {
+            font-size: 13px;
+            color: #818181;
+            font-weight: 700;
+            border: 1px solid #818181;
+            border-radius: 5px;
+            padding: 3px 6px;
+            margin-right: 13px;
+          }
+        }
+      }
+    }
+  }
+
+  &-content::-webkit-scrollbar {
+    display: none;
+  }
+
+  //.right {
+  //  cursor: pointer;
+  //  color: white;
+  //  position: relative;
+  //  top: 50%;
+  //  left: 830px;
+  //  font-size: 20px;
+  //}
+  //
+  //.left {
+  //  cursor: pointer;
+  //  color: white;
+  //  position: relative;
+  //  top: 50%;
+  //  right: 240px;
+  //  font-size: 20px;
+  //}
+
+  .detailBlack {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    color: black;
+    z-index: 2;
+  }
+}
