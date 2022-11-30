@@ -1714,7 +1714,7 @@ export default {
       <campingInfo></campingInfo>
     </div>
   </div>
-  <div class="info-pagination">
-    <custom-pagination></custom-pagination>
-  </div>
+  <!--  <div class="info-pagination">-->
+  <!--    <custom-pagination></custom-pagination>-->
+  <!--  </div>-->
 </template>

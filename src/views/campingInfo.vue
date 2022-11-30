@@ -70,7 +70,7 @@ export default {
 </script>
 <template>
   <section class="camp-info">
-    <h1>캠핑장</h1>
+    <h1>campsite</h1>
     <div class="info-body" v-if="dataList && dataList.length > 0">
       <div class="info-item" @click="showDetail(index)" v-for="(item, index) in dataList">
         <a :href="item.homePageUrl" class="item-front">
@@ -103,6 +103,6 @@ export default {
       </div>
       <a href=""></a>
     </div>
-    <div v-else>Wait...</div>
+    <div v-else>데이터를 불러오는 중...</div>
   </section>
 </template>

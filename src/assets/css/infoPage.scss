@@ -407,8 +407,8 @@
 
 .info-main {
   @include mb() {
-    top: -84px;
-    height: 100%;
+    top: -64px;
+    height: 692px;
   }
 
   text-align: -webkit-center;
@@ -437,6 +437,9 @@
         color: #666666;
         text-decoration: none;
         cursor: pointer;
+        @include mb() {
+          padding: 0 5px 0 5px;
+        }
       }
     }
   }
@@ -542,6 +545,9 @@
     }
 
     #menu_wrap .option button {
+      @include mb {
+        margin-left: -11px;
+      }
       margin-left: 5px;
     }
 
@@ -572,7 +578,7 @@
     #placesList .item .info {
       padding: 10px 0 10px 0;
       @include mb() {
-        padding: 0;
+        padding: 10px;
       }
     }
 
@@ -947,13 +953,16 @@
   .camp-info {
     h1 {
       color: #818181;
-      padding: 2%;
+      padding: 7%;
     }
 
     .info-body {
       text-align: center;
 
       .info-item {
+        @include mb() {
+          margin: 0 8% 10% 0;
+        }
         margin: 0 8% 4% 8%;
         position: relative;
         box-shadow: 0 1px 2px 0 rgb(0 0 0 / 25%);

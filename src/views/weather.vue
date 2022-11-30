@@ -11,11 +11,11 @@ export default {
 
   setup() {
     const store = useStore();
-//https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=%2B73Gk9VQ6LP%2FEICWELVtDo%2FLQDhSaoMt46Iv6JFU%2BWo3iERh%2FojmCv5Z8Deh0O93nC5R1xVDq77PxTkQKP3rKA%3D%3D&pageNo=1&numOfRows=1000&dataType=JSON&base_date=20221129&base_time=0500&nx=55&ny=127
+    //https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=%2B73Gk9VQ6LP%2FEICWELVtDo%2FLQDhSaoMt46Iv6JFU%2BWo3iERh%2FojmCv5Z8Deh0O93nC5R1xVDq77PxTkQKP3rKA%3D%3D&pageNo=1&numOfRows=1000&dataType=JSON&base_date=20221129&base_time=0500&nx=55&ny=127
     const api = axios.create({
       baseURL: "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0",
       timeout: 1000 * 60 * 3,
-      headers: { "content-type": "Json" }
+      headers: { "content-type": "Json" },
     });
 
     const avgTemp = ref(0);
@@ -41,7 +41,7 @@ export default {
       const sibalData = y.toString() + (m + 1).toString() + date;
       // console.log(sibalData);
       const d = await api.get(
-        "/getVilageFcst?serviceKey=%2B73Gk9VQ6LP%2FEICWELVtDo%2FLQDhSaoMt46Iv6JFU%2BWo3iERh%2FojmCv5Z8Deh0O93nC5R1xVDq77PxTkQKP3rKA%3D%3D&pageNo=1&numOfRows=1000&dataType=JSON&base_date=20221129&base_time=0500&nx=55&ny=127"
+        "/getVilageFcst?serviceKey=%2B73Gk9VQ6LP%2FEICWELVtDo%2FLQDhSaoMt46Iv6JFU%2BWo3iERh%2FojmCv5Z8Deh0O93nC5R1xVDq77PxTkQKP3rKA%3D%3D&pageNo=1&numOfRows=1000&dataType=JSON&base_date=20221129&base_time=0500&nx=55&ny=127",
       );
       const data = await d.data.response.body.items.item;
       let result = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}];
@@ -80,9 +80,8 @@ export default {
       });
 
       avgTemp.value = Math.floor(total / 24);
-
     };
-
+    console.log(dataList.value);
     const showDetail = index => {
       // console.log(dataSet);
       store.commit(STORE_TYPE.campInfo, dataList[index]);
@@ -92,29 +91,22 @@ export default {
     onMounted(() => {
       getCampInfo();
 
-      const k = ["영덕아", "기상청은", "개", "씨", "같아..."];
-
-      k.map((value) => {
-        console.log(value);
-      });
-
-
       // getCampInfo();
     });
     return {
       dataList,
       avgTemp,
-      showDetail
+      showDetail,
       // goLink,
     };
-  }
+  },
 };
 </script>
 
 <template>
   <div class="zzz">
     <div>평균기온 : {{ avgTemp }}</div>
-    <div v-for="(item,index) in dataList">
+    <div v-for="(item, index) in dataList">
       <div>현재시간 : {{ index }}시</div>
       <div>날씨 상태 : {{ item.skyState }}</div>
       <div>기온 : {{ item.temp }}</div>
@@ -136,7 +128,5 @@ export default {
     width: 200px;
     border: 1px solid red;
   }
-
-
 }
 </style>

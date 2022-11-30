@@ -10,7 +10,6 @@ import { useRoute } from "vue-router";
 import { apiClient } from "../utils/axios.js";
 import router from "../router/index.js";
 
-
 export default {
   name: "snsBoardDetail",
   components: { CustomButton, CustomInput, reportPopup },
@@ -20,7 +19,6 @@ export default {
     const route = useRoute();
     const boardIdx = ref();
     const boardData = ref();
-
 
     //로컬스토리지에 저장된 유저정보
     const userData = ref();
@@ -111,7 +109,7 @@ export default {
     //상세 게시물 조회 api
     const getBoardDetail = async () => {
       const data = await apiClient("/sns/getSnsDetail", { boardIdx: boardIdx.value });
-      console.log(data.data);
+      // console.log(data.data);
       if (data.data) {
         detailData.value = data.data;
       }
