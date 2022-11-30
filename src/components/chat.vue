@@ -33,6 +33,7 @@ export default {
     };
 
     const sendMsg = () => {
+      console.log("targetUserIdx : ", targetUser.value.targetIdx);
       const param = {
         chatIdx: targetUser.value.chatIdx,
         userIdx: loginUser.value.userIdx,
@@ -58,19 +59,26 @@ export default {
      * 인풋 내용 받기
      * @param e
      * @type HTMLInputElement
+     * userIdx : 대상지
+     * targetIdx : 목적지
      */
     const receiveHandler = (e) => {
       if (e.detail) {
         const c = e.detail;
-        if (loginUser.userIdx === c.userIdx) {
-          c.chatType = "ME";
-        } else {
-          c.chatType = "YOU";
+        // 내가 채팅방에 들어온 사람의 메세지만 노출
+        // 나머지는 db 조회해옴
+        if (targetUser.value.targetIdx === c.userIdx) {
+
+          if (loginUser.userIdx === c.userIdx) {
+            c.chatType = "ME";
+          } else {
+            c.chatType = "YOU";
+          }
+          chatInfoList.value.push(e.detail);
+          setTimeout(() => {
+            showLastIndex();
+          }, 100);
         }
-        chatInfoList.value.push(e.detail);
-        setTimeout(() => {
-          showLastIndex();
-        }, 100);
       }
     };
 
@@ -178,39 +186,42 @@ export default {
 </script>
 <template>
   <section class="chat">
-    <div v-if="!showChat" class="floating-icon" @click="showChatController()">챗</div>
-    <div v-else class="main-area">
-      <div class="title">
-        <i v-if="targetUser" @click="clearTargetUser" class="fa-solid fa-angle-left"></i>
-        CHAT
-        <i class="fa-solid fa-x close" @click="showChatController()"></i>
-      </div>
-      <div v-if="!targetUser" class="body">
-        <div class="user-list">
-          <div v-for="user in userList" @click="()=>doChatUser(user)">
-            <div class="user">
-              <img :src="getImgUrl(user.userProfile[0]?.fileName)" alt="">
-              {{ user.userNickName }}
-            </div>
-          </div>
-        </div>
-      </div>
-      <div v-else class="chat-screen">
-        <div v-for="chat in chatInfoList">
-          <div class="chat-body" :class="chat.chatType">
-            <img v-if="chat.chatType === 'YOU'" :src="getImgUrl(targetUser.userProfile[0]?.fileName)" alt="">
-            <div class="chat-info" :class="chat.chatType">
-              {{ chat.chatBody }}
-            </div>
-          </div>
-        </div>
-        <div class="chat-util">
-          <input id="chat-output" type="text" @input="handleInput">
-          <button @click="sendMsg">전송</button>
-        </div>
-
-      </div>
+    <div v-if="!showChat" class="floating-icon" @click="showChatController()"><i class="fa-regular fa-comment-dots"></i>
     </div>
+    <transition v-else name="fade">
+      <div class="main-area">
+        <div class="title">
+          <i v-if="targetUser" @click="clearTargetUser" class="fa-solid fa-angle-left"></i>
+          CHAT
+          <i class="fa-solid fa-x close" @click="showChatController()"></i>
+        </div>
+        <div v-if="!targetUser" class="body">
+          <div class="user-list">
+            <div v-for="user in userList" @click="()=>doChatUser(user)">
+              <div class="user">
+                <img :src="getImgUrl(user.userProfile[0]?.fileName)" alt="">
+                {{ user.userNickName }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div v-else class="chat-screen">
+          <div v-for="chat in chatInfoList">
+            <div class="chat-body" :class="chat.chatType">
+              <img v-if="chat.chatType === 'YOU'" :src="getImgUrl(targetUser.userProfile[0]?.fileName)" alt="">
+              <div class="chat-info" :class="chat.chatType">
+                {{ chat.chatBody }}
+              </div>
+            </div>
+          </div>
+          <div class="chat-util">
+            <input id="chat-output" type="text" @input="handleInput">
+            <button @click="sendMsg">전송</button>
+          </div>
+
+        </div>
+      </div>
+    </transition>
 
 
   </section>

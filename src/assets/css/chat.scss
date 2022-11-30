@@ -7,7 +7,7 @@
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    background-color: #274fc5;
+    background-color: $second-color;
     display: flex;
     align-content: center;
     justify-content: center;
@@ -16,11 +16,14 @@
     color: white;
     transition: 1s all;
 
+    i {
+      font-size: 24px;
+    }
+
     &:hover {
       cursor: pointer;
-      width: 70px;
-      height: 70px;
-      background-color: #0f43d9;
+      scale: 1.1;
+      background-color: $primary-color;
     }
   }
 
@@ -139,4 +142,14 @@
       }
     }
   }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
