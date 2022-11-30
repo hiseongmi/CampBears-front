@@ -578,7 +578,7 @@
 
   .main-sns {
     .news {
-      @include mb(){
+      @include mb() {
         margin-bottom: 50px;
       }
       .news-wrap {
@@ -976,6 +976,9 @@
           overflow-y: hidden;
           max-width: 1400px;
           white-space: nowrap;
+          @include mb() {
+            width: 409px;
+          }
 
           .info-item {
             position: relative;

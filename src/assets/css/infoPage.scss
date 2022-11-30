@@ -425,13 +425,27 @@
       float: left;
     }
   }
+  .info-box {
+    display: flex;
+    justify-content: center;
 
+    .info-shapbox {
+      .info-shap {
+        text-align: center;
+        position: relative;
+        padding: 0 17px 0 17px;
+        color: #666666;
+        text-decoration: none;
+        cursor: pointer;
+      }
+    }
+  }
   .map-box {
     position: relative;
     text-align: -webkit-center;
     width: 100%;
     top: 55px;
-
+    //padding-top: 60px;
     svg {
       display: none;
     }
@@ -556,7 +570,7 @@
     }
 
     #placesList .item .info {
-      padding: 10px 0 10px 55px;
+      padding: 10px 0 10px 0;
       @include mb() {
         padding: 0;
       }
@@ -695,22 +709,6 @@
       width: 70%;
       max-width: 500px;
       box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.3);
-    }
-  }
-
-  .info-box {
-    display: flex;
-    justify-content: center;
-
-    .info-shapbox {
-      .info-shap {
-        text-align: center;
-        position: relative;
-        margin-right: 37px;
-        top: -19px;
-        color: #666666;
-        text-decoration: none;
-      }
     }
   }
 

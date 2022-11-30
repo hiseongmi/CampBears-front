@@ -16,7 +16,7 @@ export default {
     const menuList = [
       { name: "커뮤니티", url: "/snsPage" },
       { name: "중고마켓", url: "/usedMarket" },
-      { name: "캠핑장", url: "/campingInfo" },
+      { name: "캠핑장", url: "/infoPage" },
       { name: "로그아웃", url: "" },
     ];
 
@@ -51,8 +51,7 @@ export default {
       }, 10);
     });
 
-    onUnmounted(() => {
-    });
+    onUnmounted(() => {});
 
     watch(
       () => store.state.sideBar,
