@@ -463,7 +463,7 @@
 
       .option {
         input {
-          border: 2px solid #2F2E2C;
+          border: 2px solid #2f2e2c;
           border-radius: 15px;
           padding: 0 20px;
           min-width: 100px;
@@ -945,7 +945,6 @@
   color: #cccccc;
   border-top: solid 2px;
 
-
   .camp-info {
     h1 {
       color: #818181;
@@ -953,21 +952,21 @@
     }
 
     .info-body {
-      justify-content: space-between;
+      text-align: center;
 
       .info-item {
+        margin: 0 8% 4% 8%;
         position: relative;
         box-shadow: 0 1px 2px 0 rgb(0 0 0 / 25%);
         border-radius: 8px;
-
+        width: 33%;
+        display: inline-block;
+        text-align: center;
         a:hover {
-
-
           img:hover {
             //opacity: 0.5;
           }
         }
-
 
         .item-front {
           background-color: $primary-color;
@@ -975,18 +974,17 @@
           img {
             opacity: 1;
             z-index: 0;
-            max-width: 350px;
+            max-width: 600px;
             border-radius: 8px 8px 0 0;
             max-height: 233px;
+            width: 100%;
           }
         }
 
         .camp-list {
-
-
           .name {
-            color: #2F2E2C;
-            font-size: 28px;
+            color: #2f2e2c;
+            font-size: 25px;
             padding: 2%;
             text-align: center;
           }
@@ -1013,7 +1011,7 @@
               padding: 2%;
 
               span {
-                color: $gray
+                color: $gray;
               }
             }
 
@@ -1022,40 +1020,38 @@
               padding: 2%;
 
               span {
-                color: $gray
+                color: $gray;
               }
             }
 
             .info-ph {
               position: relative;
               padding: 2%;
-
+              text-align: center;
               span {
-                color: $gray
+                color: $gray;
               }
             }
           }
-
-
-          .camp-type {
-            span {
-              font-size: 13px;
-              left: -9px;
-            }
-
-            border-radius: 8px;
-
+        }
+        .camp-type {
+          span {
+            font-size: 13px;
+            position: absolute;
+            width: 50px;
+            left: -16px;
+            top: -25px;
           }
+
+          border-radius: 8px;
         }
 
-        width: 40%;
         @include mb() {
           width: 100%;
         }
       }
     }
   }
-
 }
 
 .info-pagination {

@@ -6,10 +6,6 @@
   align-items: center;
 
   .info-body {
-    display: inline-flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    flex-direction: row;
     align-items: center;
     width: calc(100%);
 
@@ -17,7 +13,6 @@
       position: relative;
       width: 25%;
       background-color: white;
-      margin: 30px;
 
       img {
         width: 100%;
@@ -46,12 +41,6 @@
         border-bottom: 30px solid transparent;
         border-left: 30px solid transparent;
         //border: 1px solid black;
-        span {
-          position: absolute;
-          width: 50px;
-          top: -25px;
-          //right: 0;
-        }
       }
     }
   }
