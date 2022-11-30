@@ -16,7 +16,7 @@ export default {
 
     const getData = async () => {
       profileInfo.value = await commonUtil.parseJson(commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO));
-      const data = await apiClient("product/getProductList", profileInfo.value.userIdx);
+      const data = await apiClient("product/getProductList", { userIdx: profileInfo.value.userIdx });
       if (data) contentData.value = data.data;
     };
 
@@ -38,9 +38,9 @@ export default {
       page: 1,
       file,
       getImgUrl,
-      openDetail,
+      openDetail
     };
-  },
+  }
 };
 </script>
 

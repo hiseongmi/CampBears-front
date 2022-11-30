@@ -9,7 +9,6 @@ import { apiClient } from "../../../utils/axios.js";
 import axios from "axios";
 import { CONSTANTS } from "../../../constants.js";
 import CommonUtil from "../../../utils/common-util.js";
-import { d } from "../../../../dist/assets/index.cec0d1f7.js";
 
 export default {
   name: "productWritePopup",
@@ -17,51 +16,51 @@ export default {
   props: {
     clickClose: {
       type: Function,
-      required: true,
-    },
+      required: true
+    }
   },
   setup() {
     const overall_Type = [
       {
-        name: "텐트/타프",
+        name: "텐트/타프"
       },
       {
-        name: "침낭/매트",
+        name: "침낭/매트"
       },
       {
-        name: "테이블/의자",
+        name: "테이블/의자"
       },
       {
-        name: "조명 기구",
+        name: "조명 기구"
       },
       {
-        name: "주방 용품",
+        name: "주방 용품"
       },
       {
-        name: "화로/버너",
+        name: "화로/버너"
       },
       {
-        name: "안전/위생용품",
+        name: "안전/위생용품"
       },
       {
-        name: "전기/전자제품",
+        name: "전기/전자제품"
       },
       {
-        name: "캠핑카/카라반",
+        name: "캠핑카/카라반"
       },
       {
-        name: "차박 용품",
+        name: "차박 용품"
       },
       {
-        name: "의류/수납",
+        name: "의류/수납"
       },
       {
-        name: "기타 용품",
-      },
+        name: "기타 용품"
+      }
     ];
     const typeType = {
       SELL: "SELL",
-      BUY: "BUY",
+      BUY: "BUY"
     };
     const typeIndex = ref(typeType.SELL);
     const checkValue = v => {
@@ -182,7 +181,7 @@ export default {
       productDes: "",
       stateView: "Y",
       productPrice: 0,
-      productState: "GOOD",
+      productState: "GOOD"
     });
     const uploadPost = async () => {
       if (
@@ -228,9 +227,9 @@ export default {
       tabIndex,
       changeIndex,
       uploadPost,
-      uploadData,
+      uploadData
     };
-  },
+  }
 };
 </script>
 
