@@ -101,13 +101,13 @@ export default {
       // if (SNSFormData.has("file") === false) {
       //   window.alert("사진을 넣어주세요.");
       // } else {
-      // const data = await apiClient("/sns/updateSns", SNSFormData);
-      // if (data.resultCode === 0) {
-      //   window.alert("수정되었습니다.");
-      //   store.commit(STORE_TYPE.popupType, POPUP_TYPE.DETAIL_SCREEN);
-      // } else {
-      //   window.alert("다시 시도해주세요.");
-      // }
+      const data = await apiClient("/sns/updateSns", SNSFormData);
+      if (data.resultCode === 0) {
+        window.alert("수정되었습니다.");
+        store.commit(STORE_TYPE.popupType, POPUP_TYPE.DETAIL_SCREEN);
+      } else {
+        window.alert("다시 시도해주세요.");
+      }
       // }
     };
     //이미지 업로드
@@ -247,7 +247,7 @@ export default {
     <div class="save-btn" v-if="editState">
       <custom-button :customClass="'cancel'" :placeholder="'취소'" :onClick="clickClose" />
       <div class="save-btn-wrap">
-        <custom-button :customClass="'save'" :placeholder="'저장'" :onClick="clickClose" />
+        <!--        <custom-button :customClass="'save'" :placeholder="'저장'" :onClick="clickClose" />-->
         <custom-button :customClass="'upLoad'" :placeholder="'올리기'" :onClick="uploadSnsBoard" />
       </div>
     </div>
@@ -260,7 +260,7 @@ export default {
     <div class="modal-inner-wrap">
       <form>
         <div class="content">
-          <div class="content-file">
+          <div class="content-file" v-if="editState">
             <div class="content-file-img">
               <div v-if="!SNSImgPreview.length > 0" />
               <div v-else class="content-file-img-wrap">

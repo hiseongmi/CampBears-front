@@ -44,6 +44,14 @@ export default {
         location.reload();
       }
     };
+    const checkUser = () => {
+      if (!loginUser.value) {
+        window.alert("로그인 하세요.");
+        router.push("/login");
+      } else {
+        router.push("/myPage");
+      }
+    };
     const headerContainerAction = ref(false);
     const HeaderContainer = () => {
       store.commit(STORE_TYPE.sideBar, true);
@@ -61,6 +69,7 @@ export default {
       loginUser,
       headerContainerAction,
       store,
+      checkUser,
       goToX,
       logOut,
       HeaderContainer,
@@ -83,7 +92,7 @@ export default {
       <div class="header-bar-mbLogo" @click="goToX('/')">
         <img src="/assets/image/mblogo.png" alt="" />
       </div>
-      <div class="header-bar-myPage" @click="goToX(`/myPage`)">
+      <div class="header-bar-myPage" @click="checkUser">
         <i class="fa-regular fa-user"></i>
       </div>
       <div class="header-bar-menu">

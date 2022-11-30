@@ -24,9 +24,17 @@ export default {
       closePopup();
       router.push(target);
     };
-
     const closePopup = () => {
       store.commit(STORE_TYPE.sideBar, false);
+    };
+    const checkUser = () => {
+      if (!userData.value) {
+        window.alert("로그인 하세요.");
+        router.push("/login");
+      } else {
+        router.push("/myPage");
+      }
+      closePopup();
     };
 
     onMounted(() => {
@@ -60,6 +68,7 @@ export default {
       flag,
       menuList,
       isActive,
+      checkUser,
       goToX,
       closePopup,
     };
@@ -74,7 +83,7 @@ export default {
         <div class="profile-area">
           <img :src="profileImg" alt="profileImg" />
           <div>{{ userData ? userData.userNickName : "손님" }}</div>
-          <i @click="goToX('/myPage')" class="fa-solid fa-pen"></i>
+          <i @click="checkUser" class="fa-solid fa-pen"></i>
         </div>
         <hr />
         <div class="menu-area">
