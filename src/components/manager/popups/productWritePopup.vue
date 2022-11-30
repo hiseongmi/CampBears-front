@@ -172,7 +172,7 @@ export default {
 
     const uploadData = ref({
       productName: "",
-      productType: "",
+      productType: "SELL",
       productDes: "",
       stateView: "Y",
       productPrice: 0,
@@ -195,8 +195,6 @@ export default {
         formData.append("productState", "GOOD");
 
         const data = await apiClient("product/insertProduct", formData);
-        console.log(data.data);
-
         if (data) {
           alert("업로드 완료!");
           location.reload();
