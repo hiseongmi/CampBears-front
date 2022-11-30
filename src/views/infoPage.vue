@@ -38,18 +38,19 @@ export default {
         // link: "http://localhost:3001/#/snsPage",
       },
       {
-        name: "#애견",
+        name: "#서울",
         // link: "http://localhost:3001/#/login",
       },
       {
-        name: "#파주",
+        name: "#부산",
         link: "/snsPage",
+
       },
       {
-        name: "#차박",
+        name: "#대전",
       },
       {
-        name: "#노지",
+        name: "#대구",
       },
     ];
     const isShow = ref(true);
@@ -74,7 +75,10 @@ export default {
     // }
     const initMap = () => {
 
-
+      // const taggo = () => {
+      //   document.getElementById("keyword").value = '목포캠핑장';
+      //   searchPlaces()
+      // }
       // 마커를 담을 배열입니다
       var markers = [];
 
@@ -350,12 +354,12 @@ export default {
     <header-page></header-page>
     <!--    <side-bar></side-bar>-->
     <h1>멋진 여행을 기대하고 계신가요?</h1>
-    <div class="info-serch">
-      <custom-input placeholder="캠핑장 검색"></custom-input>
-      <span>
-        <img src="/assets/image/icon/search.webp" alt=""/>
-      </span>
-    </div>
+    <!--    <div class="info-serch">-->
+    <!--      <custom-input placeholder="캠핑장 검색"></custom-input>-->
+    <!--      <span>-->
+    <!--        <img src="/assets/image/icon/search.webp" alt=""/>-->
+    <!--      </span>-->
+    <!--    </div>-->
 
     <div class="info-box">
       <div class="info-shapbox" v-for="item in tagList">
@@ -365,9 +369,6 @@ export default {
       </div>
     </div>
 
-    <div class="info-mapbtn">
-      <custom-button placeholder="지역별"></custom-button>
-    </div>
 
     <div class="date-box">
       <div class="date-pic">
@@ -389,8 +390,8 @@ export default {
           <div class="option">
             <div>
               <form onsubmit="searchPlaces(); return false;">
-                키워드 : <input type="text" value="" id="keyword" size="15"/>
-                <button id="submit-btn" type="submit">검색하기</button>
+                <input type="text" value="" placeholder='캠핑장 검색!' id="keyword" size="15"/>
+                <button id="submit-btn" type="submit"><img src="/assets/image/icon/search.webp" alt=""/></button>
               </form>
             </div>
           </div>

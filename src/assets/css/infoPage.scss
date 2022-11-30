@@ -453,6 +453,32 @@
       position: relative;
       width: 70%;
       height: 466px;
+
+      .option {
+        input {
+          border: 2px solid #2F2E2C;
+          border-radius: 15px;
+          padding: 0 20px;
+          min-width: 100px;
+          height: 50px;
+          color: #999999;
+          font-size: 16px;
+          font-weight: bold;
+          margin-bottom: 10px;
+          width: 70%;
+          text-align: center;
+          box-shadow: 4px 4px 6px rgb(0 0 0 / 30%);
+        }
+
+        button {
+          top: 4.5%;
+          left: 74%;
+          position: absolute;
+          background-color: unset;
+          border: none;
+          cursor: pointer;
+        }
+      }
     }
 
     #menu_wrap {
@@ -634,6 +660,7 @@
   h1 {
     font-size: 40px;
     text-align: center;
+    padding-bottom: 4%;
   }
 
   .info-serch {
