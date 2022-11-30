@@ -19,7 +19,7 @@ export default {
     Pagination,
     Profile,
     customSelect,
-    customButton,
+    customButton
   },
   setup() {
     const userData = ref();
@@ -34,13 +34,13 @@ export default {
     const sortValue = ref();
     const SORT_TYPE = {
       RECENT: "RECENT",
-      LONG: "LONG",
+      LONG: "LONG"
     };
     const showValue = ref();
     const SHOW_TYPE = {
       ALL: "ALL",
       FOLLOW: "FOLLOW",
-      HASH: "HASH",
+      HASH: "HASH"
     };
 
     const selectSortData = [
@@ -49,7 +49,7 @@ export default {
       // { key: "조회수순", value: "조회수순" },
       // { key: "댓글순", value: "댓글순" },
       { key: SORT_TYPE.RECENT, value: "최근순" },
-      { key: SORT_TYPE.LONG, value: "오래된순" },
+      { key: SORT_TYPE.LONG, value: "오래된순" }
       // { key: "가나다순", value: "가나다순" },
     ];
     const selectSeasonData = [
@@ -57,7 +57,7 @@ export default {
       { key: "spring", value: "봄" },
       { key: "summer", value: "여름" },
       { key: "fall", value: "가을" },
-      { key: "winter", value: "겨울" },
+      { key: "winter", value: "겨울" }
     ];
     const selectNumberData = [
       { key: "NUM", value: "인원" },
@@ -70,7 +70,7 @@ export default {
       { key: "7", value: "7" },
       { key: "8", value: "8" },
       { key: "9", value: "9" },
-      { key: "10", value: "10" },
+      { key: "10", value: "10" }
     ];
     const selectComfortsData = [
       { key: "COMFORTS", value: "편의시설" },
@@ -81,12 +81,12 @@ export default {
       { key: "WASHROOM", value: "화장실" },
       { key: "DRINKING", value: "식수대" },
       { key: "SHOWER", value: "샤워장" },
-      { key: "PARKING", value: "주차가능" },
+      { key: "PARKING", value: "주차가능" }
     ];
     const selectPublicData = [
       { key: SHOW_TYPE.ALL, value: "전체 게시물" },
       { key: SHOW_TYPE.FOLLOW, value: "팔로워 게시물" },
-      { key: SHOW_TYPE.HASH, value: "해시태그 게시물" },
+      { key: SHOW_TYPE.HASH, value: "해시태그 게시물" }
     ];
     const sortUpdateValue = value => {
       sortValue.value = value;
@@ -149,6 +149,7 @@ export default {
       const data = await apiClient("/sns/getSnsList", param);
       if (data.data) {
         contentData.value = data.data;
+        console.log(contentData.value);
       }
     };
 
@@ -197,9 +198,9 @@ export default {
       openWrite,
       openDetail,
       getContent,
-      getImgUrl,
+      getImgUrl
     };
-  },
+  }
 };
 </script>
 <template>
@@ -212,12 +213,6 @@ export default {
         <li>
           <customSelect @update:value="sortUpdateValue" :data="selectSortData"></customSelect>
         </li>
-        <!--        <li>-->
-        <!--          <custom-select @update:value="sortUpdateValue" :data="selectNumberData"></custom-select>-->
-        <!--        </li>-->
-        <!--        <li>-->
-        <!--          <customSelect @update:value="sortUpdateValue" :data="selectSeasonData"></customSelect>-->
-        <!--        </li>-->
         <li>
           <customSelect @update:value="sortUpdateValue" :data="selectComfortsData"></customSelect>
         </li>
@@ -242,30 +237,21 @@ export default {
             />
             <div class="profile-wrap-data">
               <span>{{ item.userNickName }}</span>
-              <!--              <span v-if="userData?.userIdx !== item?.userIdx">-->
-              <!--          <span class="middle-dot">&#183;</span>-->
-              <!--          <button class="follow">팔로우</button>-->
-              <!--        </span><br />-->
-              <!--              <a class="profile-wrap-data-place"><i class="fa-solid fa-location-dot"></i></a>-->
             </div>
           </div>
         </div>
-        <!--        <profile :img="item.userProfile" :userInfo="item"></profile>-->
       </div>
       <div class="news-ul-li-wrap">
         <div class="news-ul-li-wrap-write" @click="openDetail(item)">
           <img :src="getImgUrl(item.file[0])" alt="Posts" />
         </div>
         <div class="detail">
-          <!--          <div class="detail-wrap">-->
-          <!--            <div class="detail-wrap-icon">-->
-          <!--              <span><i class="fa-regular fa-heart"></i></span>-->
-          <!--              <span><i class="fa-regular fa-comment"></i></span>-->
-          <!--            </div>-->
-          <!--          </div>-->
           <div class="detail-mbIcon">
             <div class="comments">
-              <span><i class="fa-regular fa-heart"></i> 0</span>
+              <span>
+                <i v-if="!item?.likeState[0]" class="fa-regular fa-heart"></i>
+                <i v-else class="fa-solid fa-heart red"></i>
+                {{ item.likeState[0]?.count ? item.likeState[0]?.count : 0 }}</span>
               <span><i class="fa-regular fa-comment"></i> {{ item.commentCount }}</span>
             </div>
             <div class="share">
@@ -276,11 +262,6 @@ export default {
             <span class="contents-writing">{{ item.boardBody }}</span>
           </div>
         </div>
-        <!--        <div class="heart">-->
-        <!--          <span><i class="fa-regular fa-heart"></i></span>-->
-        <!--          &lt;!&ndash;          <i class="fa-solid fa-circle-heart"></i> 이 아이콘은 안보임&ndash;&gt;-->
-        <!--          <span>0</span>-->
-        <!--        </div>-->
       </div>
     </div>
   </div>
