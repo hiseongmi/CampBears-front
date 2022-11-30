@@ -53,6 +53,7 @@ export default {
       hashTag: "",
       boardBody: "",
       userNickName: "",
+      userProfile: [],
       file: [],
     });
     const MyRerAction = ref(false);
@@ -111,7 +112,9 @@ export default {
     const detail = async () => {
       const data = await apiClient("/sns/getSnsDetail", detailData.value);
       detailData.value = data.data;
+      // if (detailData.value.userProfile) {
       detailData.value.userProfile = detailData.value.userProfile.filter(v => v.fileType === "USER_PROFILE")[0];
+      // }
       //filter로 타입이 user_profile 인것을 [0]로 넣는다
       if (detailData.value) {
         followData.value.targetIdx = detailData.value.userIdx;
@@ -340,15 +343,15 @@ export default {
             <span><i class="fa-solid fa-xmark"></i></span>
           </div>
           <img :src="getImgUrl(detailData.file[tabIndex])" alt="" />
-          <div class="content-image-preview">
+          <div v-if="detailData.file.length > 1" class="content-image-preview">
             <div class="content-image-preview-list" v-for="(item, index) in detailData.file">
               <img :tabindex=tabIndex class="previewImg" @click="changeImg(index)" :src="getImgUrl(item)" alt="게사" />
             </div>
           </div>
-          <span @click="nextOverImg" class="right">
+          <span v-if="detailData.file.length > 1" @click="nextOverImg" class="right">
       <i class="fa-solid fa-circle-chevron-right"></i>
     </span>
-          <span @click="beforeOverImg" class="left">
+          <span v-if="detailData.file.length > 1" @click="beforeOverImg" class="left">
       <i class="fa-solid fa-circle-chevron-left"></i>
     </span>
         </div>

@@ -90,14 +90,15 @@ export default {
     ];
     const sortUpdateValue = value => {
       sortValue.value = value;
-      if (userData.value) {
-        getContent();
-      }
+      getContent();
     };
     const showUpdateValue = value => {
       showValue.value = value;
       if (userData.value) {
         getContent();
+      } else {
+        window.alert("로그인 하세요.");
+        router.push("/login");
       }
     };
     const openWrite = () => {
