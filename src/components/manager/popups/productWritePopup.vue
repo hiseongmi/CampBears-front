@@ -3,13 +3,7 @@ import customButton from "../../layout/customButton.vue";
 import { nextTick, onMounted, ref } from "vue";
 import CustomInput from "../../layout/customInput.vue";
 import CustomInputFileButton from "../../layout/customInputFileButton.vue";
-import profile from "../../snsBoard/profile.vue";
 import { apiClient } from "../../../utils/axios.js";
-
-import axios from "axios";
-import { CONSTANTS } from "../../../constants.js";
-import CommonUtil from "../../../utils/common-util.js";
-import { d } from "../../../../dist/assets/index.cec0d1f7.js";
 
 export default {
   name: "productWritePopup",
