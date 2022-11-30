@@ -659,7 +659,7 @@
 
         .news-ul-li {
           width: 30%;
-          min-width: 200px;
+          min-width: 256px;
 
           .news-ul-li-wrap {
             //.news-ul-li-wrap-write {
@@ -965,7 +965,7 @@
 
         .used-post {
           min-width: 180px;
-          margin: 15px 5px;
+          margin: 15px 16px;
         }
       }
     }
@@ -1016,7 +1016,25 @@
           flex-wrap: nowrap;
           height: 400px;
           overflow: scroll;
+          max-width: 700px;
           white-space: nowrap;
+
+          .info-item {
+            .camp-list {
+              .name {
+
+                font-size: 20px;
+              }
+
+              .des {
+
+                text {
+                  font-size: 15px;
+                  text-overflow: ellipsis;
+                }
+              }
+            }
+          }
         }
       }
 

@@ -73,22 +73,27 @@ export default {
     <h1>캠핑장</h1>
     <div class="info-body" v-if="dataList && dataList.length > 0">
       <div class="info-item" @click="showDetail(index)" v-for="(item, index) in dataList">
-        <a :href="item.homePageUrl"> <img :src="item.thumbNailUrl" alt="main"/></a>
-        <div class="name">{{ item.campingName }}</div>
-        <div class="des">{{ item.campingIntro }}</div>
-        <div class="camp-type">
+
+        <a :href="item.homePageUrl" class="item-front">
+          <div class="camp-type">
           <span>
             {{ item.campingManageMode }}
           </span>
+          </div>
+          <img :src="item.thumbNailUrl" alt="main"/></a>
+
+
+        <div class="camp-list">
+          <div class="name">{{ item.campingName }}</div>
+          <div class="des"><span>{{ item.campingIntro }}</span></div>
+
+          <div class="info-inner">
+            <div class="info-add"><span class="info-type">캠핑 타입 :{{ item.campingTypes }}</span></div>
+            <div class="info-ad"><span>주소 : {{ item.address }}</span></div>
+            <div class="info-ph"><span>전화번호 : {{ item.tel }}</span></div>
+          </div>
         </div>
 
-        <div class="info-inner">
-          <div class="info-add">
-            <span class="info-type">캠핑 타입 :{{ item.campingTypes }}</span>
-            <span class="info-ad">주소 : {{ item.address }}</span>
-          </div>
-          <span class="info-ph">전화번호 : {{ item.tel }}</span>
-        </div>
       </div>
       <a href=""></a>
     </div>
