@@ -18,7 +18,6 @@ export default {
       profileInfo.value = await commonUtil.parseJson(commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO));
       const data = await apiClient("product/getProductList", profileInfo.value.userIdx);
       if (data) contentData.value = data.data;
-      console.log(contentData.value);
     };
 
     const getImgUrl = file => {

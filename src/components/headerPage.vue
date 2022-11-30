@@ -83,8 +83,8 @@ export default {
       <div class="header-bar-mbLogo" @click="goToX('/')">
         <img src="/assets/image/mblogo.png" alt="" />
       </div>
-      <div class="header-bar-moSearch">
-        <i class="fa-solid fa-magnifying-glass"></i>
+      <div class="header-bar-myPage" @click="goToX(`/myPage`)">
+        <i class="fa-regular fa-user"></i>
       </div>
       <div class="header-bar-menu">
         <div class="header-bar-menu-login">
