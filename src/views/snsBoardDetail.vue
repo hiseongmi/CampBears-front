@@ -21,7 +21,6 @@ export default {
     const route = useRoute();
     const boardIdx = ref();
     const boardData = ref();
-
     //로컬스토리지에 저장된 유저정보
     const userData = ref();
     const contentData = ref(undefined);
@@ -61,7 +60,7 @@ export default {
     const FollowBtnAction = ref(false);
     const reportAction = ref(false);
     const deleteData = ref({
-      boardIdx: detailData.value.boardIdx,
+      boardIdx: boardIdx.value,
     });
 
     const MySelectedComment = ref("");
@@ -156,7 +155,7 @@ export default {
     const deleteContent = async () => {
       const check = confirm("삭제하시겠습니까?");
       if (check === true) {
-        const data = await apiClient("/sns/deleteSns", deleteData.value);
+        const data = await apiClient("/sns/deleteSns", { boardIdx: boardIdx.value });
         if (data.resultCode === 0) {
           window.alert("삭제되었습니다.");
           window.location.reload(); //새로고침
@@ -166,10 +165,10 @@ export default {
       }
     };
     //댓글 조회 api
-    const getComment = ref({ boardIdx: detailData.value.boardIdx });
+    const getComment = ref({ boardIdx: boardIdx.value });
     const commentListData = ref({ commentIdx: "" });
     const commentList = async () => {
-      const data = await apiClient("/comment/getCommentList", getComment.value);
+      const data = await apiClient("/comment/getCommentList", { boardIdx: boardIdx.value });
       if (data.resultCode === 0) {
         commentListData.value = data.data;
 
@@ -203,16 +202,15 @@ export default {
       }
     };
     const commentData = ref({
-      boardIdx: detailData.value.boardIdx,
+      boardIdx: boardIdx.value,
       commentBody: "",
     });
     const upComment = async () => {
       const data = await apiClient("/comment/insertComment", commentData.value);
-      console.log(detailData.value);
-      console.log(commentData.value);
+      console.log(data.data);
       if (data.resultCode === 0) {
-        commentList();
         commentData.value.commentBody = "";
+        await commentList();
       } else {
         window.alert("댓글을 입력해주세요");
       }
@@ -288,7 +286,6 @@ export default {
       boardIdx.value = route.path.split("/")[3];
       getBoardDetail();
       getData();
-      commentList();
     });
 
     // delete store boardIdx
