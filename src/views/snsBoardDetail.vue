@@ -208,7 +208,6 @@ export default {
     const upComment = async () => {
       let param = Object.assign({}, commentData.value, { boardIdx: boardIdx.value });
       const data = await apiClient("/comment/insertComment", param);
-      console.log(data.data);
       if (data.resultCode === 0) {
         commentData.value.commentBody = "";
         await commentList();
