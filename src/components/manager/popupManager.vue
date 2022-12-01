@@ -26,6 +26,7 @@ export default {
     const PopupList = ref(store.state.popupList);
     const clickClose = () => {
       store.commit(STORE_TYPE.popupType, POPUP_TYPE.NONE);
+      window.location.reload();
     };
     const goDetail = () => { //취소 누르면 디테일 창 뜨게
       store.commit(STORE_TYPE.popupType, POPUP_TYPE.DETAIL_SCREEN);
@@ -53,8 +54,7 @@ export default {
                      :go-detail="goDetail"></writeBoardPopup>
     <detail-screen-popup v-if="isPopup === POPUP_TYPE.DETAIL_SCREEN" :click-close="clickClose"></detail-screen-popup>
     <!--    <report-popup v-if="isPopup === POPUP_TYPE.REPORT " :click-close="clickClose" :go-detail="goDetail"></report-popup>-->
-    <UpdateBoardPopup v-if="isPopup === POPUP_TYPE.UPDATE " :click-close="clickClose"
-                      :go-detail="goDetail"></UpdateBoardPopup>
+    <UpdateBoardPopup v-if="isPopup === POPUP_TYPE.UPDATE " :click-close="clickClose"></UpdateBoardPopup>
     <ProductDetailPopup v-if="isPopup === POPUP_TYPE.PRODUCT_DETAIL" :clickClose="clickClose" />
     <ProductWritePopup v-if="isPopup === POPUP_TYPE.PRODUCT_WRITE" :clickClose="clickClose" />
     <DetailCampingInfo v-if="isPopup === POPUP_TYPE.DETAIL_CAMPING" :clickClose="clickClose"></DetailCampingInfo>

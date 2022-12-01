@@ -104,7 +104,6 @@ export default {
       const data = await apiClient("/sns/updateSns", SNSFormData);
       if (data.resultCode === 0) {
         window.alert("수정되었습니다.");
-        store.commit(STORE_TYPE.popupType, POPUP_TYPE.DETAIL_SCREEN);
       } else {
         window.alert("다시 시도해주세요.");
       }
@@ -252,7 +251,7 @@ export default {
       </div>
     </div>
     <div class="save-btn" v-else>
-      <custom-button :customClass="'cancel'" :placeholder="'취소'" :onClick="goDetail" />
+      <custom-button :customClass="'cancel'" :placeholder="'취소'" :onClick="clickClose" />
       <div class="save-btn-wrap">
         <custom-button :customClass="'upLoad'" :placeholder="'수정'" :onClick="updateBoard" />
       </div>

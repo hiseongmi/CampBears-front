@@ -13,17 +13,13 @@ export default {
   props: {
     clickClose: {
       type: Function,
-      required: true
+      required: true,
     },
-    goDetail: {
-      type: Function,
-      required: true
-    }
   },
   setup() {
     const publicType = {
       All: "ALL",
-      FOLLOW: "FOLLOW"
+      FOLLOW: "FOLLOW",
     };
     const publicIndex = ref();
     const checkValue = v => {
@@ -31,7 +27,7 @@ export default {
     };
     const updateData = ref({
       boardIdx: store.state.boardIdx,
-      boardBody: ""
+      boardBody: "",
     });
     const inputHashTag = ref("");
     const hashTagList = ref([]);
@@ -39,12 +35,11 @@ export default {
     const update = async () => {
       const param = Object.assign({}, updateData.value, { hashTag: hashTagList.value });
       const data = await apiClient("/sns/updateSns", param);
-      // if (data.resultCode === 0) {
-      //   window.alert("수정되었습니다.");
-      //   await store.commit(STORE_TYPE.popupType, POPUP_TYPE.DETAIL_SCREEN);
-      // } else {
-      //   window.alert("다시 시도해주세요");
-      // }
+      if (data.resultCode === 0) {
+        window.alert("수정되었습니다.");
+      } else {
+        window.alert("다시 시도해주세요");
+      }
     };
     const handleInput = (e) => {
       let target = e.target.value;
@@ -91,15 +86,15 @@ export default {
       handleInput,
       handleEnterEvent,
       hashTagList,
-      deleteTag
+      deleteTag,
     };
-  }
+  },
 };
 </script>
 <template>
   <div class="modal-inner">
     <div class="save-btn">
-      <custom-button :customClass="'cancel'" :placeholder="'취소'" :onClick="goDetail" />
+      <custom-button :customClass="'cancel'" :placeholder="'취소'" :onClick="clickClose" />
       <div class="save-btn-wrap">
         <custom-button :customClass="'upLoad'" :placeholder="'수정'" :onClick="update" />
       </div>

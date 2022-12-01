@@ -26,6 +26,7 @@
       //게시물 사진
       &-image {
         position: relative;
+
         img {
           //문제시 삭제 -영덕
           max-height: 550px;
@@ -75,11 +76,12 @@
         .myPop {
           width: 80px;
           height: 100px;
-          background-color: rgba(255, 255, 255, 0.51);
+          border: 1px solid #818181;
+          background-color: rgb(255 255 255 / 76%);
           border-radius: 8px;
           position: absolute;
-          top: 5px;
-          right: 20px;
+          top: 18px;
+          right: 6px;
           transition: 0.3s;
           @include mb() {
             width: 60px;
@@ -127,11 +129,12 @@
         .pop {
           width: 80px;
           height: 30px;
-          background-color: rgba(255, 255, 255, 0.51);
+          border: 1px solid #818181;
+          background-color: rgb(255 255 255 / 76%);
           border-radius: 8px;
           position: absolute;
-          top: 7px;
-          right: 20px;
+          top: 18px;
+          right: 5px;
           transition: 0.3s;
           @include mb() {
             width: 65px;
@@ -178,6 +181,7 @@
           @include mb() {
             display: block;
             margin: 5px;
+            width: 10px;
             i {
               cursor: pointer;
             }

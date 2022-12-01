@@ -9,6 +9,8 @@ import { useStore } from "vuex";
 import { useRoute } from "vue-router";
 import { apiClient } from "../utils/axios.js";
 import router from "../router/index.js";
+import { CONSTANTS } from "../constants.js";
+import { POPUP_TYPE, STORE_TYPE } from "../store/index.js";
 
 export default {
   name: "snsBoardDetail",
@@ -22,7 +24,7 @@ export default {
 
     //로컬스토리지에 저장된 유저정보
     const userData = ref();
-    const contentData = ref(undefined);
+    const contentData = ref(store.state.contentData);
     // 해당 유저를 팔로우 하고 있는지, 아닌지
     const followType = ref({
       STATE: "UNFOLLOW",
@@ -59,16 +61,12 @@ export default {
     const FollowBtnAction = ref(false);
     const reportAction = ref(false);
     const deleteData = ref({
-      boardIdx: "",
+      boardIdx: store.state.contentData.boardIdx,
     });
-    const getComment = ref({ boardIdx: "" });
-    const commentListData = ref({ commentIdx: "" });
+
     const MySelectedComment = ref("");
     const selectedComment = ref("");
-    const commentData = ref({
-      boardIdx: "",
-      commentBody: "",
-    });
+
     const deleteCommentData = ref({
       commentIdx: "",
     });
@@ -109,7 +107,6 @@ export default {
     //상세 게시물 조회 api
     const getBoardDetail = async () => {
       const data = await apiClient("/sns/getSnsDetail", { boardIdx: boardIdx.value });
-      // console.log(data.data);
       if (data.data) {
         detailData.value = data.data;
       }
@@ -122,7 +119,7 @@ export default {
       //   followData.value.targetIdx = detailData.value.userIdx;
       //   heartData.value.targetIdx = detailData.value.boardIdx;
       // }
-      // commentList();
+      commentList();
     };
     //신고창열기
     const goToReport = () => {
@@ -162,7 +159,6 @@ export default {
         const data = await apiClient("/sns/deleteSns", deleteData.value);
         if (data.resultCode === 0) {
           window.alert("삭제되었습니다.");
-          closePopup();
           window.location.reload(); //새로고침
         } else {
           window.alert("다시시도해주세요");
@@ -170,10 +166,13 @@ export default {
       }
     };
     //댓글 조회 api
+    const getComment = ref({ boardIdx: detailData.value.boardIdx });
+    const commentListData = ref({ commentIdx: "" });
     const commentList = async () => {
       const data = await apiClient("/comment/getCommentList", getComment.value);
       if (data.resultCode === 0) {
         commentListData.value = data.data;
+
       } else {
       }
     };
@@ -203,9 +202,16 @@ export default {
         commentData.value.commentBody = "";
       }
     };
+    const commentData = ref({
+      boardIdx: detailData.value.boardIdx,
+      commentBody: "",
+    });
     const upComment = async () => {
       const data = await apiClient("/comment/insertComment", commentData.value);
+      console.log(detailData.value);
+      console.log(commentData.value);
       if (data.resultCode === 0) {
+        commentList();
         commentData.value.commentBody = "";
       } else {
         window.alert("댓글을 입력해주세요");
@@ -274,7 +280,8 @@ export default {
     onMounted(() => {
       boardIdx.value = route.path.split("/")[3];
       getBoardDetail();
-      // detail();
+      getData();
+      commentList();
     });
 
     // delete store boardIdx
@@ -427,7 +434,7 @@ export default {
           </div>
           <button @click="upComment"><i class="fa-regular fa-comment"></i></button>
         </div>
-        <div class="content-null" v-if="commentListData.length === 0">
+        <div class="content-null" v-if="commentListData.length === 0 || false">
           <div class="state">댓글이 없습니다.</div>
         </div>
         <div class="content-comments" v-for="item in commentListData" v-else>
