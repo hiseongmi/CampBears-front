@@ -104,6 +104,7 @@ export default {
       const data = await apiClient("/sns/updateSns", SNSFormData);
       if (data.resultCode === 0) {
         window.alert("수정되었습니다.");
+        store.commit(STORE_TYPE.popupType, POPUP_TYPE.NONE);
       } else {
         window.alert("다시 시도해주세요.");
       }
