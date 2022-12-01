@@ -64,7 +64,6 @@ export default {
         </div>
       </div>
     </div>
-    <custom-pagination v-if="!isModal" />
     <custom-modal v-if="isModal" @close="modalControl(false)" />
   </div>
 </template>

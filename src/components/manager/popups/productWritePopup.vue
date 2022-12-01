@@ -57,9 +57,9 @@ export default {
       SELL: "SELL",
       BUY: "BUY",
     };
-    const typeIndex = ref(typeType.SELL);
+    const typeIndex = ref("");
     const checkValue = v => {
-      typeIndex.vlaue = v;
+      typeIndex.value = v;
       uploadData.value.productType = v;
     };
     const clickState = ref(false);
@@ -191,7 +191,7 @@ export default {
         formData.append("productDes", uploadData.value.productDes);
         formData.append("stateView", uploadData.value.stateView);
         formData.append("productPrice", uploadData.value.productPrice);
-        formData.append("productType", typeIndex.value);
+        formData.append("productType", uploadData.value.productType);
         formData.append("productState", "GOOD");
 
         const data = await apiClient("product/insertProduct", formData);

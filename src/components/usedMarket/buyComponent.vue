@@ -3,19 +3,17 @@ import { onMounted, onUnmounted, ref } from "vue";
 import { apiClient } from "../../utils/axios.js";
 import customPagination from "../layout/customPagination.vue";
 import commonUtil from "../../utils/common-util.js";
-import CustomModal from "../layout/customModal.vue";
+import customModal from "../layout/customModal.vue";
 import store, { POPUP_TYPE, STORE_TYPE } from "../../store/index.js";
 
 export default {
   name: "buyComponent",
-  components: { CustomModal, customPagination },
+  components: { customModal, customPagination },
   setup() {
     const postData = ref({});
-    const file = ref("");
-    let keyword = "";
 
     const getData = async () => {
-      const data = await apiClient("/product/getProductList", { productType: "BUY", sorted: "RECENT" });
+      const data = await apiClient("product/getProductList", { productType: "BUY", sorted: "RECENT" });
       if (data) postData.value = data.data;
     };
 
@@ -23,29 +21,15 @@ export default {
       return commonUtil.getImgUrl(file.fileName);
     };
 
-    const handleSearch = e => {
-      if (e.detail !== "") keyword = e.detail;
-      else keyword = e.detail;
-      getData();
-    };
-
-    const openDetail = () => {
+    const openDetail = productIdx => {
       store.commit(STORE_TYPE.popupType, POPUP_TYPE.PRODUCT_DETAIL);
+      store.commit(STORE_TYPE.boardIdx, productIdx);
     }; //게시물 상세 페이지 팝업 열기
 
-    onMounted(() => {
-      window.addEventListener("SEARCH", handleSearch); //search 이벤트를 찾아서 handel이벤트로 보냄
-      getData();
-    });
-
-    onUnmounted(() => {
-      window.removeEventListener("SEARCH", handleSearch);
-    });
+    onMounted(() => getData());
 
     const isModal = ref(false);
-    const modalControl = state => {
-      isModal.value = state;
-    };
+    const modalControl = state => (isModal.value = state);
 
     return {
       openDetail,
@@ -53,17 +37,16 @@ export default {
       getData,
       modalControl,
       isModal,
-      file,
-      getImgUrl
+      getImgUrl,
     };
-  }
+  },
 };
 </script>
 
 <template>
   <div class="used-contents-area">
     <div class="used-contents-area-ul">
-      <div class="used-post" v-for="item in postData" @click="openDetail()">
+      <div class="used-post" v-for="item in postData" @click="openDetail(item.productIdx)">
         <div class="used-post-img-wrap">
           <img :src="getImgUrl(item.file[0])" alt="Posts" />
         </div>
@@ -81,7 +64,6 @@ export default {
         </div>
       </div>
     </div>
-    <custom-pagination v-if="!isModal" />
     <custom-modal v-if="isModal" @close="modalControl(false)" />
   </div>
 </template>
