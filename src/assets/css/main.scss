@@ -917,6 +917,7 @@
 
       .used-contents-area-ul::-webkit-scrollbar {
         width: 2px; /* 스크롤바의 너비 */
+        height: 7px;
       }
 
       .used-contents-area-ul::-webkit-scrollbar-thumb {
@@ -983,8 +984,10 @@
           display: none;
         }
 
+
         .info-body::-webkit-scrollbar {
           width: 1px; /* 스크롤바의 너비 */
+          height: 7px;
         }
 
         .info-body::-webkit-scrollbar-thumb {
