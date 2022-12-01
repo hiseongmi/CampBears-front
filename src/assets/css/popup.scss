@@ -13,9 +13,9 @@
 
   .modal {
     position: fixed;
-    @include mb() {
-      z-index: 1;
-    }
+    //@include mb() {
+    //  z-index: 1;
+    //}
 
     //글쓰기 내용
     &-inner {
@@ -944,24 +944,6 @@
       &-content::-webkit-scrollbar {
         display: none;
       }
-
-      //.right {
-      //  cursor: pointer;
-      //  color: white;
-      //  position: relative;
-      //  top: 50%;
-      //  left: 830px;
-      //  font-size: 20px;
-      //}
-      //
-      //.left {
-      //  cursor: pointer;
-      //  color: white;
-      //  position: relative;
-      //  top: 50%;
-      //  right: 240px;
-      //  font-size: 20px;
-      //}
 
       .detailBlack {
         position: fixed;

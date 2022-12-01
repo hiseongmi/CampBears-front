@@ -80,12 +80,14 @@
           background-color: rgb(255 255 255 / 76%);
           border-radius: 8px;
           position: absolute;
-          top: 18px;
-          right: 6px;
+          top: 5px;
+          right: 19px;
           transition: 0.3s;
           @include mb() {
             width: 60px;
             height: 80px;
+            top: 15px;
+            right: 5px;
           }
 
           ul {
@@ -104,8 +106,8 @@
               width: 100%;
               text-align: center;
               cursor: pointer;
-              height: 100%;
-              padding: 5px;
+              height: 90%;
+              padding: 6px 4px 5px 4px;
               font-size: 14px;
               @include mb() {
                 font-size: 12px;
@@ -133,12 +135,14 @@
           background-color: rgb(255 255 255 / 76%);
           border-radius: 8px;
           position: absolute;
-          top: 18px;
-          right: 5px;
+          top: 2px;
+          right: 20px;
           transition: 0.3s;
           @include mb() {
             width: 65px;
-            height: 27px;
+            height: 30px;
+            top: 15px;
+            right: 5px;
           }
 
           ul {
@@ -155,7 +159,7 @@
               text-align: center;
               cursor: pointer;
               height: 100%;
-              padding: 7px;
+              padding: 6px 4px 5px 4px;
               font-size: 14px;
               @include mb() {
                 font-size: 12px;
@@ -430,6 +434,7 @@
           margin-left: 20px;
           border: none;
           cursor: pointer;
+          background-color: #eeeeee;
 
           i {
             font-size: 25px;
@@ -458,8 +463,8 @@
         border-bottom: 1px solid #eeeeee;
         //댓글프로필이미지
         img {
-          width: 65px;
-          height: 65px;
+          width: 48px;
+          height: 48px;
           object-fit: cover;
           border-radius: 70%;
         }
@@ -468,11 +473,22 @@
           display: grid;
           align-content: space-around;
           flex: 1 0 0;
-          margin-left: 20px;
+          margin-left: 8px;
           height: 56px;
 
           span {
             font-weight: 700;
+          }
+
+          p {
+            margin: 2px 0;
+            font-size: 14px;
+            width: 115px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
           }
 
           //유저 이름 멘트
@@ -542,288 +558,11 @@
         }
       }
     }
-
-    //sns끝
-
-    //used Market
-    .product {
-      background-color: white;
-      //상품 이미지
-      &-image {
-        position: relative;
-
-        img {
-          width: 100%;
-        }
-
-        &-subImg {
-          position: absolute;
-          display: flex;
-          align-items: center;
-          padding: 0 15px;
-          bottom: 0;
-          width: 100%;
-          height: 68px;
-          background: rgba(0, 0, 0, 0.7);
-          box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
-
-          &-list {
-            display: flex;
-
-            &-pick {
-              border: 2px solid #ffffff;
-              border-radius: 5px;
-              margin: 0 3px;
-              height: 52px;
-              width: 50px;
-            }
-
-            img {
-              border-radius: 5px;
-              margin: 0 3px;
-              height: 52px;
-              width: 50px;
-
-              &:focus {
-                border: 1px solid white;
-              }
-            }
-          }
-        }
-
-        &-right {
-          position: absolute;
-          right: 10px;
-          top: 50%;
-          color: white;
-        }
-
-        &-left {
-          color: white;
-          position: absolute;
-          left: 10px;
-          top: 50%;
-        }
-      }
-
-      //유저프로필
-      &-wrap {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px 25px;
-        margin: 0 11px;
-        border-bottom: 1px solid rgba(204, 204, 204, 0.7);
-
-        &-profile {
-          display: flex;
-          align-items: center;
-
-          img {
-            border-radius: 70%;
-            width: 39.7px;
-            height: 39px;
-            box-shadow: none;
-            object-fit: cover;
-          }
-
-          &-info {
-            display: grid;
-            align-items: center;
-            margin-left: 10px;
-
-            span {
-              font-weight: 700;
-              font-size: 15px;
-              color: #1b1b1b;
-            }
-
-            p {
-              color: #818181;
-              font-size: 13px;
-
-              i {
-                padding-left: 2px;
-                font-size: 13px;
-                color: #fa6c1a;
-              }
-            }
-          }
-        }
-
-        &-chat {
-          .custom-button {
-            position: relative;
-            min-width: 0;
-            width: 90px;
-            height: 33px;
-            border: none;
-            border-radius: 5px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            background-color: #fa6c1a;
-
-            a {
-              font-size: 15px;
-              color: white;
-            }
-          }
-        }
-      }
-
-      //상세정보
-      &-main {
-        display: flex;
-        justify-content: space-between;
-        padding: 25px 35px;
-
-        &-wrap {
-          &-title {
-            display: flex;
-            align-items: center;
-
-            .pomsom {
-              display: flex;
-              background: #ea3323;
-              border-radius: 5px;
-              color: white;
-              padding: 4px 8px;
-              font-size: 13px;
-              align-items: center;
-            }
-
-            span {
-              font-size: 13px;
-            }
-
-            h4 {
-              font-size: 20px;
-              margin-left: 15px;
-            }
-          }
-
-          &-rest {
-            span {
-              color: #818181;
-              font-size: 13px;
-              padding-right: 17px;
-
-              i {
-                font-size: 13px;
-                padding-right: 3px;
-              }
-            }
-          }
-        }
-
-        //좋아요 공유
-        &-menu {
-          display: flex;
-
-          span {
-            padding: 7px 9px;
-
-            i {
-              font-size: 20px;
-            }
-          }
-
-          .heart {
-            i {
-              color: #f32626;
-            }
-          }
-
-          .share {
-            i {
-              color: #818181;
-            }
-          }
-        }
-      }
-
-      //상품 평점, 가격
-      &-price {
-        display: flex;
-        justify-content: space-between;
-        padding: 0 35px;
-        margin-bottom: 50px;
-
-        .grade {
-          .name {
-            font-size: 13px;
-            padding-right: 8px;
-            color: #818181;
-          }
-
-          span {
-            i {
-              padding-right: 2px;
-              font-size: 16px;
-              color: #fa6c1a;
-            }
-          }
-        }
-
-        p {
-          color: #ea3323;
-          font-size: 20px;
-          font-weight: 700;
-        }
-      }
-
-      //글 내용
-      &-content {
-        height: 210px;
-
-        &-wrap {
-          padding: 0 35px;
-          font-size: 17px;
-          color: #818181;
-        }
-
-        &-deal {
-          margin-top: 20px;
-          display: flex;
-          padding: 0 35px;
-
-          span {
-            font-size: 13px;
-            color: #818181;
-            font-weight: 700;
-            border: 1px solid #818181;
-            border-radius: 5px;
-            padding: 3px 6px;
-            margin-right: 13px;
-          }
-        }
-      }
-    }
   }
 
   &-content::-webkit-scrollbar {
     display: none;
   }
-
-  //.right {
-  //  cursor: pointer;
-  //  color: white;
-  //  position: relative;
-  //  top: 50%;
-  //  left: 830px;
-  //  font-size: 20px;
-  //}
-  //
-  //.left {
-  //  cursor: pointer;
-  //  color: white;
-  //  position: relative;
-  //  top: 50%;
-  //  right: 240px;
-  //  font-size: 20px;
-  //}
 
   .detailBlack {
     position: fixed;
