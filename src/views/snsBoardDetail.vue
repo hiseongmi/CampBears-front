@@ -165,7 +165,7 @@ export default {
       }
     };
     //댓글 조회 api
-    const getComment = ref({ boardIdx: boardIdx.value });
+    // const getComment = ref({ boardIdx: boardIdx.value });
     const commentListData = ref({ commentIdx: "" });
     const commentList = async () => {
       const data = await apiClient("/comment/getCommentList", { boardIdx: boardIdx.value });
@@ -206,7 +206,8 @@ export default {
       commentBody: "",
     });
     const upComment = async () => {
-      const data = await apiClient("/comment/insertComment", commentData.value);
+      let param = Object.assign({}, commentData.value, { boardIdx: boardIdx.value });
+      const data = await apiClient("/comment/insertComment", param);
       console.log(data.data);
       if (data.resultCode === 0) {
         commentData.value.commentBody = "";
@@ -297,7 +298,7 @@ export default {
       userData,
       followType,
       followData,
-      getComment,
+      // getComment,
       deleteCommentData,
       commentListData,
       commentData,
