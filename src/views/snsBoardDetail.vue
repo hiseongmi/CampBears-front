@@ -24,7 +24,7 @@ export default {
 
     //로컬스토리지에 저장된 유저정보
     const userData = ref();
-    const contentData = ref(store.state.contentData);
+    const contentData = ref(undefined);
     // 해당 유저를 팔로우 하고 있는지, 아닌지
     const followType = ref({
       STATE: "UNFOLLOW",
@@ -61,7 +61,7 @@ export default {
     const FollowBtnAction = ref(false);
     const reportAction = ref(false);
     const deleteData = ref({
-      boardIdx: store.state.contentData.boardIdx,
+      boardIdx: detailData.value.boardIdx,
     });
 
     const MySelectedComment = ref("");
@@ -267,6 +267,13 @@ export default {
       document.execCommand("copy");
       window.alert("복사되었습니다.");
     };
+    const goTargetFeed = detailData => {
+      if (userData.value?.userIdx === detailData.userIdx) {
+        router.push("/myPage");
+      } else {
+        router.push(`/userFeed/${detailData.userIdx}`);
+      }
+    };
 
     const getImgUrl = file => {
       try {
@@ -307,6 +314,7 @@ export default {
       selectedComment,
       MySelectedComment,
       contentData,
+      goTargetFeed,
       copyUrl,
       goBack,
       nextOverImg,
@@ -385,7 +393,7 @@ export default {
         <div class="content-wrap">
           <div class="content-wrap-profile">
             <!--            {{ detailData.userProfile.fileName }}-->
-            <img :src="getImgUrl(detailData.userProfile[0])" alt="프사" />
+            <img @click="goTargetFeed(detailData)" :src="getImgUrl(detailData.userProfile[0])" alt="프사" />
             <div class="content-wrap-profile-info">
               <div class="follow">
                 <span>{{ detailData.userNickName }}</span>

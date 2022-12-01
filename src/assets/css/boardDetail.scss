@@ -267,6 +267,7 @@
           //프사
           img {
             @include profile();
+            cursor: pointer;
           }
 
           //이름,팔로우 버튼,내용,해시태그
