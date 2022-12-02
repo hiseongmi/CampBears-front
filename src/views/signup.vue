@@ -6,6 +6,8 @@ import customButton from "../components/layout/customButton.vue";
 import {onMounted, ref, watch} from "vue";
 import {apiClient} from "../utils/axios.js";
 import router from "../router/index.js";
+import commonUtil from "../utils/common-util.js";
+import {CONSTANTS} from "../constants.js";
 // import {createRouter, createWebHashHistory} from "vue-router/dist/vue-router.js";
 // import re from "../../dist/assets/infoPage.a89dbcb4";
 
@@ -31,6 +33,7 @@ export default {
       dateTerms: new Date(),
       stateMarketing: "Y",
     });
+
 
     const typeSearchData = ref({
       type: "USER_TYPE",
@@ -108,8 +111,17 @@ export default {
     //     joinUserData.value.userPhone.replace(/[^0-9]/g, '').replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
     //   }
     // }4
+    const by = () => {
+      const loginUser = ref(commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO));
+      if (loginUser) {
+        goToX("/");
+      } else {
+        goToX("/signup");
+      }
 
-
+    }
+    by();
+    const loginUser = ref(commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO));
     const joinUser = async () => {
       // console.log("가입 좀 하자: ", joinUserData.value)
 
@@ -133,6 +145,7 @@ export default {
     });
 
     return {
+      loginUser,
       joinUserData,
       joinUser,
       typeSearch,
@@ -143,6 +156,7 @@ export default {
       isShow,
       back,
       goToX,
+      by,
     };
   },
 };
