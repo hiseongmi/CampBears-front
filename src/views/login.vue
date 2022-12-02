@@ -28,6 +28,16 @@ export default {
     //   });
     //   const d = await axiosInstance.get('https://apis.data.go.kr/B551011/GoCamping/basedList?MobileOS=ETC&MobileApp=bears&serviceKey=IEdTGqhPUIxJy5mLBtkjPw6g%2BaTd90KXgnnc03HRNuD2NUPhtSQ307ZhzYx3n51j%2FpjYn5Hteigqp1cro1Rg6w%3D%3D')
     // }
+    const goToY = v => {
+      v ? router.push(v) : window.alert("준비중입니다.");
+    };
+    const getout = () => {
+      const loginUser = ref(commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO));
+      if (loginUser) {
+        goToY("/")
+      }
+    }
+    getout();
     const loginUser = ref(commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO));
     const typeSearch = async () => {
       const data = await apiClient("/common/getTypeList", typeSearchData.value);
@@ -103,19 +113,20 @@ export default {
       goToX,
       typeSearch,
       loginUser,
+      getout,
     };
   },
 };
 </script>
 <template>
-  <section v-if="!loginUser" class="login">
+  <section class="login">
     <div class="login-area">
       <div class="logo-area">
         <img src="/assets/images/login/loginLogo.png" alt="logo"/>
         <h1>로그인 해볼까요?</h1>
       </div>
-      
-      <div v-if="loginState" class="form">
+
+      <div class="form">
         <custom-input :placeholder="`이메일`" @update:value="userData.userEmail = $event"/>
         <input placeholder="비밀번호" autoComplete="off" type="password" @update:value="userData.userPassword = $event"/>
         <div class="btn-area">
@@ -138,7 +149,5 @@ export default {
       <!--      <loginNaver></loginNaver>-->
     </div>
   </section>
-  <div v-else>
-    <main-page></main-page>
-  </div>
+
 </template>
