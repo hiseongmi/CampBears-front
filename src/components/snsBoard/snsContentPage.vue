@@ -267,7 +267,7 @@ export default {
               <span><i class="fa-solid fa-share-nodes"></i></span>
             </div>
           </div>
-          <div class="contents" @click="openDetail(item.boardIdx)">
+          <div class="contents" @click="openDetail(item)">
             <span class="contents-writing">{{ item.boardBody }}</span>
           </div>
         </div>
