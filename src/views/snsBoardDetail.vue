@@ -52,6 +52,7 @@ export default {
       hashTag: "",
       boardBody: "",
       userNickName: "",
+      likeState: [],
       userProfile: [],
       file: [],
     });
@@ -311,12 +312,12 @@ export default {
       selectedComment,
       MySelectedComment,
       contentData,
+      tabIndex,
       goTargetFeed,
       copyUrl,
       goBack,
       nextOverImg,
       beforeOverImg,
-      tabIndex,
       changeImg,
       RerCancel,
       FollowBtn,
@@ -410,12 +411,9 @@ export default {
             <div class="content-wrap-emotion-like">
               <span v-if="heartCount < 1" @click="doLike"><i class="fa-regular fa-heart"></i></span>
               <span v-else @click="doLike"><i class="fa-solid fa-heart"></i></span>
-              <span>{{ heartCount }}</span>
+              <span v-if="detailData.likeState.length === 0">{{ detailData.likeState.length }}</span>
+              <span v-else>{{ detailData.likeState[0]?.count }}</span>
             </div>
-            <!--            <div class="content-wrap-emotion-book">-->
-            <!--              <span v-if="bookmark < 1" @click="bookmarkActive"><i class="fa-regular fa-bookmark"></i></span>-->
-            <!--              <span v-else @click="bookmarkActive"><i class="fa-solid fa-bookmark"></i></span>-->
-            <!--            </div>-->
             <div class="content-wrap-emotion-book">
               <input id="urlInput" />
               <button @click="copyUrl"><i class="fa-solid fa-share-nodes"></i></button>
@@ -471,8 +469,8 @@ export default {
         </div>
       </div>
     </div>
-    <div v-if="reportAction" class="detailBlack">
-      <report-popup :reportPop="reportPop"></report-popup>
-    </div>
+  </div>
+  <div v-if="reportAction" class="detailBlack" :style="{ body:'overflow: hidden'}">
+    <report-popup :reportPop="reportPop"></report-popup>
   </div>
 </template>

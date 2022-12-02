@@ -1,5 +1,5 @@
 .board-detail {
-  max-width: 40%;
+  max-width: 60%;
   margin: 0 auto;
 
   @include mb() {
@@ -45,7 +45,7 @@
           i {
             cursor: pointer;
             font-size: 20px;
-            color: #a5a5a5;
+            color: #fa6c1a;
             @include mb() {
               display: none;
             }
@@ -66,7 +66,7 @@
           i {
             @include mb() {
               cursor: pointer;
-              color: #a5a5a5;
+              color: #fa6c1a;
               font-size: 20px;
             }
           }
@@ -181,13 +181,24 @@
         }
 
         &-goBack {
-          display: none;
+          position: absolute;
+          top: 7px;
+          left: 8px;
           @include mb() {
-            display: block;
+            position: relative;
             margin: 5px;
             width: 10px;
-            i {
-              cursor: pointer;
+            top: 0;
+            left: 0;
+          }
+
+          i {
+            cursor: pointer;
+            font-size: 16px;
+            color: #a5a5a5;
+            @include mb() {
+              font-size: 14px;
+              color: black;
             }
           }
         }
@@ -489,6 +500,9 @@
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
+            @include mb() {
+              width: 430px;
+            }
           }
 
           //유저 이름 멘트
@@ -564,13 +578,81 @@
     display: none;
   }
 
-  .detailBlack {
+
+}
+
+.detailBlack {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 10px;
+  color: black;
+  z-index: 2;
+  top: 0;
+
+  .modal-report {
+    z-index: 3;
+    @include center();
     position: fixed;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    border-radius: 10px;
-    color: black;
-    z-index: 2;
+    max-width: 80%;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px;
+    width: 280px;
+    height: 310px;
+    border-radius: 4px;
+
+    span {
+      margin: 5px;
+      cursor: pointer;
+      float: right;
+    }
+
+    span:hover {
+      color: $red;
+    }
+
+    &-content {
+      margin: 20px 10px;
+    }
+
+    .custom-input {
+      border: 2px solid #b9b9b9;
+      border-radius: 0;
+      padding: 0 20px;
+      max-width: none;
+      min-width: 50px;
+      width: 100%;
+      height: 124px;
+      color: #000000;
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    &-btn {
+      display: flex;
+      border: 1px solid #b9b9b9;
+      justify-content: space-around;
+
+      .custom-button {
+        position: relative;
+        min-width: 70px;
+        width: 40px;
+        height: 26px;
+        border: none;
+        border-radius: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        color: $text-color;
+        background-color: rgba(255, 255, 255, 0);
+      }
+
+      .custom-button:hover {
+        color: $red;
+      }
+    }
   }
 }
