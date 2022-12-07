@@ -110,7 +110,7 @@
           height: auto;
 
           &.ME {
-            background-color: #ffff5a;
+            background-color: #fa6c1a;
           }
         }
 
@@ -133,11 +133,17 @@
       .chat-util {
         display: flex;
         position: absolute;
-        bottom: 20px;
+        bottom: 25px;
         width: calc(100% - 40px);
 
         > input {
-          margin-right: 20px;
+          border: none;
+          border-bottom: 1px solid #818181;
+        }
+
+        > button {
+          font-size: 14px;
+          border: none;
         }
       }
     }

@@ -159,7 +159,7 @@ export default {
         const data = await apiClient("/sns/deleteSns", { boardIdx: boardIdx.value });
         if (data.resultCode === 0) {
           window.alert("삭제되었습니다.");
-          window.location.reload(); //새로고침
+          await router.push("/snsPage");//새로고침
         } else {
           window.alert("다시시도해주세요");
         }
@@ -202,10 +202,7 @@ export default {
         commentData.value.commentBody = "";
       }
     };
-    const commentData = ref({
-      boardIdx: boardIdx.value,
-      commentBody: "",
-    });
+    const commentData = ref({ commentBody: "" });
     const upComment = async () => {
       let param = Object.assign({}, commentData.value, { boardIdx: boardIdx.value });
       const data = await apiClient("/comment/insertComment", param);

@@ -27,12 +27,6 @@
       &-image {
         position: relative;
 
-        img {
-          //문제시 삭제 -영덕
-          max-height: 550px;
-          //수정함
-        }
-
         //신고 수정 삭제 리스트 버튼
         .container {
           position: absolute;
@@ -485,7 +479,7 @@
           align-content: space-around;
           flex: 1 0 0;
           margin-left: 8px;
-          height: 56px;
+          height: 60px;
 
           span {
             font-weight: 700;
@@ -494,14 +488,14 @@
           p {
             margin: 2px 0;
             font-size: 14px;
-            width: 115px;
             overflow: hidden;
             text-overflow: ellipsis;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
+            word-break: break-all;
+            height: 34px;
             @include mb() {
-              width: 430px;
             }
           }
 
