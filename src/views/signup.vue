@@ -3,11 +3,11 @@ import CustomLoading from "../components/layout/customLoading.vue";
 import customInput from "../components/layout/customInput.vue";
 import customButton from "../components/layout/customButton.vue";
 // import signupPage from "../components/login/signupPage.vue";
-import {onMounted, ref, watch} from "vue";
-import {apiClient} from "../utils/axios.js";
+import { onMounted, ref, watch } from "vue";
+import { apiClient } from "../utils/axios.js";
 import router from "../router/index.js";
 import commonUtil from "../utils/common-util.js";
-import {CONSTANTS} from "../constants.js";
+import { CONSTANTS } from "../constants.js";
 // import {createRouter, createWebHashHistory} from "vue-router/dist/vue-router.js";
 // import re from "../../dist/assets/infoPage.a89dbcb4";
 
@@ -34,7 +34,6 @@ export default {
       stateMarketing: "Y",
     });
 
-
     const typeSearchData = ref({
       type: "USER_TYPE",
     });
@@ -46,7 +45,6 @@ export default {
         joinUserData.value.userType = typeData.value[0].column;
       }
     };
-
 
     const goToX = v => {
       v ? router.push(v) : window.alert("준비중입니다.");
@@ -90,19 +88,15 @@ export default {
         isShow.value = !isShow.value;
       }
 
-
       // console.log(joinUserData.value.isShow)
       // console.log(isShow)
     };
     const secForm = () => {
-
       joinUser();
-      console.log("회원가입은 확인")
       goToX("/login");
       // console.log("회원가입후 로그인페이지 자동이동 확인")
     };
     const back = () => {
-
       isShow.value = !isShow.value;
     };
     // 전화번호 자동 하이픈
@@ -110,28 +104,21 @@ export default {
     //   if (joinUserData.value.userPhone === true) {
     //     joinUserData.value.userPhone.replace(/[^0-9]/g, '').replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
     //   }
-    // }4
+    // }
     const by = () => {
       const loginUser = ref(commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO));
-      if (loginUser) {
+      if (loginUser.value !== "") {
         goToX("/");
-      } else {
-        goToX("/signup");
       }
-
-    }
+    };
     by();
     const loginUser = ref(commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO));
     const joinUser = async () => {
-      // console.log("가입 좀 하자: ", joinUserData.value)
-
       const data = await apiClient("/user/join", joinUserData.value);
       // console.log(data.data)
       //console.log(data)
 
-
       // contentData.value = data.data;
-
     };
 
     // watch(() => joinUserData.value.userPhone, () => {
@@ -141,7 +128,6 @@ export default {
 
     onMounted(() => {
       typeSearch();
-
     });
 
     return {
@@ -164,43 +150,31 @@ export default {
 <template>
   <div class="signup">
     <div class="signup-img-fir">
-      <img src="/assets/image/login-camp1.webp" alt=""/>
+      <img src="/assets/image/login-camp1.webp" alt="" />
     </div>
     <div class="signup-img-sec">
-      <img src="/assets/image/login-camp2.webp" alt=""/>
+      <img src="/assets/image/login-camp2.webp" alt="" />
     </div>
 
     <div v-if="isShow" class="signup-form">
-
       <span>캠퍼가 되어봐요!</span>
 
-      <custom-input :placeholder="'이름'"
-                    @update:value="joinUserData.userName = $event"></custom-input>
-      <custom-input :placeholder="'이메일'"
-                    @update:value="joinUserData.userEmail = $event"></custom-input>
-      <custom-input :placeholder="'비밀번호'"
-                    @update:value="joinUserData.userPassword = $event"></custom-input>
-      <custom-input :placeholder="'비밀번호확인'"
-                    @update:value="joinUserData.userPassCheck = $event"></custom-input>
+      <custom-input :placeholder="'이름'" @update:value="joinUserData.userName = $event"></custom-input>
+      <custom-input :placeholder="'이메일'" @update:value="joinUserData.userEmail = $event"></custom-input>
+      <custom-input :placeholder="'비밀번호'" @update:value="joinUserData.userPassword = $event"></custom-input>
+      <custom-input :placeholder="'비밀번호확인'" @update:value="joinUserData.userPassCheck = $event"></custom-input>
       <custom-button :placeholder="'추가정보입력!'" @click="checkForm"></custom-button>
-
     </div>
 
     <div v-if="!isShow" class="signup-form-sec">
-
       <span>캠퍼가 되어봐요!</span>
 
       <!--      <button @click="back" style="position: relative; top: -20px;">뒤로가기버튼</button>-->
-      <custom-input :placeholder="'닉네임'"
-                    @update:value="joinUserData.userNickName = $event"></custom-input>
+      <custom-input :placeholder="'닉네임'" @update:value="joinUserData.userNickName = $event"></custom-input>
 
-      <custom-input :placeholder="'번호'"
-                    @update:value="joinUserData.userPhone = $event"></custom-input>
-      <custom-input :placeholder="'주소'"
-                    @update:value="joinUserData.userAddress = $event"></custom-input>
+      <custom-input :placeholder="'번호'" @update:value="joinUserData.userPhone = $event"></custom-input>
+      <custom-input :placeholder="'주소'" @update:value="joinUserData.userAddress = $event"></custom-input>
       <custom-button :placeholder="'회원가입'" @click="secForm"></custom-button>
-
-
     </div>
   </div>
 </template>

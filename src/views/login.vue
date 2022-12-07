@@ -21,6 +21,16 @@ export default {
     mainPage,
   },
   setup() {
+    const goToY = v => {
+      v ? router.push(v) : window.alert("준비중입니다.");
+    };
+    const by = () => {
+      const loginUser = ref(commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO));
+      if (loginUser.value !== "") {
+        goToY("/");
+      }
+    };
+    by();
     // const test = async () => {
     //   const axiosInstance = axios.create({
     //     timeout: 1000 * 60 * 3,
@@ -28,16 +38,7 @@ export default {
     //   });
     //   const d = await axiosInstance.get('https://apis.data.go.kr/B551011/GoCamping/basedList?MobileOS=ETC&MobileApp=bears&serviceKey=IEdTGqhPUIxJy5mLBtkjPw6g%2BaTd90KXgnnc03HRNuD2NUPhtSQ307ZhzYx3n51j%2FpjYn5Hteigqp1cro1Rg6w%3D%3D')
     // }
-    const goToY = v => {
-      v ? router.push(v) : window.alert("준비중입니다.");
-    };
-    const getout = () => {
-      const loginUser = ref(commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO));
-      if (!loginUser) {
-        goToY("/");
-      }
-    };
-    getout();
+
     const loginUser = ref(commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO));
     const typeSearch = async () => {
       const data = await apiClient("/common/getTypeList", typeSearchData.value);
@@ -103,6 +104,7 @@ export default {
         loginUser.value = commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO);
       },
     );
+
     return {
       userData,
       loginState,
@@ -113,7 +115,6 @@ export default {
       goToX,
       typeSearch,
       loginUser,
-      getout,
     };
   },
 };
