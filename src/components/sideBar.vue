@@ -9,8 +9,10 @@ export default {
   name: "sideBar",
   setup() {
     const flag = ref(false);
-    const userData = ref();
-    const profileImg = ref("assets/image/IU.webp");
+    const userData = ref({
+      file: {},
+    });
+    const profileImg = ref("assets/image/profileImg.webp");
     const isActive = ref(false);
 
     const menuList = [
@@ -37,14 +39,19 @@ export default {
       closePopup();
     };
 
+    const getProfileImg = file => {
+      try {
+        return commonUtil.getImgUrl(file.fileName);
+      } catch (e) {
+        return "/assets/image/profileImg.webp";
+      }
+    };
+
     onMounted(() => {
       flag.value = store.state.sideBar;
       const ud = commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO);
       if (ud) {
         userData.value = commonUtil.parseJson(ud);
-        profileImg.value = commonUtil.getImgUrl(
-          userData.value.file.filter(v => v.fileType === "USER_PROFILE")[0].fileName,
-        );
       }
       setTimeout(() => {
         isActive.value = true;
@@ -70,6 +77,7 @@ export default {
       checkUser,
       goToX,
       closePopup,
+      getProfileImg,
     };
   },
 };
@@ -80,7 +88,7 @@ export default {
       <div class="body" :class="{ active: isActive }" @click.prevent.stop="">
         <i @click="closePopup" class="fa-solid fa-xmark"></i>
         <div class="profile-area">
-          <img :src="profileImg" alt="profileImg" />
+          <img :src="getProfileImg(userData.file[0])" alt="profileImg" />
           <div>{{ userData ? userData.userNickName : "손님" }}</div>
           <i @click="checkUser" class="fa-solid fa-pen"></i>
         </div>

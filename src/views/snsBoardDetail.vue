@@ -159,7 +159,7 @@ export default {
         const data = await apiClient("/sns/deleteSns", { boardIdx: boardIdx.value });
         if (data.resultCode === 0) {
           window.alert("삭제되었습니다.");
-          await router.push("/snsPage");//새로고침
+          await router.push("/snsPage"); //새로고침
         } else {
           window.alert("다시시도해주세요");
         }
@@ -172,7 +172,6 @@ export default {
       const data = await apiClient("/comment/getCommentList", { boardIdx: boardIdx.value });
       if (data.resultCode === 0) {
         commentListData.value = data.data;
-
       } else {
       }
     };
@@ -280,6 +279,15 @@ export default {
         return "./assets/image/camping.webp";
       }
     };
+
+    const getProfileImg = file => {
+      try {
+        return commonUtil.getImgUrl(file.fileName);
+      } catch (e) {
+        return "assets/image/profileImg.webp";
+      }
+    };
+
     onMounted(() => {
       boardIdx.value = route.path.split("/")[3];
       getBoardDetail();
@@ -336,6 +344,7 @@ export default {
       reportPop,
       getImgUrl,
       setDateValue,
+      getProfileImg,
     };
   },
 };
@@ -388,7 +397,7 @@ export default {
         <div class="content-wrap">
           <div class="content-wrap-profile">
             <!--            {{ detailData.userProfile.fileName }}-->
-            <img @click="goTargetFeed(detailData)" :src="getImgUrl(detailData.userProfile[0])" alt="프사" />
+            <img @click="goTargetFeed(detailData)" :src="getProfileImg(detailData.userProfile[0])" alt="프사" />
             <div class="content-wrap-profile-info">
               <div class="follow">
                 <span>{{ detailData.userNickName }}</span>
@@ -438,7 +447,7 @@ export default {
           <div class="state">댓글이 없습니다.</div>
         </div>
         <div class="content-comments" v-for="item in commentListData" v-else>
-          <img :src="item.file ? getImgUrl(item.file[0]) : ''" alt="프사" />
+          <img :src="item.file ? getProfileImg(item.file[0]) : ''" alt="프사" />
           <div class="content-comments-wrap">
             <span>{{ item.userNickName }}</span>
             <p>{{ item.commentBody }}</p>
@@ -467,7 +476,7 @@ export default {
       </div>
     </div>
   </div>
-  <div v-if="reportAction" class="detailBlack" :style="{ body:'overflow: hidden'}">
+  <div v-if="reportAction" class="detailBlack" :style="{ body: 'overflow: hidden' }">
     <report-popup :reportPop="reportPop"></report-popup>
   </div>
 </template>

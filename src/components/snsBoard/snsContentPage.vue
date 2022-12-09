@@ -153,6 +153,14 @@ export default {
       }
     };
 
+    const getProfileImg = file => {
+      try {
+        return commonUtil.getImgUrl(file.fileName);
+      } catch (e) {
+        return "assets/image/profileImg.webp";
+      }
+    };
+
     const getImgUrl = file => {
       try {
         if (file) {
@@ -208,6 +216,7 @@ export default {
       openDetail,
       getContent,
       getImgUrl,
+      getProfileImg,
     };
   },
 };
@@ -240,7 +249,7 @@ export default {
         <div class="profile">
           <div class="profile-wrap">
             <img
-              :src="getImgUrl(item.userProfile.filter(v => v.fileType === 'USER_PROFILE')[0])"
+              :src="getProfileImg(item.userProfile.filter(v => v.fileType === 'USER_PROFILE')[0])"
               alt="프사"
               @click="goTargetFeed(item)"
             />
@@ -260,7 +269,8 @@ export default {
               <span>
                 <i v-if="!item?.likeState[0]" class="fa-regular fa-heart"></i>
                 <i v-else class="fa-solid fa-heart red"></i>
-                {{ item.likeState[0]?.count ? item.likeState[0]?.count : 0 }}</span>
+                {{ item.likeState[0]?.count ? item.likeState[0]?.count : 0 }}</span
+              >
               <span><i class="fa-regular fa-comment"></i> {{ item.commentCount }}</span>
             </div>
             <div class="share" @click="copyUrl">

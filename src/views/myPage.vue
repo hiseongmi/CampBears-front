@@ -38,10 +38,7 @@ export default {
       tabIndex.value = v;
     };
 
-    const profileInfo = ref({
-      profilePicture: "",
-      backgroundPicture: "",
-    }); // 소개에 띄워줄 내용
+    const profileInfo = ref({}); // 소개에 띄워줄 내용
 
     const getMyInfo = async () => {
       const data = await apiClient("user/getMe", {});
@@ -52,6 +49,9 @@ export default {
             if (v.fileType === "USER_PROFILE") profileInfo.value.profileImg = commonUtil.getImgUrl(v.fileName);
             if (v.fileType === "USER_BACKGROUND") profileInfo.value.backgroundImg = commonUtil.getImgUrl(v.fileName);
           });
+        } else {
+          profileInfo.value.profileImg = "/assets/image/profileImg.webp";
+          profileInfo.value.backgroundImg = "/assets/image/backgroundImg.webp";
         }
         commonUtil.setLocalStorage(CONSTANTS.KEY_LIST.USER_INFO, data.data);
       }
@@ -74,11 +74,8 @@ export default {
 <template>
   <div class="myPage">
     <div class="myProfile">
-      <img v-if="profileInfo.backgroundImg" class="backgroundPicture" :src="profileInfo.backgroundImg" alt="" />
-      <div v-else style="background-color: #ffffff" />
-      <img v-if="profileInfo.profileImg" class="profilePicture" :src="profileInfo.profileImg" alt="" />
-      <div v-else style="background-color: #ffffff" />
-
+      <img class="backgroundPicture" :src="profileInfo.backgroundImg" alt="" />
+      <img class="profilePicture" :src="profileInfo.profileImg" alt="" />
       <div class="profileIntroduce">
         <div class="userNickName">{{ profileInfo.userNickName }}</div>
         <div class="userDescription">{{ profileInfo.userDescription }}</div>

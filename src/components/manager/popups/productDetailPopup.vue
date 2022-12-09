@@ -40,7 +40,7 @@ export default {
     });
 
     const tabIndex = ref(0);
-    const userProfile = ref();
+    const userProfile = ref("/assets/image/profileImg.webp");
     const getImgUrl = file => {
       try {
         if (file) {

@@ -190,3 +190,16 @@
     width: 157px;
   }
 }
+
+@media (max-width: 372px) {
+  .used-contents-area .used-contents-area-ul .used-post {
+    width: 138px;
+    margin: 5px;
+  }
+}
+
+@media (max-width: 320px) {
+  .used-contents-area .used-contents-area-ul .used-post {
+    margin: 3px;
+  }
+}

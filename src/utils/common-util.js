@@ -94,16 +94,6 @@ const checkFormToList = (form, msg) => {
 };
 
 /**
- * image url 불러오기
- * @param {string} url
- * @returns {string}
- */
-const getImageUrl = url => {
-  //todo file-server url 연결
-  return "assets/image/profile.jpeg";
-};
-
-/**
  * 타겟의 빈값 체크
  * @param {any} target
  * @returns {boolean}
@@ -134,7 +124,6 @@ export default {
   makeJson,
   parseJson,
   checkForm,
-  getImageUrl,
   isCheckNull,
   logOutUser,
   removeLocalStorage,
