@@ -119,16 +119,7 @@ export default {
     <!--    <div v-for="index in 5">-->
     <!--      <button @click="setRowCount(index + page - 1)">{{ index + page - 1 }}</button>-->
     <!--    </div>-->
-    <div>
-      <button @click="setRowCount(1)">처음으로</button>
-      <button v-if="index + page - 1 > 0" @click="setRowCount(index + page - 1)">뒤로</button>
-      <button v-if="index - 2 + page > 0" @click="setRowCount(index - 2 + page)">{{ index - 2 + page }}</button>
-      <button v-if="index - 1 + page > 0" @click="setRowCount(index - 1 + page)">{{ index - 1 + page }}</button>
-      <button v-if="index + page > 0" @click="setRowCount(index + page)">{{ index + page }}</button>
-      <button v-if="index + 1 + page > 0" @click="setRowCount(index + 1 + page)">{{ index + 1 + page }}</button>
-      <button v-if="index + 2 + page > 0" @click="setRowCount(index + 2 + page)">{{ index + 2 + page }}</button>
-      <button v-if="index + page + 1 > 0" @click="setRowCount(index + page + 1)">앞으로</button>
-    </div>
+
     <h1>campsite</h1>
     <div class="info-body" v-if="dataList && dataList.length > 0">
       <div class="info-item" @click="showDetail(index)" v-for="(item, index) in dataList">
@@ -160,15 +151,18 @@ export default {
           </div>
         </div>
       </div>
-      <div>
+      <div class="page-nation">
         <button @click="setRowCount(1)">처음으로</button>
         <button v-if="index + page - 1 > 0" @click="setRowCount(index + page - 1)">뒤로</button>
-        <button v-if="index - 2 + page > 0" @click="setRowCount(index - 2 + page)">{{ index - 2 + page }}</button>
-        <button v-if="index - 1 + page > 0" @click="setRowCount(index - 1 + page)">{{ index - 1 + page }}</button>
-        <button v-if="index + page > 0" @click="setRowCount(index + page)">{{ index + page }}</button>
-        <button v-if="index + 1 + page > 0" @click="setRowCount(index + 1 + page)">{{ index + 1 + page }}</button>
-        <button v-if="index + 2 + page > 0" @click="setRowCount(index + 2 + page)">{{ index + 2 + page }}</button>
-        <button v-if="index + page + 1 > 0" @click="setRowCount(index + page + 1)">앞으로</button>
+        <button v-if="0 < index - 2 + page" @click="setRowCount(index - 2 + page)">{{ index - 2 + page }}</button>
+        <button v-if="0 < index - 1 + page" @click="setRowCount(index - 1 + page)">{{ index - 1 + page }}</button>
+        <button v-if="index + page > 0" @click="setRowCount(index + page)">
+          <span class="current-page">{{ index + page }}</span>
+        </button>
+        <button v-if="index + 1 + page < 331" @click="setRowCount(index + 1 + page)">{{ index + 1 + page }}</button>
+        <button v-if="index + 2 + page < 331" @click="setRowCount(index + 2 + page)">{{ index + 2 + page }}</button>
+        <button v-if="index + page + 1 < 331" @click="setRowCount(index + page + 1)">앞으로</button>
+        <button @click="setRowCount(331)">끝으로</button>
       </div>
       <a href=""></a>
     </div>
