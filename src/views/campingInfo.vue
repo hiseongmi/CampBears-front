@@ -26,6 +26,7 @@ export default {
     const setRowCount = value => {
       page.value = value;
       getCampInfo();
+      window.scrollTo(0, 0);
     };
 
     const getCampInfo = async () => {
