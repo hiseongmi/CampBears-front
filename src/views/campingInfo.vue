@@ -11,7 +11,7 @@ export default {
   setup() {
     const store = useStore();
 
-    const page = ref(1); //한번에 보여줄 콘텐츠 양
+    const page = ref(1); //페이지 장
 
     const api = axios.create({
       baseURL: "http://apis.data.go.kr/B551011/GoCamping",
@@ -21,27 +21,88 @@ export default {
 
     const index = ref(0);
 
-    const dataList = ref([]);
+    const keyword = ref("");
 
+    const dataList = ref([]);
+    // const dataLList = ref([]);
+    //페이지네이션
     const setRowCount = value => {
       page.value = value;
       getCampInfo();
       window.scrollTo(0, 0);
+      // console.log(dataList.value);
     };
+    // const getCampserch = async () => {
+    //   const e = await api.get(
+    //     // `/basedList?numOfRows=10&pageNo=${page.value}&MobileOS=ECT&MobileApp=bears&serviceKey=IEdTGqhPUIxJy5mLBtkjPw6g%2BaTd90KXgnnc03HRNuD2NUPhtSQ307ZhzYx3n51j%2FpjYn5Hteigqp1cro1Rg6w%3D%3D`,
+    //     `/searchList?numOfRows=1&pageNo=1&MobileOS=ECT&MobileApp=bears&serviceKey=IEdTGqhPUIxJy5mLBtkjPw6g%2BaTd90KXgnnc03HRNuD2NUPhtSQ307ZhzYx3n51j%2FpjYn5Hteigqp1cro1Rg6w%3D%3D&keyword=animalCmgCl`,
+    //   );
+    //   // console.log(e);
+    //   // console.log(e.data.response);
+    //   // console.log(e.data.response.body.items);
+    //   // const data = e.data.response.body.items.item;
+    //
+    //   data.map(v => {
+    //     const dataSet = {
+    //       contentId: v.contentId,
+    //       campingName: v.facltNm,
+    //       campingIntro: v.lineIntro,
+    //       campingManageMode: v.facltDivNm,
+    //       campingTypes: v.induty,
+    //       address: v.addr1,
+    //       mapX: v.mapX,
+    //       mapY: v.mapY,
+    //       tel: v.tel,
+    //       homePageUrl: v.homepage,
+    //       thumbNailUrl: v.firstImageUrl,
+    //       campInnerOption: v.glampInnerFclty,
+    //       campOuterOption: v.sbrsCl,
+    //       getInAnimal: v.animalCmgCl,
+    //       createdDate: v.modifiedtime,
+    //       resveUrl: v.resveUrl,
+    //       doNm: v.doNm,
+    //       // lineIntro: i.getElementsByTagName("lineIntro")[0].innerHTML,
+    //     };
+    //     dataLList.value.push(dataSet);
+    //   });
+    // };
 
     const getCampInfo = async () => {
-      if (dataList.value && dataList.value.length > 0) dataList.value = [];
-      const d = await api.get(
-        // `/basedList?numOfRows=10&pageNo=${page.value}&MobileOS=ECT&MobileApp=bears&serviceKey=IEdTGqhPUIxJy5mLBtkjPw6g%2BaTd90KXgnnc03HRNuD2NUPhtSQ307ZhzYx3n51j%2FpjYn5Hteigqp1cro1Rg6w%3D%3D`,
-        `/basedList?serviceKey=IEdTGqhPUIxJy5mLBtkjPw6g%2BaTd90KXgnnc03HRNuD2NUPhtSQ307ZhzYx3n51j%2FpjYn5Hteigqp1cro1Rg6w%3D%3D&numOfRows=10&pageNo=${page.value}&MobileOS=ETC&MobileApp=AppTest&_type=json`,
-      );
+      if (dataList.value && dataList.value.length > 0) dataList.value = []; //초기화
+      let url = `/basedList?serviceKey=IEdTGqhPUIxJy5mLBtkjPw6g%2BaTd90KXgnnc03HRNuD2NUPhtSQ307ZhzYx3n51j%2FpjYn5Hteigqp1cro1Rg6w%3D%3D&numOfRows=10&pageNo=${page.value}&MobileOS=ETC&MobileApp=AppTest&_type=json`;
+      //
+      if (keyword.value && keyword.value !== "" && keyword.value !== undefined) {
+        url = `/searchList?pageNo=${
+          page.value
+        }&MobileOS=ETC&MobileApp=bears&_type=json&serviceKey=IEdTGqhPUIxJy5mLBtkjPw6g%2BaTd90KXgnnc03HRNuD2NUPhtSQ307ZhzYx3n51j%2FpjYn5Hteigqp1cro1Rg6w%3D%3D&keyword=${encodeURIComponent(
+          "야영장",
+        )}`;
+      }
+      // console.log(url);
+      const d = await api.get(url);
+
       //https://apis.data.go.kr/B551011/GoCamping/basedList?serviceKey=IEdTGqhPUIxJy5mLBtkjPw6g%2BaTd90KXgnnc03HRNuD2NUPhtSQ307ZhzYx3n51j%2FpjYn5Hteigqp1cro1Rg6w%3D%3D&numOfRows=10&pageNo=1&MobileOS=ETC&MobileApp=AppTest&_type=json
       // console.log(d);
       // console.log(d.data.response);
-      // console.log(d.data.response.body.items);
+
+      // console.log(dataList.value);
       // if (d.data.response.body.items && d.data.response.body.items.length > 0) {
+
       const data = d.data.response.body.items.item;
+      // function filterNum(tel) {
+      //   return eventNumbers.filter(function (x) {
+      //     return x.data[i].include(tel);
+      //   });
+      // }
+      // console.log(filterNum("033-435-1199"));
       // console.log(data);
+
+      // const result = dataList.value[i].tel.filter(dataList.value[i] => dataList.value[i].tel === "033-435-1199");
+      // console.log(result);
+      // for (let i = 0; i <= 9; i++) {
+
+      // console.log(dataList.value[i].tel);
+      // }
 
       data.map(v => {
         const dataSet = {
@@ -60,38 +121,62 @@ export default {
           campOuterOption: v.sbrsCl,
           getInAnimal: v.animalCmgCl,
           createdDate: v.modifiedtime,
+          resveUrl: v.resveUrl,
+          doNm: v.doNm,
           // lineIntro: i.getElementsByTagName("lineIntro")[0].innerHTML,
         };
+        // console.log(dataList.value.push(dataSet));
         dataList.value.push(dataSet);
-      });
 
-      // }
-      // const xmlParser = new DOMParser();
-      // const par = xmlParser.parseFromString(d.data, "text/xml");
-      // const t = par.getElementsByTagName("items");
-      // for (const item of t) {
-      //   for (const i of item.children) {
-      //     const dataSet = {
-      //       contentId: i.getElementsByTagName("contentId")[0].innerHTML,
-      //       campingName: i.getElementsByTagName("facltNm")[0].innerHTML,
-      //       campingIntro: i.getElementsByTagName("lineIntro")[0].innerHTML,
-      //       campingManageMode: i.getElementsByTagName("facltDivNm")[0].innerHTML,
-      //       campingTypes: i.getElementsByTagName("induty")[0].innerHTML,
-      //       address: i.getElementsByTagName("addr1")[0].innerHTML,
-      //       mapX: i.getElementsByTagName("mapX")[0].innerHTML,
-      //       mapY: i.getElementsByTagName("mapY")[0].innerHTML,
-      //       tel: i.getElementsByTagName("tel")[0].innerHTML,
-      //       homePageUrl: i.getElementsByTagName("homepage")[0].innerHTML,
-      //       thumbNailUrl: i.getElementsByTagName("firstImageUrl")[0].innerHTML,
-      //       campInnerOption: i.getElementsByTagName("glampInnerFclty")[0].innerHTML,
-      //       campOuterOption: i.getElementsByTagName("sbrsCl")[0].innerHTML,
-      //       getInAnimal: i.getElementsByTagName("animalCmgCl")[0].innerHTML,
-      //       createdDate: i.getElementsByTagName("modifiedtime")[0].innerHTML,
-      //       // lineIntro: i.getElementsByTagName("lineIntro")[0].innerHTML,
-      //     };
-      //     dataList.value.push(dataSet);
-      //   }
-      // }
+        //fillter
+        // const eventNumbers = [];
+        // dataList.value.map(v => {
+        //   if (dataList.value && dataList.value.length > 0) dataList.value = [];
+        //   if (v.getInAnimal === "가능") {
+        //     dataList.value.push(dataSet);
+        //     eventNumbers.push(dataSet);
+        //     console.log(eventNumbers);
+        //   }
+        // });
+      });
+    };
+    const startTest = async () => {
+      if (dataList.value && dataList.value.length > 0) dataList.value = []; //초기화
+      let url = `/basedList?serviceKey=IEdTGqhPUIxJy5mLBtkjPw6g%2BaTd90KXgnnc03HRNuD2NUPhtSQ307ZhzYx3n51j%2FpjYn5Hteigqp1cro1Rg6w%3D%3D&numOfRows=10&pageNo=${page.value}&MobileOS=ETC&MobileApp=AppTest&_type=json`;
+      //
+      if (keyword.value && keyword.value !== "" && keyword.value !== undefined) {
+        // url = `/searchList?pageNo=1&MobileOS=ETC&MobileApp=bears&_type=json&serviceKey=IEdTGqhPUIxJy5mLBtkjPw6g%2BaTd90KXgnnc03HRNuD2NUPhtSQ307ZhzYx3n51j%2FpjYn5Hteigqp1cro1Rg6w%3D%3D&keyword=%EC%95%BC%EC%98%81%EC%9E%A5`;
+      }
+      console.log(url);
+      const d = await api.get(url);
+      console.log(d);
+      if (d.data.response && d.data.response.body) {
+        const data = d.data.response.body.items.item;
+        data.map(v => {
+          const dataSet = {
+            contentId: v.contentId,
+            campingName: v.facltNm,
+            campingIntro: v.lineIntro,
+            campingManageMode: v.facltDivNm,
+            campingTypes: v.induty,
+            address: v.addr1,
+            mapX: v.mapX,
+            mapY: v.mapY,
+            tel: v.tel,
+            homePageUrl: v.homepage,
+            thumbNailUrl: v.firstImageUrl,
+            campInnerOption: v.glampInnerFclty,
+            campOuterOption: v.sbrsCl,
+            getInAnimal: v.animalCmgCl,
+            createdDate: v.modifiedtime,
+            resveUrl: v.resveUrl,
+            doNm: v.doNm,
+            // lineIntro: i.getElementsByTagName("lineIntro")[0].innerHTML,
+          };
+          // console.log(dataList.value.push(dataSet));
+          dataList.value.push(dataSet);
+        });
+      }
     };
 
     const showDetail = index => {
@@ -100,6 +185,23 @@ export default {
       store.commit(STORE_TYPE.popupType, POPUP_TYPE.DETAIL_CAMPING);
     };
 
+    const setKeyword = k => {
+      keyword.value = k;
+      getCampInfo();
+    };
+
+    //테스트존
+    const filterItems = () => {
+      return dataList.value.filter(value => (value = `카라반`));
+    };
+
+    /**
+     *
+     * @type {{value : Array}}
+     */
+    // const setDataList = (value = {});
+
+    //
     onMounted(() => {
       getCampInfo();
       // getCampInfo();
@@ -110,6 +212,11 @@ export default {
       setRowCount,
       page,
       index,
+      filterItems,
+      startTest,
+      setKeyword,
+
+      // getCampserch,
       // goLink,
     };
   },
@@ -122,7 +229,48 @@ export default {
     <!--    </div>-->
 
     <h1>campsite</h1>
+    <div class="main-icon">
+      <a>
+        <img src="/assets/image/icon/categoryTent.webp" alt="" />
+        <span>텐트</span>
+      </a>
+
+      <a>
+        <img src="/assets/image/icon/categoryCaravane.webp" alt="" />
+        <span>카라반</span>
+      </a>
+
+      <a href="">
+        <img src="/assets/image/icon/categoryGlamping.webp" alt="" />
+        <span>글램핑</span>
+      </a>
+
+      <a href="">
+        <img src="/assets/image/icon/categoryAutoCamping.webp" alt="" />
+        <span>오토캠핑</span>
+      </a>
+
+      <a @click="setKeyword('가능')">
+        <!--        <button >카라반버튼</button>-->
+        <img src="/assets/image/icon/categoryPet.webp" alt="" />
+        <span>반려동물</span>
+      </a>
+
+      <a href="">
+        <img src="/assets/image/icon/categoryKids.webp" alt="" />
+        <span>키즈</span>
+      </a>
+
+      <a href="">
+        <img src="/assets/image/icon/categoryCampnic.webp" alt="" />
+        <span>캠프닉</span>
+      </a>
+    </div>
     <div class="info-body" v-if="dataList && dataList.length > 0">
+      <div class="search-wrapper">
+        <input type="text" placeholder="검색" />
+        <button @click="setKeyword">버튼</button>
+      </div>
       <div class="info-item" @click="showDetail(index)" v-for="(item, index) in dataList">
         <a :href="item.homePageUrl" class="item-front">
           <div class="camp-type">
@@ -149,6 +297,13 @@ export default {
             <div class="info-ph">
               <span>전화번호 : {{ item.tel }}</span>
             </div>
+
+            <div class="info-ph">
+              <span>{{ item.getInAnimal }} </span>
+            </div>
+            <div class="info-ph">
+              <span>지역 : {{ item.doNm }} </span>
+            </div>
           </div>
         </div>
       </div>
@@ -160,9 +315,9 @@ export default {
         <button v-if="index + page > 0" @click="setRowCount(index + page)">
           <span class="current-page">{{ index + page }}</span>
         </button>
-        <button v-if="index + 1 + page < 331" @click="setRowCount(index + 1 + page)">{{ index + 1 + page }}</button>
-        <button v-if="index + 2 + page < 331" @click="setRowCount(index + 2 + page)">{{ index + 2 + page }}</button>
-        <button v-if="index + page + 1 < 331" @click="setRowCount(index + page + 1)">앞으로</button>
+        <button v-if="index + 1 + page < 332" @click="setRowCount(index + 1 + page)">{{ index + 1 + page }}</button>
+        <button v-if="index + 2 + page < 332" @click="setRowCount(index + 2 + page)">{{ index + 2 + page }}</button>
+        <button v-if="index + page + 1 < 332" @click="setRowCount(index + page + 1)">앞으로</button>
         <button @click="setRowCount(331)">끝으로</button>
       </div>
       <a href=""></a>

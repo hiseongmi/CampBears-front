@@ -11,7 +11,7 @@
 }
 
 *::-webkit-scrollbar-track {
-  background: rgba(33, 122, 244, .1); /*스크롤바 뒷 배경 색상*/
+  background: rgba(33, 122, 244, 0.1); /*스크롤바 뒷 배경 색상*/
   width: 10%;
 }
 
@@ -904,7 +904,6 @@
     }
   }
 
-
   .used-market-box {
     max-width: 1100px;
     width: 100%;
@@ -943,7 +942,7 @@
       }
 
       .used-contents-area-ul::-webkit-scrollbar-track {
-        background: rgba(33, 122, 244, .1); /*스크롤바 뒷 배경 색상*/
+        background: rgba(33, 122, 244, 0.1); /*스크롤바 뒷 배경 색상*/
       }
 
       .used-contents-area-ul {
@@ -995,10 +994,12 @@
       }
 
       .camp-info {
+        .main-icon {
+          display: none;
+        }
         h1 {
           display: none;
         }
-
 
         .info-body::-webkit-scrollbar {
           width: 1px; /* 스크롤바의 너비 */
@@ -1012,11 +1013,14 @@
         }
 
         .info-body::-webkit-scrollbar-track {
-          background: rgba(33, 122, 244, .1); /*스크롤바 뒷 배경 색상*/
+          background: rgba(33, 122, 244, 0.1); /*스크롤바 뒷 배경 색상*/
           width: 10%;
         }
 
         .info-body {
+          .page-nation {
+            //display: none;
+          }
           display: flex;
           justify-content: flex-start;
           flex-direction: row;
@@ -1094,7 +1098,6 @@
     position: fixed;
     width: 100%;
     height: 100vh;
-
 
     img {
       position: absolute;

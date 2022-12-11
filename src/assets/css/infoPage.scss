@@ -955,6 +955,36 @@
       color: #818181;
       padding: 7%;
     }
+    .main-icon {
+      max-width: 1200px;
+      width: 100%;
+      //padding-top: 47px;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      padding-bottom: 56px;
+
+      @include mb() {
+        padding-top: unset;
+        justify-content: center;
+      }
+
+      a {
+        text-decoration: none;
+        color: #000000;
+        position: relative;
+        padding: 0 2%;
+        @include mb() {
+          padding: 3%;
+        }
+      }
+
+      span {
+        display: flex;
+        inline-size: -webkit-fill-available;
+        justify-content: center;
+      }
+    }
 
     .info-body {
       text-align: center;

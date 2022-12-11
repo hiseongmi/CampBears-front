@@ -8,7 +8,9 @@
   .info-body {
     align-items: center;
     width: calc(100%);
-
+    .search-wrapper {
+      padding-bottom: 40px;
+    }
     .info-item {
       position: relative;
       width: 25%;
