@@ -226,7 +226,7 @@ export default {
       <span>자신의 캠핑스타일 자랑해보세요</span>
     </div>
     <div class="main-sns">
-      <sns-page></sns-page>
+      <sns-page />
     </div>
     <!--    <button class="view-all" @click="goToX('/snsPage')">더보기</button>-->
 
@@ -247,13 +247,12 @@ export default {
       <h1>파도소리 들리는 감성 캠핑</h1>
       <h2>한번쯤은 꼭 가볼만한 캠핑장! 추천해요~</h2>
       <div class="bot">
-        <info-page></info-page>
-        <button @click="setRowCount(331)">끝으로</button>
+        <info-page />
       </div>
     </div>
     <div id="intro" v-if="showIntro">
       <img src="/assets/image/bus.jpg" alt="intro" />
-      <div class="shadow"></div>
+      <div class="shadow" />
       <div class="content">
         <img src="/assets/image/logo.png" alt="logo" />
         <div>CAMP BEARS</div>

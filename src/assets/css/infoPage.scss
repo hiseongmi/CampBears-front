@@ -951,9 +951,9 @@
   margin: 0 auto;
   color: #cccccc;
   border-top: solid 2px;
+  min-height: 800px;
 
   .camp-info {
-
     h1 {
       color: #818181;
       padding: 7%;
@@ -982,12 +982,10 @@
       flex-wrap: wrap;
       padding-bottom: 56px;
 
-
       @include mb() {
         padding-top: unset;
         justify-content: center;
       }
-
 
       a {
         text-decoration: none;
@@ -996,14 +994,12 @@
         padding: 20px;
 
         img:hover {
-
         }
-        img:active {
 
+        img:active {
           position: relative;
           top: 4px;
         }
-
 
         img {
           cursor: pointer;
@@ -1085,7 +1081,7 @@
               padding: 2%;
 
               span {
-                color: #3F4254;
+                color: #3f4254;
               }
             }
 
@@ -1094,7 +1090,7 @@
               padding: 2%;
 
               span {
-                color: #3F4254;
+                color: #3f4254;
               }
             }
 
@@ -1104,7 +1100,7 @@
               text-align: center;
 
               span {
-                color: #3F4254;
+                color: #3f4254;
               }
             }
           }

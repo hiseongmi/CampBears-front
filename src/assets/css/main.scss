@@ -983,7 +983,17 @@
 
       .info-camp {
         border: none;
+
+        .info-content .camp-info {
+          .te,
+          input,
+          .selec,
+          .page-nation {
+            display: none;
+          }
+        }
       }
+      
 
       .info-main {
         display: none;
@@ -997,6 +1007,7 @@
         .main-icon {
           display: none;
         }
+
         h1 {
           display: none;
         }
@@ -1021,6 +1032,7 @@
           .page-nation {
             //display: none;
           }
+
           display: flex;
           justify-content: flex-start;
           flex-direction: row;
