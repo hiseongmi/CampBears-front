@@ -186,11 +186,7 @@ export default {
       store.commit(STORE_TYPE.popupType, POPUP_TYPE.DETAIL_CAMPING);
     };
 
-    const setKeyword = k => {
-      keyword.value = k;
-      console.log(k)
-      getCampInfo();
-    };
+
     const reSet = () => {
       location.reload(true);
     }
@@ -200,23 +196,12 @@ export default {
       document.getElementById("keyword").value = "";
     }
 
-    function searchPlaces() {
-      const keyword = document.getElementById("keyword").value;
-      // console.log(keyword);
-
-      if (!keyword.replace(/^\s+|\s+$/g, "")) {
-        alert("키워드를 입력해주세요!");
-        return false;
-      }
-
-      // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
-      setKeyword(keyword.value);
-    }
 
     /**
      *
      * @type {{value : Array}}
      */
+
     // const setDataList = (value = {});
     function myFunction() {
 
@@ -224,10 +209,15 @@ export default {
 
 
       console.log(k.value);
-      setKeyword()
+      setKeyword(k)
 
     }
 
+    const setKeyword = k => {
+      keyword.value = k;
+      console.log(k)
+      getCampInfo();
+    };
     //
     onMounted(() => {
       getCampInfo();
