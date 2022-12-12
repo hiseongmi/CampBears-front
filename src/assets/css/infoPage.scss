@@ -425,6 +425,7 @@
       float: left;
     }
   }
+
   .info-box {
     display: flex;
     justify-content: center;
@@ -443,6 +444,7 @@
       }
     }
   }
+
   .map-box {
     position: relative;
     text-align: -webkit-center;
@@ -951,29 +953,62 @@
   border-top: solid 2px;
 
   .camp-info {
+
     h1 {
       color: #818181;
       padding: 7%;
     }
+
+    .te {
+      color: #fa6c1a;
+      font-size: 40px;
+      padding: 30px;
+    }
+
+    .selec {
+      padding-bottom: 2%;
+      color: #3F4254;
+    }
+
+    .ser {
+      margin: 30px;
+    }
+
     .main-icon {
       max-width: 1200px;
       width: 100%;
-      //padding-top: 47px;
       display: flex;
-      justify-content: space-around;
+      justify-content: center;
       flex-wrap: wrap;
       padding-bottom: 56px;
+
 
       @include mb() {
         padding-top: unset;
         justify-content: center;
       }
 
+
       a {
         text-decoration: none;
         color: #000000;
         position: relative;
-        padding: 0 2%;
+        padding: 20px;
+
+        img:hover {
+
+        }
+        img:active {
+
+          position: relative;
+          top: 4px;
+        }
+
+
+        img {
+          cursor: pointer;
+        }
+
         @include mb() {
           padding: 3%;
         }
@@ -1000,6 +1035,7 @@
         width: 33%;
         display: inline-block;
         text-align: center;
+
         a:hover {
           img:hover {
             //opacity: 0.5;
@@ -1049,7 +1085,7 @@
               padding: 2%;
 
               span {
-                color: $gray;
+                color: #3F4254;
               }
             }
 
@@ -1058,7 +1094,7 @@
               padding: 2%;
 
               span {
-                color: $gray;
+                color: #3F4254;
               }
             }
 
@@ -1066,12 +1102,14 @@
               position: relative;
               padding: 2%;
               text-align: center;
+
               span {
-                color: $gray;
+                color: #3F4254;
               }
             }
           }
         }
+
         .camp-type {
           span {
             font-size: 13px;

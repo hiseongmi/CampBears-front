@@ -1,12 +1,13 @@
 <script>
-import { onMounted, ref } from "vue";
+import {onMounted, ref} from "vue";
 import axios from "axios";
-import store, { POPUP_TYPE, STORE_TYPE } from "../store/index.js";
-import { useStore } from "vuex";
+import store, {POPUP_TYPE, STORE_TYPE} from "../store/index.js";
+import {useStore} from "vuex";
+import customInput from "../components/layout/customInput.vue";
 
 export default {
   name: "campingInfo",
-  components: {},
+  components: {customInput},
 
   setup() {
     const store = useStore();
@@ -16,13 +17,15 @@ export default {
     const api = axios.create({
       baseURL: "http://apis.data.go.kr/B551011/GoCamping",
       timeout: 1000 * 60 * 3,
-      headers: { "content-type": "Json" },
+      headers: {"content-type": "Json"},
     });
+    //로딩바
+    // api.interceptors.request.use(())
 
     const index = ref(0);
 
     const keyword = ref("");
-
+    const value = ref("");
     const dataList = ref([]);
     // const dataLList = ref([]);
     //페이지네이션
@@ -73,10 +76,8 @@ export default {
       //
       if (keyword.value && keyword.value !== "" && keyword.value !== undefined) {
         url = `/searchList?pageNo=${
-          page.value
-        }&MobileOS=ETC&MobileApp=bears&_type=json&serviceKey=IEdTGqhPUIxJy5mLBtkjPw6g%2BaTd90KXgnnc03HRNuD2NUPhtSQ307ZhzYx3n51j%2FpjYn5Hteigqp1cro1Rg6w%3D%3D&keyword=${encodeURIComponent(
-          "야영장",
-        )}`;
+            page.value
+        }&MobileOS=ETC&MobileApp=bears&_type=json&serviceKey=IEdTGqhPUIxJy5mLBtkjPw6g%2BaTd90KXgnnc03HRNuD2NUPhtSQ307ZhzYx3n51j%2FpjYn5Hteigqp1cro1Rg6w%3D%3D&keyword=${encodeURIComponent(keyword.value)}`;
       }
       // console.log(url);
       const d = await api.get(url);
@@ -140,44 +141,44 @@ export default {
         // });
       });
     };
-    const startTest = async () => {
-      if (dataList.value && dataList.value.length > 0) dataList.value = []; //초기화
-      let url = `/basedList?serviceKey=IEdTGqhPUIxJy5mLBtkjPw6g%2BaTd90KXgnnc03HRNuD2NUPhtSQ307ZhzYx3n51j%2FpjYn5Hteigqp1cro1Rg6w%3D%3D&numOfRows=10&pageNo=${page.value}&MobileOS=ETC&MobileApp=AppTest&_type=json`;
-      //
-      if (keyword.value && keyword.value !== "" && keyword.value !== undefined) {
-        // url = `/searchList?pageNo=1&MobileOS=ETC&MobileApp=bears&_type=json&serviceKey=IEdTGqhPUIxJy5mLBtkjPw6g%2BaTd90KXgnnc03HRNuD2NUPhtSQ307ZhzYx3n51j%2FpjYn5Hteigqp1cro1Rg6w%3D%3D&keyword=%EC%95%BC%EC%98%81%EC%9E%A5`;
-      }
-      console.log(url);
-      const d = await api.get(url);
-      console.log(d);
-      if (d.data.response && d.data.response.body) {
-        const data = d.data.response.body.items.item;
-        data.map(v => {
-          const dataSet = {
-            contentId: v.contentId,
-            campingName: v.facltNm,
-            campingIntro: v.lineIntro,
-            campingManageMode: v.facltDivNm,
-            campingTypes: v.induty,
-            address: v.addr1,
-            mapX: v.mapX,
-            mapY: v.mapY,
-            tel: v.tel,
-            homePageUrl: v.homepage,
-            thumbNailUrl: v.firstImageUrl,
-            campInnerOption: v.glampInnerFclty,
-            campOuterOption: v.sbrsCl,
-            getInAnimal: v.animalCmgCl,
-            createdDate: v.modifiedtime,
-            resveUrl: v.resveUrl,
-            doNm: v.doNm,
-            // lineIntro: i.getElementsByTagName("lineIntro")[0].innerHTML,
-          };
-          // console.log(dataList.value.push(dataSet));
-          dataList.value.push(dataSet);
-        });
-      }
-    };
+    // const startTest = async () => {
+    //   if (dataList.value && dataList.value.length > 0) dataList.value = []; //초기화
+    //   let url = `/basedList?serviceKey=IEdTGqhPUIxJy5mLBtkjPw6g%2BaTd90KXgnnc03HRNuD2NUPhtSQ307ZhzYx3n51j%2FpjYn5Hteigqp1cro1Rg6w%3D%3D&numOfRows=10&pageNo=${page.value}&MobileOS=ETC&MobileApp=AppTest&_type=json`;
+    //   //
+    //   if (keyword.value && keyword.value !== "" && keyword.value !== undefined) {
+    //     // url = `/searchList?pageNo=1&MobileOS=ETC&MobileApp=bears&_type=json&serviceKey=IEdTGqhPUIxJy5mLBtkjPw6g%2BaTd90KXgnnc03HRNuD2NUPhtSQ307ZhzYx3n51j%2FpjYn5Hteigqp1cro1Rg6w%3D%3D&keyword=%EC%95%BC%EC%98%81%EC%9E%A5`;
+    //   }
+    //   console.log(url);
+    //   const d = await api.get(url);
+    //   console.log(d);
+    //   if (d.data.response && d.data.response.body) {
+    //     const data = d.data.response.body.items.item;
+    //     data.map(v => {
+    //       const dataSet = {
+    //         contentId: v.contentId,
+    //         campingName: v.facltNm,
+    //         campingIntro: v.lineIntro,
+    //         campingManageMode: v.facltDivNm,
+    //         campingTypes: v.induty,
+    //         address: v.addr1,
+    //         mapX: v.mapX,
+    //         mapY: v.mapY,
+    //         tel: v.tel,
+    //         homePageUrl: v.homepage,
+    //         thumbNailUrl: v.firstImageUrl,
+    //         campInnerOption: v.glampInnerFclty,
+    //         campOuterOption: v.sbrsCl,
+    //         getInAnimal: v.animalCmgCl,
+    //         createdDate: v.modifiedtime,
+    //         resveUrl: v.resveUrl,
+    //         doNm: v.doNm,
+    //         // lineIntro: i.getElementsByTagName("lineIntro")[0].innerHTML,
+    //       };
+    //       // console.log(dataList.value.push(dataSet));
+    //       dataList.value.push(dataSet);
+    //     });
+    //   }
+    // };
 
     const showDetail = index => {
       // console.log(dataSet);
@@ -187,19 +188,45 @@ export default {
 
     const setKeyword = k => {
       keyword.value = k;
+      console.log(k)
       getCampInfo();
     };
+    const reSet = () => {
+      location.reload(true);
+    }
 
     //테스트존
-    const filterItems = () => {
-      return dataList.value.filter(value => (value = `카라반`));
-    };
+    function test() {
+      document.getElementById("keyword").value = "";
+    }
+
+    function searchPlaces() {
+      const keyword = document.getElementById("keyword").value;
+      // console.log(keyword);
+
+      if (!keyword.replace(/^\s+|\s+$/g, "")) {
+        alert("키워드를 입력해주세요!");
+        return false;
+      }
+
+      // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
+      setKeyword(keyword.value);
+    }
 
     /**
      *
      * @type {{value : Array}}
      */
     // const setDataList = (value = {});
+    function myFunction() {
+
+      let k = document.getElementById("input").value;
+
+
+      console.log(k.value);
+      setKeyword()
+
+    }
 
     //
     onMounted(() => {
@@ -212,10 +239,12 @@ export default {
       setRowCount,
       page,
       index,
-      filterItems,
-      startTest,
+      // startTest,
+      myFunction,
       setKeyword,
-
+      getCampInfo,
+      reSet,
+      test,
       // getCampserch,
       // goLink,
     };
@@ -228,49 +257,54 @@ export default {
     <!--      <button @click="setRowCount(index + page - 1)">{{ index + page - 1 }}</button>-->
     <!--    </div>-->
 
-    <h1>campsite</h1>
-    <div class="main-icon">
-      <a>
-        <img src="/assets/image/icon/categoryTent.webp" alt="" />
-        <span>텐트</span>
-      </a>
+    <!--    <h1>campsite</h1>-->
+    <span class="te">캠핑테마</span>
 
-      <a>
-        <img src="/assets/image/icon/categoryCaravane.webp" alt="" />
+    <!--    <input type="text" @input="onchange($event)">-->
+    <input id="input" type="text" @input="myFunction()">
+    <span class="selec">테마를 선택해주세요!</span>
+    <div class="main-icon">
+      <!--      <a @click="setKeyword('텐트')">-->
+      <!--        <img src="/assets/image/icon/categoryTent.webp" alt=""/>-->
+      <!--        <span>텐트</span>-->
+      <!--      </a>-->
+
+
+      <a @click="setKeyword('카라반')">
+        <img src="/assets/image/icon/categoryCaravane.webp" alt=""/>
         <span>카라반</span>
       </a>
 
-      <a href="">
-        <img src="/assets/image/icon/categoryGlamping.webp" alt="" />
+      <a @click="setKeyword('글램핑')">
+        <img src="/assets/image/icon/categoryGlamping.webp" alt=""/>
         <span>글램핑</span>
       </a>
 
-      <a href="">
-        <img src="/assets/image/icon/categoryAutoCamping.webp" alt="" />
+      <a @click="setKeyword('오토캠핑')">
+        <img src="/assets/image/icon/categoryAutoCamping.webp" alt=""/>
         <span>오토캠핑</span>
       </a>
 
-      <a @click="setKeyword('가능')">
-        <!--        <button >카라반버튼</button>-->
-        <img src="/assets/image/icon/categoryPet.webp" alt="" />
-        <span>반려동물</span>
-      </a>
+      <!--      <a>-->
+      <!--        &lt;!&ndash;        <button >카라반버튼</button>&ndash;&gt;-->
+      <!--        <img src="/assets/image/icon/categoryPet.webp" alt=""/>-->
+      <!--        <span>반려동물</span>-->
+      <!--      </a>-->
 
-      <a href="">
-        <img src="/assets/image/icon/categoryKids.webp" alt="" />
+      <a @click="setKeyword('키즈')">
+        <img src="/assets/image/icon/categoryKids.webp" alt=""/>
         <span>키즈</span>
       </a>
 
-      <a href="">
-        <img src="/assets/image/icon/categoryCampnic.webp" alt="" />
-        <span>캠프닉</span>
-      </a>
+      <!--      <a @click="setKeyword('캠프닉')">-->
+      <!--        <img src="/assets/image/icon/categoryCampnic.webp" alt=""/>-->
+      <!--        <span>캠프닉</span>-->
+      <!--      </a>-->
     </div>
     <div class="info-body" v-if="dataList && dataList.length > 0">
-      <div class="search-wrapper">
-        <input type="text" placeholder="검색" />
-        <button @click="setKeyword">버튼</button>
-      </div>
+      <!--      <div class="search-wrapper">-->
+
+      <!--      </div>-->
       <div class="info-item" @click="showDetail(index)" v-for="(item, index) in dataList">
         <a :href="item.homePageUrl" class="item-front">
           <div class="camp-type">
@@ -279,7 +313,7 @@ export default {
             </span>
           </div>
           <img :src="item.thumbNailUrl ? item.thumbNailUrl : 'assets/image/backgroundImg.webp'" alt="main"
-        /></a>
+          /></a>
 
         <div class="camp-list">
           <div class="name">{{ item.campingName }}</div>
@@ -298,18 +332,21 @@ export default {
               <span>전화번호 : {{ item.tel }}</span>
             </div>
 
-            <div class="info-ph">
-              <span>{{ item.getInAnimal }} </span>
-            </div>
-            <div class="info-ph">
-              <span>지역 : {{ item.doNm }} </span>
-            </div>
+            <!--            <div class="info-ph">-->
+            <!--              <span>{{ item.getInAnimal }} </span>-->
+            <!--            </div>-->
+            <!--            <div class="info-ph">-->
+            <!--              <span>지역 : {{ item.doNm }} </span>-->
+            <!--            </div>-->
           </div>
         </div>
       </div>
       <div class="page-nation">
-        <button @click="setRowCount(1)">처음으로</button>
-        <button v-if="index + page - 1 > 0" @click="setRowCount(index + page - 1)">뒤로</button>
+        <!--        <button @click="setRowCount(1)"><i class="fa-solid fa-angles-left"></i></button>-->
+        <button v-if="index + page - 10 > 0" @click="setRowCount(index + page - 10)"><i
+            class="fa-solid fa-angles-left"></i></button>
+        <button v-if="index + page - 1 > 0" @click="setRowCount(index + page - 1)"><i
+            class="fa-solid fa-angle-left"></i></button>
         <button v-if="0 < index - 2 + page" @click="setRowCount(index - 2 + page)">{{ index - 2 + page }}</button>
         <button v-if="0 < index - 1 + page" @click="setRowCount(index - 1 + page)">{{ index - 1 + page }}</button>
         <button v-if="index + page > 0" @click="setRowCount(index + page)">
@@ -317,11 +354,15 @@ export default {
         </button>
         <button v-if="index + 1 + page < 332" @click="setRowCount(index + 1 + page)">{{ index + 1 + page }}</button>
         <button v-if="index + 2 + page < 332" @click="setRowCount(index + 2 + page)">{{ index + 2 + page }}</button>
-        <button v-if="index + page + 1 < 332" @click="setRowCount(index + page + 1)">앞으로</button>
-        <button @click="setRowCount(331)">끝으로</button>
+        <button v-if="index + page + 1 < 332" @click="setRowCount(index + page + 1)"><i
+            class="fa-solid fa-angle-right"></i></button>
+        <button v-if="index + page + 10 < 332" @click="setRowCount(index + page + 10)"><i
+            class="fa-solid fa-angles-right"></i></button>
+        <!--        <button @click="setRowCount(331)"><i class="fa-solid fa-angles-right"></i></button>-->
       </div>
-      <a href=""></a>
+      <!--      <a href=""></a>-->
     </div>
-    <div v-else>데이터를 불러오는 중...</div>
+    <div v-else>...데이터를 불러오는 중...</div>
+
   </section>
 </template>

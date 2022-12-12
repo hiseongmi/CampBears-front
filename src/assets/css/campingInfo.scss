@@ -8,9 +8,11 @@
   .info-body {
     align-items: center;
     width: calc(100%);
+
     .search-wrapper {
       padding-bottom: 40px;
     }
+
     .info-item {
       position: relative;
       width: 25%;
@@ -45,7 +47,14 @@
         //border: 1px solid black;
       }
     }
+
     .page-nation {
+      button {
+        background: none;
+        border: none;
+        cursor: pointer;
+      }
+
       .current-page {
         color: $primary-color;
       }
