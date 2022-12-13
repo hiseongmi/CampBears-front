@@ -53,6 +53,11 @@ const routes = [
     component: () => import("../views/campingInfo.vue"),
   },
   {
+    path: "/camping/detail",
+    name: "campingDetail",
+    component: () => import("../views/campingDetail.vue"),
+  },
+  {
     path: "/userFeed/:userIdx",
     name: "userFeed",
     component: () => import("../views/userFeed.vue"),
