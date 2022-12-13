@@ -12,6 +12,7 @@
   }
 
   .modal {
+
     position: fixed;
     @include mb() {
       z-index: 1;

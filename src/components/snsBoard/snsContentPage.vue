@@ -1,15 +1,15 @@
 <script>
 import Profile from "./profile.vue";
 import postImage from "../../data/postImage.js";
-import store, { POPUP_TYPE, STORE_TYPE } from "../../store/index.js";
-import { computed, onMounted, onUnmounted, ref } from "vue";
-import { apiClient } from "../../utils/axios.js";
+import store, {POPUP_TYPE, STORE_TYPE} from "../../store/index.js";
+import {computed, onMounted, onUnmounted, ref} from "vue";
+import {apiClient} from "../../utils/axios.js";
 import customSelect from "../layout/customSelect.vue";
 import Pagination from "../layout/customPagination.vue";
 import LoginNaver from "../snslogin/loginNaver.vue";
 import customButton from "../layout/customButton.vue";
 import commonUtil from "../../utils/common-util.js";
-import { CONSTANTS } from "../../constants.js";
+import {CONSTANTS} from "../../constants.js";
 import router from "../../router/index.js";
 
 export default {
@@ -44,49 +44,49 @@ export default {
     };
 
     const selectSortData = [
-      { key: "정렬", value: "정렬" },
+      {key: "정렬", value: "정렬"},
       // { key: "좋아요순", value: "좋아요순" },
       // { key: "조회수순", value: "조회수순" },
       // { key: "댓글순", value: "댓글순" },
-      { key: SORT_TYPE.RECENT, value: "최근순" },
-      { key: SORT_TYPE.LONG, value: "오래된순" },
+      {key: SORT_TYPE.RECENT, value: "최근순"},
+      {key: SORT_TYPE.LONG, value: "오래된순"},
       // { key: "가나다순", value: "가나다순" },
     ];
     const selectSeasonData = [
-      { key: "season", value: "계절" },
-      { key: "spring", value: "봄" },
-      { key: "summer", value: "여름" },
-      { key: "fall", value: "가을" },
-      { key: "winter", value: "겨울" },
+      {key: "season", value: "계절"},
+      {key: "spring", value: "봄"},
+      {key: "summer", value: "여름"},
+      {key: "fall", value: "가을"},
+      {key: "winter", value: "겨울"},
     ];
     const selectNumberData = [
-      { key: "NUM", value: "인원" },
-      { key: "1", value: "1" },
-      { key: "2", value: "2" },
-      { key: "3", value: "4" },
-      { key: "4", value: "5" },
-      { key: "5", value: "5" },
-      { key: "6", value: "6" },
-      { key: "7", value: "7" },
-      { key: "8", value: "8" },
-      { key: "9", value: "9" },
-      { key: "10", value: "10" },
+      {key: "NUM", value: "인원"},
+      {key: "1", value: "1"},
+      {key: "2", value: "2"},
+      {key: "3", value: "4"},
+      {key: "4", value: "5"},
+      {key: "5", value: "5"},
+      {key: "6", value: "6"},
+      {key: "7", value: "7"},
+      {key: "8", value: "8"},
+      {key: "9", value: "9"},
+      {key: "10", value: "10"},
     ];
     const selectComfortsData = [
-      { key: "COMFORTS", value: "편의시설" },
-      { key: "MART", value: "편의점" },
-      { key: "PHARMACY", value: "약국" },
-      { key: "RESTAURANT", value: "음식점" },
-      { key: "CAFE", value: "카페" },
-      { key: "WASHROOM", value: "화장실" },
-      { key: "DRINKING", value: "식수대" },
-      { key: "SHOWER", value: "샤워장" },
-      { key: "PARKING", value: "주차가능" },
+      {key: "COMFORTS", value: "편의시설"},
+      {key: "MART", value: "편의점"},
+      {key: "PHARMACY", value: "약국"},
+      {key: "RESTAURANT", value: "음식점"},
+      {key: "CAFE", value: "카페"},
+      {key: "WASHROOM", value: "화장실"},
+      {key: "DRINKING", value: "식수대"},
+      {key: "SHOWER", value: "샤워장"},
+      {key: "PARKING", value: "주차가능"},
     ];
     const selectPublicData = [
-      { key: SHOW_TYPE.ALL, value: "전체 게시물" },
-      { key: SHOW_TYPE.FOLLOW, value: "팔로워 게시물" },
-      { key: SHOW_TYPE.HASH, value: "해시태그 게시물" },
+      {key: SHOW_TYPE.ALL, value: "전체 게시물"},
+      {key: SHOW_TYPE.FOLLOW, value: "팔로워 게시물"},
+      {key: SHOW_TYPE.HASH, value: "해시태그 게시물"},
     ];
     const sortUpdateValue = value => {
       sortValue.value = value;
@@ -101,10 +101,13 @@ export default {
         router.push("/login");
       }
     };
+    const allScroll = document.querySelector("html")
     const openWrite = () => {
       if (userData.value) {
+        allScroll.style.overflow = "hidden";
         store.state.detailData = "";
         store.commit(STORE_TYPE.popupType, POPUP_TYPE.WRITE_BOARD);
+
       } else {
         window.alert("로그인 하세요.");
         router.push("/login");
@@ -138,13 +141,13 @@ export default {
     let keyword = "";
     let hashKeyWord = "";
     const getContent = async () => {
-      let param = { keyword: keyword, hashKeyWord: hashKeyWord, sorted: "RECENT", showType: "ALL" };
+      let param = {keyword: keyword, hashKeyWord: hashKeyWord, sorted: "RECENT", showType: "ALL"};
       if (sortValue.value !== null && sortValue.value !== undefined) {
-        param = Object.assign({}, param, { sorted: sortValue.value }); //ob 내장함수 합침
+        param = Object.assign({}, param, {sorted: sortValue.value}); //ob 내장함수 합침
         param.sorted = sortValue.value;
       }
       if (showValue.value !== null && showValue.value !== undefined) {
-        param = Object.assign({}, param, { showType: showValue.value }); //ob 내장함수 합침
+        param = Object.assign({}, param, {showType: showValue.value}); //ob 내장함수 합침
         param.showType = showValue.value;
       }
       const data = await apiClient("/sns/getSnsList", param);
@@ -249,9 +252,9 @@ export default {
         <div class="profile">
           <div class="profile-wrap">
             <img
-              :src="getProfileImg(item.userProfile.filter(v => v.fileType === 'USER_PROFILE')[0])"
-              alt="프사"
-              @click="goTargetFeed(item)"
+                :src="getProfileImg(item.userProfile.filter(v => v.fileType === 'USER_PROFILE')[0])"
+                alt="프사"
+                @click="goTargetFeed(item)"
             />
             <div class="profile-wrap-data">
               <span>{{ item.userNickName }}</span>
@@ -261,7 +264,7 @@ export default {
       </div>
       <div class="news-ul-li-wrap">
         <div class="news-ul-li-wrap-write" @click="openDetail(item)">
-          <img :src="getImgUrl(item.file[0])" alt="Posts" />
+          <img :src="getImgUrl(item.file[0])" alt="Posts"/>
         </div>
         <div class="detail">
           <div class="detail-mbIcon">

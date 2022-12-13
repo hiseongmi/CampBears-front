@@ -207,7 +207,6 @@ export default {
 
       let k = document.getElementById("input").value;
 
-
       console.log(k.value);
       setKeyword(k)
 
@@ -215,7 +214,7 @@ export default {
 
     const setKeyword = k => {
       keyword.value = k;
-      console.log(k)
+      // console.log(k)
       getCampInfo();
     };
     //
