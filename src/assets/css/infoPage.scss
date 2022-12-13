@@ -1103,6 +1103,24 @@
                 color: #3f4254;
               }
             }
+
+            .info-btn {
+              button{
+                float: right;
+                background-color: white;
+                border: 3px solid #fa6c1a;
+                border-radius: 21px;
+                color: #fa6c1a;
+                font-size: 12px;
+                padding: 3px 6px;
+                margin: 10px;
+              }
+              button:hover{
+                cursor: pointer;
+                color: white;
+                background-color: #fa6c1a;
+              }
+            }
           }
         }
 

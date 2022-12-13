@@ -74,7 +74,6 @@ export default {
     const getCampInfo = async () => {
       if (dataList.value && dataList.value.length > 0) dataList.value = []; //초기화
       let url = `/basedList?serviceKey=IEdTGqhPUIxJy5mLBtkjPw6g%2BaTd90KXgnnc03HRNuD2NUPhtSQ307ZhzYx3n51j%2FpjYn5Hteigqp1cro1Rg6w%3D%3D&numOfRows=10&pageNo=${page.value}&MobileOS=ETC&MobileApp=AppTest&_type=json`;
-      //
       if (keyword.value && keyword.value !== "" && keyword.value !== undefined) {
         url = `/searchList?pageNo=${
           page.value
@@ -333,7 +332,7 @@ export default {
             <div class="info-ph">
               <span>전화번호 : {{ item.tel }}</span>
             </div>
-            <div>
+            <div class="info-btn">
               <button @click="comparisonAction(item)">비교하기</button>
             </div>
 
