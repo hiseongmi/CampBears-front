@@ -10,7 +10,10 @@ export const STORE_TYPE = {
   commentIdx: "commentIdx",
   campInfo: "campInfo",
   sideBar: "sideBar",
+  comparisonSideBar: "comparisonSideBar",
   detailData: "detailData",
+  targetOne: "targetOne",
+  targetTwo: "targetTwo",
 };
 
 export const POPUP_TYPE = {
@@ -35,7 +38,10 @@ const store = createStore({
     popupList: [],
     campInfo: undefined,
     sideBar: false,
+    comparisonSideBar: false,
     detailData: [],
+    targetOne: "",
+    targetTwo: "",
   },
   mutations: {
     /**
@@ -91,6 +97,15 @@ const store = createStore({
     },
     detailData(state, value) {
       state.detailData = value;
+    },
+    comparisonSideBar(state, value) {
+      state.comparisonSideBar = value;
+    },
+    targetOne(state, value) {
+      state.targetOne = value;
+    },
+    targetTwo(state, value) {
+      state.targetTwo = value;
     },
   },
 });

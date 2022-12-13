@@ -1,13 +1,14 @@
 <script>
-import {onMounted, ref} from "vue";
+import { onMounted, ref } from "vue";
 import axios from "axios";
-import store, {POPUP_TYPE, STORE_TYPE} from "../store/index.js";
-import {useStore} from "vuex";
+import store, { POPUP_TYPE, STORE_TYPE } from "../store/index.js";
+import { useStore } from "vuex";
 import customInput from "../components/layout/customInput.vue";
+import ComparisonSideBar from "../components/comparisonSideBar.vue";
 
 export default {
   name: "campingInfo",
-  components: {customInput},
+  components: { ComparisonSideBar, customInput },
 
   setup() {
     const store = useStore();
@@ -17,7 +18,7 @@ export default {
     const api = axios.create({
       baseURL: "http://apis.data.go.kr/B551011/GoCamping",
       timeout: 1000 * 60 * 3,
-      headers: {"content-type": "Json"},
+      headers: { "content-type": "Json" },
     });
     //로딩바
     // api.interceptors.request.use(())
@@ -76,7 +77,7 @@ export default {
       //
       if (keyword.value && keyword.value !== "" && keyword.value !== undefined) {
         url = `/searchList?pageNo=${
-            page.value
+          page.value
         }&MobileOS=ETC&MobileApp=bears&_type=json&serviceKey=IEdTGqhPUIxJy5mLBtkjPw6g%2BaTd90KXgnnc03HRNuD2NUPhtSQ307ZhzYx3n51j%2FpjYn5Hteigqp1cro1Rg6w%3D%3D&keyword=${encodeURIComponent(keyword.value)}`;
       }
       // console.log(url);
@@ -185,11 +186,21 @@ export default {
       store.commit(STORE_TYPE.campInfo, dataList[index]);
       store.commit(STORE_TYPE.popupType, POPUP_TYPE.DETAIL_CAMPING);
     };
+    const comparisonAction = (item) => {
+      store.commit(STORE_TYPE.comparisonSideBar, true);
+      if (store.state.targetOne === "" && store.state.targetTwo === "") {
+        store.commit(STORE_TYPE.targetOne, item);
+      } else if (!store.state.targetOne) {
+        store.commit(STORE_TYPE.targetOne, item);
+      } else {
+        store.commit(STORE_TYPE.targetTwo, item);
+      }
+    };
 
 
     const reSet = () => {
       location.reload(true);
-    }
+    };
 
     //테스트존
     function test() {
@@ -208,7 +219,7 @@ export default {
       let k = document.getElementById("input").value;
 
       console.log(k.value);
-      setKeyword(k)
+      setKeyword(k);
 
     }
 
@@ -228,6 +239,8 @@ export default {
       setRowCount,
       page,
       index,
+      store,
+      comparisonAction,
       // startTest,
       myFunction,
       setKeyword,
@@ -241,7 +254,7 @@ export default {
 };
 </script>
 <template>
-  <section class="camp-info">
+  <section class="camp-info" :style="store.state.comparisonSideBar ? {width : '50%', margin: '0 0 0 auto'} : ''">
     <!--    <div v-for="index in 5">-->
     <!--      <button @click="setRowCount(index + page - 1)">{{ index + page - 1 }}</button>-->
     <!--    </div>-->
@@ -260,17 +273,17 @@ export default {
 
 
       <a @click="setKeyword('카라반')">
-        <img src="/assets/image/icon/categoryCaravane.webp" alt=""/>
+        <img src="/assets/image/icon/categoryCaravane.webp" alt="" />
         <span>카라반</span>
       </a>
 
       <a @click="setKeyword('글램핑')">
-        <img src="/assets/image/icon/categoryGlamping.webp" alt=""/>
+        <img src="/assets/image/icon/categoryGlamping.webp" alt="" />
         <span>글램핑</span>
       </a>
 
       <a @click="setKeyword('오토캠핑')">
-        <img src="/assets/image/icon/categoryAutoCamping.webp" alt=""/>
+        <img src="/assets/image/icon/categoryAutoCamping.webp" alt="" />
         <span>오토캠핑</span>
       </a>
 
@@ -281,7 +294,7 @@ export default {
       <!--      </a>-->
 
       <a @click="setKeyword('키즈')">
-        <img src="/assets/image/icon/categoryKids.webp" alt=""/>
+        <img src="/assets/image/icon/categoryKids.webp" alt="" />
         <span>키즈</span>
       </a>
 
@@ -320,6 +333,9 @@ export default {
             <div class="info-ph">
               <span>전화번호 : {{ item.tel }}</span>
             </div>
+            <div>
+              <button @click="comparisonAction(item)">비교하기</button>
+            </div>
 
             <!--            <div class="info-ph">-->
             <!--              <span>{{ item.getInAnimal }} </span>-->
@@ -333,9 +349,9 @@ export default {
       <div class="page-nation">
         <!--        <button @click="setRowCount(1)"><i class="fa-solid fa-angles-left"></i></button>-->
         <button v-if="index + page - 10 > 0" @click="setRowCount(index + page - 10)"><i
-            class="fa-solid fa-angles-left"></i></button>
+          class="fa-solid fa-angles-left"></i></button>
         <button v-if="index + page - 1 > 0" @click="setRowCount(index + page - 1)"><i
-            class="fa-solid fa-angle-left"></i></button>
+          class="fa-solid fa-angle-left"></i></button>
         <button v-if="0 < index - 2 + page" @click="setRowCount(index - 2 + page)">{{ index - 2 + page }}</button>
         <button v-if="0 < index - 1 + page" @click="setRowCount(index - 1 + page)">{{ index - 1 + page }}</button>
         <button v-if="index + page > 0" @click="setRowCount(index + page)">
@@ -344,9 +360,9 @@ export default {
         <button v-if="index + 1 + page < 332" @click="setRowCount(index + 1 + page)">{{ index + 1 + page }}</button>
         <button v-if="index + 2 + page < 332" @click="setRowCount(index + 2 + page)">{{ index + 2 + page }}</button>
         <button v-if="index + page + 1 < 332" @click="setRowCount(index + page + 1)"><i
-            class="fa-solid fa-angle-right"></i></button>
+          class="fa-solid fa-angle-right"></i></button>
         <button v-if="index + page + 10 < 332" @click="setRowCount(index + page + 10)"><i
-            class="fa-solid fa-angles-right"></i></button>
+          class="fa-solid fa-angles-right"></i></button>
         <!--        <button @click="setRowCount(331)"><i class="fa-solid fa-angles-right"></i></button>-->
       </div>
       <!--      <a href=""></a>-->
@@ -354,4 +370,5 @@ export default {
     <div v-else>...데이터를 불러오는 중...</div>
 
   </section>
+  <comparison-side-bar v-if="store.state.comparisonSideBar" />
 </template>

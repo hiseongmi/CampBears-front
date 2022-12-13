@@ -105,6 +105,7 @@ export default {
       if (data.resultCode === 0) {
         window.alert("수정되었습니다.");
         store.commit(STORE_TYPE.popupType, POPUP_TYPE.NONE);
+        router.go();
       } else {
         window.alert("다시 시도해주세요.");
       }

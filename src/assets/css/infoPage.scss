@@ -407,12 +407,13 @@
 
 .info-main {
   height: 258px;
+  text-align: -webkit-center;
   @include mb() {
     top: -64px;
     height: 692px;
+    text-align: unset;
   }
 
-  text-align: -webkit-center;
 
   .side {
   }
@@ -948,8 +949,6 @@
 
 .info-camp {
   position: relative;
-  width: 70%;
-  margin: 0 auto;
   color: #cccccc;
   border-top: solid 2px;
   min-height: 800px;

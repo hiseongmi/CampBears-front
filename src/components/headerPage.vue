@@ -67,7 +67,7 @@ export default {
     return {
       headerBarList,
       loginUser,
-      headerContainerAction,
+      // headerContainerAction,
       store,
       checkUser,
       goToX,
