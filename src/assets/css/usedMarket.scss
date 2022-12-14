@@ -64,6 +64,16 @@
     .used-banner-popup {
       display: flex;
       align-items: center;
+      select {
+        height: 27px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 15px;
+        width: auto;
+        //color: #ff9c62;
+        //border-color: #ff9c62;
+        background-color: white;
+      }
     }
 
     .custom-button {

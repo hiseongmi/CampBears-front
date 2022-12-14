@@ -9,6 +9,12 @@ import store, { POPUP_TYPE, STORE_TYPE } from "../../store/index.js";
 export default {
   name: "sellComponent",
   components: { customModal, customPagination },
+  props: {
+    sortValue: {
+      type: String,
+      required: true,
+    },
+  },
   setup() {
     const postData = ref();
 
@@ -23,7 +29,6 @@ export default {
     let keyword = "";
     const getData = async () => {
       let param = { keyword: keyword, productType: "SELL", sorted: "RECENT" };
-      console.log("param", param);
       const data = await apiClient("product/getProductList", param);
       if (data) postData.value = data.data;
     };
@@ -40,6 +45,7 @@ export default {
     onMounted(() => {
       window.addEventListener("PRODUCTSEARCH", handleSearch);
       getData();
+
     });
     onUnmounted(() => {
       window.removeEventListener("PRODUCTSEARCH", handleSearch);
@@ -61,6 +67,9 @@ export default {
 </script>
 
 <template>
+  <div>
+    {{ sortValue }}
+  </div>
   <div class="used-contents-area">
     <div class="used-contents-area-ul">
       <div class="used-post" v-for="item in postData" @click="openDetail(item.productIdx)">

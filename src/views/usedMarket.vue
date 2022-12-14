@@ -8,10 +8,11 @@ import store, { POPUP_TYPE, STORE_TYPE } from "../store/index.js";
 import commonUtil from "../utils/common-util.js";
 import { CONSTANTS } from "../constants.js";
 import { apiClient } from "../utils/axios.js";
+import CustomSelect from "../components/layout/customSelect.vue";
 
 export default {
   name: "usedMarket",
-  components: { sellComponent, buyComponent, CustomButton, chat },
+  components: { CustomSelect, sellComponent, buyComponent, CustomButton, chat },
   setup() {
     const loginUser = ref(undefined);
     const tabType = {
@@ -30,10 +31,27 @@ export default {
       store.commit(STORE_TYPE.popupType, POPUP_TYPE.PRODUCT_WRITE);
 
     }; //글쓰기 팝업열기
+    const sortValue = ref();
+    const SORT_TYPE = {
+      RECENT: "RECENT",
+      LONG: "LONG",
+      EXPENSIVE: "EXPENSIVE",
+      CHEAP: "CHEAP",
+    };
+    const selectSortData = [
+      { key: SORT_TYPE.RECENT, value: "최근순" },
+      { key: SORT_TYPE.LONG, value: "오래된순" },
+      { key: SORT_TYPE.EXPENSIVE, value: "가격 높은순" },
+      { key: SORT_TYPE.CHEAP, value: "가격 낮은순" },
+    ];
+    const sortUpdateValue = v => {
+      sortValue.value = v;
 
-    const inquiryProductData = ref({ keyword: "" });
+    };
+    const inquiryProductData = ref({ keyword: "", sorted: "RECENT" });
     const getData = async () => {
       const data = await apiClient("product/getProductList", inquiryProductData.value);
+      inquiryProductData.value.sorted = sortValue.value;
       if (inquiryProductData.value.keyword) {
         dispatchEvent(new CustomEvent("PRODUCTSEARCH", { detail: inquiryProductData.value.keyword }));
       }
@@ -49,6 +67,7 @@ export default {
       }
     };
 
+
     onMounted(() => {
       const d = commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO);
       if (d)
@@ -61,6 +80,9 @@ export default {
       tabType,
       tabIndex,
       inquiryProductData,
+      sortValue,
+      selectSortData,
+      sortUpdateValue,
       handleEnterEvent,
       handleMouseEvent,
       componentChange,
@@ -95,13 +117,13 @@ export default {
 
     </div>
     <div class="used-banner">
-      <div class="used-banner-popup" @click="">
-        <img src="/assets/image/icon/dropMenu.webp" alt="" />
+      <div class="used-banner-popup">
+        <customSelect @update:value="sortUpdateValue" :data="selectSortData"></customSelect>
       </div>
       <custom-button :placeholder="'글쓰기'" @click="openWrite()" />
     </div>
     <div class="used-contents-area">
-      <sell-component v-if="tabIndex === tabType.SELL" />
+      <sell-component :sortValue="sortValue" v-if="tabIndex === tabType.SELL" />
       <buy-component v-else-if="tabIndex === tabType.BUY" />
     </div>
   </div>
