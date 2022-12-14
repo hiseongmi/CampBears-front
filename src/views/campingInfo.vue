@@ -5,6 +5,7 @@ import store, {POPUP_TYPE, STORE_TYPE} from "../store/index.js";
 import {useStore} from "vuex";
 import customInput from "../components/layout/customInput.vue";
 import ComparisonSideBar from "../components/comparisonSideBar.vue";
+import router from "../router/index.js";
 
 export default {
   name: "campingInfo",
@@ -83,9 +84,9 @@ export default {
     };
 
 
-    const showDetail = index => {
+    const showDetail = data => {
 
-      store.commit(STORE_TYPE.campInfo, dataList[index]);
+      store.commit(STORE_TYPE.campInfo, data);
       store.commit(STORE_TYPE.popupType, POPUP_TYPE.DETAIL_CAMPING);
     };
 
@@ -96,8 +97,8 @@ export default {
         store.commit(STORE_TYPE.targetOne, item);
       } else if (store.state.targetOne) {
         store.commit(STORE_TYPE.targetTwo, item);
-      } else if (store.state.targetTwo !== "" && store.state.targetOne === "") {
-        store.commit(STORE_TYPE.targetOne, item);
+      } else {
+        store.commit(STORE_TYPE.comparisonSideBar, false);
       }
     };
 
@@ -122,11 +123,14 @@ export default {
 
       let k = document.getElementById("input").value;
 
-      console.log(k.value);
+      // console.log(k.value);
       setKeyword(k);
 
     }
 
+    const goToX = v => {
+      v ? router.push(v) : window.alert("준비중입니다.");
+    };
     const setKeyword = k => {
       keyword.value = k;
       // console.log(k)
@@ -151,6 +155,7 @@ export default {
       getCampInfo,
       reSet,
       test,
+      goToX,
       oneca,
       // getCampserch,
       // goLink,
@@ -197,7 +202,7 @@ export default {
 
       <!--      </div>-->
       <div class="info-item" v-for="(item, index) in dataList">
-        <a @click="showDetail(index)" class="item-front">
+        <a @click="goToX('/campingDetail')" class="item-front">
           <div class="camp-type">
             <span>
               {{ item.campingManageMode }}

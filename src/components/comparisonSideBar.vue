@@ -11,6 +11,7 @@ export default {
     const userData = ref({
       file: {},
     });
+
     const profileImg = ref("assets/image/profileImg.webp");
     const isActive = ref(false);
 
@@ -19,16 +20,7 @@ export default {
       router.push(target);
     };
     //1번 항복 삭제 버튼
-    const tarDel = (item) => {
-      store.commit(STORE_TYPE.comparisonSideBar, true);
-      if (store.state.targetOne !== "" && store.state.targetTwo !== "") {
-        store.commit(STORE_TYPE.targetOne, "");
-        store.commit(STORE_TYPE.targetTwo, "");
-        targetOneData.value = [];
 
-
-      }
-    }
     const closePopup = () => {
       store.commit(STORE_TYPE.comparisonSideBar, false);
       store.commit(STORE_TYPE.targetOne, "");
@@ -37,6 +29,10 @@ export default {
     const targetOneClose = () => {
       store.commit(STORE_TYPE.targetOne, "");
       targetOneData.value = [];
+    };
+    const targetTwoClose = () => {
+      store.commit(STORE_TYPE.targetTwo, "");
+      targetTwoData.value = [];
     };
 
     const getProfileImg = file => {
@@ -50,6 +46,7 @@ export default {
     const targetTwoData = ref([]);
 
     onMounted(() => {
+      // console.log(targetOneData.thumbNailUrl)
       setTimeout(() => {
         isActive.value = true;
       }, 10);
@@ -82,7 +79,7 @@ export default {
       goToX,
       closePopup,
       getProfileImg,
-      tarDel,
+      targetTwoClose,
     };
   },
 };
@@ -95,7 +92,7 @@ export default {
         <div class="comparison-side-bar-body-wrap">
           <div class="targetOne">
             <div class="targetOne-title">
-              <button @click="tarDel">내가고른캠핑장을 삭제후에 다시골라보자</button>
+              <button @click="targetOneClose">기준슬롯삭제</button>
               내가 고른 캠핑장
               <!--              <span @click="targetOneClose">x</span>-->
             </div>
@@ -137,8 +134,8 @@ export default {
             </div>
             <div class="targetOne-list">
               <span><i class="fa-solid fa-dog"></i>애완동물이 가능한가요? 답: {{
-                  targetTwoData.getInAnimal ? targetTwoData.getInAnimal : "정보가 없어요ㅠ"
-                }}합니다</span>
+                  targetOneData.getInAnimal ? targetOneData.getInAnimal : "정보가 없어요ㅠ"
+                }}</span>
             </div>
             <div class="targetOne-list">
               <a :href="targetOneData.homePageUrl">{{
@@ -155,11 +152,13 @@ export default {
 
           <div v-if="store.state.targetTwo === '' " class="targetOne" :style="{'border-right' : 'none'}">
             <div class="targetOne-title">
+              <button @click="targetTwoClose">비교슬롯삭제</button>
               비교대상
             </div>
           </div>
           <div v-else class="targetOne" :style="{'border-right' : 'none'}">
             <div class="targetOne-title">
+              <button @click="targetTwoClose">비교슬롯삭제</button>
               비교대상
             </div>
             <div class="targetOne-image">
@@ -202,7 +201,7 @@ export default {
             <div class="targetOne-list">
               <span><i class="fa-solid fa-dog"></i>애완동물이 가능한가요? 답: {{
                   targetTwoData.getInAnimal ? targetTwoData.getInAnimal : "정보가 없어요ㅠ"
-                }}합니다</span>
+                }}</span>
             </div>
             <div class="targetOne-list">
               <a :href="targetTwoData.homePageUrl">{{ targetTwoData.homePageUrl ? "홈페이지 바로가기" : "홈페이지가 없는 캠핑장이에요" }}</a>

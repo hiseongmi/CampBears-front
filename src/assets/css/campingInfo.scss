@@ -10,6 +10,12 @@
     align-items: center;
     width: calc(100%);
 
+    .info-item {
+      a {
+        cursor: pointer;
+      }
+    }
+
     .search-wrapper {
       padding-bottom: 40px;
     }

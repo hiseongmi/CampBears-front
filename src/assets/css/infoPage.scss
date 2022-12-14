@@ -406,46 +406,46 @@
 // ㅡㅡㅡㅡㅡ캠핑장정보
 
 .info-main {
-  height: 258px;
-  text-align: -webkit-center;
-  @include mb() {
-    top: -64px;
-    height: 692px;
-    text-align: unset;
-  }
-
-
-  .side {
-  }
-
-  .info-sidebar {
-    position: absolute;
-    top: 19%;
-
-    a {
-      position: relative;
-      float: left;
-    }
-  }
-
-  .info-box {
-    display: flex;
-    justify-content: center;
-
-    .info-shapbox {
-      .info-shap {
-        text-align: center;
-        position: relative;
-        padding: 0 17px 0 17px;
-        color: #666666;
-        text-decoration: none;
-        cursor: pointer;
-        @include mb() {
-          padding: 0 5px 0 5px;
-        }
-      }
-    }
-  }
+  //height: 258px;
+  //text-align: -webkit-center;
+  //@include mb() {
+  //  top: -64px;
+  //  height: 692px;
+  //  text-align: unset;
+  //}
+  //
+  //
+  //.side {
+  //}
+  //
+  //.info-sidebar {
+  //  position: absolute;
+  //  top: 19%;
+  //
+  //  a {
+  //    position: relative;
+  //    float: left;
+  //  }
+  //}
+  //
+  //.info-box {
+  //  display: flex;
+  //  justify-content: center;
+  //
+  //  .info-shapbox {
+  //    .info-shap {
+  //      text-align: center;
+  //      position: relative;
+  //      padding: 0 17px 0 17px;
+  //      color: #666666;
+  //      text-decoration: none;
+  //      cursor: pointer;
+  //      @include mb() {
+  //        padding: 0 5px 0 5px;
+  //      }
+  //    }
+  //  }
+  //}
 
   .map-box {
     position: relative;
@@ -969,17 +969,27 @@
       display: flex;
       align-items: center;
       padding: 20px;
+
       span {
         i {
+          top: 100px;
           font-size: 25px;
           color: #fa6c1a;
+          position: absolute;
         }
+      }
+
+      input:focus {
+
+        outline: none;
       }
 
       input {
         height: 37px;
         border: none;
+        width: 381px;
         border-bottom: 3px solid #fa6c1a;
+        text-align: center;
       }
     }
 
