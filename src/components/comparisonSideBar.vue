@@ -1,9 +1,9 @@
 <script>
-import { computed, nextTick, onMounted, onUnmounted, ref, watch } from "vue";
+import {computed, nextTick, onMounted, onUnmounted, ref, watch} from "vue";
 import commonUtil from "../utils/common-util.js";
-import { CONSTANTS } from "../constants.js";
+import {CONSTANTS} from "../constants.js";
 import router from "../router/index.js";
-import store, { STORE_TYPE } from "../store/index.js";
+import store, {STORE_TYPE} from "../store/index.js";
 
 export default {
   name: "comparisonSideBar",
@@ -18,6 +18,17 @@ export default {
       closePopup();
       router.push(target);
     };
+    //1번 항복 삭제 버튼
+    const tarDel = (item) => {
+      store.commit(STORE_TYPE.comparisonSideBar, true);
+      if (store.state.targetOne !== "" && store.state.targetTwo !== "") {
+        store.commit(STORE_TYPE.targetOne, "");
+        store.commit(STORE_TYPE.targetTwo, "");
+        targetOneData.value = [];
+
+
+      }
+    }
     const closePopup = () => {
       store.commit(STORE_TYPE.comparisonSideBar, false);
       store.commit(STORE_TYPE.targetOne, "");
@@ -49,14 +60,15 @@ export default {
     });
 
     watch(
-      () => store.state.targetTwo,
-      () => {
-        if (store.state.targetOne === store.state.targetTwo) {
-          console.log("같은곳임.");
-        } else {
-          targetTwoData.value = Object.assign({}, targetTwoData.value, store.state.targetTwo);
-        }
-      },
+        () => store.state.targetTwo,
+        () => {
+          if (store.state.targetOne === store.state.targetTwo) {
+            console.log("같은곳임.");
+            // window.alert("같은곳을 누르신거같아요")
+          } else {
+            targetTwoData.value = Object.assign({}, targetTwoData.value, store.state.targetTwo);
+          }
+        },
     );
 
     return {
@@ -70,6 +82,7 @@ export default {
       goToX,
       closePopup,
       getProfileImg,
+      tarDel,
     };
   },
 };
@@ -82,52 +95,64 @@ export default {
         <div class="comparison-side-bar-body-wrap">
           <div class="targetOne">
             <div class="targetOne-title">
+              <button @click="tarDel">내가고른캠핑장을 삭제후에 다시골라보자</button>
               내가 고른 캠핑장
               <!--              <span @click="targetOneClose">x</span>-->
             </div>
             <div class="targetOne-image">
               <img :src="targetOneData.thumbNailUrl ? targetOneData.thumbNailUrl : 'assets/image/backgroundImg.webp'"
-                   alt="" />
+                   alt=""/>
             </div>
             <div class="targetOne-list">
               <span
-                class="targetOne-list-mode"> {{ targetOneData.campingManageMode ? targetOneData.campingManageMode : "x"
+                  class="targetOne-list-mode"> {{
+                  targetOneData.campingManageMode ? targetOneData.campingManageMode : "캠핑장 소개글이 없어요"
                 }}</span>
-              <span class="targetOne-list-name">{{ targetOneData.campingName ? targetOneData.campingName : "x" }}</span>
+              <span class="targetOne-list-name">{{
+                  targetOneData.campingName ? targetOneData.campingName : "정보가 없어요ㅠ"
+                }}</span>
             </div>
             <div class="targetOne-list">
-              <span class="targetOne-list-intro">{{ targetOneData.campingIntro ? targetOneData.campingIntro : "x"
+              <span class="targetOne-list-intro">{{
+                  targetOneData.campingIntro ? targetOneData.campingIntro : "캠핑장 소개글이 없어요"
                 }}</span>
             </div>
             <div class="targetOne-list">
-              <span>{{ targetOneData.campingTypes ? targetOneData.campingTypes : "x" }}</span>
+              <span>{{ targetOneData.campingTypes ? targetOneData.campingTypes : "정보가 없어요ㅠ" }}</span>
             </div>
             <div class="targetOne-list">
               <span><i class="fa-solid fa-location-dot"></i></span>
-              <span> {{ targetOneData.address ? targetOneData.address : "x" }}</span>
+              <span> {{ targetOneData.address ? targetOneData.address : "주소가없어요" }}</span>
             </div>
             <div class="targetOne-list">
-              <span><i class="fa-solid fa-phone"></i> {{ targetOneData.tel ? targetOneData.tel : "x" }}</span>
+              <span><i class="fa-solid fa-phone"></i> {{ targetOneData.tel ? targetOneData.tel : "번호가 없어요" }}</span>
             </div>
             <div class="targetOne-list">
               <span><i class="fa-solid fa-campground"></i></span>
-              <span> {{ targetOneData.campInnerOption ? targetOneData.campInnerOption : "x" }}</span>
+              <span> {{ targetOneData.campInnerOption ? targetOneData.campInnerOption : "내부시설 정보가없어요" }}</span>
             </div>
             <div class="targetOne-list">
               <span> <i class="fa-solid fa-table-tennis-paddle-ball"></i></span>
-              <span> {{ targetOneData.campOuterOption ? targetOneData.campOuterOption : "x" }}</span>
+              <span> {{ targetOneData.campOuterOption ? targetOneData.campOuterOption : "외부시설 정보가 없어요" }}</span>
             </div>
             <div class="targetOne-list">
-              <span><i class="fa-solid fa-dog"></i> {{ targetOneData.getInAnimal ? targetOneData.getInAnimal : "x"
-                }}</span>
+              <span><i class="fa-solid fa-dog"></i>애완동물이 가능한가요? 답: {{
+                  targetTwoData.getInAnimal ? targetTwoData.getInAnimal : "정보가 없어요ㅠ"
+                }}합니다</span>
             </div>
             <div class="targetOne-list">
-              <a :href="targetOneData.homePageUrl">{{ targetOneData.homePageUrl ? "홈페이지 바로가기" : "x" }}</a>
+              <a :href="targetOneData.homePageUrl">{{
+                  targetOneData.homePageUrl ? "홈페이지 바로가기 " : "홈페이지가 없는 캠핑장이에요"
+                }}</a>
             </div>
             <div class="targetOne-list">
               <span>설립날짜 : {{ targetOneData.createdDate ? targetOneData.createdDate : "x" }}</span>
             </div>
           </div>
+
+          <!--          //-->
+
+
           <div v-if="store.state.targetTwo === '' " class="targetOne" :style="{'border-right' : 'none'}">
             <div class="targetOne-title">
               비교대상
@@ -139,46 +164,51 @@ export default {
             </div>
             <div class="targetOne-image">
               <img :src="targetTwoData.thumbNailUrl ? targetTwoData.thumbNailUrl : 'assets/image/backgroundImg.webp'"
-                   alt="" />
+                   alt=""/>
 
             </div>
             <div class="targetOne-list">
               <span
-                class="targetOne-list-mode"> {{ targetTwoData.campingManageMode ? targetTwoData.campingManageMode : "x"
+                  class="targetOne-list-mode"> {{
+                  targetTwoData.campingManageMode ? targetTwoData.campingManageMode : "캠핑장 소개글이 없어요"
                 }}</span>
-              <span class="targetOne-list-name">{{ targetTwoData.campingName ? targetTwoData.campingName : "x" }}</span>
+              <span class="targetOne-list-name">{{
+                  targetTwoData.campingName ? targetTwoData.campingName : "정보가 없어요ㅠ"
+                }}</span>
             </div>
             <div class="targetOne-list">
-              <span class="targetOne-list-intro">{{ targetTwoData.campingIntro ? targetTwoData.campingIntro : "x"
+              <span class="targetOne-list-intro">{{
+                  targetTwoData.campingIntro ? targetTwoData.campingIntro : "캠핑장 소개글이 없어요"
                 }}</span>
             </div>
             <div class="targetOne-list">
-              <span>{{ targetTwoData.campingTypes ? targetTwoData.campingTypes : "x" }}</span>
+              <span>{{ targetTwoData.campingTypes ? targetTwoData.campingTypes : "정보가 없어요ㅠ" }}</span>
             </div>
             <div class="targetOne-list">
               <span><i class="fa-solid fa-location-dot"></i></span>
-              <span> {{ targetTwoData.address ? targetTwoData.address : "x" }}</span>
+              <span> {{ targetTwoData.address ? targetTwoData.address : "주소가없어요" }}</span>
             </div>
             <div class="targetOne-list">
-              <span><i class="fa-solid fa-phone"></i> {{ targetTwoData.tel ? targetTwoData.tel : "x" }}</span>
+              <span><i class="fa-solid fa-phone"></i> {{ targetTwoData.tel ? targetTwoData.tel : "번호가 없어요" }}</span>
             </div>
             <div class="targetOne-list">
               <span><i class="fa-solid fa-campground"></i></span>
-              <span> {{ targetTwoData.campInnerOption ? targetTwoData.campInnerOption : "x" }}</span>
+              <span> {{ targetTwoData.campInnerOption ? targetTwoData.campInnerOption : "내부시설 정보가없어요" }}</span>
             </div>
             <div class="targetOne-list">
               <span> <i class="fa-solid fa-table-tennis-paddle-ball"></i></span>
-              <span> {{ targetTwoData.campOuterOption ? targetTwoData.campOuterOption : "x" }}</span>
+              <span> {{ targetTwoData.campOuterOption ? targetTwoData.campOuterOption : "외부시설 정보가 없어요" }}</span>
             </div>
             <div class="targetOne-list">
-              <span><i class="fa-solid fa-dog"></i> {{ targetTwoData.getInAnimal ? targetTwoData.getInAnimal : "x"
-                }}</span>
+              <span><i class="fa-solid fa-dog"></i>애완동물이 가능한가요? 답: {{
+                  targetTwoData.getInAnimal ? targetTwoData.getInAnimal : "정보가 없어요ㅠ"
+                }}합니다</span>
             </div>
             <div class="targetOne-list">
-              <a :href="targetTwoData.homePageUrl">{{ targetTwoData.homePageUrl ? "홈페이지 바로가기" : "x" }}</a>
+              <a :href="targetTwoData.homePageUrl">{{ targetTwoData.homePageUrl ? "홈페이지 바로가기" : "홈페이지가 없는 캠핑장이에요" }}</a>
             </div>
             <div class="targetOne-list">
-              <span>설립날짜 : {{ targetTwoData.createdDate ? targetTwoData.createdDate : "x" }}</span>
+              <span>설립날짜 : {{ targetTwoData.createdDate ? targetTwoData.createdDate : "정보가 없어요ㅠ" }}</span>
             </div>
           </div>
 
