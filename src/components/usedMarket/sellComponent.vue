@@ -10,10 +10,21 @@ export default {
   name: "sellComponent",
   components: { customModal, customPagination },
   setup() {
-    const postData = ref({});
+    const postData = ref();
 
+    const handleSearch = e => {
+      console.log(e.detail);
+      if (e.detail) {
+        keyword = e.detail;
+      }
+      getData();
+    };
+
+    let keyword = "";
     const getData = async () => {
-      const data = await apiClient("product/getProductList", { productType: "SELL", sorted: "RECENT" });
+      let param = { keyword: keyword, productType: "SELL", sorted: "RECENT" };
+      console.log("param", param);
+      const data = await apiClient("product/getProductList", param);
       if (data) postData.value = data.data;
     };
 
@@ -26,7 +37,13 @@ export default {
       store.commit(STORE_TYPE.boardIdx, productIdx);
     }; //게시물 상세 페이지 팝업 열기
 
-    onMounted(() => getData());
+    onMounted(() => {
+      window.addEventListener("PRODUCTSEARCH", handleSearch);
+      getData();
+    });
+    onUnmounted(() => {
+      window.removeEventListener("PRODUCTSEARCH", handleSearch);
+    });
 
     const isModal = ref(false);
     const modalControl = state => (isModal.value = state);
