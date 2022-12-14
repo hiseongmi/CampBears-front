@@ -2,12 +2,11 @@
 import store, { getStore, STORE_TYPE, POPUP_TYPE } from "../../store/index.js";
 import { onMounted, ref, watch } from "vue";
 import writeBoardPopup from "./popups/writeBoardPopup.vue";
-import DetailScreenPopup from "./popups/detailScreenPopup.vue";
 import ReportPopup from "./popups/reportPopup.vue";
 import UpdateBoardPopup from "./popups/updateBoardPopup.vue";
 import ProductDetailPopup from "./popups/productDetailPopup.vue";
 import ProductWritePopup from "./popups/productWritePopup.vue";
-import DetailCampingInfo from "./popups/detailCampingInfo.vue";
+import userPreferencePopup from "./popups/userPreferencePopup.vue";
 
 export default {
   name: "popupManager",
@@ -16,9 +15,8 @@ export default {
     ProductDetailPopup,
     UpdateBoardPopup,
     ReportPopup,
-    DetailScreenPopup,
     writeBoardPopup,
-    DetailCampingInfo,
+    userPreferencePopup
   },
   setup() {
     const store = getStore();
@@ -30,9 +28,11 @@ export default {
       window.location.reload();
       allScroll.style.overflow = "visible";
     };
+
     const goDetail = () => { //취소 누르면 디테일 창 뜨게
       store.commit(STORE_TYPE.popupType, POPUP_TYPE.DETAIL_SCREEN);
     };
+
     watch(() => store.state.popupType, () => {
       isPopup.value = store.state.popupType;
       // PopupList.value.push(store.state.popupList);
@@ -44,9 +44,9 @@ export default {
       isPopup,
       POPUP_TYPE,
       clickClose,
-      goDetail,
+      goDetail
     };
-  },
+  }
 };
 </script>
 <template>
@@ -54,11 +54,10 @@ export default {
     <div class="black" @click.prevent.stop="clickClose()"></div>
     <writeBoardPopup v-if="isPopup === POPUP_TYPE.WRITE_BOARD" :clickClose="clickClose"
                      :go-detail="goDetail"></writeBoardPopup>
-    <detail-screen-popup v-if="isPopup === POPUP_TYPE.DETAIL_SCREEN" :click-close="clickClose"></detail-screen-popup>
     <!--    <report-popup v-if="isPopup === POPUP_TYPE.REPORT " :click-close="clickClose" :go-detail="goDetail"></report-popup>-->
     <!--    <UpdateBoardPopup v-if="isPopup === POPUP_TYPE.UPDATE " :click-close="clickClose"></UpdateBoardPopup>-->
     <ProductDetailPopup v-if="isPopup === POPUP_TYPE.PRODUCT_DETAIL" :clickClose="clickClose" />
     <ProductWritePopup v-if="isPopup === POPUP_TYPE.PRODUCT_WRITE" :clickClose="clickClose" />
-    <DetailCampingInfo v-if="isPopup === POPUP_TYPE.DETAIL_CAMPING" :clickClose="clickClose"></DetailCampingInfo>
+    <userPreferencePopup v-if="isPopup === POPUP_TYPE.USER_RREF" :clickClose="clickClose"></userPreferencePopup>
   </div>
 </template>
