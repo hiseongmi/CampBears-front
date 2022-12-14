@@ -4,6 +4,7 @@ import {computed, nextTick, onMounted, onUnmounted, ref, watch} from "vue";
 import store, {STORE_TYPE} from "../store/index.js";
 import router from "../router/index.js";
 import commonUtil from "../utils/common-util.js";
+import {apiClient} from "../utils/axios.js";
 
 export default {
   name: "campingDetail",
@@ -281,7 +282,7 @@ export default {
     onMounted(initMap);
     onMounted(() => {
       // todo 주석 살리면됨
-  
+
       ck()
       infoData.value = Object.assign({}, infoData.value, store.state.targetOne);
       // if (campInfo && campInfo.campingIdx) {
