@@ -962,7 +962,25 @@
     .te {
       color: #fa6c1a;
       font-size: 40px;
-      padding: 30px;
+      padding-top: 30px;
+    }
+
+    .search {
+      display: flex;
+      align-items: center;
+      padding: 20px;
+      span {
+        i {
+          font-size: 25px;
+          color: #fa6c1a;
+        }
+      }
+
+      input {
+        height: 37px;
+        border: none;
+        border-bottom: 3px solid #fa6c1a;
+      }
     }
 
     .selec {
@@ -1105,7 +1123,7 @@
             }
 
             .info-btn {
-              button{
+              button {
                 float: right;
                 background-color: white;
                 border: 3px solid #fa6c1a;
@@ -1115,7 +1133,8 @@
                 padding: 3px 6px;
                 margin: 10px;
               }
-              button:hover{
+
+              button:hover {
                 cursor: pointer;
                 color: white;
                 background-color: #fa6c1a;

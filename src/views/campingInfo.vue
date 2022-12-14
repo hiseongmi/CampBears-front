@@ -259,11 +259,15 @@ export default {
     <!--    </div>-->
 
     <!--    <h1>campsite</h1>-->
-    <span class="te">캠핑테마</span>
 
-    <!--    <input type="text" @input="onchange($event)">-->
-    <input id="input" type="text" @input="myFunction()">
-    <span class="selec">테마를 선택해주세요!</span>
+
+    <span class="te">캠핑테마</span>
+    <div class="search">
+      <span><i class="fa-solid fa-magnifying-glass"></i></span>
+      <!--    <input type="text" @input="onchange($event)">-->
+      <input id="input" type="text" @input="myFunction()">
+    </div>
+    <!--    <span class="selec">테마를 선택해주세요!</span>-->
     <div class="main-icon">
       <!--      <a @click="setKeyword('텐트')">-->
       <!--        <img src="/assets/image/icon/categoryTent.webp" alt=""/>-->
