@@ -19,6 +19,13 @@ export default {
      * @param campingIdx 캠핑 고유번호
      * @returns {Promise<void>}
      */
+    const infoAp = async () => {
+      const da = await apiClient("/camping/getCampingList", infoData.value)
+    }
+
+    // console.log(infoAp())
+
+
     const insertCampingViewLog = async (campingIdx) => {
       if (campingIdx) {
         const d = await apiClient("/camping/insertSearchLog", {campingIdx: campingIdx});
@@ -277,7 +284,7 @@ export default {
       }
     };
     const ck = () => {
-      console.log(infoData)
+      // console.log(infoData)
     }
     onMounted(initMap);
     onMounted(() => {
