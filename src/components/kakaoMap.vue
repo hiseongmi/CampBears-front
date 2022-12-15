@@ -20,8 +20,6 @@ export default {
 
     let searchSibal;
 
-    let kakaoInstance;
-
     const initMap = () => {
       // 마커를 담을 배열입니다
       var markers = [];
@@ -41,7 +39,7 @@ export default {
       map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
       // 장소 검색 객체를 생성합니다
       var ps = new kakao.maps.services.Places();
-      kakaoInstance = ps;
+
       // 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
       var infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
 
@@ -287,7 +285,6 @@ export default {
 
     const getCampingData = async () => {
       const d = await apiClient("/camping/getCampingList", { campingIdx: campingIdx.value });
-      console.log(d);
       if (d.data && d.data.length > 0) {
         infoData.value = d.data[0];
         searchKeyWord.value = infoData.value.address;

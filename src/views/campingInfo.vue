@@ -50,8 +50,10 @@ export default {
         keyWord: keyword.value,
         isAnimal: isAnimal.value,
       });
+
       if (d.data && d.data.length > 0) {
         dataList.value = d.data;
+        console.log(d.data);
       }
     };
 
@@ -183,7 +185,7 @@ export default {
 
           <div class="info-inner">
             <div class="info-add">
-              <span class="info-type" v-if="item.campingTypes">캠핑 타입 :{{ item.campingTypes }}</span>
+              <span class="info-type" v-if="item.campingType">캠핑 타입 :{{ item.campingType }}</span>
             </div>
             <div class="info-ad">
               <span>주소 : {{ item.address }}</span>

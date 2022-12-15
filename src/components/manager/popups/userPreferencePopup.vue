@@ -1,61 +1,68 @@
 <script>
 import commonUtil from "../../../utils/common-util.js";
 import { CONSTANTS } from "../../../constants.js";
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
+import { i } from "../../../../dist/assets/index.70e7d3e5.js";
 
 export default {
   name: "userPreferencePopup",
   props: {
     clickClose: {
       type: Function,
-      required: true
-    }
+      required: true,
+    },
   },
   setup() {
-    const userInfo = ref(JSON.parse(commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO)));
-    const questionList = [
-      { id: "one", q: "1. 밖에서 하는 캠핑을 선호하나요?", answer: undefined },
-      { id: "two", q: "2. 주위에 놀거리가 많은 캠핑장을 선호하나요?", answer: undefined },
-      { id: "three", q: "3. 캠핑 시설이 많은 곳을 선호하나요?", answer: undefined },
-      { id: "four", q: "4. 조용한 곳을 선호하나요?", answer: undefined },
-      { id: "five", q: "5. 불멍을 할 수 있는곳을 선호하나요?", answer: undefined },
-      { id: "six", q: "6. 선호하는 이동시간을 골라주세요!", answer: undefined }
-    ];
+    const userInfo = ref();
 
+    const typeChck = ref({
+      fir: "",
+      sec: "",
+      thr: "",
+      foo: "",
+      fiv: "",
+      six: "",
+      sev: "",
+      eig: "",
+    });
+
+    /**
+     * 제출하기
+     */
     const setPreferenceValue = () => {
-      const result = [];
-      questionList.map(v => {
-        result.push({ id: v.id, value: v.answer });
-      });
       console.log(result);
     };
 
+    onMounted(() => {
+      if (commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO)) {
+        userInfo.value = JSON.parse(commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO));
+      }
+    });
 
     return {
       userInfo,
-      questionList,
-      setPreferenceValue
+
+      setPreferenceValue,
     };
-  }
+  },
 };
 </script>
 <template>
   <div>
-
-    <div>
-      잠시만요! 당신의 취향을 알고 싶어요
-    </div>
-    <div>간단한 설문을 도와주시면 {{ userInfo.userName }}님의 취향을 더 잘 알 수 있어요!</div>
-    <div v-for="item in questionList">
-      <div>{{ item.q }}</div>
+    <div class="refer">
+      <div>잠시만요! 당신의 취향을 알고 싶어요</div>
       <div>
-        <span v-for="index in 5">
-        <input type="radio" :name="item.id" :value="index" v-model="item.answer">
-        {{ index }}
-        </span>
+        간단한 설문을 도와주시면 {{ userInfo ? userInfo.userName : "손" }}님의 취향을 더 잘 알 수 있어요! (1~5까지의
+        점수로 알려주세요!)
       </div>
+      <span v-for="i in 8">
+        <!--        <input type="button" :value="ty">-->
+        <img @click="" :src="`/assets/image/prefeRence/${i}.png`" alt="" />
+        <!--        {{ index }}-->
+      </span>
     </div>
-    <input type="button" @click="setPreferenceValue">
+    <div class="submit">
+      <button @click="setPreferenceValue">제출</button>
+    </div>
   </div>
-
 </template>

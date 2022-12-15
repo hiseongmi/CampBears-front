@@ -125,7 +125,7 @@ export default {
 <template>
   <section class="main">
     <!--  <Buss />-->
-    <!--    <userPreferencePopup click-close=""></userPreferencePopup>-->
+    <userPreferencePopup click-close=""></userPreferencePopup>
     <div class="main-box">
       <div class="main-fir mb-hide">
         <img src="/assets/image/mainpage2.webp" alt="" />
