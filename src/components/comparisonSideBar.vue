@@ -92,7 +92,7 @@ export default {
         <div class="comparison-side-bar-body-wrap">
           <div class="targetOne">
             <div class="targetOne-title">
-              <button @click="targetOneClose">기준슬롯삭제</button>
+              <!--              <button @click="targetOneClose">기준슬롯삭제</button>-->
               내가 고른 캠핑장
               <!--              <span @click="targetOneClose">x</span>-->
             </div>
@@ -152,19 +152,18 @@ export default {
 
           <div v-if="store.state.targetTwo === '' " class="targetOne" :style="{'border-right' : 'none'}">
             <div class="targetOne-title">
-              <button @click="targetTwoClose">비교슬롯삭제</button>
+              <!--              <button @click="targetTwoClose">비교슬롯삭제</button>-->
               비교대상
             </div>
           </div>
           <div v-else class="targetOne" :style="{'border-right' : 'none'}">
             <div class="targetOne-title">
-              <button @click="targetTwoClose">비교슬롯삭제</button>
+              <!--              <button @click="targetTwoClose">비교슬롯삭제</button>-->
               비교대상
             </div>
             <div class="targetOne-image">
               <img :src="targetTwoData.thumbNailUrl ? targetTwoData.thumbNailUrl : 'assets/image/backgroundImg.webp'"
                    alt="" />
-
             </div>
             <div class="targetOne-list">
               <span
