@@ -19,16 +19,26 @@ export default {
     const postData = ref();
 
     const handleSearch = e => {
-      console.log(e.detail);
       if (e.detail) {
         keyword = e.detail;
       }
       getData();
     };
+    const sortHandleSearch = e => {
+      if (e.detail) {
+        sorted.value = e.detail;
+      }
+      getData();
+    };
 
     let keyword = "";
+    const sorted = ref();
     const getData = async () => {
       let param = { keyword: keyword, productType: "SELL", sorted: "RECENT" };
+      if (sorted.value !== null && sorted.value !== undefined) {
+        param = Object.assign({}, param, { sorted: sorted.value }); //ob 내장함수 합침
+        param.sorted = sorted.value;
+      }
       const data = await apiClient("product/getProductList", param);
       if (data) postData.value = data.data;
     };
@@ -44,11 +54,13 @@ export default {
 
     onMounted(() => {
       window.addEventListener("PRODUCTSEARCH", handleSearch);
+      window.addEventListener("SORTDATA", sortHandleSearch);
       getData();
 
     });
     onUnmounted(() => {
       window.removeEventListener("PRODUCTSEARCH", handleSearch);
+      window.removeEventListener("SORTDATA", sortHandleSearch);
     });
 
     const isModal = ref(false);
@@ -67,9 +79,6 @@ export default {
 </script>
 
 <template>
-  <div>
-    {{ sortValue }}
-  </div>
   <div class="used-contents-area">
     <div class="used-contents-area-ul">
       <div class="used-post" v-for="item in postData" @click="openDetail(item.productIdx)">

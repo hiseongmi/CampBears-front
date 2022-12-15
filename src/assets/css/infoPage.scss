@@ -406,6 +406,7 @@
 // ㅡㅡㅡㅡㅡ캠핑장정보
 
 .info-main {
+  display: none;
   //height: 258px;
   //text-align: -webkit-center;
   //@include mb() {
@@ -950,8 +951,10 @@
 .info-camp {
   position: relative;
   color: #cccccc;
-  border-top: solid 2px;
+  //border-top: solid 2px;
   min-height: 800px;
+  background-image: url(/assets/image/main-bottom.webp);
+  background-size: 100% 100%;
 
   .camp-info {
     h1 {
@@ -990,6 +993,7 @@
         width: 381px;
         border-bottom: 3px solid #fa6c1a;
         text-align: center;
+        background: none;
       }
     }
 

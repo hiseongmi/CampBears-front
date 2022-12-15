@@ -13,16 +13,26 @@ export default {
     const postData = ref({});
 
     const handleSearch = e => {
-      console.log(e.detail);
       if (e.detail) {
         keyword = e.detail;
       }
       getData();
     };
+    const sortHandleSearch = e => {
+      if (e.detail) {
+        sorted.value = e.detail;
+      }
+      getData();
+    };
 
     let keyword = "";
+    const sorted = ref();
     const getData = async () => {
       let param = { keyword: keyword, productType: "BUY", sorted: "RECENT" };
+      if (sorted.value !== null && sorted.value !== undefined) {
+        param = Object.assign({}, param, { sorted: sorted.value }); //ob 내장함수 합침
+        param.sorted = sorted.value;
+      }
       const data = await apiClient("product/getProductList", param);
       if (data) postData.value = data.data;
     };
@@ -37,11 +47,13 @@ export default {
     }; //게시물 상세 페이지 팝업 열기
 
     onMounted(() => {
-      window.addEventListener("PRODUCTSEARCH", handleSearch);
       getData();
+      window.addEventListener("PRODUCTSEARCH", handleSearch);
+      window.addEventListener("SORTDATA", sortHandleSearch);
     });
     onUnmounted(() => {
       window.removeEventListener("PRODUCTSEARCH", handleSearch);
+      window.removeEventListener("SORTDATA", sortHandleSearch);
     });
 
     const isModal = ref(false);

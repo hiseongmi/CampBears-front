@@ -46,15 +46,16 @@ export default {
     ];
     const sortUpdateValue = v => {
       sortValue.value = v;
-
+      getData();
     };
+
     const inquiryProductData = ref({ keyword: "", sorted: "RECENT" });
     const getData = async () => {
+      inquiryProductData.value = Object.assign({}, inquiryProductData.value, { sorted: sortValue.value });
+      dispatchEvent(new CustomEvent("SORTDATA", { detail: inquiryProductData.value.sorted }));
+
       const data = await apiClient("product/getProductList", inquiryProductData.value);
-      inquiryProductData.value.sorted = sortValue.value;
-      if (inquiryProductData.value.keyword) {
-        dispatchEvent(new CustomEvent("PRODUCTSEARCH", { detail: inquiryProductData.value.keyword }));
-      }
+      dispatchEvent(new CustomEvent("PRODUCTSEARCH", { detail: inquiryProductData.value.keyword }));
     };
     const handleEnterEvent = (e) => {
       if (e.key === "Enter") {
@@ -109,7 +110,7 @@ export default {
           :custom-class="tabIndex === tabType.BUY ? 'active' : ''"
         />
       </div>
-      <div>
+      <div class="used-title-search">
         <input placeholder="상품 찾아보기" v-model="inquiryProductData.keyword" @keydown="handleEnterEvent"
                @mousedown="handleMouseEvent">
         <button @click="getData"><i class="fa-solid fa-magnifying-glass" /></button>

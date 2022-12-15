@@ -52,6 +52,11 @@
         padding: 2px 19px;
       }
 
+      input:focus {
+
+        outline: none;
+      }
+
       input::placeholder {
         text-align: center;
       }
