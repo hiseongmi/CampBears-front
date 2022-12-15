@@ -8,7 +8,7 @@ export const STORE_TYPE = {
   contentData: "contentData",
   boardIdx: "boardIdx",
   commentIdx: "commentIdx",
-  campInfo: "campInfo",
+  campingIdx: "campingIdx",
   sideBar: "sideBar",
   comparisonSideBar: "comparisonSideBar",
   detailData: "detailData",
@@ -37,7 +37,7 @@ const store = createStore({
     boardIdx: "",
     commentIdx: "",
     popupList: [],
-    campInfo: undefined,
+    campingIdx: undefined,
     sideBar: false,
     comparisonSideBar: false,
     detailData: [],
@@ -90,8 +90,8 @@ const store = createStore({
     boardIdx(state, value) {
       state.boardIdx = value;
     },
-    campInfo(state, value) {
-      state.campInfo = value;
+    campingIdx(state, value) {
+      state.campingIdx = value;
     },
     sideBar(state, value) {
       state.sideBar = value;

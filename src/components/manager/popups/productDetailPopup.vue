@@ -1,16 +1,16 @@
 <script>
 import CustomButton from "../../layout/customButton.vue";
-import {onMounted, ref} from "vue";
-import {apiClient} from "../../../utils/axios.js";
+import { onMounted, ref } from "vue";
+import { apiClient } from "../../../utils/axios.js";
 import commonUtil from "../../../utils/common-util.js";
-import store, {POPUP_TYPE, STORE_TYPE} from "../../../store/index.js";
-import {CONSTANTS} from "../../../constants.js";
+import store, { POPUP_TYPE, STORE_TYPE } from "../../../store/index.js";
+import { CONSTANTS } from "../../../constants.js";
 import router from "../../../router/index.js";
 import popupManager from "../popupManager.vue";
 
 export default {
   name: "productDetailPopup",
-  components: {CustomButton},
+  components: { CustomButton },
   setup() {
     const detailData = ref({
       productIdx: "",
@@ -32,8 +32,7 @@ export default {
     const goChat = async () => {
       const data = await apiClient("/chat/joinChat", detailData.value.userIdx);
       if (data) {
-
-        console.log("보냈을까", detailData.value.userIdx)
+        console.log("보냈을까", detailData.value.userIdx);
       }
     };
     // const axios = require('userIdx')
@@ -43,21 +42,17 @@ export default {
     //   console.log(res)
     // })
     const axios = () => {
-
       if (userData.value && detailData.value.userIdx) {
-        goChat()
-        console.log("성공", detailData.value.userIdx)
+        goChat();
+        console.log("성공", detailData.value.userIdx);
       } else {
         window.alert("로그인 하세요.");
         //팝업닫기?
-        store.commit(STORE_TYPE.popupType, 'NONE');
-        store.commit(POPUP_TYPE.PRODUCT_DETAIL, "NONE");
-        store.commit(STORE_TYPE.boardIdx, "NONE");
+        store.commit(STORE_TYPE.popupType, POPUP_TYPE.NONE);
 
         router.push("/login");
       }
-    }
-
+    };
 
     const getDetail = async () => {
       // Product Detail Info 받아오기
@@ -116,29 +111,29 @@ export default {
       <div class="modal-detail-content">
         <div class="product">
           <div class="product-image">
-            <img :src="getImgUrl(detailData.file[tabIndex])" alt="상품 사진"/>
+            <img :src="getImgUrl(detailData.file[tabIndex])" alt="상품 사진" />
             <div class="product-image-subImg">
               <div class="product-image-subImg-list" v-for="(item, index) in detailData.file">
-                <img @click="changeImg(index)" :src="getImgUrl(item)" :tabindex="tabIndex" alt=""/>
+                <img @click="changeImg(index)" :src="getImgUrl(item)" :tabindex="tabIndex" alt="" />
               </div>
             </div>
             <span class="product-image-right">
-              <i class="fa-solid fa-circle-chevron-right"/>
+              <i class="fa-solid fa-circle-chevron-right" />
             </span>
             <span class="product-image-left">
-              <i class="fa-solid fa-circle-chevron-left"/>
+              <i class="fa-solid fa-circle-chevron-left" />
             </span>
           </div>
           <div class="product-wrap">
             <div class="product-wrap-profile">
-              <img :src="userProfile" alt="프사"/>
+              <img :src="userProfile" alt="프사" />
               <div class="product-wrap-profile-info">
                 <span>{{ detailData.userNickName }}</span>
               </div>
             </div>
             <div class="product-wrap-chat">
               // todo 채팅
-              <custom-button @click="axios" :placeholder="'채팅하기'"/>
+              <custom-button @click="axios" :placeholder="'채팅하기'" />
             </div>
           </div>
           <div class="product-main">
@@ -149,24 +144,24 @@ export default {
               </div>
               <div class="product-main-wrap-rest">
                 <span>
-                  <i class="fa-regular fa-clock"/>
+                  <i class="fa-regular fa-clock" />
                   {{ detailData.dateReg }}
                 </span>
               </div>
             </div>
             <div class="product-main-menu">
-              <span class="heart"><i class="fa-regular fa-heart"/></span>
-              <span class="share"><i class="fa-solid fa-share-nodes"/></span>
+              <span class="heart"><i class="fa-regular fa-heart" /></span>
+              <span class="share"><i class="fa-solid fa-share-nodes" /></span>
             </div>
           </div>
           <div class="product-price">
             <div class="grade">
               <span class="name">상품 컨디션</span>
-              <span><i class="fa-solid fa-star"/></span>
-              <span><i class="fa-solid fa-star"/></span>
-              <span><i class="fa-solid fa-star"/></span>
-              <span><i class="fa-solid fa-star"/></span>
-              <span><i class="fa-solid fa-star"/></span>
+              <span><i class="fa-solid fa-star" /></span>
+              <span><i class="fa-solid fa-star" /></span>
+              <span><i class="fa-solid fa-star" /></span>
+              <span><i class="fa-solid fa-star" /></span>
+              <span><i class="fa-solid fa-star" /></span>
             </div>
             <p>{{ detailData.productPrice }}</p>
           </div>
