@@ -1,6 +1,6 @@
 <script>
-import store, {getStore, STORE_TYPE, POPUP_TYPE} from "../../store/index.js";
-import {onMounted, ref, watch} from "vue";
+import store, { getStore, STORE_TYPE, POPUP_TYPE } from "../../store/index.js";
+import { onMounted, ref, watch } from "vue";
 import writeBoardPopup from "./popups/writeBoardPopup.vue";
 import ReportPopup from "./popups/reportPopup.vue";
 import UpdateBoardPopup from "./popups/updateBoardPopup.vue";
@@ -16,7 +16,7 @@ export default {
     UpdateBoardPopup,
     ReportPopup,
     writeBoardPopup,
-    userPreferencePopup
+    userPreferencePopup,
   },
   setup() {
     const store = getStore();
@@ -25,7 +25,7 @@ export default {
     const allScroll = document.querySelector("html");
     const clickClose = () => {
       store.commit(STORE_TYPE.popupType, POPUP_TYPE.NONE);
-      window.location.reload();
+      // window.location.reload();
       allScroll.style.overflow = "visible";
     };
 
@@ -45,9 +45,9 @@ export default {
       isPopup,
       POPUP_TYPE,
       clickClose,
-      goDetail
+      goDetail,
     };
-  }
+  },
 };
 </script>
 <template>
@@ -57,8 +57,8 @@ export default {
                      :go-detail="goDetail"></writeBoardPopup>
     <!--    <report-popup v-if="isPopup === POPUP_TYPE.REPORT " :click-close="clickClose" :go-detail="goDetail"></report-popup>-->
     <!--    <UpdateBoardPopup v-if="isPopup === POPUP_TYPE.UPDATE " :click-close="clickClose"></UpdateBoardPopup>-->
-    <ProductDetailPopup v-if="isPopup === POPUP_TYPE.PRODUCT_DETAIL" :clickClose="clickClose"/>
-    <ProductWritePopup v-if="isPopup === POPUP_TYPE.PRODUCT_WRITE" :clickClose="clickClose"/>
+    <ProductDetailPopup v-if="isPopup === POPUP_TYPE.PRODUCT_DETAIL" :clickClose="clickClose" />
+    <ProductWritePopup v-if="isPopup === POPUP_TYPE.PRODUCT_WRITE" :clickClose="clickClose" />
     <userPreferencePopup v-if="isPopup === POPUP_TYPE.USER_RREF" :clickClose="clickClose"></userPreferencePopup>
   </div>
 </template>

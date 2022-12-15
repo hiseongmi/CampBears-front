@@ -1,9 +1,9 @@
 <script>
-import {computed, nextTick, onMounted, onUnmounted, ref, watch} from "vue";
+import { computed, nextTick, onMounted, onUnmounted, ref, watch } from "vue";
 import commonUtil from "../utils/common-util.js";
-import {CONSTANTS} from "../constants.js";
+import { CONSTANTS } from "../constants.js";
 import router from "../router/index.js";
-import store, {STORE_TYPE} from "../store/index.js";
+import store, { STORE_TYPE } from "../store/index.js";
 
 export default {
   name: "comparisonSideBar",
@@ -57,15 +57,15 @@ export default {
     });
 
     watch(
-        () => store.state.targetTwo,
-        () => {
-          if (store.state.targetOne === store.state.targetTwo) {
-            console.log("같은곳임.");
-            // window.alert("같은곳을 누르신거같아요")
-          } else {
-            targetTwoData.value = Object.assign({}, targetTwoData.value, store.state.targetTwo);
-          }
-        },
+      () => store.state.targetTwo,
+      () => {
+        if (store.state.targetOne === store.state.targetTwo) {
+          console.log("같은곳임.");
+          // window.alert("같은곳을 누르신거같아요")
+        } else {
+          targetTwoData.value = Object.assign({}, targetTwoData.value, store.state.targetTwo);
+        }
+      },
     );
 
     return {
@@ -98,12 +98,12 @@ export default {
             </div>
             <div class="targetOne-image">
               <img :src="targetOneData.thumbNailUrl ? targetOneData.thumbNailUrl : 'assets/image/backgroundImg.webp'"
-                   alt=""/>
+                   alt="" />
             </div>
             <div class="targetOne-list">
               <span
-                  class="targetOne-list-mode"> {{
-                  targetOneData.campingManageMode ? targetOneData.campingManageMode : "캠핑장 소개글이 없어요"
+                class="targetOne-list-mode"> {{
+                  targetOneData.campingManageMode ? targetOneData.campingManageMode : "x"
                 }}</span>
               <span class="targetOne-list-name">{{
                   targetOneData.campingName ? targetOneData.campingName : "정보가 없어요ㅠ"
@@ -133,9 +133,9 @@ export default {
               <span> {{ targetOneData.campOuterOption ? targetOneData.campOuterOption : "외부시설 정보가 없어요" }}</span>
             </div>
             <div class="targetOne-list">
-              <span><i class="fa-solid fa-dog"></i>애완동물이 가능한가요? 답: {{
-                  targetOneData.getInAnimal ? targetOneData.getInAnimal : "정보가 없어요ㅠ"
-                }}</span>
+              <span><i class="fa-solid fa-dog"></i>
+                  {{ targetOneData.getInAnimal ? targetOneData.getInAnimal : "정보가 없어요ㅠ" }}
+                </span>
             </div>
             <div class="targetOne-list">
               <a :href="targetOneData.homePageUrl">{{
@@ -163,13 +163,13 @@ export default {
             </div>
             <div class="targetOne-image">
               <img :src="targetTwoData.thumbNailUrl ? targetTwoData.thumbNailUrl : 'assets/image/backgroundImg.webp'"
-                   alt=""/>
+                   alt="" />
 
             </div>
             <div class="targetOne-list">
               <span
-                  class="targetOne-list-mode"> {{
-                  targetTwoData.campingManageMode ? targetTwoData.campingManageMode : "캠핑장 소개글이 없어요"
+                class="targetOne-list-mode"> {{
+                  targetTwoData.campingManageMode ? targetTwoData.campingManageMode : "x"
                 }}</span>
               <span class="targetOne-list-name">{{
                   targetTwoData.campingName ? targetTwoData.campingName : "정보가 없어요ㅠ"
@@ -199,9 +199,9 @@ export default {
               <span> {{ targetTwoData.campOuterOption ? targetTwoData.campOuterOption : "외부시설 정보가 없어요" }}</span>
             </div>
             <div class="targetOne-list">
-              <span><i class="fa-solid fa-dog"></i>애완동물이 가능한가요? 답: {{
-                  targetTwoData.getInAnimal ? targetTwoData.getInAnimal : "정보가 없어요ㅠ"
-                }}</span>
+              <span><i class="fa-solid fa-dog"></i>
+                  {{ targetTwoData.getInAnimal ? targetTwoData.getInAnimal : "정보가 없어요ㅠ" }}
+                </span>
             </div>
             <div class="targetOne-list">
               <a :href="targetTwoData.homePageUrl">{{ targetTwoData.homePageUrl ? "홈페이지 바로가기" : "홈페이지가 없는 캠핑장이에요" }}</a>

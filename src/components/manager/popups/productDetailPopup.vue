@@ -6,11 +6,11 @@ import commonUtil from "../../../utils/common-util.js";
 import store, { POPUP_TYPE, STORE_TYPE } from "../../../store/index.js";
 import { CONSTANTS } from "../../../constants.js";
 import router from "../../../router/index.js";
-import popupManager from "../popupManager.vue";
+import chat from "../../chat.vue";
 
 export default {
   name: "productDetailPopup",
-  components: { CustomButton },
+  components: { CustomButton, chat },
   setup() {
     const detailData = ref({
       productIdx: "",
@@ -21,6 +21,7 @@ export default {
       file: [],
     });
     //todo 채팅하기 활성화
+
     const userData = ref();
     const getData = async () => {
       try {
@@ -29,30 +30,23 @@ export default {
         return e;
       }
     };
+    let param = "";
     const goChat = async () => {
-      const data = await apiClient("/chat/joinChat", detailData.value.userIdx);
-      if (data) {
-        console.log("보냈을까", detailData.value.userIdx);
+      param = Object.assign({}, param, { targetIdx: detailData.value.userIdx });
+      const data = await apiClient("/chat/joinChat", param);
+      if (data.resultCode === 0) {
       }
     };
-    // const axios = require('userIdx')
-    // axios.post('/chat/joinChat', {
-    //   targetIdx: 'userIdx'
-    // }).then((res) => {
-    //   console.log(res)
-    // })
-    const axios = () => {
+    const productChat = () => {
       if (userData.value && detailData.value.userIdx) {
         goChat();
-        console.log("성공", detailData.value.userIdx);
       } else {
         window.alert("로그인 하세요.");
-        //팝업닫기?
-        store.commit(STORE_TYPE.popupType, POPUP_TYPE.NONE);
-
+        store.commit(STORE_TYPE.popupType, POPUP_TYPE.NONE); //팝업닫기
         router.push("/login");
       }
     };
+
 
     const getDetail = async () => {
       // Product Detail Info 받아오기
@@ -95,11 +89,12 @@ export default {
 
     return {
       detailData,
-      getImgUrl,
       tabIndex,
       userProfile,
+      userData,
+      getImgUrl,
       changeImg,
-      axios,
+      productChat,
       goChat,
     };
   },
@@ -132,8 +127,9 @@ export default {
               </div>
             </div>
             <div class="product-wrap-chat">
-              // todo 채팅
-              <custom-button @click="axios" :placeholder="'채팅하기'" />
+              <!--              todo 채팅-->
+              <custom-button v-if="userData?.userIdx !== detailData.userIdx" @click="productChat"
+                             :placeholder="'채팅하기'" />
             </div>
           </div>
           <div class="product-main">

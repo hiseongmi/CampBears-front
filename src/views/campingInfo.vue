@@ -101,6 +101,9 @@ export default {
       // console.log(k)
       getCampInfo();
     };
+    const reload = () => {
+      window.location.reload();
+    };
 
     onMounted(() => {
       getCampInfo();
@@ -115,6 +118,7 @@ export default {
       store,
       comparisonAction,
       // startTest,
+      reload,
       myFunction,
       setKeyword,
       getCampInfo,
@@ -130,7 +134,7 @@ export default {
 </script>
 <template>
   <section class="camp-info" :style="store.state.comparisonSideBar ? { width: '50%', margin: '0 0 0 auto' } : ''">
-    <span class="te">캠핑테마</span>
+    <span class="te" @click="reload">캠핑테마</span>
     <div class="search">
       <span><i class="fa-solid fa-magnifying-glass"></i></span>
       <!--    <input type="text" @input="onchange($event)">-->

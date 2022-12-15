@@ -33,7 +33,7 @@ export default {
     };
 
     const sendMsg = () => {
-      console.log("targetUserIdx : ", targetUser.value.targetIdx);
+      // console.log("targetUserIdx : ", targetUser.value.targetIdx);
       const param = {
         chatIdx: targetUser.value.chatIdx,
         userIdx: loginUser.value.userIdx,
@@ -41,7 +41,7 @@ export default {
         chatType: "ME",
         chatBody: msg.value,
         ProfileImg: "",
-        NickName: "너야"
+        NickName: "너야",
       };
       if (msg) {
         // chatManager.sendMessage(msg);
@@ -127,7 +127,7 @@ export default {
       if (f) {
         return commonUtil.getImgUrl(f);
       } else {
-        return "/assets/image/IU.webp";
+        return "/assets/image/profileImg.webp";
       }
     };
 
@@ -161,6 +161,11 @@ export default {
         console.log("no one here");
       }
     });
+    const handleEnterEvent = (e) => {
+      if (e.key === "Enter") {
+        sendMsg();
+      }
+    };
 
     onUnmounted(() => {
       chatManager.destroyChat();
@@ -172,16 +177,17 @@ export default {
       userList,
       targetUser,
       chatInfoList,
+      handleEnterEvent,
       showLastIndex,
       showChatController,
       doChatUser,
       handleInput,
       sendMsg,
       clearTargetUser,
-      getImgUrl
+      getImgUrl,
     };
   },
-  methods: {}
+  methods: {},
 };
 </script>
 <template>
@@ -215,14 +221,11 @@ export default {
             </div>
           </div>
           <div class="chat-util">
-            <input id="chat-output" type="text" @input="handleInput">
+            <input id="chat-output" type="text" @input="handleInput" @keydown="handleEnterEvent">
             <button @click="sendMsg">전송</button>
           </div>
-
         </div>
       </div>
     </transition>
-
-
   </section>
 </template>
