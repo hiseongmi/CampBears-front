@@ -65,13 +65,20 @@ export default {
         }
       }
     };
-
-    onMounted(() => {
-      getDetail();
-      getData();
-    });
-
     const tabIndex = ref(0);
+
+    const nextOverImg = () => {
+      if (tabIndex.value < detailData.value.file.length - 1) {
+        tabIndex.value++;
+      }
+    };
+    const beforeOverImg = () => {
+      if (tabIndex.value > 0) {
+        tabIndex.value--;
+      }
+    };
+
+
     const userProfile = ref("/assets/image/profileImg.webp");
     const getImgUrl = file => {
       try {
@@ -87,11 +94,17 @@ export default {
       tabIndex.value = index;
     };
 
+    onMounted(() => {
+      getDetail();
+      getData();
+    });
     return {
       detailData,
       tabIndex,
       userProfile,
       userData,
+      nextOverImg,
+      beforeOverImg,
       getImgUrl,
       changeImg,
       productChat,
@@ -107,15 +120,15 @@ export default {
         <div class="product">
           <div class="product-image">
             <img :src="getImgUrl(detailData.file[tabIndex])" alt="상품 사진" />
-            <div class="product-image-subImg">
+            <div v-if="detailData.file.length > 1" class="product-image-subImg">
               <div class="product-image-subImg-list" v-for="(item, index) in detailData.file">
                 <img @click="changeImg(index)" :src="getImgUrl(item)" :tabindex="tabIndex" alt="" />
               </div>
             </div>
-            <span class="product-image-right">
+            <span v-if="detailData.file.length > 1" @click="nextOverImg" class="product-image-right">
               <i class="fa-solid fa-circle-chevron-right" />
             </span>
-            <span class="product-image-left">
+            <span v-if="detailData.file.length > 1" @click="beforeOverImg" class="product-image-left">
               <i class="fa-solid fa-circle-chevron-left" />
             </span>
           </div>
