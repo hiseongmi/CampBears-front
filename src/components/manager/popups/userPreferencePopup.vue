@@ -1,7 +1,8 @@
 <script>
 import commonUtil from "../../../utils/common-util.js";
-import { CONSTANTS } from "../../../constants.js";
-import { onMounted, ref } from "vue";
+import {CONSTANTS} from "../../../constants.js";
+import {onMounted, ref} from "vue";
+// import { i } from "../../../../dist/assets/index.70e7d3e5.js";
 
 export default {
   name: "userPreferencePopup",
@@ -54,18 +55,9 @@ export default {
       <div>
         간단한 설문을 도와주시면 {{ userInfo ? userInfo.userName : "손" }}님의 취향을 더 잘 알 수 있어요!
       </div>
-      <div class="img-area">
-        <div>1. 선호하는 캠핑 테마를 골라주세요!</div>
-        <div class="theme">
-          <img v-for="i in 8" @click="" :src="`/assets/image/prefeRence/${i}.png`" alt="" />
-        </div>
-        <div style="padding-top:100px">2. 선호하는 캠핑 유형을 골라주세요!</div>
-        <div class="type">
-          <img src="/assets/image/prefeRence/camp.png" alt="" />
-          <img src="/assets/image/prefeRence/car.png" alt="" />
-          <img src="/assets/image/prefeRence/caravan.png" alt="" />
-          <img src="/assets/image/prefeRence/glamping.png" alt="" />
-        </div>
+      <span v-for="i in 8">
+        <!--        <input type="button" :value="ty">-->
+        <img @click="" :src="`/assets/image/prefeRence/${i}.png`" alt="" />
         <!--        {{ index }}-->
       </div>
     </div>

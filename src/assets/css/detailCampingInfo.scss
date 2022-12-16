@@ -1,4 +1,58 @@
 .detail-camping {
+  position: relative;
+  top: 100px;
+  min-height: 100px;
+
+
+  .go-camping {
+    img {
+      border-radius: 140px;
+    }
+
+    .name {
+      font-size: 35px;
+    }
+
+    .des {
+      font-size: 25px;
+      color: $primary-color;
+    }
+
+    div {
+      padding: 10px;
+    }
+
+    a {
+      text-decoration: none;
+      border-radius: 5px;
+    }
+
+    a:link, a:visited {
+      background-color: $primary-color;
+      color: maroon;
+      padding: 15px 25px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    a:hover, a:active {
+      background-color: #FF4500;
+    }
+
+    text-decoration: none;
+    color: #3f4254;
+    min-height: 1300px;
+    top: 100px;
+    position: relative;
+    text-align: center;
+
+    .camp-type {
+      text-align: center;
+      position: center;
+    }
+  }
+
   .det-title {
     position: relative;
     text-align: center;

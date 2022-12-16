@@ -1,16 +1,16 @@
 <script>
-import { onMounted, ref } from "vue";
+import {onMounted, ref} from "vue";
 import axios from "axios";
-import store, { POPUP_TYPE, STORE_TYPE } from "../store/index.js";
-import { useStore } from "vuex";
+import store, {POPUP_TYPE, STORE_TYPE} from "../store/index.js";
+import {useStore} from "vuex";
 import customInput from "../components/layout/customInput.vue";
 import ComparisonSideBar from "../components/comparisonSideBar.vue";
 import router from "../router/index.js";
-import { apiClient } from "../utils/axios.js";
+import {apiClient} from "../utils/axios.js";
 
 export default {
   name: "campingInfo",
-  components: { ComparisonSideBar, customInput },
+  components: {ComparisonSideBar, customInput},
 
   setup() {
     const store = useStore();
@@ -140,27 +140,27 @@ export default {
     <div class="search">
       <span><i class="fa-solid fa-magnifying-glass"></i></span>
       <!--    <input type="text" @input="onchange($event)">-->
-      <input id="input" type="text" @input="myFunction" />
+      <input id="input" type="text" @input="myFunction"/>
     </div>
     <!--    <span class="selec">테마를 선택해주세요!</span>-->
     <div class="main-icon">
       <a @click="setKeyword('카라반')">
-        <img src="/assets/image/icon/categoryCaravane.webp" alt="" />
+        <img src="/assets/image/icon/categoryCaravane.webp" alt=""/>
         <span>카라반</span>
       </a>
 
       <a @click="setKeyword('글램핑')">
-        <img src="/assets/image/icon/categoryGlamping.webp" alt="" />
+        <img src="/assets/image/icon/categoryGlamping.webp" alt=""/>
         <span>글램핑</span>
       </a>
 
       <a @click="setKeyword('오토캠핑')">
-        <img src="/assets/image/icon/categoryAutoCamping.webp" alt="" />
+        <img src="/assets/image/icon/categoryAutoCamping.webp" alt=""/>
         <span>오토캠핑</span>
       </a>
 
       <a @click="setKeyword('키즈')">
-        <img src="/assets/image/icon/categoryKids.webp" alt="" />
+        <img src="/assets/image/icon/categoryKids.webp" alt=""/>
         <span>키즈</span>
       </a>
     </div>
@@ -174,8 +174,8 @@ export default {
               {{ item.campingManageMode }}
             </span>
           </div>
-          <img :src="item.thumbnailUrl ? item.thumbnailUrl : 'assets/image/backgroundImg.webp'" alt="main"
-        /></a>
+          <img :src="item.thumbnailUrl ? item.thumbnailUrl : '/assets/image/infologo.png'" alt="main"
+          /></a>
 
         <div class="camp-list">
           <div class="name">{{ item.campingName }}</div>
@@ -231,7 +231,7 @@ export default {
       </div>
       <!--      <a href=""></a>-->
     </div>
-    <div v-else>...데이터를 불러오는 중...</div>
+    <!--    <div v-else>...데이터를 불러오는 중...</div>-->
   </section>
-  <comparison-side-bar v-if="store.state.comparisonSideBar" />
+  <comparison-side-bar v-if="store.state.comparisonSideBar"/>
 </template>
