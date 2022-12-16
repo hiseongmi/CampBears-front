@@ -1,9 +1,9 @@
 <script>
-import { computed, nextTick, onMounted, onUnmounted, ref, watch } from "vue";
+import {computed, nextTick, onMounted, onUnmounted, ref, watch} from "vue";
 import commonUtil from "../utils/common-util.js";
-import { CONSTANTS } from "../constants.js";
+import {CONSTANTS} from "../constants.js";
 import router from "../router/index.js";
-import store, { STORE_TYPE } from "../store/index.js";
+import store, {STORE_TYPE} from "../store/index.js";
 
 export default {
   name: "comparisonSideBar",
@@ -57,15 +57,15 @@ export default {
     });
 
     watch(
-      () => store.state.targetTwo,
-      () => {
-        if (store.state.targetOne === store.state.targetTwo) {
-          console.log("같은곳임.");
-          // window.alert("같은곳을 누르신거같아요")
-        } else {
-          targetTwoData.value = Object.assign({}, targetTwoData.value, store.state.targetTwo);
-        }
-      },
+        () => store.state.targetTwo,
+        () => {
+          if (store.state.targetOne === store.state.targetTwo) {
+            console.log("같은곳임.");
+            // window.alert("같은곳을 누르신거같아요")
+          } else {
+            targetTwoData.value = Object.assign({}, targetTwoData.value, store.state.targetTwo);
+          }
+        },
     );
 
     return {
@@ -97,12 +97,12 @@ export default {
               <!--              <span @click="targetOneClose">x</span>-->
             </div>
             <div class="targetOne-image">
-              <img :src="targetOneData.thumbNailUrl ? targetOneData.thumbNailUrl : 'assets/image/backgroundImg.webp'"
-                   alt="" />
+              <img :src="targetOneData.thumbnailUrl ? targetOneData.thumbnailUrl : '/assets/image/infologo.png'"
+                   alt=""/>
             </div>
             <div class="targetOne-list">
               <span
-                class="targetOne-list-mode"> {{
+                  class="targetOne-list-mode"> {{
                   targetOneData.campingManageMode ? targetOneData.campingManageMode : "x"
                 }}</span>
               <span class="targetOne-list-name">{{
@@ -115,7 +115,7 @@ export default {
                 }}</span>
             </div>
             <div class="targetOne-list">
-              <span>{{ targetOneData.campingTypes ? targetOneData.campingTypes : "정보가 없어요ㅠ" }}</span>
+              <span>{{ targetOneData.campingType ? targetOneData.campingType : "정보가 없어요ㅠ" }}</span>
             </div>
             <div class="targetOne-list">
               <span><i class="fa-solid fa-location-dot"></i></span>
@@ -126,11 +126,11 @@ export default {
             </div>
             <div class="targetOne-list">
               <span><i class="fa-solid fa-campground"></i></span>
-              <span> {{ targetOneData.campInnerOption ? targetOneData.campInnerOption : "내부시설 정보가없어요" }}</span>
+              <span> {{ targetOneData.glampOption ? targetOneData.glampOption : "내부시설 정보가없어요" }}</span>
             </div>
             <div class="targetOne-list">
               <span> <i class="fa-solid fa-table-tennis-paddle-ball"></i></span>
-              <span> {{ targetOneData.campOuterOption ? targetOneData.campOuterOption : "외부시설 정보가 없어요" }}</span>
+              <span> {{ targetOneData.campingOption ? targetOneData.campingOption : "외부시설 정보가 없어요" }}</span>
             </div>
             <div class="targetOne-list">
               <span><i class="fa-solid fa-dog"></i>
@@ -143,7 +143,7 @@ export default {
                 }}</a>
             </div>
             <div class="targetOne-list">
-              <span>설립날짜 : {{ targetOneData.createdDate ? targetOneData.createdDate : "x" }}</span>
+              <span>설립날짜 : {{ targetOneData.createData ? targetOneData.createData : "x" }}</span>
             </div>
           </div>
 
@@ -162,12 +162,12 @@ export default {
               비교대상
             </div>
             <div class="targetOne-image">
-              <img :src="targetTwoData.thumbNailUrl ? targetTwoData.thumbNailUrl : 'assets/image/backgroundImg.webp'"
-                   alt="" />
+              <img :src="targetTwoData.thumbnailUrl ? targetTwoData.thumbnailUrl : '/assets/image/infologo.png'"
+                   alt=""/>
             </div>
             <div class="targetOne-list">
               <span
-                class="targetOne-list-mode"> {{
+                  class="targetOne-list-mode"> {{
                   targetTwoData.campingManageMode ? targetTwoData.campingManageMode : "x"
                 }}</span>
               <span class="targetOne-list-name">{{
@@ -180,7 +180,7 @@ export default {
                 }}</span>
             </div>
             <div class="targetOne-list">
-              <span>{{ targetTwoData.campingTypes ? targetTwoData.campingTypes : "정보가 없어요ㅠ" }}</span>
+              <span>{{ targetTwoData.campingType ? targetTwoData.campingType : "정보가 없어요ㅠ" }}</span>
             </div>
             <div class="targetOne-list">
               <span><i class="fa-solid fa-location-dot"></i></span>
@@ -191,11 +191,11 @@ export default {
             </div>
             <div class="targetOne-list">
               <span><i class="fa-solid fa-campground"></i></span>
-              <span> {{ targetTwoData.campInnerOption ? targetTwoData.campInnerOption : "내부시설 정보가없어요" }}</span>
+              <span> {{ targetTwoData.glampOption ? targetTwoData.glampOption : "내부시설 정보가없어요" }}</span>
             </div>
             <div class="targetOne-list">
               <span> <i class="fa-solid fa-table-tennis-paddle-ball"></i></span>
-              <span> {{ targetTwoData.campOuterOption ? targetTwoData.campOuterOption : "외부시설 정보가 없어요" }}</span>
+              <span> {{ targetTwoData.campingOption ? targetTwoData.campingOption : "외부시설 정보가 없어요" }}</span>
             </div>
             <div class="targetOne-list">
               <span><i class="fa-solid fa-dog"></i>
@@ -206,7 +206,7 @@ export default {
               <a :href="targetTwoData.homePageUrl">{{ targetTwoData.homePageUrl ? "홈페이지 바로가기" : "홈페이지가 없는 캠핑장이에요" }}</a>
             </div>
             <div class="targetOne-list">
-              <span>설립날짜 : {{ targetTwoData.createdDate ? targetTwoData.createdDate : "정보가 없어요ㅠ" }}</span>
+              <span>설립날짜 : {{ targetTwoData.createData ? targetTwoData.createData : "정보가 없어요ㅠ" }}</span>
             </div>
           </div>
 

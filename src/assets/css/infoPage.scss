@@ -953,7 +953,6 @@
   color: #cccccc;
   //border-top: solid 2px;
   min-height: 800px;
-  background-image: url(/assets/image/main-bottom.webp);
   background-size: 100% 100%;
 
   .camp-info {
@@ -1138,6 +1137,7 @@
             }
 
             .info-btn {
+
               button {
                 float: right;
                 background-color: white;
@@ -1147,6 +1147,11 @@
                 font-size: 12px;
                 padding: 3px 6px;
                 margin: 10px;
+              }
+
+              button:active {
+                position: relative;
+                top: 2px
               }
 
               button:hover {

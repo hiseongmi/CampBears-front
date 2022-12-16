@@ -1,4 +1,5 @@
 .camp-info {
+  background-image: none;
   width: 70%;
   margin: 0 auto;
   display: flex;
@@ -56,6 +57,11 @@
     }
 
     .page-nation {
+      button:active {
+        position: relative;
+        top: 3px;
+      }
+
       button {
         background: none;
         border: none;

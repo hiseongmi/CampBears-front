@@ -1,8 +1,8 @@
 <script>
 import commonUtil from "../../../utils/common-util.js";
-import { CONSTANTS } from "../../../constants.js";
-import { onMounted, ref } from "vue";
-import { i } from "../../../../dist/assets/index.70e7d3e5.js";
+import {CONSTANTS} from "../../../constants.js";
+import {onMounted, ref} from "vue";
+// import { i } from "../../../../dist/assets/index.70e7d3e5.js";
 
 export default {
   name: "userPreferencePopup",
@@ -57,7 +57,7 @@ export default {
       </div>
       <span v-for="i in 8">
         <!--        <input type="button" :value="ty">-->
-        <img @click="" :src="`/assets/image/prefeRence/${i}.png`" alt="" />
+        <img @click="" :src="`/assets/image/prefeRence/${i}.png`" alt=""/>
         <!--        {{ index }}-->
       </span>
     </div>
