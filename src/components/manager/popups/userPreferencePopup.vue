@@ -1,8 +1,7 @@
 <script>
 import commonUtil from "../../../utils/common-util.js";
-import {CONSTANTS} from "../../../constants.js";
-import {onMounted, ref} from "vue";
-// import { i } from "../../../../dist/assets/index.70e7d3e5.js";
+import { CONSTANTS } from "../../../constants.js";
+import { onMounted, ref } from "vue";
 
 export default {
   name: "userPreferencePopup",
@@ -55,7 +54,7 @@ export default {
       <div>
         간단한 설문을 도와주시면 {{ userInfo ? userInfo.userName : "손" }}님의 취향을 더 잘 알 수 있어요!
       </div>
-      <span v-for="i in 8">
+      <div v-for="i in 8">
         <!--        <input type="button" :value="ty">-->
         <img @click="" :src="`/assets/image/prefeRence/${i}.png`" alt="" />
         <!--        {{ index }}-->
