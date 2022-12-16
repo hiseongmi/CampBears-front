@@ -60,8 +60,7 @@ export default {
 </script>
 <template>
   <section class="detail-camping" v-if="campingInfo">
-    <h1 class="det-title">멋진 여행을 기대하고 계신가요?</h1>
-    <kakaoMap/>
+
 
     <!--todo    지도-->
 
@@ -77,6 +76,7 @@ export default {
         {{ campingInfo.campingManageMode }}캠핑장
       </span>
       <!--      </div>-->
+      
       <div>캠핑 타입 :{{ campingInfo.campingType }}</div>
       <div>캠핑 테마 :{{ campingInfo.campingTheme }}</div>
       <div>주소 : {{ campingInfo.address }}</div>
@@ -89,5 +89,7 @@ export default {
       <div><a :href="campingInfo.reserve_url">클릭! 예약하러가기~</a></div>
       <div><a :href="campingInfo.homePageUrl">홈페이지 방문하기</a></div>
     </div>
+    <h1 class="det-title">{{ campingInfo.campingName }} 위치</h1>
+    <kakaoMap/>
   </section>
 </template>
