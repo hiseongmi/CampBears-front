@@ -2,15 +2,14 @@
 import commonUtil from "../../../utils/common-util.js";
 import { CONSTANTS } from "../../../constants.js";
 import { onMounted, ref } from "vue";
-import { i } from "../../../../dist/assets/index.70e7d3e5.js";
 
 export default {
   name: "userPreferencePopup",
   props: {
     clickClose: {
       type: Function,
-      required: true,
-    },
+      required: true
+    }
   },
   setup() {
     const userInfo = ref();
@@ -23,7 +22,7 @@ export default {
       fiv: "",
       six: "",
       sev: "",
-      eig: "",
+      eig: ""
     });
 
     /**
@@ -42,27 +41,119 @@ export default {
     return {
       userInfo,
 
-      setPreferenceValue,
+      setPreferenceValue
     };
-  },
+  }
 };
 </script>
 <template>
-  <div>
+  <div class="user-refer">
+    <div class="black"></div>
     <div class="refer">
-      <div>잠시만요! 당신의 취향을 알고 싶어요</div>
+      <div class="title">잠시만요! 당신의 취향을 알고 싶어요</div>
       <div>
-        간단한 설문을 도와주시면 {{ userInfo ? userInfo.userName : "손" }}님의 취향을 더 잘 알 수 있어요! (1~5까지의
-        점수로 알려주세요!)
+        간단한 설문을 도와주시면 {{ userInfo ? userInfo.userName : "손" }}님의 취향을 더 잘 알 수 있어요!
       </div>
-      <span v-for="i in 8">
-        <!--        <input type="button" :value="ty">-->
-        <img @click="" :src="`/assets/image/prefeRence/${i}.png`" alt="" />
+      <div class="img-area">
+        <div>1. 선호하는 캠핑 테마를 골라주세요!</div>
+        <div class="theme">
+          <img v-for="i in 8" @click="" :src="`/assets/image/prefeRence/${i}.png`" alt="" />
+        </div>
+        <div style="padding-top:100px">2. 선호하는 캠핑 유형을 골라주세요!</div>
+        <div class="type">
+          <img src="/assets/image/prefeRence/camp.png" alt="" />
+          <img src="/assets/image/prefeRence/car.png" alt="" />
+          <img src="/assets/image/prefeRence/caravan.png" alt="" />
+          <img src="/assets/image/prefeRence/glamping.png" alt="" />
+        </div>
         <!--        {{ index }}-->
-      </span>
+      </div>
     </div>
     <div class="submit">
       <button @click="setPreferenceValue">제출</button>
     </div>
   </div>
 </template>
+
+<style lang="scss">
+.user-refer {
+  position: fixed;
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+
+  .black {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(#000000, 0.8);
+  }
+
+  .refer {
+    position: relative;
+    width: 90%;
+    height: 90%;
+    background-color: #EEEEEE;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 15px;
+
+    .title {
+      padding-top: 50px;
+      padding-bottom: 10px;
+      font-size: 50px;
+
+    }
+
+    .img-area {
+      margin: 30px 10px;
+      display: flex;
+      justify-content: space-around;
+      flex-direction: column;
+
+
+      .theme {
+        margin-top: 10px;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+
+        div {
+          padding: 20px;
+        }
+
+        img {
+          width: 100px;
+          height: 100px;
+          border-radius: 8px;
+        }
+      }
+
+      .type {
+        margin-top: 10px;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+
+        div {
+          padding: 20px;
+        }
+
+        img {
+          width: 100px;
+          height: 100px;
+          border-radius: 8px;
+        }
+      }
+    }
+  }
+
+}
+
+
+</style>

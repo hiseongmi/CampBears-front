@@ -29,7 +29,7 @@ export default {
     myPage,
     infoPage,
     Buss,
-    userPreferencePopup,
+    userPreferencePopup
   },
   setup() {
     //go-camp
@@ -117,15 +117,15 @@ export default {
       showIntro,
       loginUser,
       index,
-      page,
+      page
     };
-  },
+  }
 };
 </script>
 <template>
   <section class="main">
     <!--  <Buss />-->
-    <userPreferencePopup click-close=""></userPreferencePopup>
+    <userPreferencePopup></userPreferencePopup>
     <div class="main-box">
       <div class="main-fir mb-hide">
         <img src="/assets/image/mainpage2.webp" alt="" />
