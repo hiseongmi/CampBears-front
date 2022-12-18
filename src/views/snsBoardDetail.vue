@@ -364,7 +364,7 @@ export default {
             <ul>
               <li @click="goToUpdate(detailData)">수정</li>
               <li @click="deleteContent">삭제</li>
-              <li @click="reportPop">신고 <i class="fa-solid fa-circle-exclamation"></i></li>
+              <!--              <li @click="reportPop">신고 <i class="fa-solid fa-circle-exclamation"></i></li>-->
             </ul>
           </div>
           <div class="pop" v-if="RerAction">

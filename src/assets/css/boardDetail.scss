@@ -69,7 +69,7 @@
         //신고 수정 삭제 리스트
         .myPop {
           width: 80px;
-          height: 100px;
+          height: 80px;
           border: 1px solid #818181;
           background-color: rgb(255 255 255 / 76%);
           border-radius: 8px;
@@ -79,13 +79,13 @@
           transition: 0.3s;
           @include mb() {
             width: 60px;
-            height: 80px;
+            height: 60px;
             top: 15px;
             right: 5px;
           }
 
           ul {
-            height: 100px;
+            height: 80px;
             list-style: none;
             padding: 0;
             display: grid;
@@ -93,7 +93,7 @@
             justify-items: center;
             margin: 0;
             @include mb() {
-              height: 80px;
+              height: 60px;
             }
 
             li {

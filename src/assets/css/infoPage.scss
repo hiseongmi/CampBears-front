@@ -966,6 +966,9 @@
       color: #fa6c1a;
       font-size: 40px;
       padding-top: 30px;
+      @include mb() {
+        font-size: 35px;
+      }
     }
 
     .search {
@@ -979,6 +982,9 @@
           font-size: 25px;
           color: #fa6c1a;
           position: absolute;
+          @include mb() {
+            font-size: 20px;
+          }
         }
       }
 
@@ -994,6 +1000,9 @@
         border-bottom: 3px solid #fa6c1a;
         text-align: center;
         background: none;
+        @include mb() {
+          width: 248px;
+        }
       }
     }
 
@@ -1015,6 +1024,7 @@
       padding-bottom: 56px;
 
       @include mb() {
+        padding-bottom: 36px;
         padding-top: unset;
         justify-content: center;
       }
@@ -1035,10 +1045,14 @@
 
         img {
           cursor: pointer;
+          @include mb() {
+            width: 100%;
+          }
         }
 
         @include mb() {
           padding: 3%;
+          width: 63px;
         }
       }
 
@@ -1046,6 +1060,9 @@
         display: flex;
         inline-size: -webkit-fill-available;
         justify-content: center;
+        @include mb() {
+          font-size: 12px;
+        }
       }
     }
 
