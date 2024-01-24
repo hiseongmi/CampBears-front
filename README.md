@@ -54,4 +54,9 @@
 ![js](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
 ![js](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
 
+## 🎥실행 영상
+[![Video Label](http://img.youtube.com/vi/mqA32roGzFk/0.jpg)](https://youtu.be/mqA32roGzFk)
+
+
+
 
