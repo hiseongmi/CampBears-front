@@ -1,20 +1,4 @@
-# camping-front
+[2022 ccit camp-bears]
 
-2022-pbl-camping-front
-
-```
-yarn install
-
-웹서버 실행
-yarn dev
-```
-
-```
-빌드
-yarn build 
-```
-
-## 변수명 생성규칙
-
-변수명 : camel case \
-css :  kebab case
+기존에 있던 분산된 서비스들을 하나로 통합하여 차별화된 서비스를 제공하는 ‘캠핑 종합 플랫폼’ 
+F - 4, B - 1
